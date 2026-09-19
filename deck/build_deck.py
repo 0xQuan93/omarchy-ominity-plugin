@@ -11,7 +11,10 @@ import hashlib
 import html
 import json
 import re
+import colorsys
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Mapping
 
 ROOT = Path(__file__).resolve().parents[1]
 DECK_DIR = ROOT / "deck"
@@ -168,6 +171,80 @@ INK = "#232b2d"
 GOLD = "#997643"
 PAPER = "#f2ebd9"
 ACCENTS = {"Wands": "#a65942", "Cups": "#4e777c", "Swords": "#596d78", "Pentacles": "#65704b"}
+
+
+def _rgb(value: str) -> tuple[int, int, int]:
+    if not re.fullmatch(r"#[0-9a-fA-F]{6}", value):
+        raise ValueError(f"Expected a six-digit hex color: {value!r}")
+    return tuple(int(value[index:index + 2], 16) for index in (1, 3, 5))
+
+
+def _hex(channels: tuple[int, int, int]) -> str:
+    return "#" + "".join(f"{channel:02x}" for channel in channels)
+
+
+def _mix(first: str, second: str, fraction: float) -> str:
+    a, b = _rgb(first), _rgb(second)
+    return _hex(tuple(round(x * (1 - fraction) + y * fraction) for x, y in zip(a, b)))
+
+
+def _luminance(value: str) -> float:
+    channels = [channel / 255 for channel in _rgb(value)]
+    linear = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in channels]
+    return sum(a * b for a, b in zip(linear, (.2126, .7152, .0722)))
+
+
+def _contrast(first: str, second: str) -> float:
+    bright, dark = sorted((_luminance(first), _luminance(second)), reverse=True)
+    return (bright + .05) / (dark + .05)
+
+
+def _readable(color: str, paper: str, goal: float, fallback: str) -> str:
+    """Keep a theme hue, moving toward high-contrast ink only when required."""
+    if _contrast(color, paper) >= goal:
+        return color.lower()
+    if _contrast(fallback, paper) < goal:
+        fallback = "#ffffff" if _luminance(paper) < .18 else "#000000"
+    for step in range(1, 101):
+        candidate = _mix(color, fallback, step / 100)
+        if _contrast(candidate, paper) >= goal:
+            return candidate
+    return fallback.lower()
+
+
+def _suit_tone(accent: str, muted: str, hue_shift: float) -> str:
+    """A related enamel tone; the four suits remain identifiable in any theme."""
+    red, green, blue = (channel / 255 for channel in _rgb(accent))
+    hue, lightness, saturation = colorsys.rgb_to_hls(red, green, blue)
+    shifted = colorsys.hls_to_rgb((hue + hue_shift / 360) % 1,
+                                 min(.76, max(.28, lightness)), max(.22, saturation * .78))
+    colored = _hex(tuple(round(channel * 255) for channel in shifted))
+    return _mix(colored, muted, .12)
+
+
+@dataclass(frozen=True)
+class DeckPalette:
+    paper: str = PAPER
+    ink: str = INK
+    gold: str = GOLD
+    back_fill: str = INK
+    back_line: str = PAPER
+    accents: Mapping[str, str] = field(default_factory=lambda: ACCENTS.copy())
+
+    @classmethod
+    def from_theme(cls, background: str, foreground: str, accent: str, muted: str) -> "DeckPalette":
+        # A small foreground veil gives the shell background a printed-paper
+        # surface while retaining its hue and its light/dark mode.
+        paper = _mix(background, foreground, .06)
+        ink = _readable(foreground, paper, 7, "#ffffff" if _luminance(paper) < .18 else "#000000")
+        gold = _readable(accent, paper, 4.5, ink)
+        shifts = {"Wands": -18, "Cups": 146, "Swords": 203, "Pentacles": 78}
+        accents = {
+            suit: _readable(_suit_tone(accent, muted, shift), paper, 3, ink)
+            for suit, shift in shifts.items()
+        }
+        return cls(paper=paper, ink=ink, gold=gold,
+                   back_fill=_mix(paper, ink, .1), back_line=ink, accents=accents)
 
 
 def e(value: object) -> str:
@@ -384,11 +461,13 @@ def etched_setting(card: dict) -> str:
     return "".join(pieces)
 
 
-def card_svg(card: dict) -> str:
+def card_svg(card: dict, palette: DeckPalette | None = None) -> str:
+    palette = palette or DeckPalette()
+    ink, gold, paper = palette.ink, palette.gold, palette.paper
     card_id = card["id"]
     seed = int(hashlib.sha256(card_id.encode()).hexdigest()[:8], 16)
     suit = card["suit"]
-    accent = ACCENTS.get(suit, GOLD)
+    accent = palette.accents.get(suit, gold)
     title = card["title"]
     # Compact title spacing makes long court titles readable at toolbar scale.
     title_size = 16 if len(title) > 17 else 19 if len(title) > 13 else 21
@@ -398,39 +477,39 @@ def card_svg(card: dict) -> str:
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
 <title id="title">{e(title)} — Ominity Tarot</title><desc id="description">Original etched tarot plate for {e(title)}.</desc>
 <style>
-.ink{{fill:none;stroke:{INK};stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}}
-.fine{{fill:none;stroke:{INK};stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}}
-.gold{{fill:none;stroke:{GOLD};stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
-.faint{{fill:none;stroke:{GOLD};stroke-opacity:.38;stroke-width:1}}
-.wash{{fill:{accent};fill-opacity:.11;stroke:{INK};stroke-width:1.8;stroke-linejoin:round}}
-.column{{fill:{PAPER};stroke:{INK};stroke-width:2.1}}
-.sun{{fill:{GOLD};fill-opacity:.2;stroke:{GOLD};stroke-width:2}}
-.paperfill{{fill:{PAPER};stroke:{INK};stroke-width:1.8}}
-.lantern{{fill:{GOLD};fill-opacity:.35;stroke:{INK};stroke-width:2}}
+.ink{{fill:none;stroke:{ink};stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}}
+.fine{{fill:none;stroke:{ink};stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}}
+.gold{{fill:none;stroke:{gold};stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
+.faint{{fill:none;stroke:{gold};stroke-opacity:.38;stroke-width:1}}
+.wash{{fill:{accent};fill-opacity:.11;stroke:{ink};stroke-width:1.8;stroke-linejoin:round}}
+.column{{fill:{paper};stroke:{ink};stroke-width:2.1}}
+.sun{{fill:{gold};fill-opacity:.2;stroke:{gold};stroke-width:2}}
+.paperfill{{fill:{paper};stroke:{ink};stroke-width:1.8}}
+.lantern{{fill:{gold};fill-opacity:.35;stroke:{ink};stroke-width:2}}
 .vine{{fill:none;stroke:{accent};stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
 .water{{fill:none;stroke:{accent};stroke-width:2;stroke-linecap:round}}
-.chain{{fill:none;stroke:{GOLD};stroke-width:3;stroke-dasharray:4 4}}
+.chain{{fill:none;stroke:{gold};stroke-width:3;stroke-dasharray:4 4}}
 .lightning{{fill:none;stroke:{accent};stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}}
-.ghost{{fill:none;stroke:{GOLD};stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}}
+.ghost{{fill:none;stroke:{gold};stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}}
 .landscape{{fill:none;stroke:{accent};stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}}
-.hatch{{fill:none;stroke:{INK};stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}}
-.label{{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:{INK};text-anchor:middle}}
-.number{{font:22px Georgia,'Times New Roman',serif;fill:{GOLD};text-anchor:middle}}
-.title{{font:600 {title_size}px Georgia,'Times New Roman',serif;fill:{INK};text-anchor:middle}}
-.small{{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:{GOLD};text-anchor:middle}}
+.hatch{{fill:none;stroke:{ink};stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}}
+.label{{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:{ink};text-anchor:middle}}
+.number{{font:22px Georgia,'Times New Roman',serif;fill:{gold};text-anchor:middle}}
+.title{{font:600 {title_size}px Georgia,'Times New Roman',serif;fill:{ink};text-anchor:middle}}
+.small{{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:{gold};text-anchor:middle}}
 </style>
-<rect width="280" height="480" fill="{PAPER}"/>
-<rect x="8" y="8" width="264" height="464" fill="none" stroke="{GOLD}" stroke-width="1.8"/>
-<rect x="14" y="14" width="252" height="452" fill="none" stroke="{INK}" stroke-width=".75" opacity=".72"/>
-<path d="M23 103H257M23 392H257M25 450H255" stroke="{GOLD}" stroke-width="1"/>
-<path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="{INK}" stroke-width="1.4"/>
+<rect width="280" height="480" fill="{paper}"/>
+<rect x="8" y="8" width="264" height="464" fill="none" stroke="{gold}" stroke-width="1.8"/>
+<rect x="14" y="14" width="252" height="452" fill="none" stroke="{ink}" stroke-width=".75" opacity=".72"/>
+<path d="M23 103H257M23 392H257M25 450H255" stroke="{gold}" stroke-width="1"/>
+<path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="{ink}" stroke-width="1.4"/>
 <text class="number" x="140" y="42">{e(card['numeral'])}</text>
 <text class="title" x="140" y="72">{e(title)}</text>
 <text class="small" x="140" y="91">{top}</text>
 <g clip-path="url(#window)">{etched_setting(card)}{little_stars}{plate}</g>
 <defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
-<path d="M42 382L79 382M201 382L238 382" stroke="{GOLD}" stroke-width=".9"/>
-<circle cx="140" cy="381" r="5" fill="none" stroke="{GOLD}" stroke-width="1.3"/>
+<path d="M42 382L79 382M201 382L238 382" stroke="{gold}" stroke-width=".9"/>
+<circle cx="140" cy="381" r="5" fill="none" stroke="{gold}" stroke-width="1.3"/>
 <text class="label" x="140" y="418">{e(card['keywords'][0].upper())}</text>
 <text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
 </svg>'''
@@ -463,8 +542,10 @@ GUIDE = {
 }
 
 
-def card_back_svg() -> str:
+def card_back_svg(palette: DeckPalette | None = None) -> str:
     """The hidden side of a card: an original compass/eye night plate."""
+    palette = palette or DeckPalette()
+    ink, gold, paper = palette.back_fill, palette.gold, palette.back_line
     rays = "".join(
         f'<path d="M140 146L140 158" transform="rotate({angle} 140 240)"/>'
         for angle in range(0, 360, 15)
@@ -475,11 +556,11 @@ def card_back_svg() -> str:
     )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
 <title id="title">Ominity card back</title><desc id="description">A gold compass and watchful eye engraved on dark ink.</desc>
-<rect width="280" height="480" fill="{INK}"/>
-<rect x="8" y="8" width="264" height="464" rx="2" fill="none" stroke="{GOLD}" stroke-width="2"/>
-<rect x="16" y="16" width="248" height="448" rx="1" fill="none" stroke="{PAPER}" stroke-width=".8" opacity=".75"/>
-<rect x="25" y="25" width="230" height="430" fill="none" stroke="{GOLD}" stroke-width=".6" opacity=".55"/>
-<g fill="none" stroke="{GOLD}" stroke-linejoin="round" stroke-linecap="round">
+<rect width="280" height="480" fill="{ink}"/>
+<rect x="8" y="8" width="264" height="464" rx="2" fill="none" stroke="{gold}" stroke-width="2"/>
+<rect x="16" y="16" width="248" height="448" rx="1" fill="none" stroke="{paper}" stroke-width=".8" opacity=".75"/>
+<rect x="25" y="25" width="230" height="430" fill="none" stroke="{gold}" stroke-width=".6" opacity=".55"/>
+<g fill="none" stroke="{gold}" stroke-linejoin="round" stroke-linecap="round">
 <path d="M140 47L150 72L140 97L130 72Z M140 383L150 408L140 433L130 408Z" stroke-width="1.4"/>
 <path d="M140 63L140 84M140 396L140 417" stroke-width=".8"/>
 <circle cx="140" cy="240" r="94" stroke-width=".9"/>
@@ -487,16 +568,16 @@ def card_back_svg() -> str:
 <circle cx="140" cy="240" r="69" stroke-width=".7" opacity=".65"/>
 <path d="M140 154L152 224L222 240L152 256L140 326L128 256L58 240L128 224Z" stroke-width="1.4"/>
 <path d="M140 176L149 229L204 240L149 251L140 304L131 251L76 240L131 229Z" stroke-width=".6"/>
-<path d="M78 240Q140 178 202 240Q140 302 78 240Z" fill="{INK}" stroke-width="2"/>
-<circle cx="140" cy="240" r="28" stroke="{PAPER}" stroke-width="1.1"/>
+<path d="M78 240Q140 178 202 240Q140 302 78 240Z" fill="{ink}" stroke-width="2"/>
+<circle cx="140" cy="240" r="28" stroke="{paper}" stroke-width="1.1"/>
 <circle cx="140" cy="240" r="14" stroke-width="1.8"/>
-<circle cx="140" cy="240" r="5" fill="{GOLD}" stroke="none"/>
+<circle cx="140" cy="240" r="5" fill="{gold}" stroke="none"/>
 <path d="M140 113L145 126L140 139L135 126Z M140 341L145 354L140 367L135 354Z" stroke-width="1"/>
 <path d="M42 119L55 119M225 119L238 119M42 361L55 361M225 361L238 361" stroke-width=".7"/>
 <path d="M32 32L46 32M32 32L32 46M248 32L234 32M248 32L248 46M32 448L46 448M32 448L32 434M248 448L234 448M248 448L248 434" stroke-width="1.2"/>
 </g>
-<g fill="none" stroke="{PAPER}" stroke-width=".55" opacity=".67">{rays}</g>
-<g fill="none" stroke="{GOLD}" stroke-width=".8" opacity=".8">{corners}</g>
+<g fill="none" stroke="{paper}" stroke-width=".55" opacity=".67">{rays}</g>
+<g fill="none" stroke="{gold}" stroke-width=".8" opacity=".8">{corners}</g>
 </svg>'''
 
 

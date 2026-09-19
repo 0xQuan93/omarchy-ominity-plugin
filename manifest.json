@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "oxquan.ominity",
   "name": "Ominity · Daily Tarot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "0xQuan93",
-  "description": "A daily tarot ritual for the Omarchy bar and desktop, with an original 78-card deck.",
+  "description": "Theme-aware daily tarot with an original 78-card deck and immersive flip-card readings.",
   "kinds": ["service", "bar-widget"],
   "keepLoaded": true,
   "entryPoints": {
