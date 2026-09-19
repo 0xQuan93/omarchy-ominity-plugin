@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Small local state boundary for the Ominity Quickshell plugin.
+
+No network, model, or account is needed to draw a card. CLI output is one JSON
+object per invocation so the QML surface never has to parse mutable files.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import secrets
+import sys
+import tempfile
+from datetime import datetime
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+STATE_ROOT = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local/state") / "ominity"
+STATE_FILE = STATE_ROOT / "reading.json"
+
+
+def deck() -> dict[str, dict]:
+    raw = json.loads((ROOT / "deck/deck.json").read_text(encoding="utf-8"))
+    cards = raw["cards"] if isinstance(raw, dict) else raw
+    if len(cards) != 78 or len({card["id"] for card in cards}) != 78:
+        raise ValueError("Ominity deck must contain 78 unique cards")
+    return {card["id"]: card for card in cards}
+
+
+def load_state() -> dict:
+    try:
+        data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        if isinstance(data, dict):
+            return data
+    except (OSError, ValueError):
+        pass
+    return {"widget": False, "history": []}
+
+
+def save_state(data: dict) -> None:
+    STATE_ROOT.mkdir(mode=0o700, parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix="reading.", dir=STATE_ROOT, text=True)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(data, handle, ensure_ascii=False, separators=(",", ":"))
+            handle.write("\n")
+        os.chmod(temp_name, 0o600)
+        os.replace(temp_name, STATE_FILE)
+    finally:
+        if os.path.exists(temp_name):
+            os.unlink(temp_name)
+
+
+def payload(data: dict, cards: dict[str, dict], day: str) -> dict:
+    current = data.get("reading") or {}
+    if current.get("day") != day or current.get("id") not in cards:
+        current = {}
+    return {
+        "ok": True,
+        "day": day,
+        "widget": data.get("widget") is True,
+        "reading": current | {"card": cards[current["id"]]} if current else None,
+        "historyCount": len(data.get("history", [])),
+    }
+
+
+def choose(cards: dict[str, dict], previous: str | None) -> str:
+    ids = tuple(cards)
+    if previous in cards:
+        ids = tuple(card_id for card_id in ids if card_id != previous)
+    return ids[secrets.randbelow(len(ids))]
+
+
+def run(action: str) -> dict:
+    cards = deck()
+    data = load_state()
+    now = datetime.now().astimezone()
+    day = now.date().isoformat()
+    existing = data.get("reading") or {}
+
+    if action in ("today", "redraw"):
+        if action == "redraw" or existing.get("day") != day or existing.get("id") not in cards:
+            new = {
+                "day": day,
+                "id": choose(cards, existing.get("id")),
+                "reversed": bool(secrets.randbelow(2)),
+                "drawnAt": now.isoformat(timespec="seconds"),
+                "redraw": action == "redraw",
+            }
+            history = data.get("history", [])
+            if not isinstance(history, list):
+                history = []
+            data["history"] = (history + [new])[-90:]
+            data["reading"] = new
+            save_state(data)
+    elif action == "widget-toggle":
+        data["widget"] = data.get("widget") is not True
+        save_state(data)
+    elif action == "widget-show":
+        data["widget"] = True
+        save_state(data)
+    elif action == "widget-hide":
+        data["widget"] = False
+        save_state(data)
+    elif action != "state":
+        raise ValueError(f"Unknown Ominity action: {action}")
+    return payload(data, cards, day)
+
+
+if __name__ == "__main__":
+    try:
+        print(json.dumps(run(sys.argv[1] if len(sys.argv) == 2 else "state"), ensure_ascii=False))
+    except (OSError, ValueError, KeyError) as exc:
+        print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
+        raise SystemExit(1)

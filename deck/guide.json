@@ -1,0 +1,43 @@
+{
+  "title": "A living guide to the Ominity Tarot",
+  "edition": "Original Ominity plates and reflections, 2026",
+  "introduction": "Tarot is a picture language for reflection. A card offers a perspective, not a fixed prediction. Let an image prompt a question, then trust your own context over any printed meaning.",
+  "structure": {
+    "major_arcana": "Twenty-two cards trace the Fool's journey through beginnings, choices, upheaval, renewal, and completion. A major card often invites attention to a wider life pattern.",
+    "minor_arcana": "Fifty-six cards explore ordinary life in four suits. Each suit runs from Ace through Ten, then Page, Knight, Queen, and King.",
+    "ranks": "Aces suggest seeds; Two through Ten develop a situation. Pages explore, Knights pursue, Queens tend and interpret, and Kings steward and decide. These court figures describe roles or approaches, not gender or a guaranteed person."
+  },
+  "suits": {
+    "Wands": {
+      "element": "Fire",
+      "domain": "creative energy, purpose, courage, and action"
+    },
+    "Cups": {
+      "element": "Water",
+      "domain": "feeling, intimacy, imagination, and care"
+    },
+    "Swords": {
+      "element": "Air",
+      "domain": "thought, language, conflict, and discernment"
+    },
+    "Pentacles": {
+      "element": "Earth",
+      "domain": "body, work, resources, and the material world"
+    }
+  },
+  "reversals": "A reversed card can suggest a blocked, inward, delayed, or overextended version of its theme. It is not automatically bad news. Read the upright and reversed lines together, then ask which fits the actual situation.",
+  "daily_reflection": "Take one breath, name the day or a specific question, and draw. Notice the image before reading its words. Keep one useful sentence and one small action; return later to see what changed.",
+  "ethics": "The cards cannot establish facts about another person's mind, diagnose illness, or replace professional advice. Use them to clarify your own choices and conversations.",
+  "influence": "Ominity nods to the expansive, art-forward spirit of the Starman Tarot by Davide De Angelis, and to traditional visual grammar familiar from Rider–Waite–Smith tarot. Every Ominity plate and reading is newly made; it does not reproduce the art or text of either deck.",
+  "influence_sources": [
+    {
+      "title": "Starman Tarot — Lo Scarabeo",
+      "url": "https://www.loscarabeo.com/en/products/starman-tarot"
+    },
+    {
+      "title": "Starman Tarot Deck — Llewellyn",
+      "url": "https://www.llewellyn.com/product.php?ean=9780738777795"
+    }
+  ],
+  "art": "Original procedural SVG plates use etched ink, aged ivory, tarnished gold, and sparse geometry. The named archetypes and pips are traditional tarot vocabulary."
+}

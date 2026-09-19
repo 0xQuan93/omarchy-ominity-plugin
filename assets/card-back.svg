@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
+<title id="title">Ominity card back</title><desc id="description">A gold compass and watchful eye engraved on dark ink.</desc>
+<rect width="280" height="480" fill="#232b2d"/>
+<rect x="8" y="8" width="264" height="464" rx="2" fill="none" stroke="#997643" stroke-width="2"/>
+<rect x="16" y="16" width="248" height="448" rx="1" fill="none" stroke="#f2ebd9" stroke-width=".8" opacity=".75"/>
+<rect x="25" y="25" width="230" height="430" fill="none" stroke="#997643" stroke-width=".6" opacity=".55"/>
+<g fill="none" stroke="#997643" stroke-linejoin="round" stroke-linecap="round">
+<path d="M140 47L150 72L140 97L130 72Z M140 383L150 408L140 433L130 408Z" stroke-width="1.4"/>
+<path d="M140 63L140 84M140 396L140 417" stroke-width=".8"/>
+<circle cx="140" cy="240" r="94" stroke-width=".9"/>
+<circle cx="140" cy="240" r="82" stroke-width="1.8"/>
+<circle cx="140" cy="240" r="69" stroke-width=".7" opacity=".65"/>
+<path d="M140 154L152 224L222 240L152 256L140 326L128 256L58 240L128 224Z" stroke-width="1.4"/>
+<path d="M140 176L149 229L204 240L149 251L140 304L131 251L76 240L131 229Z" stroke-width=".6"/>
+<path d="M78 240Q140 178 202 240Q140 302 78 240Z" fill="#232b2d" stroke-width="2"/>
+<circle cx="140" cy="240" r="28" stroke="#f2ebd9" stroke-width="1.1"/>
+<circle cx="140" cy="240" r="14" stroke-width="1.8"/>
+<circle cx="140" cy="240" r="5" fill="#997643" stroke="none"/>
+<path d="M140 113L145 126L140 139L135 126Z M140 341L145 354L140 367L135 354Z" stroke-width="1"/>
+<path d="M42 119L55 119M225 119L238 119M42 361L55 361M225 361L238 361" stroke-width=".7"/>
+<path d="M32 32L46 32M32 32L32 46M248 32L234 32M248 32L248 46M32 448L46 448M32 448L32 434M248 448L234 448M248 448L248 434" stroke-width="1.2"/>
+</g>
+<g fill="none" stroke="#f2ebd9" stroke-width=".55" opacity=".67"><path d="M140 146L140 158" transform="rotate(0 140 240)"/><path d="M140 146L140 158" transform="rotate(15 140 240)"/><path d="M140 146L140 158" transform="rotate(30 140 240)"/><path d="M140 146L140 158" transform="rotate(45 140 240)"/><path d="M140 146L140 158" transform="rotate(60 140 240)"/><path d="M140 146L140 158" transform="rotate(75 140 240)"/><path d="M140 146L140 158" transform="rotate(90 140 240)"/><path d="M140 146L140 158" transform="rotate(105 140 240)"/><path d="M140 146L140 158" transform="rotate(120 140 240)"/><path d="M140 146L140 158" transform="rotate(135 140 240)"/><path d="M140 146L140 158" transform="rotate(150 140 240)"/><path d="M140 146L140 158" transform="rotate(165 140 240)"/><path d="M140 146L140 158" transform="rotate(180 140 240)"/><path d="M140 146L140 158" transform="rotate(195 140 240)"/><path d="M140 146L140 158" transform="rotate(210 140 240)"/><path d="M140 146L140 158" transform="rotate(225 140 240)"/><path d="M140 146L140 158" transform="rotate(240 140 240)"/><path d="M140 146L140 158" transform="rotate(255 140 240)"/><path d="M140 146L140 158" transform="rotate(270 140 240)"/><path d="M140 146L140 158" transform="rotate(285 140 240)"/><path d="M140 146L140 158" transform="rotate(300 140 240)"/><path d="M140 146L140 158" transform="rotate(315 140 240)"/><path d="M140 146L140 158" transform="rotate(330 140 240)"/><path d="M140 146L140 158" transform="rotate(345 140 240)"/></g>
+<g fill="none" stroke="#997643" stroke-width=".8" opacity=".8"><path d="M43 52L43 66M36 59L50 59"/><path d="M237 52L237 66M230 59L244 59"/><path d="M43 414L43 428M36 421L50 421"/><path d="M237 414L237 428M230 421L244 421"/></g>
+</svg>

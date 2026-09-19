@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
+<title id="title">The Emperor — Ominity Tarot</title><desc id="description">Original etched tarot plate for The Emperor.</desc>
+<style>
+.ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.faint{fill:none;stroke:#997643;stroke-opacity:.38;stroke-width:1}
+.wash{fill:#997643;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
+.column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
+.sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
+.paperfill{fill:#f2ebd9;stroke:#232b2d;stroke-width:1.8}
+.lantern{fill:#997643;fill-opacity:.35;stroke:#232b2d;stroke-width:2}
+.vine{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.water{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round}
+.chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
+.lightning{fill:none;stroke:#997643;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+.ghost{fill:none;stroke:#997643;stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
+.landscape{fill:none;stroke:#997643;stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}
+.hatch{fill:none;stroke:#232b2d;stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}
+.label{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:#232b2d;text-anchor:middle}
+.number{font:22px Georgia,'Times New Roman',serif;fill:#997643;text-anchor:middle}
+.title{font:600 21px Georgia,'Times New Roman',serif;fill:#232b2d;text-anchor:middle}
+.small{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:#997643;text-anchor:middle}
+</style>
+<rect width="280" height="480" fill="#f2ebd9"/>
+<rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
+<rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
+<path d="M23 103H257M23 392H257M25 450H255" stroke="#997643" stroke-width="1"/>
+<path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
+<text class="number" x="140" y="42">IV</text>
+<text class="title" x="140" y="72">The Emperor</text>
+<text class="small" x="140" y="91">MAJOR ARCANA</text>
+<g clip-path="url(#window)"><path class="ghost" d="M32 374V172Q140 111 248 172V374" /><path class="ghost" d="M38 374V177Q140 121 242 177V374" /><path class="ghost" d="M31 375H249" /><path class="ghost" d="M140 131L140.9 134.1L144 135L140.9 135.9L140 139L139.1 135.9L136 135L139.1 134.1Z" /><path class="ghost" d="M34 180L42 180M238 180L246 180M31 324L39 324M241 324L249 324" /><path class="landscape" d="M39 345Q78 313 117 335Q167 301 241 346" /><path class="ghost" d="M39 355Q79 324 117 345Q166 313 241 356" /><path class="hatch" d="M46 349L54 345" /><path class="hatch" d="M70 344L78 340" /><path class="hatch" d="M94 354L102 350" /><path class="hatch" d="M118 349L126 345" /><path class="hatch" d="M142 344L150 340" /><path class="hatch" d="M166 354L174 350" /><path class="hatch" d="M190 349L198 345" /><path class="hatch" d="M214 344L222 340" /><path class="hatch" d="M238 354L246 350" /><path class="ghost" d="M55 208Q140 149 225 208M62 219Q140 165 218 219" /><path class="faint" d="M146 123.7L146.5 125.5L148.3 126L146.5 126.5L146 128.3L145.5 126.5L143.7 126L145.5 125.5Z" /><path class="faint" d="M224 147.7L224.5 149.5L226.3 150L224.5 150.5L224 152.3L223.5 150.5L221.7 150L223.5 149.5Z" /><path class="faint" d="M146 147.7L146.5 149.5L148.3 150L146.5 150.5L146 152.3L145.5 150.5L143.7 150L145.5 149.5Z" /><path class="faint" d="M172 147.7L172.5 149.5L174.3 150L172.5 150.5L172 152.3L171.5 150.5L169.7 150L171.5 149.5Z" /><path class="faint" d="M146 147.7L146.5 149.5L148.3 150L146.5 150.5L146 152.3L145.5 150.5L143.7 150L145.5 149.5Z" /><path class="faint" d="M198 123.7L198.5 125.5L200.3 126L198.5 126.5L198 128.3L197.5 126.5L195.7 126L197.5 125.5Z" /><path class="wash" d="M35 340Q83 205 135 340Q181 215 244 340L244 368L35 368Z" /><path class="ink" d="M35 340Q83 205 135 340Q181 215 244 340" /><rect class="column" x="94" y="253" width="92" height="61" /><rect class="column" x="102" y="235" width="76" height="22" /><g transform="translate(140 307) scale(1.3 1.3)"><path class="paperfill" d="M-11 -39Q-13 -57 0 -59Q13 -57 11 -39Q8 -31 0 -29Q-8 -31 -11 -39Z" /><path class="ink" d="M-11 -43Q-14 -55 -4 -59Q8 -65 13 -50M-10 -49Q-2 -47 2 -54Q5 -48 11 -46" /><circle class="gold" cx="-4" cy="-42" r="0.8" /><circle class="gold" cx="5" cy="-42" r="0.8" /><path class="fine" d="M-3 -35Q0 -32 4 -35" /><path class="wash" d="M-14 -29Q0 -36 14 -29L22 -2Q0 5 -22 -2Z" /><path class="paperfill" d="M-13 -27L-23 -11L-18 -7L-9 -21M13 -27L23 -11L18 -7L9 -21" /><path class="fine" d="M-8 -16Q0 -12 8 -16M-17 -3Q0 -9 17 -3M-7 -11L-10 -1M7 -11L10 -1" /><path class="ink" d="M-10 -2L-10 1M10 -2L10 1" /><path class="gold" d="M-12 -18Q0 -15 12 -18" /></g><path class="gold" d="M182 244L182 312" /></g>
+<defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
+<path d="M42 382L79 382M201 382L238 382" stroke="#997643" stroke-width=".9"/>
+<circle cx="140" cy="381" r="5" fill="none" stroke="#997643" stroke-width="1.3"/>
+<text class="label" x="140" y="418">STRUCTURE</text>
+<text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
+</svg>

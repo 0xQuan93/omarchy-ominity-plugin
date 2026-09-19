@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
+<title id="title">The Chariot — Ominity Tarot</title><desc id="description">Original etched tarot plate for The Chariot.</desc>
+<style>
+.ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.faint{fill:none;stroke:#997643;stroke-opacity:.38;stroke-width:1}
+.wash{fill:#997643;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
+.column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
+.sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
+.paperfill{fill:#f2ebd9;stroke:#232b2d;stroke-width:1.8}
+.lantern{fill:#997643;fill-opacity:.35;stroke:#232b2d;stroke-width:2}
+.vine{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.water{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round}
+.chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
+.lightning{fill:none;stroke:#997643;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+.ghost{fill:none;stroke:#997643;stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
+.landscape{fill:none;stroke:#997643;stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}
+.hatch{fill:none;stroke:#232b2d;stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}
+.label{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:#232b2d;text-anchor:middle}
+.number{font:22px Georgia,'Times New Roman',serif;fill:#997643;text-anchor:middle}
+.title{font:600 21px Georgia,'Times New Roman',serif;fill:#232b2d;text-anchor:middle}
+.small{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:#997643;text-anchor:middle}
+</style>
+<rect width="280" height="480" fill="#f2ebd9"/>
+<rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
+<rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
+<path d="M23 103H257M23 392H257M25 450H255" stroke="#997643" stroke-width="1"/>
+<path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
+<text class="number" x="140" y="42">VII</text>
+<text class="title" x="140" y="72">The Chariot</text>
+<text class="small" x="140" y="91">MAJOR ARCANA</text>
+<g clip-path="url(#window)"><path class="ghost" d="M32 374V172Q140 111 248 172V374" /><path class="ghost" d="M38 374V177Q140 121 242 177V374" /><path class="ghost" d="M31 375H249" /><path class="ghost" d="M140 131L140.9 134.1L144 135L140.9 135.9L140 139L139.1 135.9L136 135L139.1 134.1Z" /><path class="ghost" d="M34 180L42 180M238 180L246 180M31 324L39 324M241 324L249 324" /><path class="landscape" d="M39 351Q78 319 117 341Q167 307 241 352" /><path class="ghost" d="M39 361Q79 330 117 351Q166 319 241 362" /><path class="hatch" d="M46 349L54 345" /><path class="hatch" d="M70 344L78 340" /><path class="hatch" d="M94 354L102 350" /><path class="hatch" d="M118 349L126 345" /><path class="hatch" d="M142 344L150 340" /><path class="hatch" d="M166 354L174 350" /><path class="hatch" d="M190 349L198 345" /><path class="hatch" d="M214 344L222 340" /><path class="hatch" d="M238 354L246 350" /><circle class="ghost" cx="140" cy="222" r="97" /><path class="ghost" d="M140 115L140 124" transform="rotate(0 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(30 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(60 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(90 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(120 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(150 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(180 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(210 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(240 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(270 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(300 140 222)"/><path class="ghost" d="M140 115L140 124" transform="rotate(330 140 222)"/><path class="faint" d="M94 171.7L94.5 173.5L96.3 174L94.5 174.5L94 176.3L93.5 174.5L91.7 174L93.5 173.5Z" /><path class="faint" d="M172 195.7L172.5 197.5L174.3 198L172.5 198.5L172 200.3L171.5 198.5L169.7 198L171.5 197.5Z" /><path class="faint" d="M120 147.7L120.5 149.5L122.3 150L120.5 150.5L120 152.3L119.5 150.5L117.7 150L119.5 149.5Z" /><path class="faint" d="M172 195.7L172.5 197.5L174.3 198L172.5 198.5L172 200.3L171.5 198.5L169.7 198L171.5 197.5Z" /><path class="faint" d="M198 171.7L198.5 173.5L200.3 174L198.5 174.5L198 176.3L197.5 174.5L195.7 174L197.5 173.5Z" /><path class="faint" d="M42 147.7L42.5 149.5L44.3 150L42.5 150.5L42 152.3L41.5 150.5L39.7 150L41.5 149.5Z" /><path class="gold" d="M140 148L143.2 158.8L154 162L143.2 165.2L140 176L136.8 165.2L126 162L136.8 158.8Z" /><rect class="column" x="74" y="253" width="132" height="64" /><circle class="ink" cx="103" cy="323" r="23" /><circle class="ink" cx="177" cy="323" r="23" /><g transform="translate(140 251) scale(1.1 1.1)"><path class="paperfill" d="M-11 -39Q-13 -57 0 -59Q13 -57 11 -39Q8 -31 0 -29Q-8 -31 -11 -39Z" /><path class="ink" d="M-11 -43Q-14 -55 -4 -59Q8 -65 13 -50M-10 -49Q-2 -47 2 -54Q5 -48 11 -46" /><circle class="gold" cx="-4" cy="-42" r="0.8" /><circle class="gold" cx="5" cy="-42" r="0.8" /><path class="fine" d="M-3 -35Q0 -32 4 -35" /><path class="wash" d="M-14 -29Q0 -36 14 -29L22 -2Q0 5 -22 -2Z" /><path class="paperfill" d="M-13 -27L-23 -11L-18 -7L-9 -21M13 -27L23 -11L18 -7L9 -21" /><path class="fine" d="M-8 -16Q0 -12 8 -16M-17 -3Q0 -9 17 -3M-7 -11L-10 -1M7 -11L10 -1" /><path class="ink" d="M-10 -2L-10 1M10 -2L10 1" /><path class="gold" d="M-12 -18Q0 -15 12 -18" /></g><path class="ink" d="M40 346Q62 290 85 331M240 346Q218 290 195 331" /></g>
+<defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
+<path d="M42 382L79 382M201 382L238 382" stroke="#997643" stroke-width=".9"/>
+<circle cx="140" cy="381" r="5" fill="none" stroke="#997643" stroke-width="1.3"/>
+<text class="label" x="140" y="418">RESOLVE</text>
+<text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
+</svg>

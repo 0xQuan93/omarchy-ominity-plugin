@@ -1,0 +1,1952 @@
+[
+  {
+    "id": "major-00-the-fool",
+    "title": "The Fool",
+    "arcana": "major",
+    "suit": null,
+    "number": 0,
+    "numeral": "0",
+    "element": null,
+    "path": "The threshold",
+    "upright": "Begin with trust; make room for surprise.",
+    "reversed": "A leap made to escape; innocence without attention.",
+    "interpretation": "A new path asks for curiosity and a small act of courage. Look down long enough to choose your footing, then move.",
+    "symbols": [
+      "cliff",
+      "white flower",
+      "open sky"
+    ],
+    "reflection": "What could you begin before you feel entirely ready?",
+    "keywords": [
+      "beginnings",
+      "trust",
+      "possibility"
+    ],
+    "art": "assets/cards/major-00-the-fool.svg"
+  },
+  {
+    "id": "major-01-the-magician",
+    "title": "The Magician",
+    "arcana": "major",
+    "suit": null,
+    "number": 1,
+    "numeral": "I",
+    "element": null,
+    "path": "The first act",
+    "upright": "Gather your tools and act with intention.",
+    "reversed": "Scattered energy; skill used for display.",
+    "interpretation": "The resources are already on the table. Name the result you want and bring attention, word, and hand into alignment.",
+    "symbols": [
+      "table",
+      "raised hand",
+      "infinity loop"
+    ],
+    "reflection": "Which tool in your reach have you overlooked?",
+    "keywords": [
+      "agency",
+      "craft",
+      "focus"
+    ],
+    "art": "assets/cards/major-01-the-magician.svg"
+  },
+  {
+    "id": "major-02-the-high-priestess",
+    "title": "The High Priestess",
+    "arcana": "major",
+    "suit": null,
+    "number": 2,
+    "numeral": "II",
+    "element": null,
+    "path": "The inner door",
+    "upright": "Listen beneath the obvious; honor what is hidden.",
+    "reversed": "Doubt in your intuition; a secret kept too long.",
+    "interpretation": "Pause before forcing an answer. A quiet pattern is becoming visible through dreams, timing, and what remains unsaid.",
+    "symbols": [
+      "veil",
+      "moon",
+      "still water"
+    ],
+    "reflection": "What do you know when you stop arguing with yourself?",
+    "keywords": [
+      "intuition",
+      "stillness",
+      "inner knowing"
+    ],
+    "art": "assets/cards/major-02-the-high-priestess.svg"
+  },
+  {
+    "id": "major-03-the-empress",
+    "title": "The Empress",
+    "arcana": "major",
+    "suit": null,
+    "number": 3,
+    "numeral": "III",
+    "element": null,
+    "path": "The living garden",
+    "upright": "Nourish what wants to grow.",
+    "reversed": "Overgiving; comfort that keeps you still.",
+    "interpretation": "Creation needs warmth, rhythm, and room. Tend the body and the place that makes your work possible.",
+    "symbols": [
+      "garden",
+      "grain",
+      "river"
+    ],
+    "reflection": "What would flourish with steadier care?",
+    "keywords": [
+      "abundance",
+      "care",
+      "creation"
+    ],
+    "art": "assets/cards/major-03-the-empress.svg"
+  },
+  {
+    "id": "major-04-the-emperor",
+    "title": "The Emperor",
+    "arcana": "major",
+    "suit": null,
+    "number": 4,
+    "numeral": "IV",
+    "element": null,
+    "path": "The chosen frame",
+    "upright": "Give your vision a durable shape.",
+    "reversed": "Rigidity; control mistaken for safety.",
+    "interpretation": "A clear boundary can protect what matters. Build a structure that serves people and can be revised when life changes.",
+    "symbols": [
+      "stone throne",
+      "mountain",
+      "grid"
+    ],
+    "reflection": "What rule supports your freedom, and what rule limits it?",
+    "keywords": [
+      "structure",
+      "stewardship",
+      "boundary"
+    ],
+    "art": "assets/cards/major-04-the-emperor.svg"
+  },
+  {
+    "id": "major-05-the-hierophant",
+    "title": "The Hierophant",
+    "arcana": "major",
+    "suit": null,
+    "number": 5,
+    "numeral": "V",
+    "element": null,
+    "path": "The shared language",
+    "upright": "Learn from a lineage; test its wisdom in life.",
+    "reversed": "Unexamined convention; rejecting guidance on reflex.",
+    "interpretation": "A teacher, ritual, or shared practice can offer a language for your experience. Keep the part that makes you more awake.",
+    "symbols": [
+      "keys",
+      "arch",
+      "open book"
+    ],
+    "reflection": "Which inherited practice deserves a fresh question?",
+    "keywords": [
+      "tradition",
+      "learning",
+      "ritual"
+    ],
+    "art": "assets/cards/major-05-the-hierophant.svg"
+  },
+  {
+    "id": "major-06-the-lovers",
+    "title": "The Lovers",
+    "arcana": "major",
+    "suit": null,
+    "number": 6,
+    "numeral": "VI",
+    "element": null,
+    "path": "The true choice",
+    "upright": "Choose in alignment with your values.",
+    "reversed": "A split desire; an agreement made without honesty.",
+    "interpretation": "Attraction is only the beginning. Let a meaningful choice reflect who you are becoming and what you can offer in truth.",
+    "symbols": [
+      "two figures",
+      "tree",
+      "sun"
+    ],
+    "reflection": "What choice lets your heart and actions agree?",
+    "keywords": [
+      "choice",
+      "union",
+      "integrity"
+    ],
+    "art": "assets/cards/major-06-the-lovers.svg"
+  },
+  {
+    "id": "major-07-the-chariot",
+    "title": "The Chariot",
+    "arcana": "major",
+    "suit": null,
+    "number": 7,
+    "numeral": "VII",
+    "element": null,
+    "path": "The road outward",
+    "upright": "Direct opposing forces toward one aim.",
+    "reversed": "Momentum without direction; forcing an outcome.",
+    "interpretation": "You do not need every feeling to agree before moving. Hold the reins with purpose and adjust as the terrain answers back.",
+    "symbols": [
+      "wheels",
+      "two steeds",
+      "star canopy"
+    ],
+    "reflection": "What deserves your full direction now?",
+    "keywords": [
+      "resolve",
+      "movement",
+      "self command"
+    ],
+    "art": "assets/cards/major-07-the-chariot.svg"
+  },
+  {
+    "id": "major-08-strength",
+    "title": "Strength",
+    "arcana": "major",
+    "suit": null,
+    "number": 8,
+    "numeral": "VIII",
+    "element": null,
+    "path": "The quiet courage",
+    "upright": "Meet intensity with patience and brave tenderness.",
+    "reversed": "Suppressed anger; courage worn as a mask.",
+    "interpretation": "Real strength can stay present with a difficult instinct without crushing it. Gentleness gives courage a longer life.",
+    "symbols": [
+      "lion",
+      "open hand",
+      "lemniscate"
+    ],
+    "reflection": "Where would a softer grip make you stronger?",
+    "keywords": [
+      "courage",
+      "patience",
+      "compassion"
+    ],
+    "art": "assets/cards/major-08-strength.svg"
+  },
+  {
+    "id": "major-09-the-hermit",
+    "title": "The Hermit",
+    "arcana": "major",
+    "suit": null,
+    "number": 9,
+    "numeral": "IX",
+    "element": null,
+    "path": "The inward climb",
+    "upright": "Step back to hear your own signal.",
+    "reversed": "Isolation that closes the door to help.",
+    "interpretation": "Solitude can turn experience into wisdom. Carry a small light, and return with what it shows you.",
+    "symbols": [
+      "lantern",
+      "mountain path",
+      "staff"
+    ],
+    "reflection": "What becomes clear when the noise recedes?",
+    "keywords": [
+      "solitude",
+      "insight",
+      "discernment"
+    ],
+    "art": "assets/cards/major-09-the-hermit.svg"
+  },
+  {
+    "id": "major-10-wheel-of-fortune",
+    "title": "Wheel of Fortune",
+    "arcana": "major",
+    "suit": null,
+    "number": 10,
+    "numeral": "X",
+    "element": null,
+    "path": "The turning point",
+    "upright": "Notice the turning; respond to the moment.",
+    "reversed": "Resistance to change; surrendering your agency to chance.",
+    "interpretation": "Conditions shift beyond any single hand. Find the choice available within the turning rather than demanding that the wheel stop.",
+    "symbols": [
+      "wheel",
+      "four corners",
+      "orbit"
+    ],
+    "reflection": "What can you influence inside a changing season?",
+    "keywords": [
+      "cycles",
+      "timing",
+      "adaptation"
+    ],
+    "art": "assets/cards/major-10-wheel-of-fortune.svg"
+  },
+  {
+    "id": "major-11-justice",
+    "title": "Justice",
+    "arcana": "major",
+    "suit": null,
+    "number": 11,
+    "numeral": "XI",
+    "element": null,
+    "path": "The honest measure",
+    "upright": "Look at the facts and make a fair repair.",
+    "reversed": "Avoiding consequences; a verdict without context.",
+    "interpretation": "Clarity asks you to weigh actions and effects together. A just response is accountable, proportionate, and open to evidence.",
+    "symbols": [
+      "scales",
+      "sword",
+      "straight line"
+    ],
+    "reflection": "What truth would improve this decision?",
+    "keywords": [
+      "fairness",
+      "accountability",
+      "clarity"
+    ],
+    "art": "assets/cards/major-11-justice.svg"
+  },
+  {
+    "id": "major-12-the-hanged-man",
+    "title": "The Hanged Man",
+    "arcana": "major",
+    "suit": null,
+    "number": 12,
+    "numeral": "XII",
+    "element": null,
+    "path": "The turned view",
+    "upright": "Pause and let a different angle appear.",
+    "reversed": "Stalling disguised as surrender; needless sacrifice.",
+    "interpretation": "A pause can loosen an old assumption. Release the urge to solve everything at once and notice what changes when you turn the question around.",
+    "symbols": [
+      "suspended figure",
+      "halo",
+      "inverted triangle"
+    ],
+    "reflection": "What can you see from the position you resisted?",
+    "keywords": [
+      "pause",
+      "perspective",
+      "release"
+    ],
+    "art": "assets/cards/major-12-the-hanged-man.svg"
+  },
+  {
+    "id": "major-13-death",
+    "title": "Death",
+    "arcana": "major",
+    "suit": null,
+    "number": 13,
+    "numeral": "XIII",
+    "element": null,
+    "path": "The necessary ending",
+    "upright": "Let an ending make space for life.",
+    "reversed": "Clinging to a finished form; fear of transition.",
+    "interpretation": "Something has completed its work. Grieve what deserves grief, then clear a place for the next honest shape.",
+    "symbols": [
+      "gate",
+      "setting sun",
+      "new shoot"
+    ],
+    "reflection": "What is ready to be honored and released?",
+    "keywords": [
+      "ending",
+      "renewal",
+      "transition"
+    ],
+    "art": "assets/cards/major-13-death.svg"
+  },
+  {
+    "id": "major-14-temperance",
+    "title": "Temperance",
+    "arcana": "major",
+    "suit": null,
+    "number": 14,
+    "numeral": "XIV",
+    "element": null,
+    "path": "The living mixture",
+    "upright": "Blend differences at a sustainable pace.",
+    "reversed": "Excess; a forced compromise that serves no one.",
+    "interpretation": "Integration is an active craft. Move between two needs carefully until a workable rhythm emerges.",
+    "symbols": [
+      "two vessels",
+      "stream",
+      "horizon"
+    ],
+    "reflection": "Which extremes could become a useful rhythm?",
+    "keywords": [
+      "balance",
+      "integration",
+      "patience"
+    ],
+    "art": "assets/cards/major-14-temperance.svg"
+  },
+  {
+    "id": "major-15-the-devil",
+    "title": "The Devil",
+    "arcana": "major",
+    "suit": null,
+    "number": 15,
+    "numeral": "XV",
+    "element": null,
+    "path": "The visible chain",
+    "upright": "Name the bond that narrows your choices.",
+    "reversed": "Shame after escape; a pattern beginning to loosen.",
+    "interpretation": "A habit can feel permanent while still having a clasp. Examine what it offers you, what it costs, and where your hand can open it.",
+    "symbols": [
+      "loose chain",
+      "shadow",
+      "flame"
+    ],
+    "reflection": "What attachment asks to be seen clearly?",
+    "keywords": [
+      "attachment",
+      "temptation",
+      "agency"
+    ],
+    "art": "assets/cards/major-15-the-devil.svg"
+  },
+  {
+    "id": "major-16-the-tower",
+    "title": "The Tower",
+    "arcana": "major",
+    "suit": null,
+    "number": 16,
+    "numeral": "XVI",
+    "element": null,
+    "path": "The clearing storm",
+    "upright": "Let the false structure fall; protect what is alive.",
+    "reversed": "Fear of disruption; rebuilding on the same fracture.",
+    "interpretation": "A sudden truth can shake a carefully built story. Tend the immediate needs first, then build with materials that can bear reality.",
+    "symbols": [
+      "lightning",
+      "broken tower",
+      "open ground"
+    ],
+    "reflection": "What truth is asking for a safer foundation?",
+    "keywords": [
+      "rupture",
+      "truth",
+      "rebuilding"
+    ],
+    "art": "assets/cards/major-16-the-tower.svg"
+  },
+  {
+    "id": "major-17-the-star",
+    "title": "The Star",
+    "arcana": "major",
+    "suit": null,
+    "number": 17,
+    "numeral": "XVII",
+    "element": null,
+    "path": "The open night",
+    "upright": "Restore hope through small, steady acts.",
+    "reversed": "Exhaustion; losing sight of available support.",
+    "interpretation": "After upheaval, the future may arrive as a trickle rather than a trumpet. Refill what is depleted and let simplicity count.",
+    "symbols": [
+      "eight stars",
+      "water jars",
+      "pool"
+    ],
+    "reflection": "What small source of renewal is already near?",
+    "keywords": [
+      "hope",
+      "renewal",
+      "trust"
+    ],
+    "art": "assets/cards/major-17-the-star.svg"
+  },
+  {
+    "id": "major-18-the-moon",
+    "title": "The Moon",
+    "arcana": "major",
+    "suit": null,
+    "number": 18,
+    "numeral": "XVIII",
+    "element": null,
+    "path": "The night crossing",
+    "upright": "Travel gently through uncertainty.",
+    "reversed": "Confusion hardened into fear; a story mistaken for fact.",
+    "interpretation": "The path is real even when its edges blur. Check your senses, allow dreams to speak, and wait for daylight before making a final claim.",
+    "symbols": [
+      "moon",
+      "two towers",
+      "winding path"
+    ],
+    "reflection": "What uncertainty can you hold without inventing certainty?",
+    "keywords": [
+      "mystery",
+      "dream",
+      "uncertainty"
+    ],
+    "art": "assets/cards/major-18-the-moon.svg"
+  },
+  {
+    "id": "major-19-the-sun",
+    "title": "The Sun",
+    "arcana": "major",
+    "suit": null,
+    "number": 19,
+    "numeral": "XIX",
+    "element": null,
+    "path": "The clear day",
+    "upright": "Share the joy of what is plainly alive.",
+    "reversed": "Overexposure; pressure to feel cheerful.",
+    "interpretation": "A bright moment deserves to be received without apology. Let warmth make you generous, and give your success room to breathe.",
+    "symbols": [
+      "sun",
+      "horse",
+      "sunflowers"
+    ],
+    "reflection": "What can you celebrate without explaining it away?",
+    "keywords": [
+      "joy",
+      "vitality",
+      "openness"
+    ],
+    "art": "assets/cards/major-19-the-sun.svg"
+  },
+  {
+    "id": "major-20-judgement",
+    "title": "Judgement",
+    "arcana": "major",
+    "suit": null,
+    "number": 20,
+    "numeral": "XX",
+    "element": null,
+    "path": "The answering call",
+    "upright": "Answer a call to change with honesty.",
+    "reversed": "Self-condemnation; ignoring a needed reckoning.",
+    "interpretation": "Review the past without living there. Take responsibility, claim what you learned, and step into the next version of your life.",
+    "symbols": [
+      "trumpet",
+      "open graves",
+      "horizon"
+    ],
+    "reflection": "What part of your life is asking for a clear answer?",
+    "keywords": [
+      "awakening",
+      "review",
+      "renewal"
+    ],
+    "art": "assets/cards/major-20-judgement.svg"
+  },
+  {
+    "id": "major-21-the-world",
+    "title": "The World",
+    "arcana": "major",
+    "suit": null,
+    "number": 21,
+    "numeral": "XXI",
+    "element": null,
+    "path": "The open circle",
+    "upright": "Complete the circle and inhabit the wider view.",
+    "reversed": "A threshold delayed; closing before the lesson lands.",
+    "interpretation": "A cycle has become whole enough to release. Name what you made, thank what carried you, and notice the new horizon inside the ending.",
+    "symbols": [
+      "wreath",
+      "four corners",
+      "dancing figure"
+    ],
+    "reflection": "What completion are you ready to acknowledge?",
+    "keywords": [
+      "completion",
+      "belonging",
+      "integration"
+    ],
+    "art": "assets/cards/major-21-the-world.svg"
+  },
+  {
+    "id": "wands-01-ace",
+    "title": "Ace of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 1,
+    "numeral": "I",
+    "element": "Fire",
+    "path": null,
+    "upright": "A spark invites committed action.",
+    "reversed": "Enthusiasm without a place to land.",
+    "interpretation": "The first flame is enough to begin a modest experiment. Give the idea a task before it fades into possibility.",
+    "symbols": [
+      "sprouting staff",
+      "ember",
+      "open hand"
+    ],
+    "reflection": "What could you try today at a small scale?",
+    "keywords": [
+      "inspiration",
+      "initiative",
+      "energy"
+    ],
+    "art": "assets/cards/wands-01-ace.svg"
+  },
+  {
+    "id": "wands-02-two",
+    "title": "Two of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 2,
+    "numeral": "II",
+    "element": "Fire",
+    "path": null,
+    "upright": "Survey the horizon and choose a direction.",
+    "reversed": "Planning that never crosses the doorway.",
+    "interpretation": "You can see beyond your present walls. Compare the paths, then make one concrete commitment to the wider world.",
+    "symbols": [
+      "globe",
+      "parapet",
+      "two staffs"
+    ],
+    "reflection": "Which option grows when you actually test it?",
+    "keywords": [
+      "planning",
+      "vision",
+      "choice"
+    ],
+    "art": "assets/cards/wands-02-two.svg"
+  },
+  {
+    "id": "wands-03-three",
+    "title": "Three of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 3,
+    "numeral": "III",
+    "element": "Fire",
+    "path": null,
+    "upright": "Watch for the return of an effort sent outward.",
+    "reversed": "Impatience; expectations that ignore distance.",
+    "interpretation": "The work has left your hands and begun a journey of its own. Stay ready to receive feedback and adjust the next shipment.",
+    "symbols": [
+      "three staffs",
+      "ships",
+      "horizon"
+    ],
+    "reflection": "What response are you waiting for, and how can you prepare?",
+    "keywords": [
+      "expansion",
+      "feedback",
+      "patience"
+    ],
+    "art": "assets/cards/wands-03-three.svg"
+  },
+  {
+    "id": "wands-04-four",
+    "title": "Four of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 4,
+    "numeral": "IV",
+    "element": "Fire",
+    "path": null,
+    "upright": "Make a place for shared celebration.",
+    "reversed": "A milestone missed; belonging that feels conditional.",
+    "interpretation": "A threshold deserves a pause. Welcome the people who helped and let the structure of home hold the joy.",
+    "symbols": [
+      "four posts",
+      "garland",
+      "doorway"
+    ],
+    "reflection": "Who belongs at the table for this moment?",
+    "keywords": [
+      "welcome",
+      "milestone",
+      "community"
+    ],
+    "art": "assets/cards/wands-04-four.svg"
+  },
+  {
+    "id": "wands-05-five",
+    "title": "Five of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 5,
+    "numeral": "V",
+    "element": "Fire",
+    "path": null,
+    "upright": "Meet friction without making an enemy of it.",
+    "reversed": "Conflict avoided until it hardens.",
+    "interpretation": "Many energies are crossing at once. Set a fair rule for the exchange and look for the useful difference beneath the noise.",
+    "symbols": [
+      "crossed staffs",
+      "five sparks",
+      "uneven ground"
+    ],
+    "reflection": "What would make this disagreement constructive?",
+    "keywords": [
+      "friction",
+      "practice",
+      "negotiation"
+    ],
+    "art": "assets/cards/wands-05-five.svg"
+  },
+  {
+    "id": "wands-06-six",
+    "title": "Six of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 6,
+    "numeral": "VI",
+    "element": "Fire",
+    "path": null,
+    "upright": "Receive recognition and keep moving with grace.",
+    "reversed": "Approval hunger; success worn like armor.",
+    "interpretation": "Let the accomplishment be visible. Thank the team and remember that applause is a moment, not a compass.",
+    "symbols": [
+      "laurel",
+      "raised staff",
+      "crowd"
+    ],
+    "reflection": "How can you accept praise without depending on it?",
+    "keywords": [
+      "recognition",
+      "confidence",
+      "gratitude"
+    ],
+    "art": "assets/cards/wands-06-six.svg"
+  },
+  {
+    "id": "wands-07-seven",
+    "title": "Seven of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 7,
+    "numeral": "VII",
+    "element": "Fire",
+    "path": null,
+    "upright": "Hold your ground with a clear reason.",
+    "reversed": "Defending everything; vigilance without rest.",
+    "interpretation": "Your position may need a boundary. Choose what truly warrants the effort and let minor challenges pass.",
+    "symbols": [
+      "high ridge",
+      "seven staffs",
+      "stance"
+    ],
+    "reflection": "Which principle is worth defending now?",
+    "keywords": [
+      "conviction",
+      "boundary",
+      "resolve"
+    ],
+    "art": "assets/cards/wands-07-seven.svg"
+  },
+  {
+    "id": "wands-08-eight",
+    "title": "Eight of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 8,
+    "numeral": "VIII",
+    "element": "Fire",
+    "path": null,
+    "upright": "Act while the opening is clear.",
+    "reversed": "Haste that outruns understanding.",
+    "interpretation": "Momentum has arrived. Keep messages simple, check the landing place, and let the useful speed carry the work.",
+    "symbols": [
+      "flying staffs",
+      "diagonal lines",
+      "distant field"
+    ],
+    "reflection": "What can move quickly once you remove one delay?",
+    "keywords": [
+      "speed",
+      "message",
+      "momentum"
+    ],
+    "art": "assets/cards/wands-08-eight.svg"
+  },
+  {
+    "id": "wands-09-nine",
+    "title": "Nine of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 9,
+    "numeral": "IX",
+    "element": "Fire",
+    "path": null,
+    "upright": "Protect your energy without closing your heart.",
+    "reversed": "Exhaustion; expecting every visitor to be a threat.",
+    "interpretation": "Experience has made you watchful. Honor the wound and set a boundary that still lets help through.",
+    "symbols": [
+      "bandage",
+      "fence of staffs",
+      "watchful eye"
+    ],
+    "reflection": "Where do you need rest before another push?",
+    "keywords": [
+      "resilience",
+      "wariness",
+      "rest"
+    ],
+    "art": "assets/cards/wands-09-nine.svg"
+  },
+  {
+    "id": "wands-10-ten",
+    "title": "Ten of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 10,
+    "numeral": "X",
+    "element": "Fire",
+    "path": null,
+    "upright": "Set down a burden that no longer belongs to you.",
+    "reversed": "Overload defended as duty.",
+    "interpretation": "The goal is near, but the bundle is heavy. Redistribute the work or question which pieces ever needed carrying.",
+    "symbols": [
+      "bundle of staffs",
+      "road",
+      "near town"
+    ],
+    "reflection": "What responsibility can be shared or released?",
+    "keywords": [
+      "burden",
+      "limits",
+      "completion"
+    ],
+    "art": "assets/cards/wands-10-ten.svg"
+  },
+  {
+    "id": "wands-11-page",
+    "title": "Page of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 11,
+    "numeral": "PAGE",
+    "element": "Fire",
+    "path": null,
+    "upright": "Follow a lively question into the field.",
+    "reversed": "A promising idea left untested.",
+    "interpretation": "Curiosity is a useful guide when paired with attention. Explore, ask, and bring back one observation worth keeping.",
+    "symbols": [
+      "young traveler",
+      "staff",
+      "small flame"
+    ],
+    "reflection": "What are you excited to learn firsthand?",
+    "keywords": [
+      "curiosity",
+      "discovery",
+      "play"
+    ],
+    "art": "assets/cards/wands-11-page.svg"
+  },
+  {
+    "id": "wands-12-knight",
+    "title": "Knight of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 12,
+    "numeral": "KNIGHT",
+    "element": "Fire",
+    "path": null,
+    "upright": "Bring bold energy to a worthy pursuit.",
+    "reversed": "Rushing past people or details.",
+    "interpretation": "A brave move can break inertia. Let courage travel with a map and enough room for others to respond.",
+    "symbols": [
+      "rider",
+      "plume",
+      "desert wind"
+    ],
+    "reflection": "Where can boldness become useful action?",
+    "keywords": [
+      "adventure",
+      "drive",
+      "direction"
+    ],
+    "art": "assets/cards/wands-12-knight.svg"
+  },
+  {
+    "id": "wands-13-queen",
+    "title": "Queen of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 13,
+    "numeral": "QUEEN",
+    "element": "Fire",
+    "path": null,
+    "upright": "Lead through warmth, confidence, and invitation.",
+    "reversed": "Performing certainty; neglecting your own fire.",
+    "interpretation": "Your presence can make other people braver. Tend your own source of energy as you make room for theirs.",
+    "symbols": [
+      "sunflower",
+      "black cat",
+      "staff"
+    ],
+    "reflection": "How can you make confidence contagious today?",
+    "keywords": [
+      "radiance",
+      "leadership",
+      "warmth"
+    ],
+    "art": "assets/cards/wands-13-queen.svg"
+  },
+  {
+    "id": "wands-14-king",
+    "title": "King of Wands",
+    "arcana": "minor",
+    "suit": "Wands",
+    "number": 14,
+    "numeral": "KING",
+    "element": "Fire",
+    "path": null,
+    "upright": "Steward a vision and empower its makers.",
+    "reversed": "Dominating the plan; impatience with process.",
+    "interpretation": "See the long arc and set a clear standard. The strongest fire gives others light enough to build beside it.",
+    "symbols": [
+      "throne",
+      "lion",
+      "flame"
+    ],
+    "reflection": "What vision needs steady leadership rather than force?",
+    "keywords": [
+      "vision",
+      "stewardship",
+      "enterprise"
+    ],
+    "art": "assets/cards/wands-14-king.svg"
+  },
+  {
+    "id": "cups-01-ace",
+    "title": "Ace of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 1,
+    "numeral": "I",
+    "element": "Water",
+    "path": null,
+    "upright": "Open to a feeling that wants honest expression.",
+    "reversed": "Emotional overflow; a heart held shut.",
+    "interpretation": "A new emotional current is here. Make a vessel for it through conversation, art, or a quiet act of care.",
+    "symbols": [
+      "brimming cup",
+      "waterfall",
+      "dove"
+    ],
+    "reflection": "What feeling deserves a safe place to land?",
+    "keywords": [
+      "feeling",
+      "openness",
+      "care"
+    ],
+    "art": "assets/cards/cups-01-ace.svg"
+  },
+  {
+    "id": "cups-02-two",
+    "title": "Two of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 2,
+    "numeral": "II",
+    "element": "Water",
+    "path": null,
+    "upright": "Meet another person in mutual respect.",
+    "reversed": "An imbalance hidden by chemistry.",
+    "interpretation": "Connection deepens when each person can be seen. Offer what is true and listen for what the other can truly offer.",
+    "symbols": [
+      "two cups",
+      "joined hands",
+      "bridge"
+    ],
+    "reflection": "Where could reciprocity become clearer?",
+    "keywords": [
+      "partnership",
+      "mutuality",
+      "trust"
+    ],
+    "art": "assets/cards/cups-02-two.svg"
+  },
+  {
+    "id": "cups-03-three",
+    "title": "Three of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 3,
+    "numeral": "III",
+    "element": "Water",
+    "path": null,
+    "upright": "Let friendship multiply delight.",
+    "reversed": "Feeling outside the circle; celebration postponed.",
+    "interpretation": "Good news grows when shared. Reach for the people who can celebrate freely and make room for their stories too.",
+    "symbols": [
+      "three cups",
+      "fruit",
+      "circle"
+    ],
+    "reflection": "Who would enjoy this moment with you?",
+    "keywords": [
+      "friendship",
+      "celebration",
+      "support"
+    ],
+    "art": "assets/cards/cups-03-three.svg"
+  },
+  {
+    "id": "cups-04-four",
+    "title": "Four of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 4,
+    "numeral": "IV",
+    "element": "Water",
+    "path": null,
+    "upright": "Look again at an offer before dismissing it.",
+    "reversed": "Apathy; chasing novelty to avoid feeling.",
+    "interpretation": "A pause may be needed, but numbness can hide a useful invitation. Check what you need before turning away.",
+    "symbols": [
+      "seated figure",
+      "offered cup",
+      "tree"
+    ],
+    "reflection": "What have you stopped noticing nearby?",
+    "keywords": [
+      "reconsideration",
+      "pause",
+      "awareness"
+    ],
+    "art": "assets/cards/cups-04-four.svg"
+  },
+  {
+    "id": "cups-05-five",
+    "title": "Five of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 5,
+    "numeral": "V",
+    "element": "Water",
+    "path": null,
+    "upright": "Honor loss while noticing what remains.",
+    "reversed": "Grief denied; hope used to rush healing.",
+    "interpretation": "Something mattered and is gone. Give sorrow its real space, then turn gently toward the cups that still stand.",
+    "symbols": [
+      "spilled cups",
+      "two standing cups",
+      "river"
+    ],
+    "reflection": "What support remains within reach as you grieve?",
+    "keywords": [
+      "loss",
+      "grief",
+      "remaining gifts"
+    ],
+    "art": "assets/cards/cups-05-five.svg"
+  },
+  {
+    "id": "cups-06-six",
+    "title": "Six of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 6,
+    "numeral": "VI",
+    "element": "Water",
+    "path": null,
+    "upright": "Let memory offer comfort and perspective.",
+    "reversed": "Nostalgia that edits out the whole story.",
+    "interpretation": "An old kindness may still nourish you. Enjoy the memory and ask what it teaches your present life.",
+    "symbols": [
+      "flower cups",
+      "old courtyard",
+      "two children"
+    ],
+    "reflection": "Which memory can guide you without trapping you?",
+    "keywords": [
+      "memory",
+      "kindness",
+      "innocence"
+    ],
+    "art": "assets/cards/cups-06-six.svg"
+  },
+  {
+    "id": "cups-07-seven",
+    "title": "Seven of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 7,
+    "numeral": "VII",
+    "element": "Water",
+    "path": null,
+    "upright": "Sort enticing possibilities from living choices.",
+    "reversed": "Fantasy replacing commitment.",
+    "interpretation": "Many images compete for your attention. Name the real cost and next step for each before choosing one to pursue.",
+    "symbols": [
+      "seven visions",
+      "cloud",
+      "veils"
+    ],
+    "reflection": "Which dream can survive a practical question?",
+    "keywords": [
+      "imagination",
+      "options",
+      "discernment"
+    ],
+    "art": "assets/cards/cups-07-seven.svg"
+  },
+  {
+    "id": "cups-08-eight",
+    "title": "Eight of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 8,
+    "numeral": "VIII",
+    "element": "Water",
+    "path": null,
+    "upright": "Leave a familiar vessel when it no longer holds you.",
+    "reversed": "Walking away before speaking honestly.",
+    "interpretation": "You may have gathered all this place can give. Depart with care, and carry the learning instead of a silent grievance.",
+    "symbols": [
+      "stacked cups",
+      "night road",
+      "mountain"
+    ],
+    "reflection": "What would you gain by leaving with clarity?",
+    "keywords": [
+      "departure",
+      "search",
+      "release"
+    ],
+    "art": "assets/cards/cups-08-eight.svg"
+  },
+  {
+    "id": "cups-09-nine",
+    "title": "Nine of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 9,
+    "numeral": "IX",
+    "element": "Water",
+    "path": null,
+    "upright": "Take pleasure in enoughness.",
+    "reversed": "Indulgence that masks an unmet need.",
+    "interpretation": "Satisfaction can be a practice. Notice what is good without making the day prove that everything is perfect.",
+    "symbols": [
+      "nine cups",
+      "arched shelf",
+      "smile"
+    ],
+    "reflection": "What is already enough for one moment?",
+    "keywords": [
+      "contentment",
+      "gratitude",
+      "pleasure"
+    ],
+    "art": "assets/cards/cups-09-nine.svg"
+  },
+  {
+    "id": "cups-10-ten",
+    "title": "Ten of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 10,
+    "numeral": "X",
+    "element": "Water",
+    "path": null,
+    "upright": "Nurture the bonds that make joy durable.",
+    "reversed": "Idealizing harmony; quiet needs left unsaid.",
+    "interpretation": "The image of a happy home is built from everyday care. Ask what each person needs and celebrate what already connects you.",
+    "symbols": [
+      "rainbow of cups",
+      "home",
+      "family"
+    ],
+    "reflection": "What small act would strengthen belonging?",
+    "keywords": [
+      "belonging",
+      "harmony",
+      "shared joy"
+    ],
+    "art": "assets/cards/cups-10-ten.svg"
+  },
+  {
+    "id": "cups-11-page",
+    "title": "Page of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 11,
+    "numeral": "PAGE",
+    "element": "Water",
+    "path": null,
+    "upright": "Welcome a surprising message from the heart.",
+    "reversed": "Mood mistaken for a promise.",
+    "interpretation": "A tender thought may arrive in an odd form. Stay curious, then give it a clear and kind expression.",
+    "symbols": [
+      "fish in cup",
+      "young dreamer",
+      "shore"
+    ],
+    "reflection": "What emotion is trying to speak creatively?",
+    "keywords": [
+      "wonder",
+      "message",
+      "sensitivity"
+    ],
+    "art": "assets/cards/cups-11-page.svg"
+  },
+  {
+    "id": "cups-12-knight",
+    "title": "Knight of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 12,
+    "numeral": "KNIGHT",
+    "element": "Water",
+    "path": null,
+    "upright": "Offer devotion with both poetry and follow through.",
+    "reversed": "Charm without commitment; idealizing another.",
+    "interpretation": "A heartfelt invitation deserves a real path. Say what you mean and let actions confirm the beauty of your words.",
+    "symbols": [
+      "rider",
+      "cup",
+      "river crossing"
+    ],
+    "reflection": "How can you make a sincere gesture concrete?",
+    "keywords": [
+      "romance",
+      "offering",
+      "integrity"
+    ],
+    "art": "assets/cards/cups-12-knight.svg"
+  },
+  {
+    "id": "cups-13-queen",
+    "title": "Queen of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 13,
+    "numeral": "QUEEN",
+    "element": "Water",
+    "path": null,
+    "upright": "Hold feeling with empathy and healthy edges.",
+    "reversed": "Absorbing every feeling around you.",
+    "interpretation": "Your sensitivity is perceptive. Give it a shore: listen deeply while remembering what belongs to you.",
+    "symbols": [
+      "ornate cup",
+      "shore",
+      "quiet throne"
+    ],
+    "reflection": "Where does care need a boundary?",
+    "keywords": [
+      "empathy",
+      "intuition",
+      "containment"
+    ],
+    "art": "assets/cards/cups-13-queen.svg"
+  },
+  {
+    "id": "cups-14-king",
+    "title": "King of Cups",
+    "arcana": "minor",
+    "suit": "Cups",
+    "number": 14,
+    "numeral": "KING",
+    "element": "Water",
+    "path": null,
+    "upright": "Lead with emotional steadiness.",
+    "reversed": "Control disguised as calm; feelings kept offshore.",
+    "interpretation": "You can be moved without being swept away. Make room for emotion and respond from a considered center.",
+    "symbols": [
+      "stone throne",
+      "open sea",
+      "cup"
+    ],
+    "reflection": "What feeling can you acknowledge before deciding?",
+    "keywords": [
+      "composure",
+      "care",
+      "maturity"
+    ],
+    "art": "assets/cards/cups-14-king.svg"
+  },
+  {
+    "id": "swords-01-ace",
+    "title": "Ace of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 1,
+    "numeral": "I",
+    "element": "Air",
+    "path": null,
+    "upright": "Cut through confusion with a useful truth.",
+    "reversed": "Sharpness without care; certainty before evidence.",
+    "interpretation": "A clear idea can open the way. Test it honestly and speak it in a form that others can hear.",
+    "symbols": [
+      "upright blade",
+      "crown",
+      "clear sky"
+    ],
+    "reflection": "What truth needs a precise, kind sentence?",
+    "keywords": [
+      "clarity",
+      "truth",
+      "insight"
+    ],
+    "art": "assets/cards/swords-01-ace.svg"
+  },
+  {
+    "id": "swords-02-two",
+    "title": "Two of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 2,
+    "numeral": "II",
+    "element": "Air",
+    "path": null,
+    "upright": "Make space to decide what you are avoiding.",
+    "reversed": "False peace; information kept outside the room.",
+    "interpretation": "A stalemate can protect you briefly, but it cannot choose for you. Gather one missing fact and loosen the crossed guard.",
+    "symbols": [
+      "crossed blades",
+      "blindfold",
+      "sea"
+    ],
+    "reflection": "What fact would help you choose?",
+    "keywords": [
+      "decision",
+      "stalemate",
+      "information"
+    ],
+    "art": "assets/cards/swords-02-two.svg"
+  },
+  {
+    "id": "swords-03-three",
+    "title": "Three of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 3,
+    "numeral": "III",
+    "element": "Air",
+    "path": null,
+    "upright": "Name the hurt and tend it directly.",
+    "reversed": "Pain revisited without care; healing hurried.",
+    "interpretation": "Heartbreak is real data about what mattered. Give it words, support, and time instead of asking it to disappear on command.",
+    "symbols": [
+      "heart",
+      "three blades",
+      "rain"
+    ],
+    "reflection": "What would kind attention to this hurt look like?",
+    "keywords": [
+      "heartbreak",
+      "truth",
+      "care"
+    ],
+    "art": "assets/cards/swords-03-three.svg"
+  },
+  {
+    "id": "swords-04-four",
+    "title": "Four of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 4,
+    "numeral": "IV",
+    "element": "Air",
+    "path": null,
+    "upright": "Rest before your thoughts demand it for you.",
+    "reversed": "Avoiding the issue by retreating indefinitely.",
+    "interpretation": "Stillness can repair your ability to think. Set a pause with a return point and let the mind unclench.",
+    "symbols": [
+      "resting figure",
+      "window",
+      "four blades"
+    ],
+    "reflection": "What kind of rest would restore clarity?",
+    "keywords": [
+      "rest",
+      "recovery",
+      "quiet"
+    ],
+    "art": "assets/cards/swords-04-four.svg"
+  },
+  {
+    "id": "swords-05-five",
+    "title": "Five of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 5,
+    "numeral": "V",
+    "element": "Air",
+    "path": null,
+    "upright": "Question the cost of winning this exchange.",
+    "reversed": "Defeat made into identity; repeating a cruel contest.",
+    "interpretation": "A victory can leave the room poorer. Step back from scorekeeping and decide what respect requires now.",
+    "symbols": [
+      "scattered blades",
+      "departing figures",
+      "wind"
+    ],
+    "reflection": "Which argument could end without another blow?",
+    "keywords": [
+      "conflict",
+      "cost",
+      "repair"
+    ],
+    "art": "assets/cards/swords-05-five.svg"
+  },
+  {
+    "id": "swords-06-six",
+    "title": "Six of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 6,
+    "numeral": "VI",
+    "element": "Air",
+    "path": null,
+    "upright": "Move toward calmer ground with what you have learned.",
+    "reversed": "Transition resisted; carrying every old fear.",
+    "interpretation": "The crossing may feel quiet rather than triumphant. Accept help, take the necessary baggage, and leave the rest on shore.",
+    "symbols": [
+      "boat",
+      "six blades",
+      "far bank"
+    ],
+    "reflection": "What are you ready to carry across, and what can stay?",
+    "keywords": [
+      "transition",
+      "passage",
+      "relief"
+    ],
+    "art": "assets/cards/swords-06-six.svg"
+  },
+  {
+    "id": "swords-07-seven",
+    "title": "Seven of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 7,
+    "numeral": "VII",
+    "element": "Air",
+    "path": null,
+    "upright": "Use strategy with integrity.",
+    "reversed": "Secrecy that erodes trust; a plan exposed.",
+    "interpretation": "Privacy and cunning can protect a good purpose, yet evasions accumulate a cost. Check whose trust your tactic asks you to spend.",
+    "symbols": [
+      "stepping figure",
+      "carried blades",
+      "tents"
+    ],
+    "reflection": "Where would directness simplify the plan?",
+    "keywords": [
+      "strategy",
+      "secrecy",
+      "ethics"
+    ],
+    "art": "assets/cards/swords-07-seven.svg"
+  },
+  {
+    "id": "swords-08-eight",
+    "title": "Eight of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 8,
+    "numeral": "VIII",
+    "element": "Air",
+    "path": null,
+    "upright": "Test the limits that feel absolute.",
+    "reversed": "A new exit ignored; fear of first steps.",
+    "interpretation": "Some constraints are real, and some tighten when you stop checking them. Find one safe movement and see what the ground permits.",
+    "symbols": [
+      "loose blindfold",
+      "blade ring",
+      "path"
+    ],
+    "reflection": "Which restriction could you verify today?",
+    "keywords": [
+      "constraint",
+      "fear",
+      "agency"
+    ],
+    "art": "assets/cards/swords-08-eight.svg"
+  },
+  {
+    "id": "swords-09-nine",
+    "title": "Nine of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 9,
+    "numeral": "IX",
+    "element": "Air",
+    "path": null,
+    "upright": "Bring a private worry into gentle daylight.",
+    "reversed": "Rumination; seeking certainty from sleeplessness.",
+    "interpretation": "Thoughts grow louder in the dark. Write down the specific concern, rest if you can, and invite another perspective.",
+    "symbols": [
+      "night bed",
+      "nine marks",
+      "hands"
+    ],
+    "reflection": "Who or what could help you carry this worry?",
+    "keywords": [
+      "anxiety",
+      "night",
+      "support"
+    ],
+    "art": "assets/cards/swords-09-nine.svg"
+  },
+  {
+    "id": "swords-10-ten",
+    "title": "Ten of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 10,
+    "numeral": "X",
+    "element": "Air",
+    "path": null,
+    "upright": "Acknowledge a hard ending and the dawn beyond it.",
+    "reversed": "Refusing the ending; turning pain into a permanent story.",
+    "interpretation": "The old line has reached its limit. Care for the injury, stop asking it to continue, and notice the first light at the edge.",
+    "symbols": [
+      "fallen figure",
+      "ten blades",
+      "dawn"
+    ],
+    "reflection": "What support helps you close this chapter?",
+    "keywords": [
+      "ending",
+      "exhaustion",
+      "dawn"
+    ],
+    "art": "assets/cards/swords-10-ten.svg"
+  },
+  {
+    "id": "swords-11-page",
+    "title": "Page of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 11,
+    "numeral": "PAGE",
+    "element": "Air",
+    "path": null,
+    "upright": "Ask sharp questions and stay teachable.",
+    "reversed": "Suspicion posing as wisdom.",
+    "interpretation": "An alert mind sees patterns quickly. Verify them, welcome correction, and use your voice to learn rather than score.",
+    "symbols": [
+      "young scout",
+      "raised sword",
+      "wind"
+    ],
+    "reflection": "What question would help more than an assumption?",
+    "keywords": [
+      "curiosity",
+      "vigilance",
+      "learning"
+    ],
+    "art": "assets/cards/swords-11-page.svg"
+  },
+  {
+    "id": "swords-12-knight",
+    "title": "Knight of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 12,
+    "numeral": "KNIGHT",
+    "element": "Air",
+    "path": null,
+    "upright": "Pursue an idea with disciplined speed.",
+    "reversed": "A rush that cuts past people.",
+    "interpretation": "Urgency can clear a path when it knows its target. Check the facts and the people affected before charging ahead.",
+    "symbols": [
+      "rider",
+      "storm",
+      "forward blade"
+    ],
+    "reflection": "Where does speed need one deliberate check?",
+    "keywords": [
+      "urgency",
+      "argument",
+      "focus"
+    ],
+    "art": "assets/cards/swords-12-knight.svg"
+  },
+  {
+    "id": "swords-13-queen",
+    "title": "Queen of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 13,
+    "numeral": "QUEEN",
+    "element": "Air",
+    "path": null,
+    "upright": "Speak plainly from earned discernment.",
+    "reversed": "Guardedness; wit used to wound.",
+    "interpretation": "Clarity can be both firm and humane. Trust your experience and leave room for evidence that changes your view.",
+    "symbols": [
+      "upright sword",
+      "open hand",
+      "cloud break"
+    ],
+    "reflection": "What boundary can you state without cruelty?",
+    "keywords": [
+      "discernment",
+      "independence",
+      "honesty"
+    ],
+    "art": "assets/cards/swords-13-queen.svg"
+  },
+  {
+    "id": "swords-14-king",
+    "title": "King of Swords",
+    "arcana": "minor",
+    "suit": "Swords",
+    "number": 14,
+    "numeral": "KING",
+    "element": "Air",
+    "path": null,
+    "upright": "Make decisions through reason and responsibility.",
+    "reversed": "Rigid judgment; intellect detached from people.",
+    "interpretation": "A sound decision can explain its evidence and its stakes. Use authority to make thought accountable to lived effects.",
+    "symbols": [
+      "throne",
+      "butterflies",
+      "sword"
+    ],
+    "reflection": "Who bears the outcome of this decision?",
+    "keywords": [
+      "reason",
+      "authority",
+      "judgment"
+    ],
+    "art": "assets/cards/swords-14-king.svg"
+  },
+  {
+    "id": "pentacles-01-ace",
+    "title": "Ace of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 1,
+    "numeral": "I",
+    "element": "Earth",
+    "path": null,
+    "upright": "Plant a practical opportunity carefully.",
+    "reversed": "An opening missed; security sought without action.",
+    "interpretation": "A tangible seed is in your hands. Give it soil, a modest plan, and time to become more than a promising object.",
+    "symbols": [
+      "coin",
+      "garden gate",
+      "hand"
+    ],
+    "reflection": "What small investment can you make today?",
+    "keywords": [
+      "opportunity",
+      "resources",
+      "seed"
+    ],
+    "art": "assets/cards/pentacles-01-ace.svg"
+  },
+  {
+    "id": "pentacles-02-two",
+    "title": "Two of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 2,
+    "numeral": "II",
+    "element": "Earth",
+    "path": null,
+    "upright": "Balance moving demands with a flexible rhythm.",
+    "reversed": "Juggling beyond capacity; a choice deferred.",
+    "interpretation": "Life has more than one current. Adjust the rhythm and decide which responsibility needs a firmer place.",
+    "symbols": [
+      "two coins",
+      "infinity ribbon",
+      "waves"
+    ],
+    "reflection": "What can be simplified to make balance real?",
+    "keywords": [
+      "adaptation",
+      "priorities",
+      "rhythm"
+    ],
+    "art": "assets/cards/pentacles-02-two.svg"
+  },
+  {
+    "id": "pentacles-03-three",
+    "title": "Three of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 3,
+    "numeral": "III",
+    "element": "Earth",
+    "path": null,
+    "upright": "Build well with other people's expertise.",
+    "reversed": "Working alone to protect control.",
+    "interpretation": "The craft improves when different skills meet. Make the plan visible, listen to the person nearest the work, and honor contribution.",
+    "symbols": [
+      "workshop",
+      "three coins",
+      "blueprint"
+    ],
+    "reflection": "Whose skill would improve this effort?",
+    "keywords": [
+      "craft",
+      "teamwork",
+      "recognition"
+    ],
+    "art": "assets/cards/pentacles-03-three.svg"
+  },
+  {
+    "id": "pentacles-04-four",
+    "title": "Four of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 4,
+    "numeral": "IV",
+    "element": "Earth",
+    "path": null,
+    "upright": "Protect resources while keeping them in motion.",
+    "reversed": "Clinging; fear disguised as planning.",
+    "interpretation": "A reserve can support freedom, yet a locked hand cannot also receive. Decide what truly needs safeguarding and what can circulate.",
+    "symbols": [
+      "four coins",
+      "closed gate",
+      "city"
+    ],
+    "reflection": "Where has caution become a grip?",
+    "keywords": [
+      "security",
+      "stewardship",
+      "release"
+    ],
+    "art": "assets/cards/pentacles-04-four.svg"
+  },
+  {
+    "id": "pentacles-05-five",
+    "title": "Five of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 5,
+    "numeral": "V",
+    "element": "Earth",
+    "path": null,
+    "upright": "Seek warmth and practical help in a hard season.",
+    "reversed": "Shame that keeps support at a distance.",
+    "interpretation": "Scarcity can narrow the view. Look for the lit doorway, name a concrete need, and allow help to reach you.",
+    "symbols": [
+      "snow",
+      "stained window",
+      "door"
+    ],
+    "reflection": "What help could you ask for plainly?",
+    "keywords": [
+      "hardship",
+      "support",
+      "resilience"
+    ],
+    "art": "assets/cards/pentacles-05-five.svg"
+  },
+  {
+    "id": "pentacles-06-six",
+    "title": "Six of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 6,
+    "numeral": "VI",
+    "element": "Earth",
+    "path": null,
+    "upright": "Give and receive with attention to power.",
+    "reversed": "Generosity with strings; a need hidden by pride.",
+    "interpretation": "An exchange can restore dignity when both sides remain visible. Notice who chooses the terms and make the balance kinder.",
+    "symbols": [
+      "scales",
+      "open palms",
+      "six coins"
+    ],
+    "reflection": "How can this exchange respect everyone involved?",
+    "keywords": [
+      "generosity",
+      "exchange",
+      "equity"
+    ],
+    "art": "assets/cards/pentacles-06-six.svg"
+  },
+  {
+    "id": "pentacles-07-seven",
+    "title": "Seven of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 7,
+    "numeral": "VII",
+    "element": "Earth",
+    "path": null,
+    "upright": "Assess the growth before changing course.",
+    "reversed": "Impatience; tending a plan past its season.",
+    "interpretation": "Work needs intervals of observation. Measure what is growing, change what is failing, and resist digging up the roots each day.",
+    "symbols": [
+      "garden",
+      "seven coins",
+      "leaning staff"
+    ],
+    "reflection": "What evidence would tell you to persist or pivot?",
+    "keywords": [
+      "patience",
+      "assessment",
+      "growth"
+    ],
+    "art": "assets/cards/pentacles-07-seven.svg"
+  },
+  {
+    "id": "pentacles-08-eight",
+    "title": "Eight of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 8,
+    "numeral": "VIII",
+    "element": "Earth",
+    "path": null,
+    "upright": "Practice the craft one honest repetition at a time.",
+    "reversed": "Perfectionism; labor without learning.",
+    "interpretation": "Skill gathers in the marks of repeated work. Set a useful standard, make one more piece, and inspect what improved.",
+    "symbols": [
+      "workbench",
+      "row of coins",
+      "tool"
+    ],
+    "reflection": "Which repetition would teach you the most?",
+    "keywords": [
+      "practice",
+      "skill",
+      "attention"
+    ],
+    "art": "assets/cards/pentacles-08-eight.svg"
+  },
+  {
+    "id": "pentacles-09-nine",
+    "title": "Nine of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 9,
+    "numeral": "IX",
+    "element": "Earth",
+    "path": null,
+    "upright": "Enjoy a freedom you have cultivated.",
+    "reversed": "Isolation inside success; ease treated as a test.",
+    "interpretation": "The garden reflects long care. Let yourself receive its pleasures and share from abundance without losing your independence.",
+    "symbols": [
+      "vineyard",
+      "falcon",
+      "nine coins"
+    ],
+    "reflection": "What earned ease can you allow yourself?",
+    "keywords": [
+      "independence",
+      "reward",
+      "pleasure"
+    ],
+    "art": "assets/cards/pentacles-09-nine.svg"
+  },
+  {
+    "id": "pentacles-10-ten",
+    "title": "Ten of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 10,
+    "numeral": "X",
+    "element": "Earth",
+    "path": null,
+    "upright": "Think beyond today's gain toward shared legacy.",
+    "reversed": "Family expectations overriding present needs.",
+    "interpretation": "Resources can become a shelter across generations. Ask what should be preserved, who belongs, and what needs to change.",
+    "symbols": [
+      "archway",
+      "ten coins",
+      "family"
+    ],
+    "reflection": "What do you hope your work makes possible for others?",
+    "keywords": [
+      "legacy",
+      "home",
+      "continuity"
+    ],
+    "art": "assets/cards/pentacles-10-ten.svg"
+  },
+  {
+    "id": "pentacles-11-page",
+    "title": "Page of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 11,
+    "numeral": "PAGE",
+    "element": "Earth",
+    "path": null,
+    "upright": "Study a promising material path.",
+    "reversed": "Endless preparation; losing wonder in details.",
+    "interpretation": "A practical lesson has your attention. Start as a learner, record what works, and let a small project become your classroom.",
+    "symbols": [
+      "young student",
+      "coin",
+      "field"
+    ],
+    "reflection": "What could you learn by making one prototype?",
+    "keywords": [
+      "study",
+      "potential",
+      "practice"
+    ],
+    "art": "assets/cards/pentacles-11-page.svg"
+  },
+  {
+    "id": "pentacles-12-knight",
+    "title": "Knight of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 12,
+    "numeral": "KNIGHT",
+    "element": "Earth",
+    "path": null,
+    "upright": "Advance through reliable, thoughtful work.",
+    "reversed": "Routine without purpose; stubborn pace.",
+    "interpretation": "Consistency can carry more than a dramatic burst. Check that the destination still matters, then take the next grounded step.",
+    "symbols": [
+      "steady horse",
+      "plowed field",
+      "coin"
+    ],
+    "reflection": "What dependable action would help most today?",
+    "keywords": [
+      "reliability",
+      "patience",
+      "duty"
+    ],
+    "art": "assets/cards/pentacles-12-knight.svg"
+  },
+  {
+    "id": "pentacles-13-queen",
+    "title": "Queen of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 13,
+    "numeral": "QUEEN",
+    "element": "Earth",
+    "path": null,
+    "upright": "Care for the material world generously.",
+    "reversed": "Self-neglect inside caretaking.",
+    "interpretation": "Comfort grows from attention to bodies, places, and resources. Make the environment nourishing for you as well as everyone else.",
+    "symbols": [
+      "garden throne",
+      "rabbit",
+      "coin"
+    ],
+    "reflection": "What practical care do you need yourself?",
+    "keywords": [
+      "nurture",
+      "home",
+      "resourcefulness"
+    ],
+    "art": "assets/cards/pentacles-13-queen.svg"
+  },
+  {
+    "id": "pentacles-14-king",
+    "title": "King of Pentacles",
+    "arcana": "minor",
+    "suit": "Pentacles",
+    "number": 14,
+    "numeral": "KING",
+    "element": "Earth",
+    "path": null,
+    "upright": "Manage abundance with integrity and perspective.",
+    "reversed": "Possession mistaken for worth.",
+    "interpretation": "Good stewardship turns resources into durable wellbeing. Let success be measured by the life it supports and the trust it earns.",
+    "symbols": [
+      "stone throne",
+      "vines",
+      "coin"
+    ],
+    "reflection": "What would responsible prosperity look like here?",
+    "keywords": [
+      "stewardship",
+      "stability",
+      "prosperity"
+    ],
+    "art": "assets/cards/pentacles-14-king.svg"
+  }
+]
