@@ -276,17 +276,17 @@ def star(x, y, r=8, cls="gold"):
 
 
 def figure(x, y, scale=1, facing=1, cls="ink"):
-    """Faceted robed figure with engraved folds, anchored at the feet."""
+    """An elongated, faceted human silhouette with printmaking-style folds."""
     return f'<g transform="translate({x} {y}) scale({scale*facing} {scale})">' + (
-        path("M-11 -39Q-13 -57 0 -59Q13 -57 11 -39Q8 -31 0 -29Q-8 -31 -11 -39Z", "paperfill")
-        + path("M-11 -43Q-14 -55 -4 -59Q8 -65 13 -50M-10 -49Q-2 -47 2 -54Q5 -48 11 -46", "ink")
-        + circle(-4, -42, .8, "gold") + circle(5, -42, .8, "gold")
-        + path("M-3 -35Q0 -32 4 -35", "fine")
-        + path("M-14 -29Q0 -36 14 -29L22 -2Q0 5 -22 -2Z", "wash")
-        + path("M-13 -27L-23 -11L-18 -7L-9 -21M13 -27L23 -11L18 -7L9 -21", "paperfill")
-        + path("M-8 -16Q0 -12 8 -16M-17 -3Q0 -9 17 -3M-7 -11L-10 -1M7 -11L10 -1", "fine")
-        + path("M-10 -2L-10 1M10 -2L10 1", cls)
-        + path("M-12 -18Q0 -15 12 -18", "gold")
+        path("M-9 -69L-11 -82Q-9 -92 0 -93Q10 -91 12 -81L8 -68L5 -64H-5Z", "paperfill")
+        + path("M-10 -79Q-13 -93 -1 -96Q10 -97 13 -83Q6 -88 0 -83Q-6 -78 -10 -79Z", "inkfill")
+        + path("M3 -76L8 -75M-3 -66Q2 -63 6 -67", "fine")
+        + path("M-5 -64L-6 -58M5 -64L6 -58", "ink")
+        + path("M-8 -61Q0 -66 8 -61L18 -51L21 -9Q0 4 -21 -9L-18 -51Z", "wash")
+        + path("M-11 -55L-22 -23L-27 -18L-23 -14L-18 -17L-6 -47M11 -55L21 -24L25 -20L22 -15L17 -19L6 -47", "paperfill")
+        + path("M-8 -47Q0 -39 8 -47M-15 -14Q0 -20 15 -14M-10 -34L-13 -3M9 -35L12 -3M0 -42V-5", "fine")
+        + path("M-18 -8Q0 -2 18 -8M-15 -52Q0 -46 15 -52", "gold")
+        + path("M-11 -2L-11 2M11 -2L11 2", cls)
     ) + "</g>"
 
 
@@ -381,60 +381,159 @@ def major_scene(number: int) -> str:
     raise ValueError(number)
 
 
+def blossom(x: int, y: int, scale: float = 1) -> str:
+    petals = "".join(circle(x + dx * scale, y + dy * scale, 5 * scale, "petal")
+                     for dx, dy in ((0, -8), (8, 0), (0, 8), (-8, 0)))
+    return petals + circle(x, y, 3 * scale, "gold")
+
+
+def major_detail(number: int) -> str:
+    """Small traditional symbols, newly drawn as accents to the main scene."""
+    if number == 0:
+        return path("M65 348Q62 321 71 302M70 325Q50 313 47 301M68 318Q81 304 88 296", "vine") + blossom(72, 291, .75)
+    if number == 1:
+        return path("M113 120C89 100 88 150 113 135C139 117 141 107 163 135C186 154 195 103 166 120C144 137 137 151 113 120Z", "gold")
+    if number == 2:
+        return path("M84 209Q140 187 196 209M84 217Q140 195 196 217M87 221V310M193 221V310", "arch")
+    if number == 3:
+        return "".join(path(f"M{x} 353Q{x-5} 328 {x+2} 305M{x} 323L{x-9} 314M{x+1} 317L{x+9} 307", "vine") for x in (55, 70, 207, 222))
+    if number == 4:
+        return path("M102 287H178M102 296H178M113 257V310M140 257V310M167 257V310", "fine")
+    if number == 5:
+        return path("M74 343Q105 325 140 339Q175 325 206 343L206 362Q173 347 140 359Q105 347 74 362Z", "paperfill") + path("M140 339V359", "gold")
+    if number == 6:
+        return path("M50 347V296M230 347V296M50 307Q37 296 40 278M50 305Q64 293 67 279M230 307Q217 296 215 280M230 304Q244 291 241 276", "vine")
+    if number == 7:
+        return path("M55 298Q40 278 49 265Q64 256 72 279M208 279Q218 258 231 265Q240 278 225 298", "ink")
+    if number == 8:
+        return path("M119 133C98 118 97 164 121 149C141 137 143 128 161 149C183 165 186 118 163 133C143 150 140 163 119 133Z", "gold")
+    if number == 9:
+        return path("M41 362Q82 341 100 361Q135 334 165 355Q207 332 240 360", "terrain")
+    if number == 10:
+        return "".join(path(f"M{x-8} {y}H{x+8}M{x} {y-8}V{y+8}", "gold") for x, y in ((59, 153), (221, 153), (59, 334), (221, 334)))
+    if number == 11:
+        return path("M61 276H95M185 276H219M78 232V271M202 232V271", "gold")
+    if number == 12:
+        return path("M66 182L140 343L214 182Z", "ridge") + circle(140, 293, 42, "halo")
+    if number == 13:
+        return path("M65 360Q72 336 82 324M82 324Q66 312 64 303M82 322Q91 307 101 304M206 360Q211 338 202 325M202 325Q189 315 187 306", "vine")
+    if number == 14:
+        return path("M106 266Q140 306 174 266M107 277Q140 316 175 277", "water") + circle(140, 320, 6, "gold")
+    if number == 15:
+        return path("M80 339Q107 349 114 331M200 339Q173 349 166 331", "chain") + path("M130 361Q121 345 139 328Q135 346 151 354Q149 369 130 361Z", "regalia")
+    if number == 16:
+        return path("M44 354L91 331L113 356M167 354L191 326L240 353", "ridge") + "".join(star(x, y, 5) for x, y in ((61, 242), (215, 270), (208, 178)))
+    if number == 17:
+        return "".join(path(f"M{x} {y-11}V{y+11}M{x-11} {y}H{x+11}", "gold") for x, y in ((68, 180), (212, 180)))
+    if number == 18:
+        return path("M124 362Q106 332 142 306Q173 284 140 254", "terrain") + circle(72, 202, 3, "gold") + circle(209, 209, 3, "gold")
+    if number == 19:
+        return blossom(61, 294, 1.1) + blossom(218, 298, 1.1) + path("M61 306V351M218 310V351", "vine")
+    if number == 20:
+        return "".join(line(140, 137, 140, 117, "gold", f'transform="rotate({a} 140 179)"') for a in range(-70, 71, 35))
+    if number == 21:
+        return "".join(path(f"M{x} {y}Q{x+10} {y-16} {x+19} {y-5}Q{x+7} {y+1} {x} {y}", "vine") for x, y in ((61, 203), (57, 264), (64, 321), (201, 196), (209, 252), (202, 312)))
+    raise ValueError(number)
+
+
 def pip_scene(card: dict) -> str:
     suit, number = card["suit"], card["number"]
     if number <= 10:
-        # Curved rows create a familiar pip reading while avoiding a copied plate.
-        rows = {1: [1], 2: [2], 3: [1, 2], 4: [2, 2], 5: [2, 1, 2],
-                6: [2, 2, 2], 7: [2, 3, 2], 8: [2, 2, 2, 2],
-                9: [3, 3, 3], 10: [2, 3, 3, 2]}[number]
-        start = 172 if len(rows) == 1 else 158 if len(rows) == 2 else 148
-        spacing = 0 if len(rows) == 1 else min(57, 167 / (len(rows)-1))
-        objects = []
-        for index, count in enumerate(rows):
-            yy = start + index * spacing
-            xs = {1: [140], 2: [98, 182], 3: [75, 140, 205]}[count]
-            for xx in xs:
-                objects.append(motif(suit, xx, round(yy), .86 if suit == "Pentacles" else .9, 0))
-        backdrop = circle(140, 245, 79, "gold") + circle(140, 245, 93, "fine")
-        if suit == "Cups":
-            backdrop += water(340) + path("M50 318Q78 305 103 318T156 318T209 318T239 318", "water")
-            backdrop += "".join(circle(xx, yy, 2, "water") for xx, yy in [(61,186),(217,182),(48,266),(231,274)])
-        if suit == "Wands":
-            backdrop += sun(140, 245, 34) + path("M42 331Q80 299 88 325M238 331Q200 299 192 325", "vine")
-            backdrop += "".join(star(xx, yy, 5, "vine") for xx, yy in [(62,178),(218,188),(54,288),(225,291)])
-        if suit == "Swords":
-            backdrop += star(140, 245, 38, "fine")
-            backdrop += "".join(path(f"M42 {yy}Q81 {yy-15} 111 {yy}M169 {yy}Q198 {yy-15} 238 {yy}", "fine") for yy in (187, 212, 290, 315))
-        if suit == "Pentacles":
-            backdrop += path("M41 337Q140 270 239 337", "vine")
-            backdrop += "".join(path(f"M{x} {yy}Q{x+13} {yy-17} {x+23} {yy-2}Q{x+10} {yy+3} {x} {yy}", "vine") for x, yy in [(46,190),(209,196),(47,294),(210,293)])
-        return backdrop + "".join(objects)
+        return numbered_scene(suit, number)
     rank = RANKS[number-1]
     accent = "gold" if suit in ("Wands", "Pentacles") else "fine"
-    base = circle(140, 224, 66, "gold") + path("M57 348Q140 298 223 348", "vine")
-    base += path("M51 343Q140 289 229 343M70 358Q140 328 210 358", "fine")
+    base = suit_landscape(suit, number) + circle(140, 224, 69, "halo")
+    base += path("M48 352Q140 303 232 352M57 361Q140 321 223 361", "terrain")
     if rank == "Page":
-        base += figure(140, 320, 1.68) + path("M119 230Q140 208 161 230", "gold") + star(140, 215, 7)
+        base += figure(137, 322, 1.72) + path("M113 245Q140 216 167 245", "gold") + star(140, 213, 8)
+        base += path("M67 335Q97 288 112 305M202 312Q218 315 231 338", "terrain")
     elif rank == "Knight":
-        base += path("M61 317Q91 273 127 305Q154 277 198 310L211 344L73 344Z", "ink") + figure(139, 269, 1.38) + circle(92, 294, 4, "gold")
+        base += path("M48 328Q65 295 91 294Q111 270 132 299Q160 282 187 302L223 338H62Z", "beast")
+        base += path("M58 331L48 349M88 329L84 351M184 329L194 349M210 331L222 347", "ink")
+        base += figure(139, 274, 1.45) + path("M74 288Q66 275 71 261M73 289Q88 278 93 279", "ink")
     elif rank == "Queen":
-        base += rect(91, 270, 98, 58, "column") + figure(140, 316, 1.5) + path("M119 230L128 208L140 222L152 208L161 230Z", "gold")
+        base += path("M81 336V266Q140 234 199 266V336M91 335V278Q140 254 189 278V335", "column")
+        base += figure(140, 320, 1.58) + path("M115 228L127 207L140 221L153 207L165 228Z", "regalia")
+        base += path("M80 266Q140 238 200 266", "gold")
     elif rank == "King":
-        base += rect(86, 265, 108, 70, "column") + figure(140, 318, 1.55) + path("M115 228L118 203L132 220L140 200L148 220L162 203L165 228Z", "gold")
-    return base + motif(suit, 202, 258, 1.08, -12) + star(65, 194, 8, accent) + star(215, 194, 8, accent)
+        base += path("M75 340V261L99 247H181L205 261V340M91 335V265H189V335", "column")
+        base += figure(140, 323, 1.58) + path("M113 230L117 201L130 220L140 198L150 220L163 201L167 230Z", "regalia")
+        base += path("M78 267H202M100 248H180", "gold")
+    return base + motif(suit, 204, 269, 1.05, -12) + star(66, 189, 7, accent) + star(214, 189, 7, accent)
+
+
+def suit_landscape(suit: str, number: int) -> str:
+    """Four illustrated worlds. The extra geometry is clean ink, never noise."""
+    if suit == "Wands":
+        return (sun(198, 153, 22) + path("M35 345Q84 277 129 317Q182 245 245 337V382H35Z", "distant")
+                + path("M35 353Q98 314 143 340Q197 295 245 349", "terrain")
+                + path("M40 365L77 349M195 351L239 366", "fine"))
+    if suit == "Cups":
+        return (moon(198, 155, 20) + path("M35 324Q76 300 120 324Q175 291 245 322V380H35Z", "distant")
+                + water(323) + path("M43 353Q74 341 106 353T169 353T235 353", "water")
+                + circle(72, 205, 2, "water") + circle(226, 234, 2, "water"))
+    if suit == "Swords":
+        return (circle(195, 151, 22, "halo")
+                + path("M36 215Q70 189 106 207T180 205T245 210M36 241Q72 217 103 235T177 230T245 236", "cloud")
+                + path("M38 349Q91 319 141 344Q198 311 242 343", "terrain")
+                + "".join(line(52+i*26, 158, 68+i*26, 143, "wind") for i in range(7)))
+    return (path("M36 351Q84 283 141 328Q187 289 244 345V382H36Z", "distant")
+            + path("M44 356Q89 330 142 351Q193 323 238 354", "terrain")
+            + "".join(path(f"M{x} 359V{yy}M{x} {yy+8}Q{x-12} {yy-3} {x-18} {yy+9}M{x} {yy+7}Q{x+10} {yy-5} {x+17} {yy+8}", "vine")
+                       for x, yy in ((65, 264), (215, 267)))
+            + sun(193, 155, 18))
+
+
+def numbered_scene(suit: str, number: int) -> str:
+    """A different pictorial composition for every numeral in each suit."""
+    land = suit_landscape(suit, number)
+    # These placements are part of each scene rather than a repeating pip grid.
+    layouts = {
+        1: [(140, 225, 1.65, 0)],
+        2: [(91, 242, 1.16, -7), (189, 242, 1.16, 7)],
+        3: [(75, 265, .99, -5), (140, 211, 1.12, 0), (205, 265, .99, 5)],
+        4: [(91, 211, 1.02, 0), (189, 211, 1.02, 0), (91, 305, 1.02, 0), (189, 305, 1.02, 0)],
+        5: [(72, 197, .91, -14), (205, 196, .91, 14), (140, 249, 1.06, 0), (88, 309, .91, 12), (198, 310, .91, -12)],
+        6: [(80, 205, .88, 0), (140, 189, .88, 0), (200, 205, .88, 0),
+            (80, 310, .88, 0), (140, 326, .88, 0), (200, 310, .88, 0)],
+        7: [(140, 166, .84, 0), (86, 218, .84, 0), (140, 227, .84, 0), (194, 218, .84, 0),
+            (69, 308, .84, 0), (140, 318, .84, 0), (211, 308, .84, 0)],
+        8: [(65, 181, .79, -18), (123, 174, .79, -18), (181, 167, .79, -18), (222, 198, .79, -18),
+            (59, 278, .79, -18), (117, 271, .79, -18), (175, 264, .79, -18), (221, 297, .79, -18)],
+        9: [(78, 190, .78, 0), (140, 181, .78, 0), (202, 190, .78, 0),
+            (78, 255, .78, 0), (140, 248, .78, 0), (202, 255, .78, 0),
+            (78, 320, .78, 0), (140, 315, .78, 0), (202, 320, .78, 0)],
+        10: [(82, 175, .78, 0), (140, 167, .78, 0), (198, 175, .78, 0),
+             (65, 232, .78, 0), (116, 232, .78, 0), (164, 232, .78, 0), (215, 232, .78, 0),
+             (82, 312, .78, 0), (140, 323, .78, 0), (198, 312, .78, 0)],
+    }
+    settings = {
+        1: path("M83 327Q109 294 140 298Q171 294 197 327M98 316Q140 344 182 316", "hands") + star(140, 144, 10),
+        2: circle(140, 245, 62, "halo") + path("M91 296Q140 325 189 296M91 185Q140 157 189 185", "gold"),
+        3: path("M41 339Q140 286 239 339M45 184Q140 139 235 184", "arch") + star(140, 310, 7),
+        4: path("M56 173V346M224 173V346M56 173Q140 136 224 173M56 346H224", "arch") + path("M68 270H212", "gold"),
+        5: path("M48 359L224 151M50 244L223 337M41 279Q140 186 239 279", "tension"),
+        6: path("M43 258Q140 225 237 258M43 269Q140 236 237 269", "bridge") + star(140, 259, 7),
+        7: path("M42 351L140 141L238 351M62 351L140 185L218 351", "ridge"),
+        8: path("M40 326L226 133M40 348L239 142M46 370L241 158", "motion") + star(222, 145, 8),
+        9: path("M46 160Q140 112 234 160V350H46Z", "arch") + path("M57 347H223", "gold"),
+        10: path("M43 357V158Q140 118 237 158V357M58 346V170Q140 137 222 170V346", "arch") + star(140, 269, 13),
+    }
+    scale = .87 if suit == "Pentacles" else 1
+    pips = "".join(motif(suit, x, y, size * scale, rotation) for x, y, size, rotation in layouts[number])
+    return land + settings[number] + pips
 
 
 def etched_setting(card: dict) -> str:
-    """A quiet engraved landscape and architectural border below each emblem."""
+    """An architectural frame that stays quiet behind the actual illustration."""
     number = card["number"]
     variant = number % 4
     pieces = [
-        path("M32 374V172Q140 111 248 172V374", "ghost"),
-        path("M38 374V177Q140 121 242 177V374", "ghost"),
+        path("M32 374V148Q140 94 248 148V374", "ghost"),
+        path("M38 374V154Q140 108 242 154V374", "ghost"),
         path("M31 375H249", "ghost"),
-        star(140, 135, 4, "ghost"),
-        path("M34 180L42 180M238 180L246 180M31 324L39 324M241 324L249 324", "ghost"),
+        star(140, 114, 4, "gold"),
+        path("M34 159H43M237 159H246M31 326H39M241 326H249", "ghost"),
     ]
     if card["arcana"] == "major":
         # Repeated etched contours deepen the flat emblems without competing
@@ -444,20 +543,11 @@ def etched_setting(card: dict) -> str:
             path(f"M39 {rise+24}Q78 {rise-8} 117 {rise+14}Q167 {rise-20} 241 {rise+25}", "landscape"),
             path(f"M39 {rise+34}Q79 {rise+3} 117 {rise+24}Q166 {rise-8} 241 {rise+35}", "ghost"),
         ])
-        for i in range(9):
-            xx = 46 + i * 24
-            yy = 344 + ((i * 5 + number) % 3) * 5
-            pieces.append(path(f"M{xx} {yy}L{xx+8} {yy-4}", "hatch"))
         if number in (0, 1, 3, 6, 7, 8, 14, 19, 20):
             pieces.append(circle(140, 222, 97, "ghost"))
             pieces.extend(path("M140 115L140 124", "ghost", f'transform="rotate({angle} 140 222)"') for angle in range(0, 360, 30))
         else:
-            pieces.append(path("M55 208Q140 149 225 208M62 219Q140 165 218 219", "ghost"))
-    else:
-        pieces.extend([
-            path("M37 352Q82 327 124 350Q168 329 243 353", "landscape"),
-            path("M39 361Q90 337 131 360Q187 337 241 361", "ghost"),
-        ])
+            pieces.append(path("M55 208Q140 149 225 208", "ghost"))
     return "".join(pieces)
 
 
@@ -469,18 +559,34 @@ def card_svg(card: dict, palette: DeckPalette | None = None) -> str:
     suit = card["suit"]
     accent = palette.accents.get(suit, gold)
     title = card["title"]
-    # Compact title spacing makes long court titles readable at toolbar scale.
-    title_size = 16 if len(title) > 17 else 19 if len(title) > 13 else 21
+    # The name sits below the image; precise serif forms stay legible at scale.
+    title_size = 16 if len(title) > 17 else 18 if len(title) > 13 else 22
     top = "MAJOR ARCANA" if card["arcana"] == "major" else f"{e(suit).upper()} · {e(card['element']).upper()}"
-    plate = major_scene(card["number"]) if card["arcana"] == "major" else pip_scene(card)
-    little_stars = "".join(star(42 + (seed >> (i*4) & 0x7) * 26, 126 + (seed >> (i*6) & 0x3) * 24, 2.3, "faint") for i in range(6))
+    plate = (major_scene(card["number"]) + major_detail(card["number"])
+             if card["arcana"] == "major" else pip_scene(card))
+    little_stars = "".join(star(49 + (seed >> (i*4) & 0x7) * 25, 118 + (seed >> (i*6) & 0x3) * 22, 2.4, "faint") for i in range(4))
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
 <title id="title">{e(title)} — Ominity Tarot</title><desc id="description">Original etched tarot plate for {e(title)}.</desc>
 <style>
 .ink{{fill:none;stroke:{ink};stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}}
 .fine{{fill:none;stroke:{ink};stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}}
 .gold{{fill:none;stroke:{gold};stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
-.faint{{fill:none;stroke:{gold};stroke-opacity:.38;stroke-width:1}}
+.faint{{fill:none;stroke:{gold};stroke-opacity:.66;stroke-width:1.25}}
+.inkfill{{fill:{ink};stroke:{ink};stroke-width:1}}
+.distant{{fill:{accent};fill-opacity:.13;stroke:{accent};stroke-opacity:.58;stroke-width:1.5;stroke-linejoin:round}}
+.terrain{{fill:none;stroke:{accent};stroke-opacity:.76;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}}
+.halo{{fill:{gold};fill-opacity:.10;stroke:{gold};stroke-width:1.25}}
+.cloud{{fill:none;stroke:{ink};stroke-opacity:.32;stroke-width:1.3;stroke-linecap:round}}
+.wind{{fill:none;stroke:{accent};stroke-opacity:.60;stroke-width:1.1;stroke-linecap:round}}
+.hands{{fill:none;stroke:{ink};stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}}
+.arch{{fill:none;stroke:{gold};stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}}
+.tension{{fill:none;stroke:{accent};stroke-opacity:.55;stroke-width:1.5;stroke-linecap:round}}
+.bridge{{fill:none;stroke:{gold};stroke-width:2.3;stroke-linecap:round}}
+.ridge{{fill:none;stroke:{ink};stroke-opacity:.46;stroke-width:1.6;stroke-linejoin:round}}
+.motion{{fill:none;stroke:{accent};stroke-opacity:.54;stroke-width:2;stroke-linecap:round}}
+.beast{{fill:{accent};fill-opacity:.23;stroke:{ink};stroke-width:1.8;stroke-linejoin:round}}
+.regalia{{fill:{gold};fill-opacity:.25;stroke:{gold};stroke-width:1.6;stroke-linejoin:round}}
+.petal{{fill:{paper};stroke:{accent};stroke-width:1.5}}
 .wash{{fill:{accent};fill-opacity:.11;stroke:{ink};stroke-width:1.8;stroke-linejoin:round}}
 .column{{fill:{paper};stroke:{ink};stroke-width:2.1}}
 .sun{{fill:{gold};fill-opacity:.2;stroke:{gold};stroke-width:2}}
@@ -490,28 +596,23 @@ def card_svg(card: dict, palette: DeckPalette | None = None) -> str:
 .water{{fill:none;stroke:{accent};stroke-width:2;stroke-linecap:round}}
 .chain{{fill:none;stroke:{gold};stroke-width:3;stroke-dasharray:4 4}}
 .lightning{{fill:none;stroke:{accent};stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}}
-.ghost{{fill:none;stroke:{gold};stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}}
-.landscape{{fill:none;stroke:{accent};stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}}
-.hatch{{fill:none;stroke:{ink};stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}}
-.label{{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:{ink};text-anchor:middle}}
-.number{{font:22px Georgia,'Times New Roman',serif;fill:{gold};text-anchor:middle}}
-.title{{font:600 {title_size}px Georgia,'Times New Roman',serif;fill:{ink};text-anchor:middle}}
-.small{{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:{gold};text-anchor:middle}}
+.ghost{{fill:none;stroke:{gold};stroke-opacity:.52;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}}
+.landscape{{fill:none;stroke:{accent};stroke-opacity:.58;stroke-width:1.5;stroke-linecap:round}}
+.hatch{{fill:none;stroke:{ink};stroke-opacity:.42;stroke-width:1;stroke-linecap:round}}
 </style>
 <rect width="280" height="480" fill="{paper}"/>
 <rect x="8" y="8" width="264" height="464" fill="none" stroke="{gold}" stroke-width="1.8"/>
 <rect x="14" y="14" width="252" height="452" fill="none" stroke="{ink}" stroke-width=".75" opacity=".72"/>
-<path d="M23 103H257M23 392H257M25 450H255" stroke="{gold}" stroke-width="1"/>
+<path d="M23 77H257M23 391H257M25 454H255" stroke="{gold}" stroke-width="1"/>
 <path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="{ink}" stroke-width="1.4"/>
-<text class="number" x="140" y="42">{e(card['numeral'])}</text>
-<text class="title" x="140" y="72">{e(title)}</text>
-<text class="small" x="140" y="91">{top}</text>
+<text class="number" x="140" y="42" font-family="Noto Serif" font-size="20" font-weight="400" fill="{gold}" text-anchor="middle">{e(card['numeral'])}</text>
+<text class="small" x="140" y="64" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="{gold}" text-anchor="middle">{top}</text>
 <g clip-path="url(#window)">{etched_setting(card)}{little_stars}{plate}</g>
-<defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
-<path d="M42 382L79 382M201 382L238 382" stroke="{gold}" stroke-width=".9"/>
-<circle cx="140" cy="381" r="5" fill="none" stroke="{gold}" stroke-width="1.3"/>
-<text class="label" x="140" y="418">{e(card['keywords'][0].upper())}</text>
-<text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
+<defs><clipPath id="window"><rect x="24" y="79" width="232" height="309"/></clipPath></defs>
+<path d="M42 382H79M201 382H238" stroke="{gold}" stroke-width=".9"/>
+<circle cx="140" cy="382" r="4" fill="none" stroke="{gold}" stroke-width="1.3"/>
+<text class="title" x="140" y="423" font-family="Noto Serif" font-size="{title_size}" font-weight="600" fill="{ink}" text-anchor="middle">{e(title)}</text>
+<text class="label" x="140" y="447" font-family="Noto Sans" font-size="9" font-weight="600" letter-spacing="1.8" fill="{ink}" text-anchor="middle">{e(card['keywords'][0].upper())}</text>
 </svg>'''
 
 
@@ -538,7 +639,7 @@ GUIDE = {
         {"title": "Starman Tarot — Lo Scarabeo", "url": "https://www.loscarabeo.com/en/products/starman-tarot"},
         {"title": "Starman Tarot Deck — Llewellyn", "url": "https://www.llewellyn.com/product.php?ean=9780738777795"},
     ],
-    "art": "Original procedural SVG plates use etched ink, aged ivory, tarnished gold, and sparse geometry. The named archetypes and pips are traditional tarot vocabulary.",
+    "art": "Original vector plates pair clean engraved lines with symbolic scenes and exact typography. The active Omarchy palette recolors the full deck without raster textures. The named archetypes and pips are traditional tarot vocabulary.",
 }
 
 

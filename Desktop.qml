@@ -29,6 +29,8 @@ Item {
     property string themedDirectory: ""
     property string themeRequestKey: ""
     property bool themeQueued: false
+    readonly property string bodyFont: "Noto Sans"
+    readonly property string displayFont: "Noto Serif"
     readonly property string paletteKey: [String(Color.background), String(Color.foreground), String(Color.accent), String(Color.muted)].join("|")
     readonly property var card: reading && reading.card ? reading.card : ({})
     readonly property string orientation: reading && reading.reversed ? "REVERSED" : "UPRIGHT"
@@ -70,7 +72,8 @@ Item {
                 summaryError = ""
                 readingWindow.resetForDraw()
                 cardArrival = 0
-                arrivalAnimation.restart()
+                arrivalWait.polls = 0
+                arrivalWait.restart()
             }
         } catch (e) { errorText = String(e) }
     }
@@ -79,16 +82,20 @@ Item {
         readingWindow.resetForDraw()
         overlayOpen = true
         overlayPresent = true
-        revealAnimation.stop()
-        revealAnimation.to = 1
-        revealAnimation.start()
+        animateReveal(true)
         doAction("today")
     }
 
     function closeReading() {
         overlayOpen = false
+        animateReveal(false)
+    }
+
+    function animateReveal(open) {
         revealAnimation.stop()
-        revealAnimation.to = 0
+        revealAnimation.to = open ? 1 : 0
+        revealAnimation.duration = Math.max(120, Math.round((open ? 440 : 370) * Math.abs(revealAnimation.to - reveal)))
+        revealAnimation.easing.type = open ? Easing.OutQuart : Easing.InCubic
         revealAnimation.start()
     }
 
@@ -104,6 +111,20 @@ Item {
     }
 
     Timer { id: themeDelay; interval: 160; onTriggered: root.requestTheme() }
+    Timer {
+        id: arrivalWait
+        property int polls: 0
+        interval: 40
+        repeat: true
+        onTriggered: {
+            polls += 1
+            if (readingWindow.artworkFailed && root.themedDirectory !== "") root.themedDirectory = ""
+            if (readingWindow.artworkReady || polls >= 60) {
+                stop()
+                arrivalAnimation.restart()
+            }
+        }
+    }
     Process {
         id: themeProc
         stdout: StdioCollector {
@@ -165,13 +186,15 @@ Item {
     }
     NumberAnimation {
         id: revealAnimation
-        target: root; property: "reveal"; duration: 360; easing.type: Easing.OutCubic
+        target: root; property: "reveal"
+        duration: 440
+        easing.type: Easing.OutQuart
         onStopped: if (!root.overlayOpen && root.reveal <= 0.001) root.overlayPresent = false
     }
     NumberAnimation {
         id: arrivalAnimation
         target: root; property: "cardArrival"; from: 0; to: 1
-        duration: 680; easing.type: Easing.OutBack; easing.overshoot: 1.06
+        duration: 930; easing.type: Easing.InOutCubic
     }
     IpcHandler {
         target: "ominity"
@@ -210,10 +233,10 @@ Item {
             Rectangle { width: 3; height: parent.height - 30; x: 15; y: 15; color: Color.accent }
             Column {
                 anchors.fill: parent; anchors.margins: 22; anchors.leftMargin: 31; spacing: 9
-                Text { text: "✦  O M I N I T Y   /   " + (root.day || "TODAY"); color: Color.accent; font.family: Style.font.family; font.pixelSize: Style.font.caption }
-                Text { width: parent.width; text: root.reading ? root.card.title : "A card waits for you"; color: Color.popups.text; font.family: "Liberation Serif"; font.pixelSize: 27; elide: Text.ElideRight }
-                Text { width: parent.width; text: root.reading ? root.orientation + "  ·  " + (root.card.keywords || []).slice(0, 2).join(" / ") : "A small ritual for the day ahead."; color: Color.popups.text; opacity: 0.7; font.family: Style.font.family; font.pixelSize: Style.font.bodySmall; elide: Text.ElideRight }
-                Text { text: root.reading ? "OPEN THE READING  ↗" : "PULL TODAY'S CARD  ↗"; color: Color.accent; font.family: Style.font.family; font.pixelSize: Style.font.bodySmall }
+                Text { renderType: Text.CurveRendering; text: "✦  O M I N I T Y   /   " + (root.day || "TODAY"); color: Color.accent; font.family: root.bodyFont; font.pixelSize: Math.max(11, Style.font.caption) }
+                Text { renderType: Text.CurveRendering; width: parent.width; text: root.reading ? root.card.title : "A card waits for you"; color: Color.popups.text; font.family: root.displayFont; font.pixelSize: 27; elide: Text.ElideRight }
+                Text { renderType: Text.CurveRendering; width: parent.width; text: root.reading ? root.orientation + "  ·  " + (root.card.keywords || []).slice(0, 2).join(" / ") : "A small ritual for the day ahead."; color: Color.popups.text; opacity: 0.8; font.family: root.bodyFont; font.pixelSize: Math.max(12, Style.font.bodySmall); elide: Text.ElideRight }
+                Text { renderType: Text.CurveRendering; text: root.reading ? "OPEN THE READING  ↗" : "PULL TODAY'S CARD  ↗"; color: Color.accent; font.family: root.bodyFont; font.pixelSize: Math.max(12, Style.font.bodySmall) }
             }
             MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: root.openReading() }
         }

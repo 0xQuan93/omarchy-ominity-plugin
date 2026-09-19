@@ -1,12 +1,14 @@
 # Ominity
 
-![Ominity's illustrated card in Tokyo Night and its reading side in Catppuccin Latte](preview.png)
+![Ominity's illustrated card in Sync 01 and its reading side in Catppuccin Latte](preview.png)
 
 A daily tarot ritual for Omarchy. Click **✦** in the bar to draw a card. The artwork takes the whole stage; click the card to turn it over for its meaning, symbols, reflection, a deeper reading, and a guide to tarot. Click outside the card or press **Esc** to put it away. Right-click the bar glyph to toggle a compact desktop card.
 
-Ominity draws once per local day and keeps that card until you deliberately choose **Draw again**. The 78 original SVG cards and their back redraw in the current Omarchy theme colors when the theme changes. Dark and light themes keep readable contrast and distinct suit accents. Theme variants are generated into a local cache; the bundled plates remain a fallback. No account, network connection, or model is needed.
+Ominity draws once per local day and keeps that card until you deliberately choose **Draw again**. Its 78 original vector illustrations and card back take their colors from the current Omarchy theme. Each card has a distinct scene, etched lines, and clean serif and sans lettering. Ominity renders the art at your display's resolution, including fractional scaling, so the lines and type stay sharp. A new draw turns from the card back to the illustration; clicking turns the card to its reading, and closing eases it away. Dark and light themes retain readable contrast and distinct suit accents. Theme variants live in a local cache; the bundled plates remain a fallback. No account, network connection, or model is needed.
 
 [View the complete original deck](docs/deck-sheet.png) and its [card back](docs/card-back.png).
+
+The bar glyph opens the card; right-click toggles the optional desktop widget. Click the illustration to turn it over. On the reading side, **Art** returns to the illustration, **Deeper** expands the interpretation, and **Tarot guide** explains the deck. **Space** turns the card and **Esc** closes it.
 
 The deck uses the traditional [Rider–Waite–Smith structure](https://rider-waite.com/symbolism/pictorial-key-1-3/). Each card has an upright invitation, reversed angle, deeper interpretation, symbols, keywords, and a question. Research into Davide De Angelis’s *Starman Tarot* informed the broad themes of transformation and creative possibility ([Lo Scarabeo](https://www.loscarabeo.com/en/products/starman-tarot), [Schiffer](https://schifferbooks.com/products/starman-tarot-remastered-tarot-deck-and-guidebook-box-set)). Ominity’s art and text are original; it is unaffiliated with those creators or publishers.
 
@@ -37,4 +39,4 @@ Tarot here is a reflective practice: an image can prompt attention and choice, n
 
 `python3 -B deck/build_deck.py` regenerates the bundled SVG plates. `python3 -B -m unittest discover -s tests` checks draw behavior; `python3 -B -m unittest deck.test_deck deck.test_theme_deck` checks the deck and theme renderer. `omarchy plugin validate .` checks the manifest and entry points. `/usr/lib/qt6/bin/qmlformat -n Desktop.qml` (and the same for `CardOverlay.qml` and `BarWidget.qml`) parses QML. Live rendering on Omarchy is the final UI check.
 
-License: MIT. See [LICENSE](LICENSE).
+License: MIT. See [LICENSE](LICENSE) and the [changelog](CHANGELOG.md).

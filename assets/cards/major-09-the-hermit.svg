@@ -4,7 +4,22 @@
 .ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
 .fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
 .gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.faint{fill:none;stroke:#997643;stroke-opacity:.38;stroke-width:1}
+.faint{fill:none;stroke:#997643;stroke-opacity:.66;stroke-width:1.25}
+.inkfill{fill:#232b2d;stroke:#232b2d;stroke-width:1}
+.distant{fill:#997643;fill-opacity:.13;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linejoin:round}
+.terrain{fill:none;stroke:#997643;stroke-opacity:.76;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.halo{fill:#997643;fill-opacity:.10;stroke:#997643;stroke-width:1.25}
+.cloud{fill:none;stroke:#232b2d;stroke-opacity:.32;stroke-width:1.3;stroke-linecap:round}
+.wind{fill:none;stroke:#997643;stroke-opacity:.60;stroke-width:1.1;stroke-linecap:round}
+.hands{fill:none;stroke:#232b2d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.arch{fill:none;stroke:#997643;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tension{fill:none;stroke:#997643;stroke-opacity:.55;stroke-width:1.5;stroke-linecap:round}
+.bridge{fill:none;stroke:#997643;stroke-width:2.3;stroke-linecap:round}
+.ridge{fill:none;stroke:#232b2d;stroke-opacity:.46;stroke-width:1.6;stroke-linejoin:round}
+.motion{fill:none;stroke:#997643;stroke-opacity:.54;stroke-width:2;stroke-linecap:round}
+.beast{fill:#997643;fill-opacity:.23;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
+.regalia{fill:#997643;fill-opacity:.25;stroke:#997643;stroke-width:1.6;stroke-linejoin:round}
+.petal{fill:#f2ebd9;stroke:#997643;stroke-width:1.5}
 .wash{fill:#997643;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
 .column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
 .sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
@@ -14,26 +29,21 @@
 .water{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round}
 .chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
 .lightning{fill:none;stroke:#997643;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
-.ghost{fill:none;stroke:#997643;stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
-.landscape{fill:none;stroke:#997643;stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}
-.hatch{fill:none;stroke:#232b2d;stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}
-.label{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:#232b2d;text-anchor:middle}
-.number{font:22px Georgia,'Times New Roman',serif;fill:#997643;text-anchor:middle}
-.title{font:600 21px Georgia,'Times New Roman',serif;fill:#232b2d;text-anchor:middle}
-.small{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:#997643;text-anchor:middle}
+.ghost{fill:none;stroke:#997643;stroke-opacity:.52;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}
+.landscape{fill:none;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linecap:round}
+.hatch{fill:none;stroke:#232b2d;stroke-opacity:.42;stroke-width:1;stroke-linecap:round}
 </style>
 <rect width="280" height="480" fill="#f2ebd9"/>
 <rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
 <rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
-<path d="M23 103H257M23 392H257M25 450H255" stroke="#997643" stroke-width="1"/>
+<path d="M23 77H257M23 391H257M25 454H255" stroke="#997643" stroke-width="1"/>
 <path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
-<text class="number" x="140" y="42">IX</text>
-<text class="title" x="140" y="72">The Hermit</text>
-<text class="small" x="140" y="91">MAJOR ARCANA</text>
-<g clip-path="url(#window)"><path class="ghost" d="M32 374V172Q140 111 248 172V374" /><path class="ghost" d="M38 374V177Q140 121 242 177V374" /><path class="ghost" d="M31 375H249" /><path class="ghost" d="M140 131L140.9 134.1L144 135L140.9 135.9L140 139L139.1 135.9L136 135L139.1 134.1Z" /><path class="ghost" d="M34 180L42 180M238 180L246 180M31 324L39 324M241 324L249 324" /><path class="landscape" d="M39 338Q78 306 117 328Q167 294 241 339" /><path class="ghost" d="M39 348Q79 317 117 338Q166 306 241 349" /><path class="hatch" d="M46 344L54 340" /><path class="hatch" d="M70 354L78 350" /><path class="hatch" d="M94 349L102 345" /><path class="hatch" d="M118 344L126 340" /><path class="hatch" d="M142 354L150 350" /><path class="hatch" d="M166 349L174 345" /><path class="hatch" d="M190 344L198 340" /><path class="hatch" d="M214 354L222 350" /><path class="hatch" d="M238 349L246 345" /><path class="ghost" d="M55 208Q140 149 225 208M62 219Q140 165 218 219" /><path class="faint" d="M198 171.7L198.5 173.5L200.3 174L198.5 174.5L198 176.3L197.5 174.5L195.7 174L197.5 173.5Z" /><path class="faint" d="M146 195.7L146.5 197.5L148.3 198L146.5 198.5L146 200.3L145.5 198.5L143.7 198L145.5 197.5Z" /><path class="faint" d="M146 195.7L146.5 197.5L148.3 198L146.5 198.5L146 200.3L145.5 198.5L143.7 198L145.5 197.5Z" /><path class="faint" d="M224 123.7L224.5 125.5L226.3 126L224.5 126.5L224 128.3L223.5 126.5L221.7 126L223.5 125.5Z" /><path class="faint" d="M120 147.7L120.5 149.5L122.3 150L120.5 150.5L120 152.3L119.5 150.5L117.7 150L119.5 149.5Z" /><path class="faint" d="M146 171.7L146.5 173.5L148.3 174L146.5 174.5L146 176.3L145.5 174.5L143.7 174L145.5 173.5Z" /><path class="wash" d="M35 344Q83 218 135 344Q181 228 244 344L244 368L35 368Z" /><path class="ink" d="M35 344Q83 218 135 344Q181 228 244 344" /><g transform="translate(144 291) scale(1.5 1.5)"><path class="paperfill" d="M-11 -39Q-13 -57 0 -59Q13 -57 11 -39Q8 -31 0 -29Q-8 -31 -11 -39Z" /><path class="ink" d="M-11 -43Q-14 -55 -4 -59Q8 -65 13 -50M-10 -49Q-2 -47 2 -54Q5 -48 11 -46" /><circle class="gold" cx="-4" cy="-42" r="0.8" /><circle class="gold" cx="5" cy="-42" r="0.8" /><path class="fine" d="M-3 -35Q0 -32 4 -35" /><path class="wash" d="M-14 -29Q0 -36 14 -29L22 -2Q0 5 -22 -2Z" /><path class="paperfill" d="M-13 -27L-23 -11L-18 -7L-9 -21M13 -27L23 -11L18 -7L9 -21" /><path class="fine" d="M-8 -16Q0 -12 8 -16M-17 -3Q0 -9 17 -3M-7 -11L-10 -1M7 -11L10 -1" /><path class="ink" d="M-10 -2L-10 1M10 -2L10 1" /><path class="gold" d="M-12 -18Q0 -15 12 -18" /></g><path class="gold" d="M173 242L173 325" /><path class="lantern" d="M101 230L117 213L133 230L133 248L101 248Z" /><path class="gold" d="M117 223L118.6 228.4L124 230L118.6 231.6L117 237L115.4 231.6L110 230L115.4 228.4Z" /></g>
-<defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
-<path d="M42 382L79 382M201 382L238 382" stroke="#997643" stroke-width=".9"/>
-<circle cx="140" cy="381" r="5" fill="none" stroke="#997643" stroke-width="1.3"/>
-<text class="label" x="140" y="418">SOLITUDE</text>
-<text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
+<text class="number" x="140" y="42" font-family="Noto Serif" font-size="20" font-weight="400" fill="#997643" text-anchor="middle">IX</text>
+<text class="small" x="140" y="64" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">MAJOR ARCANA</text>
+<g clip-path="url(#window)"><path class="ghost" d="M32 374V148Q140 94 248 148V374" /><path class="ghost" d="M38 374V154Q140 108 242 154V374" /><path class="ghost" d="M31 375H249" /><path class="gold" d="M140 110L140.9 113.1L144 114L140.9 114.9L140 118L139.1 114.9L136 114L139.1 113.1Z" /><path class="ghost" d="M34 159H43M237 159H246M31 326H39M241 326H249" /><path class="landscape" d="M39 338Q78 306 117 328Q167 294 241 339" /><path class="ghost" d="M39 348Q79 317 117 338Q166 306 241 349" /><path class="ghost" d="M55 208Q140 149 225 208" /><path class="faint" d="M199 159.6L199.6 161.4L201.4 162L199.6 162.6L199 164.4L198.4 162.6L196.6 162L198.4 161.4Z" /><path class="faint" d="M149 181.6L149.6 183.4L151.4 184L149.6 184.6L149 186.4L148.4 184.6L146.6 184L148.4 183.4Z" /><path class="faint" d="M149 181.6L149.6 183.4L151.4 184L149.6 184.6L149 186.4L148.4 184.6L146.6 184L148.4 183.4Z" /><path class="faint" d="M224 115.6L224.6 117.4L226.4 118L224.6 118.6L224 120.4L223.4 118.6L221.6 118L223.4 117.4Z" /><path class="wash" d="M35 344Q83 218 135 344Q181 228 244 344L244 368L35 368Z" /><path class="ink" d="M35 344Q83 218 135 344Q181 228 244 344" /><g transform="translate(144 291) scale(1.5 1.5)"><path class="paperfill" d="M-9 -69L-11 -82Q-9 -92 0 -93Q10 -91 12 -81L8 -68L5 -64H-5Z" /><path class="inkfill" d="M-10 -79Q-13 -93 -1 -96Q10 -97 13 -83Q6 -88 0 -83Q-6 -78 -10 -79Z" /><path class="fine" d="M3 -76L8 -75M-3 -66Q2 -63 6 -67" /><path class="ink" d="M-5 -64L-6 -58M5 -64L6 -58" /><path class="wash" d="M-8 -61Q0 -66 8 -61L18 -51L21 -9Q0 4 -21 -9L-18 -51Z" /><path class="paperfill" d="M-11 -55L-22 -23L-27 -18L-23 -14L-18 -17L-6 -47M11 -55L21 -24L25 -20L22 -15L17 -19L6 -47" /><path class="fine" d="M-8 -47Q0 -39 8 -47M-15 -14Q0 -20 15 -14M-10 -34L-13 -3M9 -35L12 -3M0 -42V-5" /><path class="gold" d="M-18 -8Q0 -2 18 -8M-15 -52Q0 -46 15 -52" /><path class="ink" d="M-11 -2L-11 2M11 -2L11 2" /></g><path class="gold" d="M173 242L173 325" /><path class="lantern" d="M101 230L117 213L133 230L133 248L101 248Z" /><path class="gold" d="M117 223L118.6 228.4L124 230L118.6 231.6L117 237L115.4 231.6L110 230L115.4 228.4Z" /><path class="terrain" d="M41 362Q82 341 100 361Q135 334 165 355Q207 332 240 360" /></g>
+<defs><clipPath id="window"><rect x="24" y="79" width="232" height="309"/></clipPath></defs>
+<path d="M42 382H79M201 382H238" stroke="#997643" stroke-width=".9"/>
+<circle cx="140" cy="382" r="4" fill="none" stroke="#997643" stroke-width="1.3"/>
+<text class="title" x="140" y="423" font-family="Noto Serif" font-size="22" font-weight="600" fill="#232b2d" text-anchor="middle">The Hermit</text>
+<text class="label" x="140" y="447" font-family="Noto Sans" font-size="9" font-weight="600" letter-spacing="1.8" fill="#232b2d" text-anchor="middle">SOLITUDE</text>
 </svg>

@@ -4,7 +4,22 @@
 .ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
 .fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
 .gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.faint{fill:none;stroke:#997643;stroke-opacity:.38;stroke-width:1}
+.faint{fill:none;stroke:#997643;stroke-opacity:.66;stroke-width:1.25}
+.inkfill{fill:#232b2d;stroke:#232b2d;stroke-width:1}
+.distant{fill:#596d78;fill-opacity:.13;stroke:#596d78;stroke-opacity:.58;stroke-width:1.5;stroke-linejoin:round}
+.terrain{fill:none;stroke:#596d78;stroke-opacity:.76;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.halo{fill:#997643;fill-opacity:.10;stroke:#997643;stroke-width:1.25}
+.cloud{fill:none;stroke:#232b2d;stroke-opacity:.32;stroke-width:1.3;stroke-linecap:round}
+.wind{fill:none;stroke:#596d78;stroke-opacity:.60;stroke-width:1.1;stroke-linecap:round}
+.hands{fill:none;stroke:#232b2d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.arch{fill:none;stroke:#997643;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tension{fill:none;stroke:#596d78;stroke-opacity:.55;stroke-width:1.5;stroke-linecap:round}
+.bridge{fill:none;stroke:#997643;stroke-width:2.3;stroke-linecap:round}
+.ridge{fill:none;stroke:#232b2d;stroke-opacity:.46;stroke-width:1.6;stroke-linejoin:round}
+.motion{fill:none;stroke:#596d78;stroke-opacity:.54;stroke-width:2;stroke-linecap:round}
+.beast{fill:#596d78;fill-opacity:.23;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
+.regalia{fill:#997643;fill-opacity:.25;stroke:#997643;stroke-width:1.6;stroke-linejoin:round}
+.petal{fill:#f2ebd9;stroke:#596d78;stroke-width:1.5}
 .wash{fill:#596d78;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
 .column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
 .sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
@@ -14,26 +29,21 @@
 .water{fill:none;stroke:#596d78;stroke-width:2;stroke-linecap:round}
 .chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
 .lightning{fill:none;stroke:#596d78;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
-.ghost{fill:none;stroke:#997643;stroke-opacity:.29;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
-.landscape{fill:none;stroke:#596d78;stroke-opacity:.36;stroke-width:1.2;stroke-linecap:round}
-.hatch{fill:none;stroke:#232b2d;stroke-opacity:.25;stroke-width:.8;stroke-linecap:round}
-.label{font:600 10px 'DejaVu Sans',sans-serif;letter-spacing:2.5px;fill:#232b2d;text-anchor:middle}
-.number{font:22px Georgia,'Times New Roman',serif;fill:#997643;text-anchor:middle}
-.title{font:600 19px Georgia,'Times New Roman',serif;fill:#232b2d;text-anchor:middle}
-.small{font:8px 'DejaVu Sans',sans-serif;letter-spacing:1.6px;fill:#997643;text-anchor:middle}
+.ghost{fill:none;stroke:#997643;stroke-opacity:.52;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}
+.landscape{fill:none;stroke:#596d78;stroke-opacity:.58;stroke-width:1.5;stroke-linecap:round}
+.hatch{fill:none;stroke:#232b2d;stroke-opacity:.42;stroke-width:1;stroke-linecap:round}
 </style>
 <rect width="280" height="480" fill="#f2ebd9"/>
 <rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
 <rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
-<path d="M23 103H257M23 392H257M25 450H255" stroke="#997643" stroke-width="1"/>
+<path d="M23 77H257M23 391H257M25 454H255" stroke="#997643" stroke-width="1"/>
 <path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
-<text class="number" x="140" y="42">KNIGHT</text>
-<text class="title" x="140" y="72">Knight of Swords</text>
-<text class="small" x="140" y="91">SWORDS · AIR</text>
-<g clip-path="url(#window)"><path class="ghost" d="M32 374V172Q140 111 248 172V374" /><path class="ghost" d="M38 374V177Q140 121 242 177V374" /><path class="ghost" d="M31 375H249" /><path class="ghost" d="M140 131L140.9 134.1L144 135L140.9 135.9L140 139L139.1 135.9L136 135L139.1 134.1Z" /><path class="ghost" d="M34 180L42 180M238 180L246 180M31 324L39 324M241 324L249 324" /><path class="landscape" d="M37 352Q82 327 124 350Q168 329 243 353" /><path class="ghost" d="M39 361Q90 337 131 360Q187 337 241 361" /><path class="faint" d="M172 147.7L172.5 149.5L174.3 150L172.5 150.5L172 152.3L171.5 150.5L169.7 150L171.5 149.5Z" /><path class="faint" d="M68 123.7L68.5 125.5L70.3 126L68.5 126.5L68 128.3L67.5 126.5L65.7 126L67.5 125.5Z" /><path class="faint" d="M224 123.7L224.5 125.5L226.3 126L224.5 126.5L224 128.3L223.5 126.5L221.7 126L223.5 125.5Z" /><path class="faint" d="M146 171.7L146.5 173.5L148.3 174L146.5 174.5L146 176.3L145.5 174.5L143.7 174L145.5 173.5Z" /><path class="faint" d="M42 171.7L42.5 173.5L44.3 174L42.5 174.5L42 176.3L41.5 174.5L39.7 174L41.5 173.5Z" /><path class="faint" d="M146 123.7L146.5 125.5L148.3 126L146.5 126.5L146 128.3L145.5 126.5L143.7 126L145.5 125.5Z" /><circle class="gold" cx="140" cy="224" r="66" /><path class="vine" d="M57 348Q140 298 223 348" /><path class="fine" d="M51 343Q140 289 229 343M70 358Q140 328 210 358" /><path class="ink" d="M61 317Q91 273 127 305Q154 277 198 310L211 344L73 344Z" /><g transform="translate(139 269) scale(1.38 1.38)"><path class="paperfill" d="M-11 -39Q-13 -57 0 -59Q13 -57 11 -39Q8 -31 0 -29Q-8 -31 -11 -39Z" /><path class="ink" d="M-11 -43Q-14 -55 -4 -59Q8 -65 13 -50M-10 -49Q-2 -47 2 -54Q5 -48 11 -46" /><circle class="gold" cx="-4" cy="-42" r="0.8" /><circle class="gold" cx="5" cy="-42" r="0.8" /><path class="fine" d="M-3 -35Q0 -32 4 -35" /><path class="wash" d="M-14 -29Q0 -36 14 -29L22 -2Q0 5 -22 -2Z" /><path class="paperfill" d="M-13 -27L-23 -11L-18 -7L-9 -21M13 -27L23 -11L18 -7L9 -21" /><path class="fine" d="M-8 -16Q0 -12 8 -16M-17 -3Q0 -9 17 -3M-7 -11L-10 -1M7 -11L10 -1" /><path class="ink" d="M-10 -2L-10 1M10 -2L10 1" /><path class="gold" d="M-12 -18Q0 -15 12 -18" /></g><circle class="gold" cx="92" cy="294" r="4" /><g transform="translate(202 258) rotate(-12) scale(1.08)"><path class="ink" d="M0 -30 L5 12 L0 15 L-5 12Z" /><path class="gold" d="M-13 16L13 16" /><path class="ink" d="M0 16L0 28" /><circle class="gold" cx="0" cy="29" r="2" /></g><path class="fine" d="M65 186L66.8 192.2L73 194L66.8 195.8L65 202L63.2 195.8L57 194L63.2 192.2Z" /><path class="fine" d="M215 186L216.8 192.2L223 194L216.8 195.8L215 202L213.2 195.8L207 194L213.2 192.2Z" /></g>
-<defs><clipPath id="window"><rect x="24" y="106" width="232" height="282"/></clipPath></defs>
-<path d="M42 382L79 382M201 382L238 382" stroke="#997643" stroke-width=".9"/>
-<circle cx="140" cy="381" r="5" fill="none" stroke="#997643" stroke-width="1.3"/>
-<text class="label" x="140" y="418">URGENCY</text>
-<text class="small" x="140" y="440">OMINITY · AN OPEN READING</text>
+<text class="number" x="140" y="42" font-family="Noto Serif" font-size="20" font-weight="400" fill="#997643" text-anchor="middle">KNIGHT</text>
+<text class="small" x="140" y="64" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">SWORDS · AIR</text>
+<g clip-path="url(#window)"><path class="ghost" d="M32 374V148Q140 94 248 148V374" /><path class="ghost" d="M38 374V154Q140 108 242 154V374" /><path class="ghost" d="M31 375H249" /><path class="gold" d="M140 110L140.9 113.1L144 114L140.9 114.9L140 118L139.1 114.9L136 114L139.1 113.1Z" /><path class="ghost" d="M34 159H43M237 159H246M31 326H39M241 326H249" /><path class="faint" d="M174 137.6L174.6 139.4L176.4 140L174.6 140.6L174 142.4L173.4 140.6L171.6 140L173.4 139.4Z" /><path class="faint" d="M74 115.6L74.6 117.4L76.4 118L74.6 118.6L74 120.4L73.4 118.6L71.6 118L73.4 117.4Z" /><path class="faint" d="M224 115.6L224.6 117.4L226.4 118L224.6 118.6L224 120.4L223.4 118.6L221.6 118L223.4 117.4Z" /><path class="faint" d="M149 159.6L149.6 161.4L151.4 162L149.6 162.6L149 164.4L148.4 162.6L146.6 162L148.4 161.4Z" /><circle class="halo" cx="195" cy="151" r="22" /><path class="cloud" d="M36 215Q70 189 106 207T180 205T245 210M36 241Q72 217 103 235T177 230T245 236" /><path class="terrain" d="M38 349Q91 319 141 344Q198 311 242 343" /><path class="wind" d="M52 158L68 143" /><path class="wind" d="M78 158L94 143" /><path class="wind" d="M104 158L120 143" /><path class="wind" d="M130 158L146 143" /><path class="wind" d="M156 158L172 143" /><path class="wind" d="M182 158L198 143" /><path class="wind" d="M208 158L224 143" /><circle class="halo" cx="140" cy="224" r="69" /><path class="terrain" d="M48 352Q140 303 232 352M57 361Q140 321 223 361" /><path class="beast" d="M48 328Q65 295 91 294Q111 270 132 299Q160 282 187 302L223 338H62Z" /><path class="ink" d="M58 331L48 349M88 329L84 351M184 329L194 349M210 331L222 347" /><g transform="translate(139 274) scale(1.45 1.45)"><path class="paperfill" d="M-9 -69L-11 -82Q-9 -92 0 -93Q10 -91 12 -81L8 -68L5 -64H-5Z" /><path class="inkfill" d="M-10 -79Q-13 -93 -1 -96Q10 -97 13 -83Q6 -88 0 -83Q-6 -78 -10 -79Z" /><path class="fine" d="M3 -76L8 -75M-3 -66Q2 -63 6 -67" /><path class="ink" d="M-5 -64L-6 -58M5 -64L6 -58" /><path class="wash" d="M-8 -61Q0 -66 8 -61L18 -51L21 -9Q0 4 -21 -9L-18 -51Z" /><path class="paperfill" d="M-11 -55L-22 -23L-27 -18L-23 -14L-18 -17L-6 -47M11 -55L21 -24L25 -20L22 -15L17 -19L6 -47" /><path class="fine" d="M-8 -47Q0 -39 8 -47M-15 -14Q0 -20 15 -14M-10 -34L-13 -3M9 -35L12 -3M0 -42V-5" /><path class="gold" d="M-18 -8Q0 -2 18 -8M-15 -52Q0 -46 15 -52" /><path class="ink" d="M-11 -2L-11 2M11 -2L11 2" /></g><path class="ink" d="M74 288Q66 275 71 261M73 289Q88 278 93 279" /><g transform="translate(204 269) rotate(-12) scale(1.05)"><path class="ink" d="M0 -30 L5 12 L0 15 L-5 12Z" /><path class="gold" d="M-13 16L13 16" /><path class="ink" d="M0 16L0 28" /><circle class="gold" cx="0" cy="29" r="2" /></g><path class="fine" d="M66 182L67.6 187.4L73 189L67.6 190.6L66 196L64.4 190.6L59 189L64.4 187.4Z" /><path class="fine" d="M214 182L215.6 187.4L221 189L215.6 190.6L214 196L212.4 190.6L207 189L212.4 187.4Z" /></g>
+<defs><clipPath id="window"><rect x="24" y="79" width="232" height="309"/></clipPath></defs>
+<path d="M42 382H79M201 382H238" stroke="#997643" stroke-width=".9"/>
+<circle cx="140" cy="382" r="4" fill="none" stroke="#997643" stroke-width="1.3"/>
+<text class="title" x="140" y="423" font-family="Noto Serif" font-size="18" font-weight="600" fill="#232b2d" text-anchor="middle">Knight of Swords</text>
+<text class="label" x="140" y="447" font-family="Noto Sans" font-size="9" font-weight="600" letter-spacing="1.8" fill="#232b2d" text-anchor="middle">URGENCY</text>
 </svg>

@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from deck.build_deck import CARD_DIR, DECK_DIR, RANKS, ROOT, card_back_svg, card_svg, make_deck
+from deck.build_deck import CARD_DIR, DECK_DIR, RANKS, ROOT, card_back_svg, card_svg, make_deck, numbered_scene
 
 
 MAJOR_TITLES = [
@@ -65,6 +65,30 @@ class DeckContractTests(unittest.TestCase):
         back = ROOT / "assets" / "card-back.svg"
         self.assertEqual(back.read_text().strip(), card_back_svg())
         self.assertEqual(ET.parse(back).getroot().attrib["viewBox"], "0 0 280 480")
+
+    def test_original_illustrations_stay_vector_and_numbered_scenes_are_distinct(self):
+        namespace = "{http://www.w3.org/2000/svg}"
+        scenes = {numbered_scene(suit, number) for suit in SUITS for number in range(1, 11)}
+        self.assertEqual(len(scenes), 40)
+        for asset in [*(CARD_DIR.glob("*.svg")), ROOT / "assets" / "card-back.svg"]:
+            with self.subTest(asset=asset.name):
+                svg = ET.parse(asset).getroot()
+                self.assertIsNone(svg.find(f".//{namespace}image"))
+                self.assertIsNone(svg.find(f".//{namespace}filter"))
+                self.assertEqual(svg.attrib["viewBox"], "0 0 280 480")
+
+    def test_svg_text_uses_qtsvg_compatible_font_attributes(self):
+        namespace = "{http://www.w3.org/2000/svg}"
+        expected = {"number": "Noto Serif", "title": "Noto Serif",
+                    "small": "Noto Sans", "label": "Noto Sans"}
+        for asset in CARD_DIR.glob("*.svg"):
+            with self.subTest(asset=asset.name):
+                texts = ET.parse(asset).getroot().findall(f".//{namespace}text")
+                self.assertEqual({node.attrib.get("class") for node in texts}, set(expected))
+                for node in texts:
+                    self.assertEqual(node.attrib["font-family"], expected[node.attrib["class"]])
+                    self.assertTrue(node.attrib["font-size"].isdigit())
+                    self.assertIn(node.attrib["font-weight"], ("400", "600"))
 
 
 if __name__ == "__main__":

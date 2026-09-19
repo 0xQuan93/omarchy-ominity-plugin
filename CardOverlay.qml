@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Window
 import Quickshell
 import Quickshell.Wayland
 import qs.Commons
@@ -23,6 +24,12 @@ PanelWindow {
     property bool widgetEnabled: false
     property real flipProgress: 0
     property string page: "reading"
+    readonly property string bodyFont: "Noto Sans"
+    readonly property string displayFont: "Noto Serif"
+    readonly property real artPixelRatio: Math.max(1, Screen.devicePixelRatio) * 1.5
+    readonly property real drawTurn: reading ? Math.max(0, Math.min(1, (arrival - 0.12) / 0.76)) : 0
+    readonly property bool artworkReady: cardFace.status === Image.Ready
+    readonly property bool artworkFailed: cardFace.status === Image.Error
     readonly property var card: reading && reading.card ? reading.card : ({})
     readonly property string orientation: reading && reading.reversed ? "REVERSED" : "UPRIGHT"
 
@@ -55,8 +62,8 @@ PanelWindow {
 
     NumberAnimation {
         id: flipAnimation
-        target: root; property: "flipProgress"; duration: 560
-        easing.type: Easing.InOutCubic
+        target: root; property: "flipProgress"; duration: 620
+        easing.type: Easing.InOutQuart
     }
 
     Rectangle {
@@ -76,33 +83,52 @@ PanelWindow {
             height: Math.min(parent.height - 64, 720)
             width: height * 280 / 480
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: (1 - root.reveal) * 82
+            anchors.verticalCenterOffset: (1 - root.reveal) * 64
             opacity: root.reveal
-            scale: 0.92 + 0.08 * root.reveal
+            scale: 0.96 + 0.04 * root.reveal
             transform: Scale {
                 origin.x: cardMount.width / 2
                 origin.y: cardMount.height / 2
                 xScale: Math.max(0.01, Math.abs(1 - 2 * root.flipProgress))
             }
 
+            Rectangle {
+                x: 9
+                y: 15
+                width: parent.width
+                height: parent.height
+                radius: 9
+                color: "#000000"
+                opacity: 0.33
+            }
+
             Item {
                 anchors.fill: parent
                 visible: root.flipProgress <= 0.5
-                Image {
-                    anchors.fill: parent
-                    source: root.backImage
-                    fillMode: Image.PreserveAspectFit
-                    smooth: true
-                    asynchronous: true
-                    opacity: root.reading ? Math.max(0, Math.min(1, (0.72 - root.arrival) * 4)) : 1
+                transform: Scale {
+                    origin.x: cardMount.width / 2
+                    origin.y: cardMount.height / 2
+                    xScale: Math.max(0.01, Math.abs(1 - 2 * root.drawTurn))
                 }
                 Image {
+                    id: cardBack
                     anchors.fill: parent
-                    source: root.cardImage
+                    source: root.backImage
+                    sourceSize: Qt.size(Math.ceil(cardMount.width * root.artPixelRatio), Math.ceil(cardMount.height * root.artPixelRatio))
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     asynchronous: true
-                    opacity: root.reading ? Math.max(0, Math.min(1, (root.arrival - 0.38) * 2.8)) : 0
+                    visible: !root.reading || root.drawTurn < 0.5
+                }
+                Image {
+                    id: cardFace
+                    anchors.fill: parent
+                    source: root.cardImage
+                    sourceSize: Qt.size(Math.ceil(cardMount.width * root.artPixelRatio), Math.ceil(cardMount.height * root.artPixelRatio))
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    asynchronous: true
+                    visible: root.reading && root.drawTurn >= 0.5
                     rotation: root.reading && root.reading.reversed ? 180 : 0
                 }
                 MouseArea {
@@ -131,6 +157,7 @@ PanelWindow {
                     }
                 }
                 Text {
+                    renderType: Text.CurveRendering
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: 115
@@ -138,7 +165,7 @@ PanelWindow {
                     visible: root.page === "reading"
                     color: Color.accent
                     opacity: 0.09
-                    font.family: "Liberation Serif"
+                    font.family: root.displayFont
                     font.pixelSize: Math.min(260, cardMount.width * 0.57)
                 }
 
@@ -151,16 +178,18 @@ PanelWindow {
                     Row {
                         width: parent.width
                         Text {
+                            renderType: Text.CurveRendering
                             width: parent.width - closeButton.width
                             text: "✦  O M I N I T Y    /    " + root.day
                             color: Color.accent
-                            font.family: Style.font.family
-                            font.pixelSize: Style.font.caption
+                            font.family: root.bodyFont
+                            font.pixelSize: Math.max(12, Style.font.caption)
                             verticalAlignment: Text.AlignVCenter
                             height: closeButton.height
                         }
                         Ui.Button {
                             id: closeButton
+                            fontFamily: root.bodyFont
                             text: "×"
                             focusable: true
                             horizontalPadding: 7
@@ -169,28 +198,30 @@ PanelWindow {
                         }
                     }
                     Text {
+                        renderType: Text.CurveRendering
                         width: parent.width
                         text: root.card.title || "The reading"
                         color: Color.foreground
-                        font.family: "Liberation Serif"
-                        font.pixelSize: Math.min(33, cardMount.width / 12)
+                        font.family: root.displayFont
+                        font.pixelSize: Math.min(35, cardMount.width / 11.5)
                         wrapMode: Text.Wrap
                         maximumLineCount: 2
                     }
                     Text {
+                        renderType: Text.CurveRendering
                         width: parent.width
                         text: (root.card.arcana === "major" ? "MAJOR ARCANA" : String(root.card.suit || "").toUpperCase()) + "   /   " + (root.card.numeral || "") + "   /   " + root.orientation
                         color: Color.accent
-                        font.family: Style.font.family
-                        font.pixelSize: Style.font.caption
+                        font.family: root.bodyFont
+                        font.pixelSize: Math.max(12, Style.font.caption)
                         wrapMode: Text.Wrap
                     }
                     Rectangle { width: parent.width; height: 1; color: Qt.alpha(Color.accent, 0.66) }
                     Row {
                         spacing: 6
-                        Ui.Button { text: "Meaning"; selected: root.page === "reading"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 8; onClicked: root.page = "reading" }
-                        Ui.Button { text: "Deeper"; selected: root.page === "explore"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 8; onClicked: root.page = "explore" }
-                        Ui.Button { text: "Tarot guide"; selected: root.page === "guide"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 8; onClicked: root.page = "guide" }
+                        Ui.Button { fontFamily: root.bodyFont; text: "Meaning"; selected: root.page === "reading"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "reading" }
+                        Ui.Button { fontFamily: root.bodyFont; text: "Deeper"; selected: root.page === "explore"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "explore" }
+                        Ui.Button { fontFamily: root.bodyFont; text: "Tarot guide"; selected: root.page === "guide"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "guide" }
                     }
 
                     Flickable {
@@ -206,111 +237,122 @@ PanelWindow {
                             width: detailScroll.width
                             spacing: 12
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "reading"
                                 text: root.reading ? (root.reading.reversed ? root.card.reversed : root.card.upright) : "Your card is arriving."
                                 color: Color.foreground
-                                font.family: "Liberation Serif"
-                                font.pixelSize: 22
+                                font.family: root.displayFont
+                                font.pixelSize: 23
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.08
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "reading"
                                 text: root.card.interpretation || ""
                                 color: Color.foreground
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.body
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.23
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "reading"
                                 text: "REFLECT   " + (root.card.reflection || "")
                                 color: Color.accent
-                                font.family: "Liberation Serif"
+                                font.family: root.displayFont
                                 font.italic: true
-                                font.pixelSize: 19
+                                font.pixelSize: 20
                                 wrapMode: Text.Wrap
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "reading" && root.summary !== ""
                                 text: "ZEPHYR  /  " + root.summary
                                 color: Color.accent
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.body
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.2
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "explore"
                                 text: root.card.path || (root.card.element ? root.card.element + "  /  " + root.card.suit : "The deeper pattern")
                                 color: Color.accent
-                                font.family: "Liberation Serif"
-                                font.pixelSize: 22
+                                font.family: root.displayFont
+                                font.pixelSize: 23
                                 wrapMode: Text.Wrap
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "explore"
                                 text: "UPRIGHT  /  " + (root.card.upright || "") + "\n\nREVERSED  /  " + (root.card.reversed || "") + "\n\n" + (root.card.interpretation || "")
                                 color: Color.foreground
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.body
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.22
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "explore"
                                 text: "SYMBOLS  /  " + (root.card.symbols || []).join(" · ") + "\n\nKEYWORDS  /  " + (root.card.keywords || []).join(" · ")
                                 color: Color.accent
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.bodySmall
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(13, Style.font.bodySmall)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.28
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "guide"
                                 text: (root.guide.introduction || "Tarot is a picture language for reflection.") + "\n\n" + ((root.guide.structure || {}).major_arcana || "22 Major Arcana") + "\n\n" + ((root.guide.structure || {}).minor_arcana || "56 Minor Arcana") + "\n\n" + ((root.guide.structure || {}).ranks || "")
                                 color: Color.foreground
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.body
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.22
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "guide"
                                 text: "WANDS  /  FIRE  /  WILL\nCUPS  /  WATER  /  FEELING\nSWORDS  /  AIR  /  THOUGHT\nPENTACLES  /  EARTH  /  RESOURCES"
                                 color: Color.accent
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.bodySmall
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(13, Style.font.bodySmall)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.3
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.page === "guide"
                                 text: "REVERSALS  /  " + (root.guide.reversals || "") + "\n\nDAILY RITUAL  /  " + (root.guide.daily_reflection || "") + "\n\n" + (root.guide.influence || "")
                                 color: Color.foreground
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.body
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
                                 wrapMode: Text.Wrap
                                 lineHeight: 1.22
                             }
                             Text {
+                                renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.errorText !== "" || root.summaryError !== ""
                                 text: root.errorText || root.summaryError
                                 color: Color.urgent
-                                font.family: Style.font.family
-                                font.pixelSize: Style.font.bodySmall
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(13, Style.font.bodySmall)
                                 wrapMode: Text.Wrap
                             }
                         }
@@ -319,12 +361,21 @@ PanelWindow {
                     Row {
                         id: actions
                         spacing: 6
-                        Ui.Button { text: "↶ Art"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 7; onClicked: root.turn() }
-                        Ui.Button { text: "Draw again"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 7; enabled: !root.drawBusy; onClicked: root.redrawRequested() }
-                        Ui.Button { visible: root.adapterAvailable; text: root.summaryBusy ? "Reading…" : "Ask Zephyr"; focusable: true; fontSize: Style.font.bodySmall; horizontalPadding: 7; enabled: !root.summaryBusy; onClicked: root.summaryRequested() }
+                        Ui.Button { fontFamily: root.bodyFont; text: "↶ Art"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.turn() }
+                        Ui.Button { fontFamily: root.bodyFont; text: "Draw again"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.drawBusy; onClicked: root.redrawRequested() }
+                        Ui.Button { fontFamily: root.bodyFont; visible: root.adapterAvailable; text: root.summaryBusy ? "Reading…" : "Ask Zephyr"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.summaryBusy; onClicked: root.summaryRequested() }
                     }
                 }
             }
+        }
+
+        Rectangle {
+            anchors.centerIn: cardMount
+            width: 3
+            height: cardMount.height * root.reveal
+            radius: 2
+            color: Color.accent
+            opacity: Math.max(0, 1 - Math.abs(root.flipProgress - 0.5) * 13) * 0.92
         }
     }
 }
