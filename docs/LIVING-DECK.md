@@ -157,6 +157,12 @@ Extend the reading object without breaking existing consumers:
     "artNote":"The largest star shines over a figure who pours water both into the pool and onto the earth."
   },
   "machine":{"eraId":"era-01","weather":{"cpu":2,"memory":1,"disk":3}},
+  "artwork":{
+    "sha256":"<64 hex chars>",
+    "format":"image/svg+xml",
+    "rendererVersion":1,
+    "relativePath":"artifacts/sha256/9f/9f83...a21.svg"
+  },
   "experience":{
     "version":1,
     "facet":{"id":"star-renewal","lens":"renewal","text":"..."},
@@ -178,6 +184,35 @@ A completed daily encounter is a historical artifact, not a view that should be 
 The canonical snapshot therefore contains the complete user-facing card definition used by the UI at that time: title, arcana, suit, number/numeral, element, path, upright, reversed, interpretation, symbols, keywords, reflection, and art note. The experience snapshot preserves complete selected objects, including facet ID/lens/text, prompt ID/text/daypart, symbol ID/label/observation/variant hook, plus experience-engine version and art variant. The artifact also preserves deck-content version, Machine Era ID, machine-weather buckets, and card/orientation.
 
 Future wording edits may change new Daily Oms but must never rewrite an old one. Historical rendering should prefer the snapshot. Versioned deck content may remain useful for migrations and provenance, but it is not a substitute for preserving the content the user actually encountered.
+
+### Archived artwork and provenance
+
+The visual card face is part of the encounter boundary. Reproduction parameters alone are insufficient because a future SVG generator, theme renderer, font stack, or variation algorithm could change. When a Daily Om is finalized, preserve the exact rendered SVG bytes the user encountered in a content-addressed local artifact store.
+
+Suggested layout:
+
+```text
+~/.local/state/ominity/
+├── history/
+│   └── 2026/
+│       └── 2026-09-20.json
+└── artifacts/
+    └── sha256/
+        └── 9f/
+            └── 9f83...a21.svg
+```
+
+Compute SHA-256 over the final SVG bytes and write the asset atomically with mode 0600. The Daily Om stores the digest, media type, renderer/experience version, and relative artifact path. Historical rendering loads the archived asset, verifies its digest, and displays those bytes rather than invoking the current renderer.
+
+Content addressing provides natural deduplication: identical rendered bytes need only be stored once. It also permits local provenance status without a network, blockchain, account, or external authority:
+
+- **Original artifact verified** — archived bytes match the stored digest.
+- **Artifact modified** — bytes exist but no longer match the digest.
+- **Artwork unavailable** — a legacy or damaged record lacks the archived asset; Ominity may offer a clearly labeled reconstruction but must not present it as the original.
+
+The user owns these files and may edit, copy, or delete them. Verification describes provenance; it does not enforce immutability.
+
+The archived SVG is the visual source of truth for a historical Daily Om. Renderer inputs (theme palette, machine buckets, art variant, symbol variant, renderer version) remain useful provenance metadata and may be stored as well, but must not replace the exact archived asset.
 
 This gives a decades-old Daily Om archival integrity: opening a 2026 encounter in 2043 shows what Ominity presented in 2026, not a modern reinterpretation.
 
@@ -374,6 +409,10 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - make SVG generators expose safe variation hooks per scene
 - map machine weather to neutral visual parameters
 - include experience version + variant in themed cache keys
+- archive the finalized rendered SVG into a content-addressed SHA-256 artifact store
+- write archived artwork atomically and verify the digest before historical display
+- preserve renderer/theme/machine inputs as provenance metadata while treating archived SVG bytes as visual source of truth
+- support clearly labeled reconstruction only when a legacy/damaged artifact lacks original artwork
 - preserve the bundled static deck as fallback
 
 ### Phase 5 — Constellation UI
@@ -413,6 +452,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - every selected prompt snapshots ID, text, and selected daypart
 - every selected art symbol snapshots ID, label, variant hook, and Notice observation
 - historical rendering never consults the current deck to complete missing user-facing fields
+- finalized Daily Oms preserve the exact rendered SVG or another exact immutable visual asset
+- historical artwork is SHA-256 verified before being labeled original
+- missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
 - Machine Era changes use only coarse non-identifying classes and resist transient configuration churn
