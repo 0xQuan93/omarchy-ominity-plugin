@@ -406,10 +406,14 @@ An era record uses the same integrity envelope:
 
 ```json
 {
-  "schemaVersion":1,
-  "payloadSha256":"<sha256 of canonical payload>",
-  "payload":{
-    "id":"era-02",
+  "integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},
+  "record":{
+    "schemaVersion":1,
+    "type":"machine-era",
+    "payload":{
+    "id":"019a4d3e-7c91-7b2a-a901-2b61c67f1102",
+    "ordinal":2,
+    "displayLabel":"Machine Era 02",
     "started":"2031-08-15",
     "ended":null,
     "classes":{"cpu":"C4","memory":"M5","storage":"D5"},
