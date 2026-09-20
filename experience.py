@@ -285,8 +285,8 @@ def valid_weather(weather: object) -> bool:
             and all(type(value) is int and 0 <= value <= 4 for value in weather.values()))
 
 
-def observe_machine_era(state_root: Path, day: str, signature: dict[str, str]) -> str:
-    """Record a coarse observation. Caller serializes this with the state lock.
+def prepare_machine_era(state_root: Path, day: str, signature: dict[str, str]) -> tuple[str, dict | None]:
+    """Prepare an era observation without mutating disk.
 
     Material change v1 means any known capacity bucket differs. Unknown bucket
     observations (C0/M0/D0) never start or advance a candidate. A candidate
@@ -300,16 +300,15 @@ def observe_machine_era(state_root: Path, day: str, signature: dict[str, str]) -
     if state is None:
         first = _new_era(day, signature, 1)
         state = {"materialityVersion": 1, "activeId": first["id"], "eras": [first], "candidate": None, "transitions": []}
-        _write_era_state(state_root, state)
-        return first["id"]
+        return first["id"], state
     active = state["eras"][-1]
     if any(signature[key].endswith("0") for key in signature):
-        return state["activeId"]
+        return state["activeId"], None
     if signature == active["classes"]:
         if state.get("candidate") is not None:
             state["candidate"] = None
-            _write_era_state(state_root, state)
-        return state["activeId"]
+            return state["activeId"], state
+        return state["activeId"], None
     candidate = state.get("candidate")
     if not isinstance(candidate, dict) or candidate.get("classes") != signature:
         candidate = {"classes": dict(signature), "observedDays": [day]}
@@ -335,8 +334,21 @@ def observe_machine_era(state_root: Path, day: str, signature: dict[str, str]) -
         })
     else:
         state["candidate"] = candidate
-    _write_era_state(state_root, state)
-    return state["activeId"]
+    return state["activeId"], state
+
+
+def commit_machine_era(state_root: Path, state: dict | None) -> None:
+    """Persist a prepared observation after rendering succeeds."""
+    if state is not None:
+        _validate_era_state(state)
+        _write_era_state(state_root, state)
+
+
+def observe_machine_era(state_root: Path, day: str, signature: dict[str, str]) -> str:
+    """Record a coarse observation. Caller serializes with the state lock."""
+    era_id, state = prepare_machine_era(state_root, day, signature)
+    commit_machine_era(state_root, state)
+    return era_id
 
 
 def _bucket(value: int, limits: tuple[int, ...], prefix: str) -> str:
@@ -411,9 +423,9 @@ def weather_buckets() -> dict[str, int]:
     return {"cpu": cpu, "memory": memory, "disk": disk}
 
 
-def experience_for(seed: bytes, day: str, card_id: str, reversed_card: bool,
-                   signature: dict[str, str], weather: dict[str, int]) -> dict:
-    """Derive visible metadata from byte-exact, versioned HMAC framing."""
+def experience_seed(seed: bytes, day: str, card_id: str, reversed_card: bool,
+                    signature: dict[str, str]) -> bytes:
+    """Derive the ephemeral HMAC seed without persisting it."""
     if len(seed) != 32:
         raise ValueError("Ominity installation seed must be 32 bytes")
     message = {
@@ -423,7 +435,13 @@ def experience_for(seed: bytes, day: str, card_id: str, reversed_card: bool,
         "orientation": "reversed" if reversed_card else "upright",
         "machineSignature": signature,
     }
-    derived = hmac.new(seed, canonical_json(message), hashlib.sha256).digest()
+    return hmac.new(seed, canonical_json(message), hashlib.sha256).digest()
+
+
+def experience_for(seed: bytes, day: str, card_id: str, reversed_card: bool,
+                   signature: dict[str, str], weather: dict[str, int]) -> dict:
+    """Derive visible metadata from byte-exact, versioned HMAC framing."""
+    derived = experience_seed(seed, day, card_id, reversed_card, signature)
     return {
         "version": 1,
         "machineSignature": dict(signature),
