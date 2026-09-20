@@ -1,6 +1,6 @@
 # Ominity
 
-![Ominity's Four of Swords card and reading side in the live Catppuccin theme](preview.png)
+![Ominity 2.0 preview with The Star artwork, a daily reading, and the Constellation view](preview.png)
 
 A daily tarot ritual for Omarchy. Click **✦** in the bar to draw a card. The artwork takes the whole stage; click the card to turn it over for its meaning, today's lens and symbol, a reflection prompt, a deeper reading, and a guide to tarot. Click outside the card or press **Esc** to put it away. Right-click the bar glyph to toggle a compact desktop card.
 
