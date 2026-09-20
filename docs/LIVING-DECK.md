@@ -26,7 +26,7 @@ Create a private random installation secret on first run:
 Mode 0600:
 
 ```json
-{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<256-bit random value>"}}}
+{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<exactly 64 lowercase hexadecimal characters encoding 32 random bytes>"}}}
 ```
 
 For a daily reading derive a deterministic seed with HMAC-SHA256 over a byte-exact framed message. The HMAC message is the UTF-8 RFC 8785 canonicalization of exactly this logical object:
@@ -46,7 +46,55 @@ message_bytes = UTF8(RFC8785(message_object))
 experience_seed = HMAC-SHA256(installation_seed_bytes, message_bytes)
 ```
 
-The installation seed is decoded from its specified stored representation to the original 32 bytes before use as the HMAC key. No ad-hoc concatenation, delimiter scheme, locale-dependent formatting, or implementation-specific JSON serialization participates in experience derivation.
+The installation seed representation is normative: exactly **64 lowercase hexadecimal characters** matching `^[0-9a-f]{64}# Ominity Living Deck — implementation RFC
+
+## Goal
+
+Make every daily pull feel personal without changing the canonical card or claiming that machine telemetry changes the reading.
+
+Ominity keeps the existing daily card + orientation stable. A new deterministic **experience layer** controls visual micro-variation, a symbolic lens, highlighted artwork details, reflection prompts, history echoes, and statistics.
+
+The result should remain local-first, offline, reproducible for the day, theme-aware, and explicitly reflective rather than predictive.
+
+## Design principles
+
+1. **The card is sacred; presentation is generative.** Machine state never changes the card, orientation, or canonical meaning.
+2. **Stable for the day.** Reopening Ominity recreates the same visual treatment and reading facet.
+3. **Private by default.** Raw hardware identifiers, serials, MAC addresses, hostnames, usernames, process names, and file names are never stored or exposed.
+4. **No telemetry.** Machine information is sampled locally and reduced to coarse buckets before use.
+5. **Meaningful variation, not noise.** Every visual parameter maps to an authored detail already present in the card.
+6. **History creates continuity.** Statistics and echoes describe the user's actual draw history without pretending patterns predict future events.
+
+## Experience seed
+
+Create a private random installation secret on first run:
+
+`~/.local/state/ominity/identity.json`
+
+Mode 0600:
+
+```json
+{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<exactly 64 lowercase hexadecimal characters encoding 32 random bytes>"}}}
+```
+
+For a daily reading derive a deterministic seed with HMAC-SHA256 over a byte-exact framed message. The HMAC message is the UTF-8 RFC 8785 canonicalization of exactly this logical object:
+
+```json
+{
+  "cardId":"major-17-the-star",
+  "localDate":"2026-09-20",
+  "machineSignature":{"cpu":"C3","memory":"M4","storage":"D4"},
+  "orientation":"upright",
+  "protocol":"ominity-experience-v1"
+}
+```
+
+```text
+message_bytes = UTF8(RFC8785(message_object))
+experience_seed = HMAC-SHA256(installation_seed_bytes, message_bytes)
+```
+
+, encoding exactly 32 random bytes. Reject any other length/case/alphabet; do not normalize malformed values. Decode those 64 hex characters to the original 32 bytes before use as the HMAC key. No ad-hoc concatenation, delimiter scheme, locale-dependent formatting, or implementation-specific JSON serialization participates in experience derivation.
 
 The installation seed prevents two otherwise identical computers from producing identical experiences. The version string lets future releases evolve the algorithm without silently changing old records.
 
@@ -340,7 +388,11 @@ Longevity requires surviving machine loss and migration. Define a versioned, off
 
 Import is verify-first: validate manifest paths against traversal, enforce size/count limits before extraction, verify every digest and record envelope, reject/segregate conflicts rather than overwriting canonical history, and only then commit imported records transactionally. Imported Machine Eras remain historical; importing onto a new computer does not relabel old Daily Oms or make the new hardware part of an old era. The receiving installation begins/continues its own current Machine Era.
 
-Archive manifests should support incremental export so decades of unchanged content-addressed artifacts need not be recopied unnecessarily. A future backup UI can show last verified export date without requiring cloud services.
+**Full self-contained archives are the default and recommended backup.** Incremental archives are optional and form a cryptographically bound parent chain. A full manifest uses `"mode":"full","base":null`. An incremental manifest uses `"mode":"incremental"` and a non-null base object containing the exact parent `archiveId` and parent manifest-record digest. It lists only members newly required since that parent.
+
+An importer reconstructs an incremental archive only with a complete verified chain ending at a full archive. Each child must match the immediately supplied parent's archive ID and manifest digest. Missing, reordered, forked, or mismatched dependencies are reported as incomplete/unsupported; the importer never guesses that omitted members exist. The effective member set is the union of verified chain members by normalized path, and conflicting path definitions with different hashes are rejected. Periodic new full exports act as checkpoints and bound restore-chain length.
+
+A future backup UI can show last verified export date and recommend a new full checkpoint without requiring cloud services.
 
 Normative archive-manifest shape (the manifest **does not list or hash itself**, avoiding recursive integrity):
 
@@ -357,17 +409,19 @@ Normative archive-manifest shape (the manifest **does not list or hash itself**,
     "payload":{
       "archiveId":"019a5c72-10f2-7d30-8e42-30ec4ec57d51",
       "createdAt":"2026-09-20T10:45:00Z",
+      "mode":"full",
+      "base":null,
       "members":[
-        {
-          "path":"history/2026/2026-09-20.json",
-          "mediaType":"application/json",
-          "bytes":4821,
-          "sha256":"<64 hex chars>"
-        },
         {
           "path":"artifacts/sha256/ab/ab41...91c.png",
           "mediaType":"image/png",
           "bytes":412881,
+          "sha256":"<64 hex chars>"
+        },
+        {
+          "path":"history/2026/2026-09-20.json",
+          "mediaType":"application/json",
+          "bytes":4821,
           "sha256":"<64 hex chars>"
         }
       ]
@@ -376,7 +430,7 @@ Normative archive-manifest shape (the manifest **does not list or hash itself**,
 }
 ```
 
-Member paths are normalized relative POSIX paths: no absolute paths, empty segments, `.`, `..`, backslashes, NULs, or symlink traversal. Member byte counts are checked before allocation/extraction and digests are verified before transactional import. Members are sorted lexicographically by `path` for deterministic export presentation; manifest integrity itself is defined by RFC 8785, not array reordering.
+Member paths are normalized relative POSIX paths: no absolute paths, empty segments, `.`, `..`, backslashes, NULs, or symlink traversal. Member byte counts are checked before allocation/extraction and digests are verified before transactional import. Before RFC 8785 canonicalization, exporters perform application-level semantic normalization: validate all members, then sort `members` lexicographically by normalized `path` using Unicode code-point order over the permitted ASCII path subset. RFC 8785 preserves array order and does **not** perform this semantic sort. The normative example above is already in required order (`artifacts/...` before `history/...`).
 
 ### Storage budget
 
@@ -563,6 +617,10 @@ Input:
 
 Do not send machine telemetry to Zephyr. It has no interpretive role.
 
+## RFC completion boundary
+
+This RFC is complete enough to merge when: all review threads are resolved; normative JSON fixtures parse; the stated invariants are internally consistent; and no open finding changes the core data model. Further implementation-specific issues belong in the implementation PRs/tests rather than indefinitely expanding this design document. The RFC defines contracts and invariants, not every future optimization.
+
 ## Implementation plan
 
 ### Phase 1 — state + deterministic engine
@@ -670,6 +728,7 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - every persistent record hashes its complete RFC 8785-canonicalized `record` object, including schemaVersion and type, under an explicit integrity envelope
 - changing schemaVersion/type invalidates the stored digest
 - implementations use byte-exact RFC 8785 JCS rather than implementation-specific JSON serialization
+- identity seed is exactly 64 lowercase hex characters encoding 32 bytes; malformed encodings are rejected
 - experience HMAC framing is UTF-8 RFC 8785 canonical JSON with an explicit protocol field; no ambiguous concatenation is allowed
 - unsupported canonicalization/integrity algorithms are reported as unsupported, not corrupt
 - Machine Era durable IDs are collision-resistant across independent archives; ordinals are display-only
@@ -685,6 +744,9 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - Machine Era encounter counts/aggregates are derived from canonical Daily Oms or rebuildable caches, never authoritative era fields
 - imported Machine Eras remain historical and are not reassigned to the receiving machine
 - archive manifest is a normative shared-envelope record, enumerates member path/media type/byte size/SHA-256, and explicitly excludes itself
+- full archives are self-contained by default; incremental manifests cryptographically bind the immediate parent archive ID + manifest digest
+- incremental restore requires a complete verified chain to a full archive and rejects missing/forked/conflicting dependencies
+- manifest members are semantically normalized and lexicographically sorted by normalized path before RFC 8785 hashing
 - importing independent archives with identical era ordinals cannot collide because references use durable collision-resistant IDs
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
