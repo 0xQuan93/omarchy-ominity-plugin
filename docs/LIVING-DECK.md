@@ -238,12 +238,14 @@ The user owns these files and may edit, copy, or delete them. Verification descr
 
 A Daily Om is committed as a unit. Atomic writes for individual files are not sufficient because a crash could otherwise publish canonical history before both visual artifacts exist.
 
-Use a JSON-last commit protocol:
+Use a JSON-last commit protocol. Canonical creation is additionally serialized by a per-local-day advisory lock (for example `locks/2026-09-20.lock` using `fcntl.flock`). After acquiring the lock, re-check canonical history before sampling weather or generating artifacts. If another process already committed that date, return the committed Daily Om. Redraw operations must use compatible serialization so they cannot race canonical creation.
+
+Use the following commit protocol:
 
 1. create a private staging transaction under the Ominity state directory;
 2. write the finalized SVG, PNG witness, and Daily Om JSON candidate into staging with mode 0600;
 3. compute and verify both artifact digests against the candidate record;
-4. flush and `fsync` staged artifact files;
+4. flush and `fsync` the staged SVG, PNG, **and Daily Om JSON candidate** before any rename;
 5. atomically publish the SVG and PNG into their content-addressed locations (reusing an already-present object only after verifying its digest);
 6. `fsync` the artifact directories so those renames are durable;
 7. only then atomically publish the canonical Daily Om history JSON;
@@ -254,9 +256,49 @@ Canonical history must never reference an artifact that has not already been dur
 
 On startup, recovery scans abandoned staging transactions. If no history commit marker exists, it may safely remove the staging files; already-published content-addressed objects may be retained for deduplication or garbage-collected when unreferenced. If the history JSON exists, both referenced artifacts must already verify by construction. Recovery operations must be idempotent so repeated crashes do not create duplicate canonical Daily Oms.
 
-This ordering gives Ominity a simple crash-consistency invariant: **no committed Daily Om without both original artifacts**.
+This ordering gives Ominity a simple crash-consistency invariant: **no committed Daily Om without both original artifacts**. Installation identity and Machine Era state mutations must likewise be serialized and use durable atomic replacement.
 
 The archived SVG is the structural source artifact; the lossless PNG is the visual source of truth for a historical Daily Om. Renderer inputs (theme palette, machine buckets, art variant, symbol variant, renderer version, display scale) remain useful provenance metadata and may be stored as well, but must not replace either archived artifact.
+
+
+### Record integrity and schema evolution
+
+Artwork hashes are not enough: the historical record itself needs provenance. Every persistent structure carries an explicit `schemaVersion` (Daily Om, identity, Machine Era state, journal, archive manifest). A Daily Om is represented as a canonical payload plus an integrity envelope so the record hash does not recursively include itself.
+
+Canonicalize the payload with a documented deterministic JSON encoding (UTF-8, sorted object keys, stable separators, no NaN/Infinity), then compute SHA-256 over those exact bytes. The envelope stores `payloadSha256` and the payload. Verification therefore covers the artifact digests, canonical prose, experience snapshot, machine-era association, timestamps, and all other historical fields.
+
+Migrations must be additive/non-destructive. Never silently rewrite a verified historical payload in place. If a future schema needs a transformed representation, preserve the original payload and create a versioned derived/migrated view with provenance linking it to the source.
+
+### Time identity
+
+“One per local day” requires explicit time provenance. Snapshot:
+
+- local calendar date used as the canonical day key;
+- offset-aware local timestamp;
+- UTC timestamp;
+- UTC offset;
+- IANA timezone name when reliably available;
+- timezone-source/version metadata when available.
+
+The per-day lock and canonical path are keyed by the snapshotted local date. Re-check after lock acquisition prevents two records for the same date. Clock rollback, DST changes, or reopening later must not create a second canonical Daily Om for a date that already exists. A genuine travel/timezone change may affect the next not-yet-committed local date, but never rewrites an existing artifact.
+
+### Machine Era transition state machine
+
+Machine Era changes must be conservative and deterministic rather than “multiple launches” by implication. Keep an active era plus an optional candidate signature. A materially different coarse signature becomes a candidate; confirm it only after observations on at least **3 distinct local days**. Matching the active signature clears the candidate. Repeated observations within one day count once. Until confirmation, new Daily Oms remain associated with the active era while recording no raw hardware identifiers.
+
+When confirmed, close the previous era immediately before the first Daily Om assigned to the new era and retain an explicit transition/milestone record. Implementations may classify a documented subset of upgrades as milestones within an era, but the rule must be versioned and deterministic.
+
+### Failure semantics
+
+A Daily Om is canonical only after the history JSON commit marker is durably published. Disk-full, permission, renderer, hash, or fsync failures before that point must not return an uncommitted encounter as canonical. If a canonical record already exists, return it. Otherwise report a local finalization error and allow a later retry. Temporary artifacts are recoverable staging data, not history.
+
+### Portable Ominity Archive
+
+Longevity requires surviving machine loss and migration. Define a versioned, offline export format containing verified Daily Om envelopes, referenced SVG/PNG artifacts, Machine Era history, journal/reflection records, and a manifest enumerating every file with SHA-256 and byte size. Export itself must not include the private installation seed unless the user explicitly chooses a separate identity backup; normal archive portability should not clone the secret identity of the old installation.
+
+Import is verify-first: validate manifest paths against traversal, enforce size/count limits before extraction, verify every digest and record envelope, reject/segregate conflicts rather than overwriting canonical history, and only then commit imported records transactionally. Imported Machine Eras remain historical; importing onto a new computer does not relabel old Daily Oms or make the new hardware part of an old era. The receiving installation begins/continues its own current Machine Era.
+
+Archive manifests should support incremental export so decades of unchanged content-addressed artifacts need not be recopied unnecessarily. A future backup UI can show last verified export date without requiring cloud services.
 
 ### Storage budget
 
@@ -434,7 +476,10 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - derive experience seed with HMAC-SHA256
 - persist experience metadata on the reading
 - preserve current daily stability and explicit redraw behavior
-- add tests proving stable reproduction and secret/state permissions
+- add per-day locking, post-lock canonical recheck, and serialized identity/Machine Era mutation
+- add explicit timestamp/timezone provenance
+- add schema versions and canonical Daily Om payload hashing
+- add tests proving stable reproduction, concurrency safety, durability, and secret/state permissions
 
 ### Phase 2 — statistics
 
@@ -474,6 +519,8 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - add stats/history process boundary
 - build 78-card history matrix
 - add Machine Era timeline and era-scoped archive browsing
+- expose record/artifact verification state and archive storage usage
+- add verified portable archive export/import surface
 - add 7/30/90-day views
 - add Thread and Return callouts
 - keep stats descriptive rather than predictive
@@ -512,6 +559,19 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - PNG witnesses preserve the canonical 7:12 card geometry (reference size 1400×2400)
 - canonical history JSON is never published before both referenced artifacts are durably present and verified
 - crash recovery cannot create duplicate canonical Daily Oms and safely handles abandoned staging data
+- staged Daily Om JSON is flushed and fsynced before its atomic commit rename
+- concurrent `today` calls serialize per local day; losers reload the committed artifact rather than generating a second canonical encounter
+- redraw cannot race canonical creation
+- every persistent record has an explicit schema version
+- Daily Om payloads have deterministic canonical serialization and an independently stored SHA-256 integrity envelope
+- verified historical payloads are never silently rewritten by schema migrations
+- local date, offset-aware timestamp, UTC timestamp/offset, and timezone identity (when available) are snapshotted
+- clock rollback/DST cannot create a second canonical Daily Om for an already committed local date
+- Machine Era candidates require observations on at least 3 distinct local days before transition
+- disk-full/permission/render/hash/fsync failure before the commit marker never returns an uncommitted Daily Om as canonical
+- portable archive export enumerates files with hashes/sizes and import verifies before transactional commit
+- archive import prevents path traversal, enforces resource limits, and never overwrites conflicting canonical history
+- imported Machine Eras remain historical and are not reassigned to the receiving machine
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
