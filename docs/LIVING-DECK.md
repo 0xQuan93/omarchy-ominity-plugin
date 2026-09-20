@@ -142,19 +142,26 @@ Extend the reading object without breaking existing consumers:
   "deckContentVersion":"1.1.0",
   "canonicalSnapshot":{
     "title":"The Star",
+    "arcana":"major",
+    "suit":null,
+    "number":17,
+    "numeral":"XVII",
+    "element":null,
+    "path":"The open night",
     "upright":"Restore hope through small, steady acts.",
     "reversed":"Exhaustion; losing sight of available support.",
     "interpretation":"After upheaval, the future may arrive as a trickle rather than a trumpet. Refill what is depleted and let simplicity count.",
     "symbols":["eight stars","water jars","pool"],
+    "keywords":["hope","renewal","trust"],
     "reflection":"What small source of renewal is already near?",
     "artNote":"The largest star shines over a figure who pours water both into the pool and onto the earth."
   },
   "machine":{"eraId":"era-01","weather":{"cpu":2,"memory":1,"disk":3}},
   "experience":{
     "version":1,
-    "facet":{"id":"star-renewal","text":"..."},
+    "facet":{"id":"star-renewal","lens":"renewal","text":"..."},
     "prompt":{"id":"star-small-renewal","text":"What small source of renewal is already near?","period":"morning"},
-    "symbol":{"id":"water-jars","label":"the water jars","observation":"Water is offered both to the pool and to the earth."},
+    "symbol":{"id":"water-jars","label":"the water jars","variant":"shimmer","observation":"Water is offered both to the pool and to the earth."},
     "artVariant":7
   }
 }
@@ -164,7 +171,11 @@ Do not store the derived HMAC or installation secret in reading history.
 
 ### Immutable Daily Om artifacts
 
-A completed daily encounter is a historical artifact, not a view that should be reconstructed from the latest deck. Persist both stable authored IDs **and the exact user-visible authored content selected that day**. The snapshot includes the displayed canonical card prose (`title`, `upright`, `reversed`, `interpretation`, `symbols`, `reflection`, and `art_note`), facet text, prompt text/daypart, symbol label/observation, deck-content version, experience-engine version, art variant, Machine Era ID, machine-weather buckets, and the card/orientation.
+A completed daily encounter is a historical artifact, not a view that should be reconstructed from the latest deck. Persist both stable authored IDs **and the exact user-visible authored content selected that day**.
+
+**Snapshot by boundary, not by convenience.** When a Daily Om is finalized, copy every deck-authored or experience-authored value required to reproduce the encounter into the artifact. Historical rendering must never consult the current `deck.json` to fill missing user-facing information.
+
+The canonical snapshot therefore contains the complete user-facing card definition used by the UI at that time: title, arcana, suit, number/numeral, element, path, upright, reversed, interpretation, symbols, keywords, reflection, and art note. The experience snapshot preserves complete selected objects, including facet ID/lens/text, prompt ID/text/daypart, symbol ID/label/observation/variant hook, plus experience-engine version and art variant. The artifact also preserves deck-content version, Machine Era ID, machine-weather buckets, and card/orientation.
 
 Future wording edits may change new Daily Oms but must never rewrite an old one. Historical rendering should prefer the snapshot. Versioned deck content may remain useful for migrations and provenance, but it is not a substitute for preserving the content the user actually encountered.
 
@@ -397,8 +408,11 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - reordering authored prompt arrays cannot change an existing daily artifact
 - authored schema gives every selectable facet, prompt, symbol, and relationship an explicit stable ID
 - historical Daily Oms preserve exact selected authored content, not only IDs
-- canonical card prose shown on the reading side is snapshotted with every Daily Om
-- every selected art symbol resolves to an authored label, variant hook, and Notice observation
+- the complete user-facing canonical card definition, including path and keywords, is snapshotted with every Daily Om
+- every selected facet snapshots ID, lens, and text
+- every selected prompt snapshots ID, text, and selected daypart
+- every selected art symbol snapshots ID, label, variant hook, and Notice observation
+- historical rendering never consults the current deck to complete missing user-facing fields
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
 - Machine Era changes use only coarse non-identifying classes and resist transient configuration churn
