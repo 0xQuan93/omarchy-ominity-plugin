@@ -31,12 +31,18 @@ PanelWindow {
     readonly property bool artworkReady: cardFace.status === Image.Ready
     readonly property bool artworkFailed: cardFace.status === Image.Error
     readonly property var card: reading && reading.card ? reading.card : ({})
+    readonly property var experience: reading && reading.experience ? reading.experience : ({})
+    readonly property var facet: experience.facet || ({})
+    readonly property var symbol: experience.symbol || ({})
+    readonly property var prompt: experience.prompt || ({})
+    readonly property var thread: experience.thread || ({})
     readonly property string orientation: reading && reading.reversed ? "REVERSED" : "UPRIGHT"
 
     signal closeRequested()
     signal redrawRequested()
     signal summaryRequested()
     signal widgetRequested()
+    signal constellationRequested()
 
     function resetForDraw() {
         flipAnimation.stop()
@@ -261,8 +267,42 @@ PanelWindow {
                             Text {
                                 renderType: Text.CurveRendering
                                 width: parent.width
+                                visible: root.page === "reading" && !!root.facet.id
+                                text: "LENS  /  " + String(root.facet.lens || "").toUpperCase() + "\n" + (root.facet.text || "")
+                                color: Color.foreground
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
+                                wrapMode: Text.Wrap
+                                lineHeight: 1.2
+                            }
+                            Text {
+                                renderType: Text.CurveRendering
+                                width: parent.width
+                                visible: root.page === "reading" && !!root.symbol.id
+                                text: "NOTICE  /  " + (root.symbol.label || "") + "\n" + (root.symbol.observation || "")
+                                color: Color.foreground
+                                opacity: 0.86
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
+                                wrapMode: Text.Wrap
+                                lineHeight: 1.2
+                            }
+                            Text {
+                                renderType: Text.CurveRendering
+                                width: parent.width
+                                visible: root.page === "reading" && !!root.thread.text
+                                text: "THE THREAD  /  " + (root.thread.text || "")
+                                color: Color.foreground
+                                opacity: 0.82
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(13, Style.font.bodySmall)
+                                wrapMode: Text.Wrap
+                            }
+                            Text {
+                                renderType: Text.CurveRendering
+                                width: parent.width
                                 visible: root.page === "reading"
-                                text: "REFLECT   " + (root.card.reflection || "")
+                                text: "CARRY THIS  /  " + (root.prompt.text || root.card.reflection || "")
                                 color: Color.accent
                                 font.family: root.displayFont
                                 font.italic: true
@@ -272,7 +312,7 @@ PanelWindow {
                             Text {
                                 renderType: Text.CurveRendering
                                 width: parent.width
-                                visible: root.page === "reading" && !!root.card.art_note
+                                visible: root.page === "reading" && !!root.card.art_note && !root.symbol.id
                                 text: "IN THE ART  /  " + (root.card.art_note || "")
                                 color: Color.foreground
                                 opacity: 0.84
@@ -375,6 +415,7 @@ PanelWindow {
                         spacing: 6
                         Ui.Button { fontFamily: root.bodyFont; text: "↶ Art"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.turn() }
                         Ui.Button { fontFamily: root.bodyFont; text: "Draw again"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.drawBusy; onClicked: root.redrawRequested() }
+                        Ui.Button { fontFamily: root.bodyFont; text: "✦ Constellation"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.constellationRequested() }
                         Ui.Button { fontFamily: root.bodyFont; visible: root.adapterAvailable; text: root.summaryBusy ? "Reading…" : "Ask Zephyr"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.summaryBusy; onClicked: root.summaryRequested() }
                     }
                 }

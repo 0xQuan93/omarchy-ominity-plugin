@@ -16,6 +16,10 @@ Item {
     property bool widgetEnabled: false
     property bool overlayOpen: false
     property bool overlayPresent: false
+    property bool constellationOpen: false
+    property var constellationStats: ({})
+    property var constellationHistory: []
+    property string constellationError: ""
     property real reveal: 0
     property real cardArrival: 1
     property string page: "reading"
@@ -34,7 +38,7 @@ Item {
     readonly property string paletteKey: [String(Color.background), String(Color.foreground), String(Color.accent), String(Color.muted)].join("|")
     readonly property var card: reading && reading.card ? reading.card : ({})
     readonly property string orientation: reading && reading.reversed ? "REVERSED" : "UPRIGHT"
-    readonly property string cardImage: card.art ? Util.fileUrl((themedDirectory || pluginDir) + "/" + card.art) : ""
+    readonly property string cardImage: reading && reading.artworkPath ? Util.fileUrl(reading.artworkPath) : (card.art ? Util.fileUrl((themedDirectory || pluginDir) + "/" + card.art) : "")
     readonly property string backImage: Util.fileUrl((themedDirectory || pluginDir) + "/assets/card-back.svg")
     onPaletteKeyChanged: themeDelay.restart()
     Component.onCompleted: themeDelay.restart()
@@ -55,7 +59,14 @@ Item {
         if (stateProc.running) { queuedAction = action; return }
         busyAction = action
         errorText = ""
-        stateProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", action]
+        var command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", action]
+        if (action === "today" || action === "redraw") {
+            command.push("--background", String(Color.background),
+                         "--foreground", String(Color.foreground),
+                         "--accent", String(Color.accent),
+                         "--muted", String(Color.muted))
+        }
+        stateProc.command = command
         stateProc.running = true
     }
 
@@ -79,6 +90,7 @@ Item {
     }
 
     function openReading() {
+        constellationOpen = false
         readingWindow.resetForDraw()
         overlayOpen = true
         overlayPresent = true
@@ -87,8 +99,22 @@ Item {
     }
 
     function closeReading() {
+        constellationOpen = false
         overlayOpen = false
         animateReveal(false)
+    }
+
+    function openConstellation() {
+        constellationError = ""
+        constellationOpen = true
+        if (!statsProc.running) {
+            statsProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", "stats"]
+            statsProc.running = true
+        }
+        if (!historyProc.running) {
+            historyProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", "history"]
+            historyProc.running = true
+        }
     }
 
     function animateReveal(open) {
@@ -169,6 +195,32 @@ Item {
             if (code !== 0 && !root.summaryError) root.summaryError = "Zephyr is unavailable right now."
         }
     }
+    Process {
+        id: statsProc
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    var result = JSON.parse(text)
+                    if (!result.ok) throw new Error(result.error || "Statistics are unavailable")
+                    root.constellationStats = result
+                } catch (e) { root.constellationError = String(e) }
+            }
+        }
+        onExited: function(code) { if (code !== 0 && !root.constellationError) root.constellationError = "Constellation could not read the local archive." }
+    }
+    Process {
+        id: historyProc
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    var result = JSON.parse(text)
+                    if (!result.ok) throw new Error(result.error || "History is unavailable")
+                    root.constellationHistory = result.days || []
+                } catch (e) { root.constellationError = String(e) }
+            }
+        }
+        onExited: function(code) { if (code !== 0 && !root.constellationError) root.constellationError = "Constellation could not read the local archive." }
+    }
     FileView {
         path: root.adapter
         watchChanges: true
@@ -206,6 +258,7 @@ Item {
         function flip(): void { readingWindow.turn() }
         function guide(): void { root.openReading(); readingWindow.page = "guide"; readingWindow.flipProgress = 1 }
         function widget(): void { root.toggleWidget() }
+        function constellation(): void { root.openConstellation() }
         function status(): string { return JSON.stringify({open: root.overlayOpen, widget: root.widgetEnabled, day: root.day, card: root.card.id || "", face: readingWindow.flipProgress > 0.5 ? "details" : "art", themeReady: root.themedDirectory !== ""}) }
     }
     Timer {
@@ -245,7 +298,7 @@ Item {
     CardOverlay {
         id: readingWindow
         screen: Quickshell.screens[0]
-        visible: root.overlayPresent
+        visible: root.overlayPresent && !root.constellationOpen
         opened: root.overlayOpen
         reveal: root.reveal
         arrival: root.cardArrival
@@ -265,5 +318,17 @@ Item {
         onRedrawRequested: root.redraw()
         onSummaryRequested: root.summarize()
         onWidgetRequested: root.toggleWidget()
+        onConstellationRequested: root.openConstellation()
+    }
+
+    Constellation {
+        id: constellationWindow
+        screen: Quickshell.screens[0]
+        visible: root.constellationOpen
+        opened: root.constellationOpen
+        stats: root.constellationStats
+        entries: root.constellationHistory
+        errorText: root.constellationError
+        onCloseRequested: root.constellationOpen = false
     }
 }
