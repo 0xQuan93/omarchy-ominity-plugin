@@ -147,7 +147,8 @@ Extend the reading object without breaking existing consumers:
   "experience":{
     "version":1,
     "facet":"renewal",
-    "promptIndex":3,
+    "prompt":"star-small-renewal",
+    "promptPeriod":"morning",
     "symbol":"water-jars",
     "artVariant":7,
     "machineWeather":{"cpu":2,"memory":1,"disk":3}
@@ -159,7 +160,7 @@ Do not store the derived HMAC or installation secret in reading history.
 
 ## History and statistics
 
-The current 90-entry history is enough for a first release, but statistics should treat explicit redraws carefully.
+The current 90-entry combined history is **not** sufficient for Constellation. Canonical daily history must be retained independently from redraw events so lifetime statistics remain truthful. One canonical record per local day is small enough to retain permanently; redraw events may be stored separately and bounded. Cumulative statistics may be cached for speed, but canonical history remains the source of truth.
 
 Expose:
 
@@ -176,7 +177,13 @@ Expose:
 - recent 7 / 30 / 90 day windows
 - redraw count, separately from canonical daily draws
 
-For frequency percentages, default to one canonical draw per local day. A redraw should be visible in history but should not silently count as an additional "day" in the main distribution.
+For frequency percentages, default to one canonical draw per local day. A redraw should be visible in a separate redraw log but should not silently count as an additional "day" in the main distribution. The existing `[-90:]` combined retention must be replaced before lifetime metrics ship.
+
+### Immutable daily artifacts
+
+Once created, a daily encounter is a versioned historical artifact. Persist stable IDs for authored selections (`facet`, `symbol`, `prompt`, and future relationship metadata) rather than array positions. A prompt should have its own ID and may declare valid periods; the selected prompt ID and period are persisted with the reading. Reopening later in another daypart must not select a different prompt.
+
+Deck edits, reordered JSON arrays, or later experience-engine versions must not silently reinterpret an old encounter. Permanent canonical history enables true lifetime streaks, discovery counts, return intervals, and per-card frequencies.
 
 ### Suggested CLI actions
 
@@ -297,13 +304,17 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 ### Phase 2 — statistics
 
 - add `stats` and `history` actions
+- migrate from the combined 90-event buffer to permanent canonical daily history plus a separate bounded redraw log
 - canonicalize one daily draw per date for main percentages
+- optionally cache cumulative aggregates while keeping canonical history as source of truth
 - calculate streaks, frequency, suit, arcana, orientation, and last-seen
 - add unit tests for redraw handling and date gaps
 
 ### Phase 3 — authored experience metadata
 
 - add facets, prompts, and addressable art symbols to all 78 cards
+- assign stable IDs to facets, prompts, symbols, and future relationship metadata
+- allow prompts to declare valid dayparts and persist the selected prompt ID + period
 - validate schema in deck tests
 - select facet/prompt/symbol deterministically from the experience seed
 
@@ -339,6 +350,10 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - daily `today` remains stable
 - explicit redraw remains explicit
 - stats count canonical ritual days separately from redraws
+- canonical daily history is not truncated by redraw activity or a 90-event cap
+- lifetime totals remain derivable from canonical history
+- selected prompt ID + period survive reopening in a different daypart
+- reordering authored prompt arrays cannot change an existing daily artifact
 - corrupt identity/weather/history state recovers safely
 - all state files are mode 0600
 - theme rendering remains atomic
