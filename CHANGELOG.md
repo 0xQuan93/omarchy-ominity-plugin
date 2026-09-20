@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0 — 2026-09-20
+
+- Added a deterministic daily experience to all 78 cards: authored lenses, highlighted symbols, daytime and evening prompts, and a factual Return thread when a card reappears.
+- Added restrained machine-aware variation to the original art. The card, orientation, and meaning remain independent of machine activity. Each new Daily Om retains its exact SVG master and lossless PNG witness.
+- Added permanent canonical daily history, a separate bounded redraw log, private Machine Eras, verification status, and Constellation with 78-card frequencies, time windows, historical views, and era browsing.
+- Added a private morning/evening journal and full, self-contained archive export, verification, and import. Imports verify every member and preserve conflicting local daily records.
+- Preserved earlier readings as legacy records without claiming that reconstructed artwork is original. The optional local Zephyr summary can use the selected reflective context without machine telemetry.
+
 ## 1.1.0 — 2026-09-19
 
 - Replaced the pip illustrations with 78 original symbolic tableaux. Each card now has a larger art window, layered visual depth, and a specific observation on its reading side.

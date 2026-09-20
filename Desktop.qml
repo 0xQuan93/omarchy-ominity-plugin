@@ -20,6 +20,19 @@ Item {
     property var constellationStats: ({})
     property var constellationHistory: []
     property string constellationError: ""
+    property var historicalReading: null
+    property var historicalJournal: ({})
+    property string historicalError: ""
+    property string historicalDay: ""
+    property string archiveMessage: ""
+    property string archiveAction: ""
+    property var journal: ({firstImpression: "", eveningReflection: ""})
+    property string journalLoadedDay: ""
+    property string journalAction: ""
+    property string journalPayload: ""
+    property string journalRequestDay: ""
+    property string journalError: ""
+    property string journalSaved: ""
     property real reveal: 0
     property real cardArrival: 1
     property string page: "reading"
@@ -75,7 +88,13 @@ Item {
             var next = JSON.parse(raw)
             if (!next.ok) throw new Error(next.error || "Could not read the deck")
             var oldStamp = reading ? reading.drawnAt : ""
+            var oldDay = day
             day = next.day || ""
+            if (day !== oldDay) {
+                journalLoadedDay = ""
+                journal = ({firstImpression: "", eveningReflection: ""})
+                journalSaved = ""
+            }
             reading = next.reading
             widgetEnabled = next.widget === true
             if (reading && oldStamp !== reading.drawnAt) {
@@ -117,6 +136,24 @@ Item {
         }
     }
 
+    function runArchive(action, path) {
+        if (archiveProc.running) return
+        archiveAction = action
+        archiveMessage = ""
+        archiveProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", action, "--path", path]
+        archiveProc.running = true
+    }
+
+    function openHistoricalDay(requestedDay) {
+        if (dayProc.running) return
+        historicalDay = requestedDay
+        historicalReading = null
+        historicalJournal = ({})
+        historicalError = ""
+        dayProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", "day", "--day", requestedDay]
+        dayProc.running = true
+    }
+
     function animateReveal(open) {
         revealAnimation.stop()
         revealAnimation.to = open ? 1 : 0
@@ -134,6 +171,26 @@ Item {
         summaryText = ""
         summaryProc.command = [adapter, reading.drawnAt]
         summaryProc.running = true
+    }
+
+    function loadJournal() {
+        if (!day || journalLoadedDay === day || journalProc.running) return
+        journalAction = "journal-get"
+        journalRequestDay = day
+        journalError = ""
+        journalProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", "journal-get", "--day", day]
+        journalProc.running = true
+    }
+
+    function saveJournal(firstImpression, eveningReflection) {
+        if (!day || journalProc.running) return
+        journalAction = "journal-save"
+        journalRequestDay = day
+        journalError = ""
+        journalSaved = ""
+        journalPayload = JSON.stringify({firstImpression: firstImpression, eveningReflection: eveningReflection}) + "\n"
+        journalProc.command = ["/usr/bin/python3", "-B", pluginDir + "/ominity.py", "journal-save", "--day", day]
+        journalProc.running = true
     }
 
     Timer { id: themeDelay; interval: 160; onTriggered: root.requestTheme() }
@@ -220,6 +277,61 @@ Item {
             }
         }
         onExited: function(code) { if (code !== 0 && !root.constellationError) root.constellationError = "Constellation could not read the local archive." }
+    }
+    Process {
+        id: journalProc
+        stdinEnabled: true
+        onStarted: if (root.journalAction === "journal-save") write(root.journalPayload)
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    var result = JSON.parse(text)
+                    if (!result.ok) throw new Error(result.error || "Journal is unavailable")
+                    if (root.journalRequestDay !== root.day) return
+                    if (root.journalAction === "journal-get") {
+                        root.journal = result.journal || ({firstImpression: "", eveningReflection: ""})
+                        root.journalLoadedDay = root.journalRequestDay
+                    } else {
+                        root.journalLoadedDay = root.journalRequestDay
+                        root.journalSaved = "Saved on this machine."
+                    }
+                } catch (e) { root.journalError = String(e) }
+            }
+        }
+        onExited: function(code) {
+            root.journalPayload = ""
+            if (code !== 0 && !root.journalError) root.journalError = "The journal could not be saved."
+        }
+    }
+    Process {
+        id: archiveProc
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    var result = JSON.parse(text)
+                    if (!result.ok) throw new Error(result.error || "Archive operation failed")
+                    root.archiveMessage = root.archiveAction === "archive-export"
+                        ? "Verified archive created: " + (result.path || "")
+                        : "Archive verified and imported: " + String(result.importedDays || 0) + " new daily records."
+                    if (root.archiveAction === "archive-import") root.openConstellation()
+                } catch (e) { root.archiveMessage = String(e) }
+            }
+        }
+        onExited: function(code) { if (code !== 0 && !root.archiveMessage) root.archiveMessage = "Archive operation failed." }
+    }
+    Process {
+        id: dayProc
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    var result = JSON.parse(text)
+                    if (!result.ok || result.day !== root.historicalDay) throw new Error(result.error || "Historical reading is unavailable")
+                    root.historicalReading = result.reading
+                    root.historicalJournal = result.journal || ({})
+                } catch (e) { root.historicalError = String(e) }
+            }
+        }
+        onExited: function(code) { if (code !== 0 && !root.historicalError) root.historicalError = "Historical reading could not be opened." }
     }
     FileView {
         path: root.adapter
@@ -314,11 +426,17 @@ Item {
         adapterAvailable: root.adapterAvailable
         drawBusy: root.busyAction !== ""
         widgetEnabled: root.widgetEnabled
+        journal: root.journal
+        journalBusy: journalProc.running
+        journalError: root.journalError
+        journalSaved: root.journalSaved
         onCloseRequested: root.closeReading()
         onRedrawRequested: root.redraw()
         onSummaryRequested: root.summarize()
         onWidgetRequested: root.toggleWidget()
         onConstellationRequested: root.openConstellation()
+        onJournalLoadRequested: root.loadJournal()
+        onJournalSaveRequested: function(firstImpression, eveningReflection) { root.saveJournal(firstImpression, eveningReflection) }
     }
 
     Constellation {
@@ -329,6 +447,16 @@ Item {
         stats: root.constellationStats
         entries: root.constellationHistory
         errorText: root.constellationError
+        archiveDefaultPath: root.home + "/Documents/Ominity-" + (root.day || Qt.formatDate(new Date(), "yyyy-MM-dd")) + ".zip"
+        archiveMessage: root.archiveMessage
+        archiveBusy: archiveProc.running
+        historyReading: root.historicalReading
+        historyJournal: root.historicalJournal
+        historyBusy: dayProc.running
+        historyError: root.historicalError
         onCloseRequested: root.constellationOpen = false
+        onDayRequested: function(requestedDay) { root.openHistoricalDay(requestedDay) }
+        onExportRequested: function(path) { root.runArchive("archive-export", path) }
+        onImportRequested: function(path) { root.runArchive("archive-import", path) }
     }
 }

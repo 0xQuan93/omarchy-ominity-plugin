@@ -142,7 +142,8 @@ def _reference_map(records: dict[str, dict], members: dict[str, dict]) -> dict[s
                 target_kind, target_digest = _kind(target)
                 if (target_kind != ("artifact-svg" if field == "master" else "artifact-png")
                         or target_digest != digest or ref.get("format") != media
-                        or target not in members or members[target]["sha256"] != digest):
+                        or target not in members or members[target]["sha256"] != digest
+                        or ref.get("bytes") != members[target]["bytes"]):
                     raise ValueError(f"Daily Om references unavailable artwork: {path}")
     return counts
 

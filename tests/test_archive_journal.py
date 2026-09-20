@@ -74,8 +74,8 @@ class ArchiveTest(unittest.TestCase):
         self._put(f"machine-eras/{self.ERA}.json", canonical_json(envelope("machine-era", era)))
         daily = {"day": self.DAY, "id": "major-17-the-star", "reversed": False,
                  "machine": {"eraId": self.ERA},
-                 "artwork": {"master": {"sha256": svg_hash, "format": "image/svg+xml", "relativePath": svg_path},
-                             "visualWitness": {"sha256": png_hash, "format": "image/png", "relativePath": png_path}}}
+                 "artwork": {"master": {"sha256": svg_hash, "format": "image/svg+xml", "relativePath": svg_path, "bytes": len(svg)},
+                             "visualWitness": {"sha256": png_hash, "format": "image/png", "relativePath": png_path, "bytes": len(png)}}}
         self._put(f"history/2026/{self.DAY}.json", canonical_json(envelope("daily-om", daily)))
         self._put("identity.json", b"secret-identity-must-not-leak")
         journal.save_journal(self.root, self.DAY, "A real reflection", "")

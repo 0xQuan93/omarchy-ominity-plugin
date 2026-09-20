@@ -10,11 +10,13 @@ import json
 import os
 import re
 import secrets
+import sys
 import tempfile
 from contextlib import contextmanager
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+from archive import export_archive, import_archive, verify_archive
 from experience import (canonical_json, capacity_signature, commit_machine_era,
                         envelope, experience_for, experience_seed,
                         installation_seed, load_era_state, prepare_machine_era,
@@ -25,6 +27,7 @@ from living_store import (artwork_status, commit_daily, commit_legacy,
                           list_daily, list_era_records, load_daily, recover,
                           recover_era_updates, stage_era_update, statistics,
                           sync_era_records)
+from journal import load_journal, save_journal
 
 ROOT = Path(__file__).resolve().parent
 STATE_ROOT = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local/state") / "ominity"
@@ -237,7 +240,7 @@ def _new_reading(cards: dict[str, dict], now: datetime, card_id: str, reversed_c
     svg, png = render_daily_art(card, experience, palette)
     return ({"day": day, "id": card_id, "reversed": reversed_card,
              "drawnAt": now.isoformat(timespec="seconds"), "redraw": False,
-             "time": _time_snapshot(now), "deckContentVersion": "1.1.0",
+             "time": _time_snapshot(now), "deckContentVersion": "2.0.0",
              "canonicalSnapshot": dict(card),
              "machine": {"eraId": era_id, "weather": dict(weather)},
              "experience": experience}, svg, png)
@@ -386,16 +389,71 @@ def run(action: str, colors: dict[str, str] | None = None) -> dict:
     raise ValueError(f"Unknown Ominity action: {action}")
 
 
+def run_archive_or_journal(action: str, day: str | None, path: str | None) -> dict:
+    if action not in {"day", "journal-get", "journal-save", "archive-export", "archive-verify", "archive-import"}:
+        raise ValueError(f"Unknown Ominity action: {action}")
+    if action == "archive-verify":
+        if not path:
+            raise ValueError("Archive path is required")
+        return {"ok": True, **verify_archive(Path(path).expanduser())}
+    with state_lock("state.lock"):
+        recover(STATE_ROOT)
+        recover_era_updates(STATE_ROOT)
+        cards = deck()
+        migrate_legacy(load_state(), cards)
+        if action == "day":
+            if not day:
+                raise ValueError("Historical day is required")
+            record = load_daily(STATE_ROOT, day)
+            if record is None:
+                raise ValueError("No Daily Om is recorded for this day")
+            return {"ok": True, "day": day, "reading": _display(record, cards),
+                    "journal": load_journal(STATE_ROOT, day)}
+        if action in {"journal-get", "journal-save"}:
+            journal_day = day or datetime.now().astimezone().date().isoformat()
+            if load_daily(STATE_ROOT, journal_day) is None:
+                raise ValueError("Draw a card for this day before writing a journal entry")
+            if action == "journal-get":
+                return {"ok": True, "journal": load_journal(STATE_ROOT, journal_day)}
+            raw = sys.stdin.readline(131073)
+            if not raw or len(raw) > 131072:
+                raise ValueError("Journal input is missing or too large")
+            submitted = json.loads(raw, object_pairs_hook=_unique_pairs)
+            if not isinstance(submitted, dict) or set(submitted) != {"firstImpression", "eveningReflection"}:
+                raise ValueError("Journal input must contain firstImpression and eveningReflection")
+            saved = save_journal(STATE_ROOT, journal_day, submitted["firstImpression"],
+                                 submitted["eveningReflection"])
+            return {"ok": True, "journal": saved}
+        if not path:
+            raise ValueError("Archive path is required")
+        archive_path = Path(path).expanduser()
+        if action == "archive-export":
+            result = export_archive(STATE_ROOT, archive_path)
+            verified = verify_archive(archive_path)
+            if verified["archiveId"] != result["archiveId"]:
+                raise ValueError("Exported Ominity archive did not verify")
+            return {"ok": True, **result}
+        before = len(list_daily(STATE_ROOT))
+        result = import_archive(archive_path, STATE_ROOT)
+        return {"ok": True, **result,
+                "importedDays": len(list_daily(STATE_ROOT)) - before}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", nargs="?", default="state")
+    parser.add_argument("--day")
+    parser.add_argument("--path")
     for role in ("background", "foreground", "accent", "muted"):
         parser.add_argument("--" + role)
     args = parser.parse_args()
     colors = {role: getattr(args, role) for role in ("background", "foreground", "accent", "muted")
               if getattr(args, role) is not None}
     try:
-        print(json.dumps(run(args.action, colors or None), ensure_ascii=False))
+        result = (run_archive_or_journal(args.action, args.day, args.path)
+                  if args.action in {"day", "journal-get", "journal-save", "archive-export", "archive-verify", "archive-import"}
+                  else run(args.action, colors or None))
+        print(json.dumps(result, ensure_ascii=False))
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
         print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
         raise SystemExit(1)

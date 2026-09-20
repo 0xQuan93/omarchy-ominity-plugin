@@ -22,6 +22,10 @@ PanelWindow {
     property bool adapterAvailable: false
     property bool drawBusy: false
     property bool widgetEnabled: false
+    property var journal: ({firstImpression: "", eveningReflection: ""})
+    property bool journalBusy: false
+    property string journalError: ""
+    property string journalSaved: ""
     property real flipProgress: 0
     property string page: "reading"
     readonly property string bodyFont: "Noto Sans"
@@ -43,6 +47,8 @@ PanelWindow {
     signal summaryRequested()
     signal widgetRequested()
     signal constellationRequested()
+    signal journalLoadRequested()
+    signal journalSaveRequested(string firstImpression, string eveningReflection)
 
     function resetForDraw() {
         flipAnimation.stop()
@@ -57,6 +63,10 @@ PanelWindow {
         flipAnimation.start()
     }
     onPageChanged: detailScroll.contentY = 0
+    onJournalChanged: {
+        firstImpression.text = journal.firstImpression || ""
+        eveningReflection.text = journal.eveningReflection || ""
+    }
 
     visible: false
     anchors { top: true; bottom: true; left: true; right: true }
@@ -82,7 +92,10 @@ PanelWindow {
         anchors.fill: parent
         focus: root.opened
         Keys.onEscapePressed: root.closeRequested()
-        Keys.onSpacePressed: root.turn()
+        Keys.onSpacePressed: function(event) {
+            if (firstImpression.activeFocus || eveningReflection.activeFocus) { event.accepted = false; return }
+            root.turn()
+        }
 
         Item {
             id: cardMount
@@ -136,6 +149,17 @@ PanelWindow {
                     asynchronous: true
                     visible: root.reading && root.drawTurn >= 0.5
                     rotation: root.reading && root.reading.reversed ? 180 : 0
+                }
+                Rectangle {
+                    visible: root.reading && root.reading.archiveStatus !== "verified-original" && root.drawTurn >= 0.5
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 9
+                    width: label.implicitWidth + 18
+                    height: label.implicitHeight + 8
+                    radius: 3
+                    color: Qt.alpha(Color.background, 0.9)
+                    Text { id: label; anchors.centerIn: parent; text: "CURRENT DECK RECONSTRUCTION"; color: Color.foreground; font.family: root.bodyFont; font.pixelSize: 10; font.letterSpacing: 0.8 }
                 }
                 MouseArea {
                     anchors.fill: parent
@@ -228,6 +252,7 @@ PanelWindow {
                         Ui.Button { fontFamily: root.bodyFont; text: "Meaning"; selected: root.page === "reading"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "reading" }
                         Ui.Button { fontFamily: root.bodyFont; text: "Deeper"; selected: root.page === "explore"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "explore" }
                         Ui.Button { fontFamily: root.bodyFont; text: "Tarot guide"; selected: root.page === "guide"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: root.page = "guide" }
+                        Ui.Button { fontFamily: root.bodyFont; text: "Journal"; selected: root.page === "journal"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 8; onClicked: { root.page = "journal"; root.journalLoadRequested() } }
                     }
 
                     Flickable {
@@ -398,6 +423,81 @@ PanelWindow {
                                 lineHeight: 1.22
                             }
                             Text {
+                                width: parent.width
+                                visible: root.page === "journal"
+                                text: "Your own words stay on this machine and can travel with a verified Ominity archive."
+                                color: Color.foreground
+                                opacity: 0.8
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(13, Style.font.bodySmall)
+                                wrapMode: Text.Wrap
+                            }
+                            Text {
+                                width: parent.width
+                                visible: root.page === "journal"
+                                text: "FIRST IMPRESSION"
+                                color: Color.accent
+                                font.family: root.bodyFont
+                                font.pixelSize: 11
+                                font.letterSpacing: 1
+                            }
+                            Rectangle {
+                                width: parent.width
+                                height: root.page === "journal" ? 132 : 0
+                                visible: root.page === "journal"
+                                radius: 4
+                                color: Qt.alpha(Color.foreground, 0.04)
+                                border.color: Qt.alpha(Color.accent, 0.35)
+                                TextEdit {
+                                    id: firstImpression
+                                    anchors.fill: parent
+                                    anchors.margins: 10
+                                    color: Color.foreground
+                                    selectionColor: Qt.alpha(Color.accent, 0.5)
+                                    font.family: root.bodyFont
+                                    font.pixelSize: Math.max(14, Style.font.body)
+                                    wrapMode: TextEdit.Wrap
+                                    text: ""
+                                }
+                            }
+                            Text {
+                                width: parent.width
+                                visible: root.page === "journal"
+                                text: "EVENING REFLECTION"
+                                color: Color.accent
+                                font.family: root.bodyFont
+                                font.pixelSize: 11
+                                font.letterSpacing: 1
+                            }
+                            Rectangle {
+                                width: parent.width
+                                height: root.page === "journal" ? 132 : 0
+                                visible: root.page === "journal"
+                                radius: 4
+                                color: Qt.alpha(Color.foreground, 0.04)
+                                border.color: Qt.alpha(Color.accent, 0.35)
+                                TextEdit {
+                                    id: eveningReflection
+                                    anchors.fill: parent
+                                    anchors.margins: 10
+                                    color: Color.foreground
+                                    selectionColor: Qt.alpha(Color.accent, 0.5)
+                                    font.family: root.bodyFont
+                                    font.pixelSize: Math.max(14, Style.font.body)
+                                    wrapMode: TextEdit.Wrap
+                                    text: ""
+                                }
+                            }
+                            Text {
+                                width: parent.width
+                                visible: root.page === "journal" && (root.journalError !== "" || root.journalSaved !== "")
+                                text: root.journalError || root.journalSaved
+                                color: root.journalError ? Color.urgent : Color.accent
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(12, Style.font.bodySmall)
+                                wrapMode: Text.Wrap
+                            }
+                            Text {
                                 renderType: Text.CurveRendering
                                 width: parent.width
                                 visible: root.errorText !== "" || root.summaryError !== ""
@@ -410,12 +510,15 @@ PanelWindow {
                         }
                     }
 
-                    Row {
+                    Flow {
                         id: actions
+                        width: parent.width
+                        height: childrenRect.height
                         spacing: 6
                         Ui.Button { fontFamily: root.bodyFont; text: "↶ Art"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.turn() }
                         Ui.Button { fontFamily: root.bodyFont; text: "Draw again"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.drawBusy; onClicked: root.redrawRequested() }
                         Ui.Button { fontFamily: root.bodyFont; text: "✦ Constellation"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.constellationRequested() }
+                        Ui.Button { fontFamily: root.bodyFont; visible: root.page === "journal"; text: root.journalBusy ? "Saving…" : "Save"; enabled: !root.journalBusy; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; onClicked: root.journalSaveRequested(firstImpression.text, eveningReflection.text) }
                         Ui.Button { fontFamily: root.bodyFont; visible: root.adapterAvailable; text: root.summaryBusy ? "Reading…" : "Ask Zephyr"; focusable: true; fontSize: Math.max(13, Style.font.bodySmall); horizontalPadding: 7; enabled: !root.summaryBusy; onClicked: root.summaryRequested() }
                     }
                 }
