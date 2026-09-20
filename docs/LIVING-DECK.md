@@ -212,8 +212,9 @@ Suggested layout:
 │       └── 2026-09-20.json
 └── artifacts/
     └── sha256/
-        └── 9f/
-            ├── 9f83...a21.svg
+        ├── 9f/
+        │   └── 9f83...a21.svg
+        └── ab/
             └── ab41...91c.png
 ```
 
@@ -436,7 +437,7 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - archive the finalized rendered SVG structural master and lossless PNG visual witness into a content-addressed SHA-256 artifact store
 - write both archived artifacts atomically and verify each digest before historical display
 - historical exact-view mode uses the PNG witness so external font/SVG changes cannot alter the recorded appearance
-- preserve renderer/theme/machine inputs as provenance metadata while treating archived SVG bytes as visual source of truth
+- preserve renderer/theme/machine inputs as provenance metadata while treating the SVG as the structural master and the lossless PNG witness as the visual source of truth
 - support clearly labeled reconstruction only when a legacy/damaged artifact lacks original artwork
 - preserve the bundled static deck as fallback
 
