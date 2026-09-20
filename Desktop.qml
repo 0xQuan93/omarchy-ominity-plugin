@@ -372,6 +372,8 @@ Item {
         function journal(): void { root.openReading(); readingWindow.page = "journal"; readingWindow.flipProgress = 1; root.loadJournal() }
         function widget(): void { root.toggleWidget() }
         function constellation(): void { root.openConstellation() }
+        function archive(): void { root.openConstellation(); constellationWindow.archiveOpen = true; constellationWindow.archiveMode = "export"; constellationWindow.archivePath = constellationWindow.archiveDefaultPath }
+        function history(requestedDay: string): void { root.openConstellation(); constellationWindow.historyOpen = true; root.openHistoricalDay(requestedDay) }
         function status(): string { return JSON.stringify({open: root.overlayOpen, widget: root.widgetEnabled, day: root.day, card: root.card.id || "", face: readingWindow.flipProgress > 0.5 ? "details" : "art", themeReady: root.themedDirectory !== ""}) }
     }
     Timer {
