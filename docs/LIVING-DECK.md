@@ -26,21 +26,27 @@ Create a private random installation secret on first run:
 Mode 0600:
 
 ```json
-{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<256-bit random value>"}}
+{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<256-bit random value>"}}}
 ```
 
-For a daily reading derive a deterministic seed with HMAC-SHA256:
+For a daily reading derive a deterministic seed with HMAC-SHA256 over a byte-exact framed message. The HMAC message is the UTF-8 RFC 8785 canonicalization of exactly this logical object:
+
+```json
+{
+  "cardId":"major-17-the-star",
+  "localDate":"2026-09-20",
+  "machineSignature":{"cpu":"C3","memory":"M4","storage":"D4"},
+  "orientation":"upright",
+  "protocol":"ominity-experience-v1"
+}
+```
 
 ```text
-experience_seed = HMAC(
-  installation_seed,
-  "ominity-experience-v1" ||
-  local_date ||
-  card_id ||
-  orientation ||
-  machine_signature
-)
+message_bytes = UTF8(RFC8785(message_object))
+experience_seed = HMAC-SHA256(installation_seed_bytes, message_bytes)
 ```
+
+The installation seed is decoded from its specified stored representation to the original 32 bytes before use as the HMAC key. No ad-hoc concatenation, delimiter scheme, locale-dependent formatting, or implementation-specific JSON serialization participates in experience derivation.
 
 The installation seed prevents two otherwise identical computers from producing identical experiences. The version string lets future releases evolve the algorithm without silently changing old records.
 
@@ -335,6 +341,42 @@ Import is verify-first: validate manifest paths against traversal, enforce size/
 
 Archive manifests should support incremental export so decades of unchanged content-addressed artifacts need not be recopied unnecessarily. A future backup UI can show last verified export date without requiring cloud services.
 
+Normative archive-manifest shape (the manifest **does not list or hash itself**, avoiding recursive integrity):
+
+```json
+{
+  "integrity":{
+    "algorithm":"sha256",
+    "canonicalization":"RFC8785",
+    "digest":"<sha256 of canonical record>"
+  },
+  "record":{
+    "schemaVersion":1,
+    "type":"archive-manifest",
+    "payload":{
+      "archiveId":"019a5c72-10f2-7d30-8e42-30ec4ec57d51",
+      "createdAt":"2026-09-20T10:45:00Z",
+      "members":[
+        {
+          "path":"history/2026/2026-09-20.json",
+          "mediaType":"application/json",
+          "bytes":4821,
+          "sha256":"<64 hex chars>"
+        },
+        {
+          "path":"artifacts/sha256/ab/ab41...91c.png",
+          "mediaType":"image/png",
+          "bytes":412881,
+          "sha256":"<64 hex chars>"
+        }
+      ]
+    }
+  }
+}
+```
+
+Member paths are normalized relative POSIX paths: no absolute paths, empty segments, `.`, `..`, backslashes, NULs, or symlink traversal. Member byte counts are checked before allocation/extraction and digests are verified before transactional import. Members are sorted lexicographically by `path` for deterministic export presentation; manifest integrity itself is defined by RFC 8785, not array reordering.
+
 ### Storage budget
 
 Longevity matters more than minimizing a few megabytes. At one Daily Om per day, even a conservative 500 KiB average visual witness is about 178 MiB/year, 1.74 GiB/decade, and roughly 7 GiB over 40 years before filesystem compression or image optimization. The SVG and JSON metadata are comparatively small.
@@ -416,13 +458,14 @@ An era record uses the same integrity envelope:
     "displayLabel":"Machine Era 02",
     "started":"2031-08-15",
     "ended":null,
-    "classes":{"cpu":"C4","memory":"M5","storage":"D5"},
-    "dailyOms":0
+    "classes":{"cpu":"C4","memory":"M5","storage":"D5"}
   }
 }
 ```
 
 Machine Era durable IDs must be collision-resistant across independent installations/imports (UUIDv7 is the reference format). Sequential ordinals such as “01” and “02” are presentation metadata only and must never be used as references or uniqueness keys. Each Daily Om stores the collision-resistant Machine Era ID. Constellation can then show the user's history in chapters such as **Machine Era 01** without claiming to identify a physical device.
+
+Do not store canonical Daily Om counts in the Machine Era record. Counts, percentages, first/last encounter dates, and similar aggregates are derived from verified canonical Daily Oms. Performance caches are allowed only when explicitly marked rebuildable/non-authoritative and must be safe to delete and regenerate.
 
 To avoid creating a new era for transient configuration changes, require confirmation across multiple launches/days before closing the current era. Upgrades are part of the story: a RAM or storage upgrade may either remain within the era with a milestone event or begin a new era according to a documented material-change threshold.
 
@@ -624,6 +667,7 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - every persistent record hashes its complete RFC 8785-canonicalized `record` object, including schemaVersion and type, under an explicit integrity envelope
 - changing schemaVersion/type invalidates the stored digest
 - implementations use byte-exact RFC 8785 JCS rather than implementation-specific JSON serialization
+- experience HMAC framing is UTF-8 RFC 8785 canonical JSON with an explicit protocol field; no ambiguous concatenation is allowed
 - unsupported canonicalization/integrity algorithms are reported as unsupported, not corrupt
 - Machine Era durable IDs are collision-resistant across independent archives; ordinals are display-only
 - normative examples remain consistent with all RFC invariants
@@ -635,7 +679,9 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - disk-full/permission/render/hash/fsync failure before the commit marker never returns an uncommitted Daily Om as canonical
 - portable archive export enumerates files with hashes/sizes and import verifies before transactional commit
 - archive import prevents path traversal, enforces resource limits, and never overwrites conflicting canonical history
+- Machine Era encounter counts/aggregates are derived from canonical Daily Oms or rebuildable caches, never authoritative era fields
 - imported Machine Eras remain historical and are not reassigned to the receiving machine
+- archive manifest is a normative shared-envelope record, enumerates member path/media type/byte size/SHA-256, and explicitly excludes itself
 - importing independent archives with identical era ordinals cannot collide because references use durable collision-resistant IDs
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
