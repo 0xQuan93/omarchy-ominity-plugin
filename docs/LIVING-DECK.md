@@ -167,8 +167,9 @@ Extend the reading object without breaking existing consumers:
     "visualWitness":{
       "sha256":"<64 hex chars>",
       "format":"image/png",
-      "width":1200,
-      "height":2000,
+      "width":1400,
+      "height":2400,
+      "aspectRatio":"7:12",
       "relativePath":"artifacts/sha256/ab/ab41...91c.png"
     }
   },
@@ -218,7 +219,9 @@ Suggested layout:
             └── ab41...91c.png
 ```
 
-Compute SHA-256 independently over the final SVG bytes and lossless PNG bytes and write both assets atomically with mode 0600. The Daily Om stores both digests, media types, the witness dimensions, renderer/experience version, and relative artifact paths.
+Compute SHA-256 independently over the final SVG bytes and lossless PNG bytes. The visual witness must preserve the card's canonical 7:12 geometry; the reference archival size is 1400×2400 (5× the current 280×480 logical card) with no implicit crop or padding. If another witness resolution is introduced later, it must retain 7:12 or explicitly version and snapshot the capture canvas/padding semantics.
+
+The Daily Om stores both digests, media types, witness dimensions/aspect ratio, renderer/experience version, and relative artifact paths.
 
 Historical display defaults to the verified PNG visual witness when exact visual reproduction matters. The SVG remains available as the inspectable/vector structural master. This distinction prevents an unchanged SVG from rendering differently decades later because an external font, SVG engine, or glyph-layout implementation changed.
 
@@ -230,6 +233,28 @@ Content addressing provides natural deduplication: identical rendered bytes need
 - **Artwork unavailable** — a legacy or damaged record lacks its original assets; Ominity may offer a clearly labeled reconstruction but must not present it as the original.
 
 The user owns these files and may edit, copy, or delete them. Verification describes provenance; it does not enforce immutability.
+
+### Transactional finalization
+
+A Daily Om is committed as a unit. Atomic writes for individual files are not sufficient because a crash could otherwise publish canonical history before both visual artifacts exist.
+
+Use a JSON-last commit protocol:
+
+1. create a private staging transaction under the Ominity state directory;
+2. write the finalized SVG, PNG witness, and Daily Om JSON candidate into staging with mode 0600;
+3. compute and verify both artifact digests against the candidate record;
+4. flush and `fsync` staged artifact files;
+5. atomically publish the SVG and PNG into their content-addressed locations (reusing an already-present object only after verifying its digest);
+6. `fsync` the artifact directories so those renames are durable;
+7. only then atomically publish the canonical Daily Om history JSON;
+8. `fsync` the history directory; the JSON publication is the **commit marker**;
+9. remove the staging transaction.
+
+Canonical history must never reference an artifact that has not already been durably published and verified.
+
+On startup, recovery scans abandoned staging transactions. If no history commit marker exists, it may safely remove the staging files; already-published content-addressed objects may be retained for deduplication or garbage-collected when unreferenced. If the history JSON exists, both referenced artifacts must already verify by construction. Recovery operations must be idempotent so repeated crashes do not create duplicate canonical Daily Oms.
+
+This ordering gives Ominity a simple crash-consistency invariant: **no committed Daily Om without both original artifacts**.
 
 The archived SVG is the structural source artifact; the lossless PNG is the visual source of truth for a historical Daily Om. Renderer inputs (theme palette, machine buckets, art variant, symbol variant, renderer version, display scale) remain useful provenance metadata and may be stored as well, but must not replace either archived artifact.
 
@@ -435,6 +460,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - map machine weather to neutral visual parameters
 - include experience version + variant in themed cache keys
 - archive the finalized rendered SVG structural master and lossless PNG visual witness into a content-addressed SHA-256 artifact store
+- finalize Daily Oms transactionally with staged writes, artifact-first durable publication, and history-JSON-last commit semantics
+- fsync artifact files/directories before publishing canonical history
+- recover abandoned staging transactions idempotently on startup
 - write both archived artifacts atomically and verify each digest before historical display
 - historical exact-view mode uses the PNG witness so external font/SVG changes cannot alter the recorded appearance
 - preserve renderer/theme/machine inputs as provenance metadata while treating the SVG as the structural master and the lossless PNG witness as the visual source of truth
@@ -481,6 +509,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - finalized Daily Oms preserve both the exact generated SVG structural master and a lossless PNG visual witness
 - structural master and visual witness are independently SHA-256 verified before being labeled original
 - verified visual reproduction does not depend on the current system font stack
+- PNG witnesses preserve the canonical 7:12 card geometry (reference size 1400×2400)
+- canonical history JSON is never published before both referenced artifacts are durably present and verified
+- crash recovery cannot create duplicate canonical Daily Oms and safely handles abandoned staging data
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
