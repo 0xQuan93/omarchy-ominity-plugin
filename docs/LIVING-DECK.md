@@ -215,6 +215,7 @@ Extend the reading object without breaking existing consumers:
     }
   }
   }
+  }
 }
 ```
 
@@ -459,6 +460,7 @@ An era record uses the same integrity envelope:
     "started":"2031-08-15",
     "ended":null,
     "classes":{"cpu":"C4","memory":"M5","storage":"D5"}
+    }
   }
 }
 ```
@@ -501,6 +503,7 @@ Recommended persisted shape:
     "day":"2026-09-20",
     "firstImpression":"...",
     "eveningReflection":"..."
+    }
   }
 }
 ```
