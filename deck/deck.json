@@ -22,6 +22,7 @@
       "trust",
       "possibility"
     ],
+    "art_note": "A traveler pauses at a cut in the stone while the little dog faces the open sky.",
     "art": "assets/cards/major-00-the-fool.svg"
   },
   {
@@ -47,6 +48,7 @@
       "craft",
       "focus"
     ],
+    "art_note": "One hand reaches into the halo; the other points to four tools on the worktable.",
     "art": "assets/cards/major-01-the-magician.svg"
   },
   {
@@ -72,6 +74,7 @@
       "stillness",
       "inner knowing"
     ],
+    "art_note": "The moon hangs in the narrow space between two pillars, with water visible beyond the veil.",
     "art": "assets/cards/major-02-the-high-priestess.svg"
   },
   {
@@ -97,6 +100,7 @@
       "care",
       "creation"
     ],
+    "art_note": "Grain rises around the seated figure, while a river threads through the garden behind her.",
     "art": "assets/cards/major-03-the-empress.svg"
   },
   {
@@ -122,6 +126,7 @@
       "stewardship",
       "boundary"
     ],
+    "art_note": "The mountain and the throne echo each other's hard geometry, but a small flame remains free.",
     "art": "assets/cards/major-04-the-emperor.svg"
   },
   {
@@ -147,6 +152,7 @@
       "learning",
       "ritual"
     ],
+    "art_note": "Two small listeners stand beneath an arch as the teacher opens a book above crossed keys.",
     "art": "assets/cards/major-05-the-hierophant.svg"
   },
   {
@@ -172,6 +178,7 @@
       "union",
       "integrity"
     ],
+    "art_note": "Two figures face one another across a narrow path, with trees framing the same sun.",
     "art": "assets/cards/major-06-the-lovers.svg"
   },
   {
@@ -197,6 +204,7 @@
       "movement",
       "self command"
     ],
+    "art_note": "A still driver holds a line between a pale horse and a dark horse beneath a canopy of stars.",
     "art": "assets/cards/major-07-the-chariot.svg"
   },
   {
@@ -222,6 +230,7 @@
       "patience",
       "compassion"
     ],
+    "art_note": "A human hand rests on the lion's mane; the infinity loop floats above their shared calm.",
     "art": "assets/cards/major-08-strength.svg"
   },
   {
@@ -247,6 +256,7 @@
       "insight",
       "discernment"
     ],
+    "art_note": "The lantern lights only the next turn of a steep path, leaving the farther mountain unresolved.",
     "art": "assets/cards/major-09-the-hermit.svg"
   },
   {
@@ -272,6 +282,7 @@
       "timing",
       "adaptation"
     ],
+    "art_note": "Four tiny stars keep their corners while the eight-spoked wheel turns in the center.",
     "art": "assets/cards/major-10-wheel-of-fortune.svg"
   },
   {
@@ -297,6 +308,7 @@
       "accountability",
       "clarity"
     ],
+    "art_note": "A sword divides the space vertically; the two pans hang level in front of a seated witness.",
     "art": "assets/cards/major-11-justice.svg"
   },
   {
@@ -322,6 +334,7 @@
       "perspective",
       "release"
     ],
+    "art_note": "The suspended figure's face sits inside a bright halo as the entire landscape turns around them.",
     "art": "assets/cards/major-12-the-hanged-man.svg"
   },
   {
@@ -347,6 +360,7 @@
       "renewal",
       "transition"
     ],
+    "art_note": "A dark gate frames a setting sun, and one new shoot crosses the threshold.",
     "art": "assets/cards/major-13-death.svg"
   },
   {
@@ -372,6 +386,7 @@
       "integration",
       "patience"
     ],
+    "art_note": "A stream travels between two vessels in the hands of a figure standing in two waters.",
     "art": "assets/cards/major-14-temperance.svg"
   },
   {
@@ -397,6 +412,7 @@
       "temptation",
       "agency"
     ],
+    "art_note": "The chains look heavy, yet each can be opened by a figure beneath the shadow.",
     "art": "assets/cards/major-15-the-devil.svg"
   },
   {
@@ -422,6 +438,7 @@
       "truth",
       "rebuilding"
     ],
+    "art_note": "The lightning strikes the crown of the tower; falling stones expose a clear patch of ground.",
     "art": "assets/cards/major-16-the-tower.svg"
   },
   {
@@ -447,6 +464,7 @@
       "renewal",
       "trust"
     ],
+    "art_note": "The largest star shines over a figure who pours water both into the pool and onto the earth.",
     "art": "assets/cards/major-17-the-star.svg"
   },
   {
@@ -472,6 +490,7 @@
       "dream",
       "uncertainty"
     ],
+    "art_note": "Two watchful animals flank a wavering path that disappears between distant towers.",
     "art": "assets/cards/major-18-the-moon.svg"
   },
   {
@@ -497,6 +516,7 @@
       "vitality",
       "openness"
     ],
+    "art_note": "A rider and horse move through sunflowers beneath a sun that takes up nearly the whole sky.",
     "art": "assets/cards/major-19-the-sun.svg"
   },
   {
@@ -522,6 +542,7 @@
       "review",
       "renewal"
     ],
+    "art_note": "A call passes across the horizon as three figures rise from separate stone frames.",
     "art": "assets/cards/major-20-judgement.svg"
   },
   {
@@ -547,6 +568,7 @@
       "belonging",
       "integration"
     ],
+    "art_note": "A dancer steps inside an unclosed wreath, with four witnesses at the edges of the world.",
     "art": "assets/cards/major-21-the-world.svg"
   },
   {
@@ -572,6 +594,7 @@
       "initiative",
       "energy"
     ],
+    "art_note": "A single sprouting staff catches fire while an open hand offers it to the world.",
     "art": "assets/cards/wands-01-ace.svg"
   },
   {
@@ -597,6 +620,7 @@
       "vision",
       "choice"
     ],
+    "art_note": "Two staffs frame a traveler above the parapet, with an entire horizon still to choose.",
     "art": "assets/cards/wands-02-two.svg"
   },
   {
@@ -622,6 +646,7 @@
       "feedback",
       "patience"
     ],
+    "art_note": "Ships have already left the shore; the three staffs keep watch for what returns.",
     "art": "assets/cards/wands-03-three.svg"
   },
   {
@@ -647,6 +672,7 @@
       "milestone",
       "community"
     ],
+    "art_note": "Four living posts hold a garland over the small figures gathered below it.",
     "art": "assets/cards/wands-04-four.svg"
   },
   {
@@ -672,6 +698,7 @@
       "practice",
       "negotiation"
     ],
+    "art_note": "Five staffs cross at different angles, turning shared fire into useful friction.",
     "art": "assets/cards/wands-05-five.svg"
   },
   {
@@ -697,6 +724,7 @@
       "confidence",
       "gratitude"
     ],
+    "art_note": "A rider carries the laurel through a street full of little answering lights.",
     "art": "assets/cards/wands-06-six.svg"
   },
   {
@@ -722,6 +750,7 @@
       "boundary",
       "resolve"
     ],
+    "art_note": "One figure stands on the dark ridge while six staffs rise from below.",
     "art": "assets/cards/wands-07-seven.svg"
   },
   {
@@ -747,6 +776,7 @@
       "message",
       "momentum"
     ],
+    "art_note": "Eight staffs streak across open air toward a landing place still out of view.",
     "art": "assets/cards/wands-08-eight.svg"
   },
   {
@@ -772,6 +802,7 @@
       "wariness",
       "rest"
     ],
+    "art_note": "The watchful figure stands before a fence of eight staffs, one more at hand.",
     "art": "assets/cards/wands-09-nine.svg"
   },
   {
@@ -797,6 +828,7 @@
       "limits",
       "completion"
     ],
+    "art_note": "A heavy bundle leans over a kneeling traveler while the town is already near.",
     "art": "assets/cards/wands-10-ten.svg"
   },
   {
@@ -822,6 +854,7 @@
       "discovery",
       "play"
     ],
+    "art_note": "The Page studies a living flame at the tip of a staff rather than a finished map.",
     "art": "assets/cards/wands-11-page.svg"
   },
   {
@@ -847,6 +880,7 @@
       "drive",
       "direction"
     ],
+    "art_note": "Horse and rider cut through the hot landscape with the wand held forward.",
     "art": "assets/cards/wands-12-knight.svg"
   },
   {
@@ -872,6 +906,7 @@
       "leadership",
       "warmth"
     ],
+    "art_note": "The Queen keeps a sunflower-like light above her garden and its watchful cat.",
     "art": "assets/cards/wands-13-queen.svg"
   },
   {
@@ -897,6 +932,7 @@
       "stewardship",
       "enterprise"
     ],
+    "art_note": "The King's angular seat and lit staff turn raw fire into a place to build.",
     "art": "assets/cards/wands-14-king.svg"
   },
   {
@@ -922,6 +958,7 @@
       "openness",
       "care"
     ],
+    "art_note": "Water pours from the great chalice on both sides, making room beyond its rim.",
     "art": "assets/cards/cups-01-ace.svg"
   },
   {
@@ -947,6 +984,7 @@
       "mutuality",
       "trust"
     ],
+    "art_note": "Two figures meet across the bridge and raise their cups into the same space.",
     "art": "assets/cards/cups-02-two.svg"
   },
   {
@@ -972,6 +1010,7 @@
       "celebration",
       "support"
     ],
+    "art_note": "Three friends and three cups complete a circle that leaves room to enter.",
     "art": "assets/cards/cups-03-three.svg"
   },
   {
@@ -997,6 +1036,7 @@
       "pause",
       "awareness"
     ],
+    "art_note": "The offered cup floats beside the tree while the seated figure looks inward.",
     "art": "assets/cards/cups-04-four.svg"
   },
   {
@@ -1022,6 +1062,7 @@
       "grief",
       "remaining gifts"
     ],
+    "art_note": "Spilled vessels lie near the grieving figure; two full cups remain beyond.",
     "art": "assets/cards/cups-05-five.svg"
   },
   {
@@ -1047,6 +1088,7 @@
       "kindness",
       "innocence"
     ],
+    "art_note": "Two small figures share a flower cup in an old courtyard under a round window.",
     "art": "assets/cards/cups-06-six.svg"
   },
   {
@@ -1072,6 +1114,7 @@
       "options",
       "discernment"
     ],
+    "art_note": "Seven translucent vessels present dreams, but only one path begins at the bottom.",
     "art": "assets/cards/cups-07-seven.svg"
   },
   {
@@ -1097,6 +1140,7 @@
       "search",
       "release"
     ],
+    "art_note": "Eight cups remain at the shore as the traveler walks toward the moonlit rise.",
     "art": "assets/cards/cups-08-eight.svg"
   },
   {
@@ -1122,6 +1166,7 @@
       "gratitude",
       "pleasure"
     ],
+    "art_note": "The seated figure rests before a shelf of cups, allowing enoughness to be seen.",
     "art": "assets/cards/cups-09-nine.svg"
   },
   {
@@ -1147,6 +1192,7 @@
       "harmony",
       "shared joy"
     ],
+    "art_note": "A bright arch of cups rises over a home and the people who tend it.",
     "art": "assets/cards/cups-10-ten.svg"
   },
   {
@@ -1172,6 +1218,7 @@
       "message",
       "sensitivity"
     ],
+    "art_note": "A small fish surfaces from the Page's cup like a message from another world.",
     "art": "assets/cards/cups-11-page.svg"
   },
   {
@@ -1197,6 +1244,7 @@
       "offering",
       "integrity"
     ],
+    "art_note": "The Knight offers a cup while the horse pauses before the crossing.",
     "art": "assets/cards/cups-12-knight.svg"
   },
   {
@@ -1222,6 +1270,7 @@
       "intuition",
       "containment"
     ],
+    "art_note": "The Queen sits by moving water with an ornate vessel held within reach.",
     "art": "assets/cards/cups-13-queen.svg"
   },
   {
@@ -1247,6 +1296,7 @@
       "care",
       "maturity"
     ],
+    "art_note": "The King's throne stays centered while water moves on either side.",
     "art": "assets/cards/cups-14-king.svg"
   },
   {
@@ -1272,6 +1322,7 @@
       "truth",
       "insight"
     ],
+    "art_note": "A single blade passes through a crown and opens a field of clear light.",
     "art": "assets/cards/swords-01-ace.svg"
   },
   {
@@ -1297,6 +1348,7 @@
       "stalemate",
       "information"
     ],
+    "art_note": "Crossed swords guard a seated figure whose covered eyes face the sea.",
     "art": "assets/cards/swords-02-two.svg"
   },
   {
@@ -1322,6 +1374,7 @@
       "truth",
       "care"
     ],
+    "art_note": "Three blades pierce one heart while rain marks the space around it.",
     "art": "assets/cards/swords-03-three.svg"
   },
   {
@@ -1347,6 +1400,7 @@
       "recovery",
       "quiet"
     ],
+    "art_note": "A resting figure lies below the bright window with three blades laid aside.",
     "art": "assets/cards/swords-04-four.svg"
   },
   {
@@ -1372,6 +1426,7 @@
       "cost",
       "repair"
     ],
+    "art_note": "Scattered swords surround the central figure as others leave the field.",
     "art": "assets/cards/swords-05-five.svg"
   },
   {
@@ -1397,6 +1452,7 @@
       "passage",
       "relief"
     ],
+    "art_note": "Six swords travel upright in the boat, carried rather than denied.",
     "art": "assets/cards/swords-06-six.svg"
   },
   {
@@ -1422,6 +1478,7 @@
       "secrecy",
       "ethics"
     ],
+    "art_note": "Five blades travel with a quiet figure while two remain by the tents.",
     "art": "assets/cards/swords-07-seven.svg"
   },
   {
@@ -1447,6 +1504,7 @@
       "fear",
       "agency"
     ],
+    "art_note": "The sword ring has a visible opening even as the figure stands inside it.",
     "art": "assets/cards/swords-08-eight.svg"
   },
   {
@@ -1472,6 +1530,7 @@
       "night",
       "support"
     ],
+    "art_note": "Nine cuts of light hover above the bed in the room of sleepless thought.",
     "art": "assets/cards/swords-09-nine.svg"
   },
   {
@@ -1497,6 +1556,7 @@
       "exhaustion",
       "dawn"
     ],
+    "art_note": "Ten blades stand at a hard horizon while dawn begins behind them.",
     "art": "assets/cards/swords-10-ten.svg"
   },
   {
@@ -1522,6 +1582,7 @@
       "vigilance",
       "learning"
     ],
+    "art_note": "The Page lifts one precise blade into wind that has no fixed direction.",
     "art": "assets/cards/swords-11-page.svg"
   },
   {
@@ -1547,6 +1608,7 @@
       "argument",
       "focus"
     ],
+    "art_note": "The Knight's horse breaks forward under a blade angled into the storm.",
     "art": "assets/cards/swords-12-knight.svg"
   },
   {
@@ -1572,6 +1634,7 @@
       "independence",
       "honesty"
     ],
+    "art_note": "The Queen's upright sword rises beside an open seat and a clearing sky.",
     "art": "assets/cards/swords-13-queen.svg"
   },
   {
@@ -1597,6 +1660,7 @@
       "authority",
       "judgment"
     ],
+    "art_note": "The King's blade and paired wing marks place judgment inside a wider view.",
     "art": "assets/cards/swords-14-king.svg"
   },
   {
@@ -1622,6 +1686,7 @@
       "resources",
       "seed"
     ],
+    "art_note": "A hand brings a marked coin through the garden gate toward workable ground.",
     "art": "assets/cards/pentacles-01-ace.svg"
   },
   {
@@ -1647,6 +1712,7 @@
       "priorities",
       "rhythm"
     ],
+    "art_note": "Two coins move inside a looping ribbon while a small ship rides the waves.",
     "art": "assets/cards/pentacles-02-two.svg"
   },
   {
@@ -1672,6 +1738,7 @@
       "teamwork",
       "recognition"
     ],
+    "art_note": "Three makers meet beneath the workshop's three round emblems.",
     "art": "assets/cards/pentacles-03-three.svg"
   },
   {
@@ -1697,6 +1764,7 @@
       "stewardship",
       "release"
     ],
+    "art_note": "One coin is held, one crowns the figure, and two pin the feet to the city.",
     "art": "assets/cards/pentacles-04-four.svg"
   },
   {
@@ -1722,6 +1790,7 @@
       "support",
       "resilience"
     ],
+    "art_note": "Two travelers pass a lit five-part window on a road of snow.",
     "art": "assets/cards/pentacles-05-five.svg"
   },
   {
@@ -1747,6 +1816,7 @@
       "exchange",
       "equity"
     ],
+    "art_note": "Balanced scales hover above small coins and the hands reaching toward them.",
     "art": "assets/cards/pentacles-06-six.svg"
   },
   {
@@ -1772,6 +1842,7 @@
       "assessment",
       "growth"
     ],
+    "art_note": "Seven coins grow in the tree while the cultivator pauses to look closely.",
     "art": "assets/cards/pentacles-07-seven.svg"
   },
   {
@@ -1797,6 +1868,7 @@
       "skill",
       "attention"
     ],
+    "art_note": "A maker studies the workbench while eight finished pieces line the wall.",
     "art": "assets/cards/pentacles-08-eight.svg"
   },
   {
@@ -1822,6 +1894,7 @@
       "reward",
       "pleasure"
     ],
+    "art_note": "The vineyard's ordered growth surrounds a solitary figure with a bright coin.",
     "art": "assets/cards/pentacles-09-nine.svg"
   },
   {
@@ -1847,6 +1920,7 @@
       "home",
       "continuity"
     ],
+    "art_note": "Ten emblems make an arch wide enough to shelter more than one life.",
     "art": "assets/cards/pentacles-10-ten.svg"
   },
   {
@@ -1872,6 +1946,7 @@
       "potential",
       "practice"
     ],
+    "art_note": "The Page holds a material possibility beside a field ready to be worked.",
     "art": "assets/cards/pentacles-11-page.svg"
   },
   {
@@ -1897,6 +1972,7 @@
       "patience",
       "duty"
     ],
+    "art_note": "The Knight carries one coin at a deliberate pace across plowed ground.",
     "art": "assets/cards/pentacles-12-knight.svg"
   },
   {
@@ -1922,6 +1998,7 @@
       "home",
       "resourcefulness"
     ],
+    "art_note": "The Queen's garden seat includes the coin, flowering tree, and small animal.",
     "art": "assets/cards/pentacles-13-queen.svg"
   },
   {
@@ -1947,6 +2024,7 @@
       "stability",
       "prosperity"
     ],
+    "art_note": "Vines climb the King's stone seat while the coin rests at hand.",
     "art": "assets/cards/pentacles-14-king.svg"
   }
 ]

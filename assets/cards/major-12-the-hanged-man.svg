@@ -1,49 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
-<title id="title">The Hanged Man — Ominity Tarot</title><desc id="description">Original etched tarot plate for The Hanged Man.</desc>
-<style>
-.ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-.fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
-.gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.faint{fill:none;stroke:#997643;stroke-opacity:.66;stroke-width:1.25}
-.inkfill{fill:#232b2d;stroke:#232b2d;stroke-width:1}
-.distant{fill:#997643;fill-opacity:.13;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linejoin:round}
-.terrain{fill:none;stroke:#997643;stroke-opacity:.76;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.halo{fill:#997643;fill-opacity:.10;stroke:#997643;stroke-width:1.25}
-.cloud{fill:none;stroke:#232b2d;stroke-opacity:.32;stroke-width:1.3;stroke-linecap:round}
-.wind{fill:none;stroke:#997643;stroke-opacity:.60;stroke-width:1.1;stroke-linecap:round}
-.hands{fill:none;stroke:#232b2d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.arch{fill:none;stroke:#997643;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tension{fill:none;stroke:#997643;stroke-opacity:.55;stroke-width:1.5;stroke-linecap:round}
-.bridge{fill:none;stroke:#997643;stroke-width:2.3;stroke-linecap:round}
-.ridge{fill:none;stroke:#232b2d;stroke-opacity:.46;stroke-width:1.6;stroke-linejoin:round}
-.motion{fill:none;stroke:#997643;stroke-opacity:.54;stroke-width:2;stroke-linecap:round}
-.beast{fill:#997643;fill-opacity:.23;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
-.regalia{fill:#997643;fill-opacity:.25;stroke:#997643;stroke-width:1.6;stroke-linejoin:round}
-.petal{fill:#f2ebd9;stroke:#997643;stroke-width:1.5}
-.wash{fill:#997643;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
-.column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
-.sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
-.paperfill{fill:#f2ebd9;stroke:#232b2d;stroke-width:1.8}
-.lantern{fill:#997643;fill-opacity:.35;stroke:#232b2d;stroke-width:2}
-.vine{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.water{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round}
-.chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
-.lightning{fill:none;stroke:#997643;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
-.ghost{fill:none;stroke:#997643;stroke-opacity:.52;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}
-.landscape{fill:none;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linecap:round}
-.hatch{fill:none;stroke:#232b2d;stroke-opacity:.42;stroke-width:1;stroke-linecap:round}
-</style>
+<title id="title">The Hanged Man — Ominity Tarot</title><desc id="description">Original symbolic illustration for The Hanged Man.</desc>
 <rect width="280" height="480" fill="#f2ebd9"/>
 <rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
 <rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
-<path d="M23 77H257M23 391H257M25 454H255" stroke="#997643" stroke-width="1"/>
+<path d="M23 66H257M23 416H257" stroke="#997643" stroke-width="1"/>
 <path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
-<text class="number" x="140" y="42" font-family="Noto Serif" font-size="20" font-weight="400" fill="#997643" text-anchor="middle">XII</text>
-<text class="small" x="140" y="64" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">MAJOR ARCANA</text>
-<g clip-path="url(#window)"><path class="ghost" d="M32 374V148Q140 94 248 148V374" /><path class="ghost" d="M38 374V154Q140 108 242 154V374" /><path class="ghost" d="M31 375H249" /><path class="gold" d="M140 110L140.9 113.1L144 114L140.9 114.9L140 118L139.1 114.9L136 114L139.1 113.1Z" /><path class="ghost" d="M34 159H43M237 159H246M31 326H39M241 326H249" /><path class="landscape" d="M39 345Q78 313 117 335Q167 301 241 346" /><path class="ghost" d="M39 355Q79 324 117 345Q166 313 241 356" /><path class="ghost" d="M55 208Q140 149 225 208" /><path class="faint" d="M124 181.6L124.6 183.4L126.4 184L124.6 184.6L124 186.4L123.4 184.6L121.6 184L123.4 183.4Z" /><path class="faint" d="M124 159.6L124.6 161.4L126.4 162L124.6 162.6L124 164.4L123.4 162.6L121.6 162L123.4 161.4Z" /><path class="faint" d="M124 181.6L124.6 183.4L126.4 184L124.6 184.6L124 186.4L123.4 184.6L121.6 184L123.4 183.4Z" /><path class="faint" d="M224 137.6L224.6 139.4L226.4 140L224.6 140.6L224 142.4L223.4 140.6L221.6 140L223.4 139.4Z" /><path class="ink" d="M57 166L223 166M140 166L140 330" /><circle class="gold" cx="140" cy="292" r="31" /><g transform="translate(140 228) scale(1.55 1.55)"><path class="paperfill" d="M-9 -69L-11 -82Q-9 -92 0 -93Q10 -91 12 -81L8 -68L5 -64H-5Z" /><path class="inkfill" d="M-10 -79Q-13 -93 -1 -96Q10 -97 13 -83Q6 -88 0 -83Q-6 -78 -10 -79Z" /><path class="fine" d="M3 -76L8 -75M-3 -66Q2 -63 6 -67" /><path class="ink" d="M-5 -64L-6 -58M5 -64L6 -58" /><path class="wash" d="M-8 -61Q0 -66 8 -61L18 -51L21 -9Q0 4 -21 -9L-18 -51Z" /><path class="paperfill" d="M-11 -55L-22 -23L-27 -18L-23 -14L-18 -17L-6 -47M11 -55L21 -24L25 -20L22 -15L17 -19L6 -47" /><path class="fine" d="M-8 -47Q0 -39 8 -47M-15 -14Q0 -20 15 -14M-10 -34L-13 -3M9 -35L12 -3M0 -42V-5" /><path class="gold" d="M-18 -8Q0 -2 18 -8M-15 -52Q0 -46 15 -52" /><path class="ink" d="M-11 -2L-11 2M11 -2L11 2" /></g><path class="fine" d="M100 332Q140 346 180 332" /><path class="ridge" d="M66 182L140 343L214 182Z" /><circle class="halo" cx="140" cy="293" r="42" /></g>
-<defs><clipPath id="window"><rect x="24" y="79" width="232" height="309"/></clipPath></defs>
-<path d="M42 382H79M201 382H238" stroke="#997643" stroke-width=".9"/>
-<circle cx="140" cy="382" r="4" fill="none" stroke="#997643" stroke-width="1.3"/>
-<text class="title" x="140" y="423" font-family="Noto Serif" font-size="18" font-weight="600" fill="#232b2d" text-anchor="middle">The Hanged Man</text>
-<text class="label" x="140" y="447" font-family="Noto Sans" font-size="9" font-weight="600" letter-spacing="1.8" fill="#232b2d" text-anchor="middle">PAUSE</text>
+<text class="number" x="140" y="38" font-family="Noto Serif" font-size="19" font-weight="400" fill="#997643" text-anchor="middle">XII</text>
+<text class="small" x="140" y="56" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">MAJOR ARCANA</text>
+<defs><clipPath id="window"><rect x="24" y="68" width="232" height="346"/></clipPath></defs>
+<g clip-path="url(#window)"><rect x="24" y="68" width="232" height="346" fill="#ede6d5"/><defs><linearGradient id="maj-sky-12" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#adafa5"/><stop offset="1" stop-color="#e2dfd0"/></linearGradient></defs><rect x="24" y="68" width="232" height="346" fill="url(#maj-sky-12)" stroke="none" stroke-width="1.5" /><path d="M24 336L69 255L95 288L135 220L166 280L206 240L256 311V414H24Z" fill="#abb1a6" stroke="#8a8f88" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" /><path d="M65 261L69 255L76 263M130 227L135 220L141 231M201 245L206 240L211 250" fill="none" stroke="#f2ebd9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M24 160H256" fill="none" stroke="#444a49" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /><g transform="translate(68 224) scale(0.75)"><path d="M0 0Q-5 -47 -1 -104M-1 -76Q-21 -105 -32 -119M-1 -90Q14 -123 29 -137M-4 -50Q-22 -65 -43 -65" fill="none" stroke="#444a49" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M-29 -116L-42 -128M23 -132L34 -147M-31 -66L-44 -78" fill="none" stroke="#8a8f88" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></g><g transform="translate(227 221) scale(0.72)"><path d="M0 0Q-5 -47 -1 -104M-1 -76Q-21 -105 -32 -119M-1 -90Q14 -123 29 -137M-4 -50Q-22 -65 -43 -65" fill="none" stroke="#444a49" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M-29 -116L-42 -128M23 -132L34 -147M-31 -66L-44 -78" fill="none" stroke="#8a8f88" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></g><path d="M114 160H167" fill="none" stroke="#997643" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><circle cx="140" cy="289" r="37" fill="#cebc9d" stroke="#997643" stroke-width="2" /><circle cx="140" cy="289" r="48" fill="none" stroke="#997643" stroke-width="0.8" /><path d="M132 184L147 184L156 207L151 250Q141 263 126 250L121 209Z" fill="#8a8f88" stroke="#444a49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M132 248L128 269M149 248L152 268" fill="none" stroke="#444a49" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="140" cy="288" r="13" fill="#ddd8c8" stroke="#444a49" stroke-width="1.5" /><path d="M128 287Q126 275 137 271Q153 271 153 287" fill="#444a49" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M122 212Q100 228 99 246M156 211Q177 230 178 245" fill="none" stroke="#444a49" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M130 193L125 161M150 193L155 160" fill="none" stroke="#997643" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M45 348Q140 332 235 348" fill="none" stroke="#997643" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M62 330L140 414L218 330" fill="none" stroke="#8a8f88" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /></g>
+<path d="M41 410H77M203 410H239" stroke="#997643" stroke-width=".75"/>
+<circle cx="140" cy="410" r="3" fill="none" stroke="#997643" stroke-width="1"/>
+<text class="title" x="140" y="442" font-family="Noto Serif" font-size="18" font-weight="600" fill="#232b2d" text-anchor="middle">The Hanged Man</text>
+<text class="label" x="140" y="461" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.5" fill="#232b2d" text-anchor="middle">PAUSE</text>
 </svg>

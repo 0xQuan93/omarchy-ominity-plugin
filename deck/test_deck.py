@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from deck.build_deck import CARD_DIR, DECK_DIR, RANKS, ROOT, card_back_svg, card_svg, make_deck, numbered_scene
+from deck.build_deck import CARD_DIR, DECK_DIR, RANKS, ROOT, card_back_svg, card_svg, make_deck
 
 
 MAJOR_TITLES = [
@@ -39,12 +39,14 @@ class DeckContractTests(unittest.TestCase):
         self.assertEqual(len({card["art"] for card in cards}), 78)
         self.assertEqual(len({card["interpretation"] for card in cards}), 78)
         self.assertEqual(len({card["reflection"] for card in cards}), 78)
+        self.assertEqual(len({card["art_note"] for card in cards}), 78)
         for card in cards:
             with self.subTest(card=card["id"]):
                 self.assertIn(card["arcana"], ("major", "minor"))
                 self.assertGreaterEqual(len(card["title"]), 5)
                 for field in ("upright", "reversed", "interpretation", "reflection"):
                     self.assertGreater(len(card[field]), 8)
+                self.assertGreater(len(card["art_note"]), 25)
                 self.assertEqual(len(card["keywords"]), 3)
                 self.assertEqual(len(card["symbols"]), 3)
                 self.assertEqual(card["art"], f"assets/cards/{card['id']}.svg")
@@ -66,16 +68,21 @@ class DeckContractTests(unittest.TestCase):
         self.assertEqual(back.read_text().strip(), card_back_svg())
         self.assertEqual(ET.parse(back).getroot().attrib["viewBox"], "0 0 280 480")
 
-    def test_original_illustrations_stay_vector_and_numbered_scenes_are_distinct(self):
+    def test_original_illustrations_stay_vector_and_each_scene_is_distinct(self):
         namespace = "{http://www.w3.org/2000/svg}"
-        scenes = {numbered_scene(suit, number) for suit in SUITS for number in range(1, 11)}
-        self.assertEqual(len(scenes), 40)
+        scenes = set()
         for asset in [*(CARD_DIR.glob("*.svg")), ROOT / "assets" / "card-back.svg"]:
             with self.subTest(asset=asset.name):
                 svg = ET.parse(asset).getroot()
                 self.assertIsNone(svg.find(f".//{namespace}image"))
                 self.assertIsNone(svg.find(f".//{namespace}filter"))
                 self.assertEqual(svg.attrib["viewBox"], "0 0 280 480")
+                if asset.parent == CARD_DIR:
+                    plate = next(node for node in svg.findall(f".//{namespace}g")
+                                 if node.attrib.get("clip-path") == "url(#window)")
+                    scenes.add(ET.tostring(plate))
+                    self.assertGreater(len(list(plate.iter())), 12)
+        self.assertEqual(len(scenes), 78)
 
     def test_svg_text_uses_qtsvg_compatible_font_attributes(self):
         namespace = "{http://www.w3.org/2000/svg}"

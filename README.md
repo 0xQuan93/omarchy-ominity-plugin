@@ -1,12 +1,16 @@
 # Ominity
 
-![Ominity's illustrated card in Sync 01 and its reading side in Catppuccin Latte](preview.png)
+![Ominity's Four of Swords card and reading side in the live Catppuccin theme](preview.png)
 
 A daily tarot ritual for Omarchy. Click **✦** in the bar to draw a card. The artwork takes the whole stage; click the card to turn it over for its meaning, symbols, reflection, a deeper reading, and a guide to tarot. Click outside the card or press **Esc** to put it away. Right-click the bar glyph to toggle a compact desktop card.
 
-Ominity draws once per local day and keeps that card until you deliberately choose **Draw again**. Its 78 original vector illustrations and card back take their colors from the current Omarchy theme. Each card has a distinct scene, etched lines, and clean serif and sans lettering. Ominity renders the art at your display's resolution, including fractional scaling, so the lines and type stay sharp. A new draw turns from the card back to the illustration; clicking turns the card to its reading, and closing eases it away. Dark and light themes retain readable contrast and distinct suit accents. Theme variants live in a local cache; the bundled plates remain a fallback. No account, network connection, or model is needed.
+Ominity draws once per local day and keeps that card until you deliberately choose **Draw again**. Its 78 original vector illustrations are individual symbolic scenes: the Major Arcana move through distinct archetypal places, while the four Minor Arcana suits inhabit fire, water, air, and earth. Each image has layered light, figures, and small details to discover; an **In the art** note on the reverse points to one of them. The larger illustration occupies most of the card, and the celestial card back makes the draw feel like an object in your hands.
+
+The current Omarchy theme recolors every illustration and the back. Ominity renders them at your display's resolution, including fractional scaling, so the linework and Noto Serif/Sans type stay sharp. A new draw turns from the back to the illustration; clicking turns the card to its reading, and closing eases it away. Dark and light themes retain readable contrast and distinct suit accents. Theme variants live in a local cache; the bundled plates remain a fallback. No account, network connection, or model is needed.
 
 [View the complete original deck](docs/deck-sheet.png) and its [card back](docs/card-back.png).
+
+![Eight Ominity cards recolored by the Catppuccin Omarchy theme](docs/featured-cards.png)
 
 The bar glyph opens the card; right-click toggles the optional desktop widget. Click the illustration to turn it over. On the reading side, **Art** returns to the illustration, **Deeper** expands the interpretation, and **Tarot guide** explains the deck. **Space** turns the card and **Esc** closes it.
 

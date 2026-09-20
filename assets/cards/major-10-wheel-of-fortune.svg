@@ -1,49 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="480" viewBox="0 0 280 480" role="img" aria-labelledby="title description">
-<title id="title">Wheel of Fortune — Ominity Tarot</title><desc id="description">Original etched tarot plate for Wheel of Fortune.</desc>
-<style>
-.ink{fill:none;stroke:#232b2d;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-.fine{fill:none;stroke:#232b2d;stroke-opacity:.53;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
-.gold{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.faint{fill:none;stroke:#997643;stroke-opacity:.66;stroke-width:1.25}
-.inkfill{fill:#232b2d;stroke:#232b2d;stroke-width:1}
-.distant{fill:#997643;fill-opacity:.13;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linejoin:round}
-.terrain{fill:none;stroke:#997643;stroke-opacity:.76;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.halo{fill:#997643;fill-opacity:.10;stroke:#997643;stroke-width:1.25}
-.cloud{fill:none;stroke:#232b2d;stroke-opacity:.32;stroke-width:1.3;stroke-linecap:round}
-.wind{fill:none;stroke:#997643;stroke-opacity:.60;stroke-width:1.1;stroke-linecap:round}
-.hands{fill:none;stroke:#232b2d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.arch{fill:none;stroke:#997643;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tension{fill:none;stroke:#997643;stroke-opacity:.55;stroke-width:1.5;stroke-linecap:round}
-.bridge{fill:none;stroke:#997643;stroke-width:2.3;stroke-linecap:round}
-.ridge{fill:none;stroke:#232b2d;stroke-opacity:.46;stroke-width:1.6;stroke-linejoin:round}
-.motion{fill:none;stroke:#997643;stroke-opacity:.54;stroke-width:2;stroke-linecap:round}
-.beast{fill:#997643;fill-opacity:.23;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
-.regalia{fill:#997643;fill-opacity:.25;stroke:#997643;stroke-width:1.6;stroke-linejoin:round}
-.petal{fill:#f2ebd9;stroke:#997643;stroke-width:1.5}
-.wash{fill:#997643;fill-opacity:.11;stroke:#232b2d;stroke-width:1.8;stroke-linejoin:round}
-.column{fill:#f2ebd9;stroke:#232b2d;stroke-width:2.1}
-.sun{fill:#997643;fill-opacity:.2;stroke:#997643;stroke-width:2}
-.paperfill{fill:#f2ebd9;stroke:#232b2d;stroke-width:1.8}
-.lantern{fill:#997643;fill-opacity:.35;stroke:#232b2d;stroke-width:2}
-.vine{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.water{fill:none;stroke:#997643;stroke-width:2;stroke-linecap:round}
-.chain{fill:none;stroke:#997643;stroke-width:3;stroke-dasharray:4 4}
-.lightning{fill:none;stroke:#997643;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
-.ghost{fill:none;stroke:#997643;stroke-opacity:.52;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}
-.landscape{fill:none;stroke:#997643;stroke-opacity:.58;stroke-width:1.5;stroke-linecap:round}
-.hatch{fill:none;stroke:#232b2d;stroke-opacity:.42;stroke-width:1;stroke-linecap:round}
-</style>
+<title id="title">Wheel of Fortune — Ominity Tarot</title><desc id="description">Original symbolic illustration for Wheel of Fortune.</desc>
 <rect width="280" height="480" fill="#f2ebd9"/>
 <rect x="8" y="8" width="264" height="464" fill="none" stroke="#997643" stroke-width="1.8"/>
 <rect x="14" y="14" width="252" height="452" fill="none" stroke="#232b2d" stroke-width=".75" opacity=".72"/>
-<path d="M23 77H257M23 391H257M25 454H255" stroke="#997643" stroke-width="1"/>
+<path d="M23 66H257M23 416H257" stroke="#997643" stroke-width="1"/>
 <path d="M20 20L36 20M20 20L20 36M260 20L244 20M260 20L260 36M20 460L36 460M20 460L20 444M260 460L244 460M260 460L260 444" stroke="#232b2d" stroke-width="1.4"/>
-<text class="number" x="140" y="42" font-family="Noto Serif" font-size="20" font-weight="400" fill="#997643" text-anchor="middle">X</text>
-<text class="small" x="140" y="64" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">MAJOR ARCANA</text>
-<g clip-path="url(#window)"><path class="ghost" d="M32 374V148Q140 94 248 148V374" /><path class="ghost" d="M38 374V154Q140 108 242 154V374" /><path class="ghost" d="M31 375H249" /><path class="gold" d="M140 110L140.9 113.1L144 114L140.9 114.9L140 118L139.1 114.9L136 114L139.1 113.1Z" /><path class="ghost" d="M34 159H43M237 159H246M31 326H39M241 326H249" /><path class="landscape" d="M39 357Q78 325 117 347Q167 313 241 358" /><path class="ghost" d="M39 367Q79 336 117 357Q166 325 241 368" /><path class="ghost" d="M55 208Q140 149 225 208" /><path class="faint" d="M99 159.6L99.6 161.4L101.4 162L99.6 162.6L99 164.4L98.4 162.6L96.6 162L98.4 161.4Z" /><path class="faint" d="M199 181.6L199.6 183.4L201.4 184L199.6 184.6L199 186.4L198.4 184.6L196.6 184L198.4 183.4Z" /><path class="faint" d="M199 159.6L199.6 161.4L201.4 162L199.6 162.6L199 164.4L198.4 162.6L196.6 162L198.4 161.4Z" /><path class="faint" d="M199 181.6L199.6 183.4L201.4 184L199.6 184.6L199 186.4L198.4 184.6L196.6 184L198.4 183.4Z" /><circle class="gold" cx="140" cy="245" r="80" /><circle class="ink" cx="140" cy="245" r="58" /><circle class="gold" cx="140" cy="245" r="17" /><path class="fine" d="M140 169L140 321" transform="rotate(0 140 245)"/><path class="fine" d="M140 169L140 321" transform="rotate(45 140 245)"/><path class="fine" d="M140 169L140 321" transform="rotate(90 140 245)"/><path class="fine" d="M140 169L140 321" transform="rotate(135 140 245)"/><path class="gold" d="M60 152L61.4 156.6L66 158L61.4 159.4L60 164L58.6 159.4L54 158L58.6 156.6Z" /><path class="gold" d="M220 152L221.4 156.6L226 158L221.4 159.4L220 164L218.6 159.4L214 158L218.6 156.6Z" /><path class="gold" d="M60 331L61.4 335.6L66 337L61.4 338.4L60 343L58.6 338.4L54 337L58.6 335.6Z" /><path class="gold" d="M220 331L221.4 335.6L226 337L221.4 338.4L220 343L218.6 338.4L214 337L218.6 335.6Z" /><path class="gold" d="M51 153H67M59 145V161" /><path class="gold" d="M213 153H229M221 145V161" /><path class="gold" d="M51 334H67M59 326V342" /><path class="gold" d="M213 334H229M221 326V342" /></g>
-<defs><clipPath id="window"><rect x="24" y="79" width="232" height="309"/></clipPath></defs>
-<path d="M42 382H79M201 382H238" stroke="#997643" stroke-width=".9"/>
-<circle cx="140" cy="382" r="4" fill="none" stroke="#997643" stroke-width="1.3"/>
-<text class="title" x="140" y="423" font-family="Noto Serif" font-size="18" font-weight="600" fill="#232b2d" text-anchor="middle">Wheel of Fortune</text>
-<text class="label" x="140" y="447" font-family="Noto Sans" font-size="9" font-weight="600" letter-spacing="1.8" fill="#232b2d" text-anchor="middle">CYCLES</text>
+<text class="number" x="140" y="38" font-family="Noto Serif" font-size="19" font-weight="400" fill="#997643" text-anchor="middle">X</text>
+<text class="small" x="140" y="56" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.7" fill="#997643" text-anchor="middle">MAJOR ARCANA</text>
+<defs><clipPath id="window"><rect x="24" y="68" width="232" height="346"/></clipPath></defs>
+<g clip-path="url(#window)"><rect x="24" y="68" width="232" height="346" fill="#ede6d5"/><defs><linearGradient id="maj-sky-10" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3cbb8"/><stop offset="1" stop-color="#eae5d4"/></linearGradient></defs><rect x="24" y="68" width="232" height="346" fill="url(#maj-sky-10)" stroke="none" stroke-width="1.5" /><path d="M24 329Q80 312 140 329T256 329V414H24Z" fill="#adafa6" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M24 356Q91 324 140 352T256 349V414H24Z" fill="#8b8e88" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M24 378Q98 343 145 376T256 371" fill="none" stroke="#4c514f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M24 219Q65 150 74 184" fill="none" stroke="#997643" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".76"/><path d="M256 220Q220 177 214 203" fill="none" stroke="#997643" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".76"/><path d="M24 327Q55 276 74 301" fill="none" stroke="#997643" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".76"/><path d="M256 344Q208 303 214 285" fill="none" stroke="#997643" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".76"/><circle cx="140" cy="239" r="83" fill="#ddd8c8" stroke="#997643" stroke-width="4" /><circle cx="140" cy="239" r="72" fill="none" stroke="#444a49" stroke-width="1.7" /><circle cx="140" cy="239" r="61" fill="none" stroke="#997643" stroke-width="1.3" /><circle cx="140" cy="239" r="12" fill="#cebc9d" stroke="#444a49" stroke-width="1.5" /><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(0 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(90 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(135 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(225 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(270 140 239)"/><path d="M140 178V227" fill="none" stroke="#444a49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="rotate(315 140 239)"/><path d="M52.0 142.0L53.2 148.8L60.0 150.0L53.2 151.2L52.0 158.0L50.8 151.2L44.0 150.0L50.8 148.8Z" fill="#997643" stroke="#997643" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" /><path d="M229.0 143.0L230.2 149.8L237.0 151.0L230.2 152.2L229.0 159.0L227.8 152.2L221.0 151.0L227.8 149.8Z" fill="#997643" stroke="#997643" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" /><path d="M52.0 336.0L53.2 342.8L60.0 344.0L53.2 345.2L52.0 352.0L50.8 345.2L44.0 344.0L50.8 342.8Z" fill="#997643" stroke="#997643" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" /><path d="M229.0 336.0L230.2 342.8L237.0 344.0L230.2 345.2L229.0 352.0L227.8 345.2L221.0 344.0L227.8 342.8Z" fill="#997643" stroke="#997643" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" /><path d="M46 167q-8 10 -1 22M225 169q9 10 1 22M43 322q-9 -9 1 -20M226 320q8 -8 0 -18" fill="none" stroke="#444a49" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" /><path d="M140.0 231.0L141.2 237.8L148.0 239.0L141.2 240.2L140.0 247.0L138.8 240.2L132.0 239.0L138.8 237.8Z" fill="#997643" stroke="#997643" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" /></g>
+<path d="M41 410H77M203 410H239" stroke="#997643" stroke-width=".75"/>
+<circle cx="140" cy="410" r="3" fill="none" stroke="#997643" stroke-width="1"/>
+<text class="title" x="140" y="442" font-family="Noto Serif" font-size="18" font-weight="600" fill="#232b2d" text-anchor="middle">Wheel of Fortune</text>
+<text class="label" x="140" y="461" font-family="Noto Sans" font-size="8" font-weight="600" letter-spacing="1.5" fill="#232b2d" text-anchor="middle">CYCLES</text>
 </svg>

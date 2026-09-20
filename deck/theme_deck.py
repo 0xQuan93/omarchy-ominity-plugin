@@ -31,10 +31,11 @@ def render_theme(background: str, foreground: str, accent: str, muted: str,
         raise ValueError("Theme colors must be six-digit #RRGGBB values")
     palette = DeckPalette.from_theme(*colors)
     deck_file = DECK_DIR / "deck.json"
-    source_file = Path(__file__).with_name("build_deck.py")
+    source_files = [Path(__file__).with_name(name) for name in
+                    ("build_deck.py", "major_art.py", "minor_art.py")]
     deck_bytes = deck_file.read_bytes()
-    source_bytes = source_file.read_bytes()
-    digest = hashlib.sha256(b"ominity-theme-v1\0" + json.dumps(colors).encode()
+    source_bytes = b"\0".join(source.read_bytes() for source in source_files)
+    digest = hashlib.sha256(b"ominity-theme-v2\0" + json.dumps(colors).encode()
                             + b"\0" + source_bytes + b"\0" + deck_bytes).hexdigest()[:20]
     if cache_home is None:
         cache_home = Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache")

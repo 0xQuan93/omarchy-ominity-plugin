@@ -80,7 +80,7 @@ PanelWindow {
 
         Item {
             id: cardMount
-            height: Math.min(parent.height - 64, 720)
+            height: Math.min(parent.height - 64, 900)
             width: height * 280 / 480
             anchors.centerIn: parent
             anchors.verticalCenterOffset: (1 - root.reveal) * 64
@@ -268,6 +268,18 @@ PanelWindow {
                                 font.italic: true
                                 font.pixelSize: 20
                                 wrapMode: Text.Wrap
+                            }
+                            Text {
+                                renderType: Text.CurveRendering
+                                width: parent.width
+                                visible: root.page === "reading" && !!root.card.art_note
+                                text: "IN THE ART  /  " + (root.card.art_note || "")
+                                color: Color.foreground
+                                opacity: 0.84
+                                font.family: root.bodyFont
+                                font.pixelSize: Math.max(14, Style.font.body)
+                                wrapMode: Text.Wrap
+                                lineHeight: 1.18
                             }
                             Text {
                                 renderType: Text.CurveRendering
