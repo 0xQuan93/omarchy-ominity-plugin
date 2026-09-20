@@ -1,7 +1,10 @@
 import importlib.util
 import json
 import tempfile
+import threading
+import time
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import patch
 
@@ -37,6 +40,7 @@ class DrawTest(unittest.TestCase):
         self.assertEqual(ominity.run("today")["reading"], redraw["reading"])
         self.assertEqual(first["reading"]["experience"]["weather"], redraw["reading"]["experience"]["weather"])
         self.assertEqual(first["reading"]["experience"]["machineSignature"], redraw["reading"]["experience"]["machineSignature"])
+        self.assertEqual(first["reading"]["machine"]["eraId"], redraw["reading"]["machine"]["eraId"])
         stored = ominity.STATE_FILE.read_text()
         self.assertNotIn("MemTotal", stored)
         self.assertNotIn(json.loads((ominity.STATE_ROOT / "identity.json").read_text())["record"]["payload"]["seed"], stored)
@@ -58,6 +62,34 @@ class DrawTest(unittest.TestCase):
         self.assertEqual(result["reading"]["id"], legacy["id"])
         self.assertNotIn("experience", result["reading"])
         self.assertFalse((ominity.STATE_ROOT / "identity.json").exists())
+
+    def test_concurrent_today_rechecks_after_day_lock(self):
+        workers = 8
+        start = threading.Barrier(workers)
+
+        def weather():
+            time.sleep(0.06)  # Make the pre-lock read race observable.
+            return {"cpu": 2, "memory": 1, "disk": 3}
+
+        def call_today(_):
+            start.wait()
+            return ominity.run("today")
+
+        with patch.object(ominity, "capacity_signature", return_value={"cpu": "C3", "memory": "M4", "storage": "D4"}), patch.object(ominity, "weather_buckets", side_effect=weather) as sampled:
+            with ThreadPoolExecutor(max_workers=workers) as pool:
+                results = list(pool.map(call_today, range(workers)))
+        self.assertEqual(sampled.call_count, 1)
+        self.assertEqual(len({json.dumps(result["reading"], sort_keys=True) for result in results}), 1)
+        self.assertEqual({result["historyCount"] for result in results}, {1})
+        self.assertEqual(len(ominity.load_state()["history"]), 1)
+        lock_file = ominity.STATE_ROOT / "locks" / (results[0]["day"] + ".lock")
+        self.assertEqual(lock_file.stat().st_mode & 0o777, 0o600)
+
+    def test_prior_day_in_history_is_found_after_clock_rollback(self):
+        cards = ominity.deck()
+        older = {"day": "2026-09-20", "id": "major-17-the-star"}
+        newer = {"day": "2026-09-21", "id": "major-18-the-moon"}
+        self.assertEqual(ominity.reading_for_day({"reading": newer, "history": [older, newer]}, older["day"], cards), older)
 
     def test_corrupt_state_is_recovered_without_external_effects(self):
         ominity.STATE_FILE.write_text("broken", encoding="utf-8")

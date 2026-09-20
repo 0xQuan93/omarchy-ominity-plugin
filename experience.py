@@ -16,6 +16,8 @@ import re
 import secrets
 import tempfile
 import time
+import uuid
+from datetime import date, timedelta
 from pathlib import Path
 
 
@@ -88,7 +90,7 @@ def verify_envelope(document: dict, record_type: str) -> dict:
         raise ValueError("Invalid Ominity record digest")
     if not hmac.compare_digest(digest, hashlib.sha256(canonical_json(record)).hexdigest()):
         raise ValueError("Ominity record integrity check failed")
-    if record.get("schemaVersion") != 1 or record.get("type") != record_type:
+    if type(record.get("schemaVersion")) is not int or record["schemaVersion"] != 1 or record.get("type") != record_type:
         raise UnsupportedEnvelope("Unsupported Ominity record schema or type")
     payload = record.get("payload")
     if not isinstance(payload, dict):
@@ -141,6 +143,200 @@ def installation_seed(state_root: Path) -> bytes:
     if not isinstance(seed_hex, str) or not SEED_PATTERN.fullmatch(seed_hex):
         raise ValueError("Ominity identity seed must be 64 lowercase hex characters")
     return bytes.fromhex(seed_hex)
+
+
+def _era_id() -> str:
+    """RFC 9562 UUIDv7 with 74 random bits, including on Python < 3.14."""
+    millis = int(time.time_ns() // 1_000_000) & ((1 << 48) - 1)
+    random = secrets.randbits(74)
+    value = (millis << 80) | (7 << 76) | ((random >> 62) << 64) | (2 << 62) | (random & ((1 << 62) - 1))
+    return str(uuid.UUID(int=value))
+
+
+def _write_era_state(state_root: Path, state: dict) -> None:
+    """Publish a whole integrity-checked state after flushing its file."""
+    state_root.mkdir(mode=0o700, parents=True, exist_ok=True)
+    os.chmod(state_root, 0o700)
+    fd, temp_name = tempfile.mkstemp(prefix="machine-eras.", dir=state_root)
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(canonical_json(envelope("machine-era-state", state)) + b"\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, state_root / "machine-eras.json")
+        dir_fd = os.open(state_root, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(dir_fd)
+        finally:
+            os.close(dir_fd)
+    finally:
+        if os.path.exists(temp_name):
+            os.unlink(temp_name)
+
+
+def load_era_state(state_root: Path) -> dict | None:
+    path = state_root / "machine-eras.json"
+    if path.is_symlink():
+        raise ValueError("Ominity Machine Era state may not be a symlink")
+    try:
+        if path.stat().st_mode & 0o777 != 0o600:
+            raise ValueError("Ominity Machine Era state must have mode 0600")
+        document = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_pairs)
+    except FileNotFoundError:
+        return None
+    state = verify_envelope(document, "machine-era-state")
+    _validate_era_state(state)
+    return state
+
+
+def _valid_date(value: object) -> bool:
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
+        return False
+    try:
+        date.fromisoformat(value)
+    except ValueError:
+        return False
+    return True
+
+
+def _valid_era_id(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        return str(uuid.UUID(value)) == value and uuid.UUID(value).version == 7
+    except ValueError:
+        return False
+
+
+def _validate_era_state(state: dict) -> None:
+    """Reject malformed nested records even when the outer digest is valid."""
+    eras = state.get("eras")
+    transitions = state.get("transitions")
+    if (set(state) != {"materialityVersion", "activeId", "eras", "candidate", "transitions"}
+            or type(state.get("materialityVersion")) is not int or state["materialityVersion"] != 1
+            or not isinstance(eras, list) or not eras
+            or not isinstance(transitions, list) or len(transitions) != len(eras) - 1):
+        raise ValueError("Invalid Ominity Machine Era state")
+    seen_ids = set()
+    for index, era in enumerate(eras):
+        ordinal = index + 1
+        if (not isinstance(era, dict)
+                or set(era) != {"id", "ordinal", "displayLabel", "started", "ended", "classes"}
+                or not _valid_era_id(era.get("id"))
+                or era["id"] in seen_ids or type(era.get("ordinal")) is not int
+                or era["ordinal"] != ordinal
+                or era.get("displayLabel") != f"Machine Era {ordinal:02d}"
+                or not _valid_date(era.get("started"))
+                or (era.get("ended") is not None and not _valid_date(era.get("ended")))
+                or not valid_signature(era.get("classes"))):
+            raise ValueError("Invalid Ominity Machine Era record")
+        seen_ids.add(era["id"])
+        if index:
+            prior = eras[index - 1]
+            transition = transitions[index - 1]
+            if (not isinstance(transition, dict)
+                    or set(transition) != {"fromEraId", "toEraId", "day", "kind", "materialityVersion"}
+                    or transition.get("fromEraId") != prior["id"]
+                    or transition.get("toEraId") != era["id"]
+                    or transition.get("day") != era["started"]
+                    or transition.get("kind") != "capacity-class-change"
+                    or type(transition.get("materialityVersion")) is not int
+                    or transition["materialityVersion"] != 1
+                    or era["started"] <= prior["started"]
+                    or prior["ended"] != (date.fromisoformat(era["started"]) - timedelta(days=1)).isoformat()):
+                raise ValueError("Invalid Ominity Machine Era transition")
+    if state.get("activeId") != eras[-1]["id"] or eras[-1]["ended"] is not None:
+        raise ValueError("Invalid Ominity active Machine Era")
+    candidate = state.get("candidate")
+    if candidate is not None:
+        if (not isinstance(candidate, dict) or set(candidate) != {"classes", "observedDays"}
+                or not valid_signature(candidate.get("classes"))):
+            raise ValueError("Invalid Ominity Machine Era candidate")
+        classes = candidate["classes"]
+        days = candidate.get("observedDays")
+        if (classes == eras[-1]["classes"] or any(value.endswith("0") for value in classes.values())
+                or not isinstance(days, list) or not 1 <= len(days) <= 2
+                or not all(_valid_date(day) for day in days)
+                or days != sorted(set(days))
+                or days[0] < eras[-1]["started"]):
+            raise ValueError("Invalid Ominity Machine Era candidate")
+
+
+def _new_era(day: str, signature: dict[str, str], ordinal: int) -> dict:
+    return {
+        "id": _era_id(),
+        "ordinal": ordinal,
+        "displayLabel": f"Machine Era {ordinal:02d}",
+        "started": day,
+        "ended": None,
+        "classes": dict(signature),
+    }
+
+
+def valid_signature(signature: object) -> bool:
+    patterns = {"cpu": r"C[0-5]", "memory": r"M[0-6]", "storage": r"D[0-5]"}
+    return (isinstance(signature, dict) and set(signature) == set(patterns)
+            and all(isinstance(signature[key], str) and re.fullmatch(patterns[key], signature[key])
+                    for key in patterns))
+
+
+def valid_weather(weather: object) -> bool:
+    return (isinstance(weather, dict) and set(weather) == {"cpu", "memory", "disk"}
+            and all(type(value) is int and 0 <= value <= 4 for value in weather.values()))
+
+
+def observe_machine_era(state_root: Path, day: str, signature: dict[str, str]) -> str:
+    """Record a coarse observation. Caller serializes this with the state lock.
+
+    Material change v1 means any known capacity bucket differs. Unknown bucket
+    observations (C0/M0/D0) never start or advance a candidate. A candidate
+    needs three increasing, distinct local dates; repeated launches do not count.
+    """
+    if not _valid_date(day):
+        raise ValueError("Invalid Ominity local date")
+    if not valid_signature(signature):
+        raise ValueError("Invalid Ominity Machine Era signature")
+    state = load_era_state(state_root)
+    if state is None:
+        first = _new_era(day, signature, 1)
+        state = {"materialityVersion": 1, "activeId": first["id"], "eras": [first], "candidate": None, "transitions": []}
+        _write_era_state(state_root, state)
+        return first["id"]
+    active = state["eras"][-1]
+    if any(signature[key].endswith("0") for key in signature):
+        return state["activeId"]
+    if signature == active["classes"]:
+        if state.get("candidate") is not None:
+            state["candidate"] = None
+            _write_era_state(state_root, state)
+        return state["activeId"]
+    candidate = state.get("candidate")
+    if not isinstance(candidate, dict) or candidate.get("classes") != signature:
+        candidate = {"classes": dict(signature), "observedDays": [day]}
+    else:
+        observed = candidate.get("observedDays")
+        if not isinstance(observed, list) or not observed or not all(isinstance(item, str) for item in observed):
+            raise ValueError("Invalid Ominity Machine Era candidate")
+        if day > observed[-1]:
+            candidate["observedDays"] = observed + [day]
+    if len(candidate["observedDays"]) >= 3:
+        prior = active["id"]
+        active["ended"] = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+        next_era = _new_era(day, signature, active["ordinal"] + 1)
+        state["eras"].append(next_era)
+        state["activeId"] = next_era["id"]
+        state["candidate"] = None
+        state["transitions"].append({
+            "fromEraId": prior,
+            "toEraId": next_era["id"],
+            "day": day,
+            "kind": "capacity-class-change",
+            "materialityVersion": 1,
+        })
+    else:
+        state["candidate"] = candidate
+    _write_era_state(state_root, state)
+    return state["activeId"]
 
 
 def _bucket(value: int, limits: tuple[int, ...], prefix: str) -> str:

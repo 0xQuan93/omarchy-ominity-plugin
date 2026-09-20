@@ -7,15 +7,26 @@ object per invocation so the QML surface never has to parse mutable files.
 
 from __future__ import annotations
 
+import fcntl
 import json
 import os
 import secrets
 import sys
 import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-from experience import capacity_signature, experience_for, installation_seed, weather_buckets
+from experience import (
+    capacity_signature,
+    experience_for,
+    installation_seed,
+    load_era_state,
+    observe_machine_era,
+    valid_signature,
+    valid_weather,
+    weather_buckets,
+)
 
 ROOT = Path(__file__).resolve().parent
 STATE_ROOT = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local/state") / "ominity"
@@ -82,27 +93,75 @@ def choose(cards: dict[str, dict], previous: str | None) -> str:
     return ids[secrets.randbelow(len(ids))]
 
 
+@contextmanager
+def state_lock(name: str):
+    """Private advisory locks for a day and the shared mutable state files."""
+    locks = STATE_ROOT / "locks"
+    locks.mkdir(mode=0o700, parents=True, exist_ok=True)
+    os.chmod(STATE_ROOT, 0o700)
+    os.chmod(locks, 0o700)
+    fd = os.open(locks / name, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    try:
+        if os.fstat(fd).st_mode & 0o777 != 0o600:
+            raise ValueError("Ominity lock must have mode 0600")
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        yield
+    finally:
+        os.close(fd)
+
+
+def reading_for_day(data: dict, day: str, cards: dict[str, dict]) -> dict:
+    """Find the last recorded encounter for a day, including clock rollback."""
+    current = data.get("reading")
+    if isinstance(current, dict) and current.get("day") == day and current.get("id") in cards:
+        return current
+    history = data.get("history")
+    if isinstance(history, list):
+        for event in reversed(history):
+            if isinstance(event, dict) and event.get("day") == day and event.get("id") in cards:
+                return event
+    return {}
+
+
 def run(action: str) -> dict:
     cards = deck()
-    data = load_state()
     now = datetime.now().astimezone()
     day = now.date().isoformat()
-    existing = data.get("reading") or {}
 
     if action in ("today", "redraw"):
-        if action == "redraw" or existing.get("day") != day or existing.get("id") not in cards:
-            card_id = choose(cards, existing.get("id"))
-            reversed_card = bool(secrets.randbelow(2))
-            previous_experience = existing.get("experience") if existing.get("day") == day else None
-            if isinstance(previous_experience, dict) and isinstance(previous_experience.get("machineSignature"), dict) and isinstance(previous_experience.get("weather"), dict):
+        # Lock order is always day, then shared state. A second process must
+        # reload after acquisition before it can sample or choose a card.
+        with state_lock(day + ".lock"), state_lock("state.lock"):
+            data = load_state()
+            existing = reading_for_day(data, day, cards)
+            if action == "today" and existing:
+                data["reading"] = existing  # In-memory historical lookup only.
+                return payload(data, cards, day)
+            previous = data.get("reading") if isinstance(data.get("reading"), dict) else {}
+            seed = installation_seed(STATE_ROOT)
+            previous_experience = existing.get("experience") if existing else None
+            previous_machine = existing.get("machine") if existing else None
+            if (isinstance(previous_experience, dict)
+                    and valid_signature(previous_experience.get("machineSignature"))
+                    and valid_weather(previous_experience.get("weather"))
+                    and isinstance(previous_machine, dict)
+                    and isinstance(previous_machine.get("eraId"), str)):
+                era_state = load_era_state(STATE_ROOT)
+                if era_state is None or not any(
+                    isinstance(era, dict) and era.get("id") == previous_machine["eraId"]
+                    for era in era_state["eras"]
+                ):
+                    raise ValueError("Ominity reading references a missing Machine Era")
                 signature = previous_experience["machineSignature"]
                 weather = previous_experience["weather"]
+                era_id = previous_machine["eraId"]
             else:
                 signature = capacity_signature()
+                era_id = observe_machine_era(STATE_ROOT, day, signature)
                 weather = weather_buckets()
-            experience = experience_for(
-                installation_seed(STATE_ROOT), day, card_id, reversed_card, signature, weather
-            )
+            card_id = choose(cards, existing.get("id") or previous.get("id"))
+            reversed_card = bool(secrets.randbelow(2))
+            experience = experience_for(seed, day, card_id, reversed_card, signature, weather)
             new = {
                 "day": day,
                 "id": card_id,
@@ -117,6 +176,7 @@ def run(action: str) -> dict:
                     "timezone": getattr(now.tzinfo, "key", None),
                     "timezoneSource": "system" if getattr(now.tzinfo, "key", None) else "unavailable",
                 },
+                "machine": {"eraId": era_id, "weather": dict(weather)},
                 "experience": experience,
             }
             history = data.get("history", [])
@@ -125,18 +185,19 @@ def run(action: str) -> dict:
             data["history"] = (history + [new])[-90:]
             data["reading"] = new
             save_state(data)
-    elif action == "widget-toggle":
-        data["widget"] = data.get("widget") is not True
-        save_state(data)
-    elif action == "widget-show":
-        data["widget"] = True
-        save_state(data)
-    elif action == "widget-hide":
-        data["widget"] = False
-        save_state(data)
-    elif action != "state":
+            return payload(data, cards, day)
+    if action in ("widget-toggle", "widget-show", "widget-hide"):
+        with state_lock("state.lock"):
+            data = load_state()
+            if action == "widget-toggle":
+                data["widget"] = data.get("widget") is not True
+            else:
+                data["widget"] = action == "widget-show"
+            save_state(data)
+            return payload(data, cards, day)
+    if action != "state":
         raise ValueError(f"Unknown Ominity action: {action}")
-    return payload(data, cards, day)
+    return payload(load_state(), cards, day)
 
 
 if __name__ == "__main__":
