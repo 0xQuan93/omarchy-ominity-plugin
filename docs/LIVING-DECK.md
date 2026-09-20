@@ -26,7 +26,7 @@ Create a private random installation secret on first run:
 Mode 0600:
 
 ```json
-{"version":1,"seed":"<256-bit random value>"}
+{"schemaVersion":1,"payloadSha256":"<sha256 of canonical payload>","payload":{"seed":"<256-bit random value>"}}
 ```
 
 For a daily reading derive a deterministic seed with HMAC-SHA256:
@@ -134,10 +134,21 @@ Extend the reading object without breaking existing consumers:
 
 ```json
 {
+  "schemaVersion":1,
+  "payloadSha256":"<sha256 of canonical payload>",
+  "payload":{
   "day":"2026-09-20",
   "id":"major-17-the-star",
   "reversed":false,
-  "drawnAt":"...",
+  "time":{
+    "localDate":"2026-09-20",
+    "localTimestamp":"2026-09-20T05:27:14-05:00",
+    "utcTimestamp":"2026-09-20T10:27:14Z",
+    "utcOffset":"-05:00",
+    "timezone":"America/Chicago",
+    "timezoneSource":"system",
+    "timezoneDataVersion":"<when available>"
+  },
   "redraw":false,
   "deckContentVersion":"1.1.0",
   "canonicalSnapshot":{
@@ -178,7 +189,23 @@ Extend the reading object without breaking existing consumers:
     "facet":{"id":"star-renewal","lens":"renewal","text":"..."},
     "prompt":{"id":"star-small-renewal","text":"What small source of renewal is already near?","period":"morning"},
     "symbol":{"id":"water-jars","label":"the water jars","variant":"shimmer","observation":"Water is offered both to the pool and to the earth."},
-    "artVariant":7
+    "artVariant":7,
+    "motion":{
+      "schemaVersion":1,
+      "canonicalPhaseMs":0,
+      "durationMs":6000,
+      "loop":true,
+      "tracks":[
+        {"target":"water-jars","property":"shimmer","curve":"sine","periodMs":2400,"amplitude":0.18,"phaseMs":0}
+      ]
+    },
+    "thread":{
+      "type":"return",
+      "text":"The Star returns after 43 days.",
+      "relationship":null,
+      "evidence":{"previousDay":"2026-08-08","currentDay":"2026-09-20","days":43}
+    }
+  }
   }
 }
 ```
@@ -202,7 +229,9 @@ The visual card face is part of the encounter boundary. Reproduction parameters 
 1. the exact generated SVG as the **structural master**, and
 2. a lossless PNG of the finalized rendered card as the **visual witness**.
 
-The SVG proves what Ominity generated. The PNG preserves what the finalized card looked like independent of future fonts, SVG engines, layout metrics, or renderer behavior.
+The SVG proves what Ominity generated. The PNG preserves what the finalized card looked like at a documented **canonical animation phase** independent of future fonts, SVG engines, layout metrics, or renderer behavior.
+
+If the Living Deck uses motion, the immutable experience snapshot must also contain a versioned deterministic motion specification: duration, loop behavior, canonical phase, target/property identifiers, curves, periods, amplitudes, and phase offsets needed to reproduce temporal behavior. The PNG is the exact still witness at the canonical phase; the motion snapshot is the temporal provenance. Do not archive daily video merely to preserve deterministic motion.
 
 Suggested layout:
 
@@ -266,6 +295,8 @@ The archived SVG is the structural source artifact; the lossless PNG is the visu
 Artwork hashes are not enough: the historical record itself needs provenance. Every persistent structure carries an explicit `schemaVersion` (Daily Om, identity, Machine Era state, journal, archive manifest). A Daily Om is represented as a canonical payload plus an integrity envelope so the record hash does not recursively include itself.
 
 Canonicalize the payload with a documented deterministic JSON encoding (UTF-8, sorted object keys, stable separators, no NaN/Infinity), then compute SHA-256 over those exact bytes. The envelope stores `payloadSha256` and the payload. Verification therefore covers the artifact digests, canonical prose, experience snapshot, machine-era association, timestamps, and all other historical fields.
+
+The identity, Daily Om, Machine Era, and journal examples in this RFC are normative persisted shapes and use this envelope. Archive manifests are separately versioned and hash every member they enumerate.
 
 Migrations must be additive/non-destructive. Never silently rewrite a verified historical payload in place. If a future schema needs a transformed representation, preserve the original payload and create a versioned derived/migrated view with provenance linking it to the source.
 
@@ -367,15 +398,19 @@ Ominity should recognize long-lived relationships with hardware without storing 
 
 Derive a coarse **Machine Era signature** from the same privacy-preserving capacity buckets used by Machine DNA. When that coarse signature materially changes and remains changed, begin a new local Machine Era with a random opaque ID such as `era-02`. Never store manufacturer/model, hostname, serials, MAC addresses, disk UUIDs, CPU model strings, or other fingerprint-grade identifiers.
 
-An era record may contain:
+An era record uses the same integrity envelope:
 
 ```json
 {
-  "id":"era-02",
-  "started":"2031-08-15",
-  "ended":null,
-  "classes":{"cpu":"C4","memory":"M5","storage":"D5"},
-  "dailyOms":0
+  "schemaVersion":1,
+  "payloadSha256":"<sha256 of canonical payload>",
+  "payload":{
+    "id":"era-02",
+    "started":"2031-08-15",
+    "ended":null,
+    "classes":{"cpu":"C4","memory":"M5","storage":"D5"},
+    "dailyOms":0
+  }
 }
 ```
 
@@ -397,16 +432,23 @@ Examples:
 
 A later authored relationship graph can add optional labels such as `echo`, `tension`, `complement`, and `continuation`. Those relationships should be editorial deck metadata, not generated claims.
 
+**The Thread is part of the immutable encounter boundary.** Persist the exact Thread text shown that day plus the factual evidence used to derive it (for example prior/current dates, card IDs, counts/window) and, when applicable, a complete snapshot of the selected authored relationship object. Historical display never recomputes an old Thread from newly imported or subsequently expanded history.
+
 ## Reflection and journaling
 
 Pattern tracking is useful because a daily practice becomes more meaningful when users can compare readings over time. Ominity should add an optional one- or two-sentence local reflection per day and a weekly/monthly review surface.
 
-Recommended fields:
+Recommended persisted shape:
 
 ```json
 {
-  "firstImpression":"...",
-  "eveningReflection":"..."
+  "schemaVersion":1,
+  "payloadSha256":"<sha256 of canonical payload>",
+  "payload":{
+    "day":"2026-09-20",
+    "firstImpression":"...",
+    "eveningReflection":"..."
+  }
 }
 ```
 
@@ -531,6 +573,10 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - morning/evening prompts
 - optional Zephyr synthesis using card context only
 
+## Normative-example rule
+
+Every normative persisted-schema example in this RFC must satisfy every invariant defined elsewhere in the RFC. When an invariant changes, examples must be updated in the same change. Tests should deserialize the normative fixture shapes where practical so documentation cannot silently drift from implementation.
+
 ## Tests / acceptance criteria
 
 - same installation + same daily reading + same persisted weather => identical experience
@@ -552,6 +598,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - every selected facet snapshots ID, lens, and text
 - every selected prompt snapshots ID, text, and selected daypart
 - every selected art symbol snapshots ID, label, variant hook, and Notice observation
+- every displayed Thread snapshots exact text, derivation evidence, and any selected authored relationship object
+- importing/backfilling history cannot change a historical Thread
+- animated experiences snapshot a versioned deterministic motion timeline; PNG witness corresponds to the documented canonical phase
 - historical rendering never consults the current deck to complete missing user-facing fields
 - finalized Daily Oms preserve both the exact generated SVG structural master and a lossless PNG visual witness
 - structural master and visual witness are independently SHA-256 verified before being labeled original
@@ -562,7 +611,8 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - staged Daily Om JSON is flushed and fsynced before its atomic commit rename
 - concurrent `today` calls serialize per local day; losers reload the committed artifact rather than generating a second canonical encounter
 - redraw cannot race canonical creation
-- every persistent record has an explicit schema version
+- every persistent record has an explicit schema version and normative examples show the integrity envelope
+- normative examples remain consistent with all RFC invariants
 - Daily Om payloads have deterministic canonical serialization and an independently stored SHA-256 integrity envelope
 - verified historical payloads are never silently rewritten by schema migrations
 - local date, offset-aware timestamp, UTC timestamp/offset, and timezone identity (when available) are snapshotted
