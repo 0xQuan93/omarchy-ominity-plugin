@@ -158,10 +158,19 @@ Extend the reading object without breaking existing consumers:
   },
   "machine":{"eraId":"era-01","weather":{"cpu":2,"memory":1,"disk":3}},
   "artwork":{
-    "sha256":"<64 hex chars>",
-    "format":"image/svg+xml",
     "rendererVersion":1,
-    "relativePath":"artifacts/sha256/9f/9f83...a21.svg"
+    "master":{
+      "sha256":"<64 hex chars>",
+      "format":"image/svg+xml",
+      "relativePath":"artifacts/sha256/9f/9f83...a21.svg"
+    },
+    "visualWitness":{
+      "sha256":"<64 hex chars>",
+      "format":"image/png",
+      "width":1200,
+      "height":2000,
+      "relativePath":"artifacts/sha256/ab/ab41...91c.png"
+    }
   },
   "experience":{
     "version":1,
@@ -187,7 +196,12 @@ Future wording edits may change new Daily Oms but must never rewrite an old one.
 
 ### Archived artwork and provenance
 
-The visual card face is part of the encounter boundary. Reproduction parameters alone are insufficient because a future SVG generator, theme renderer, font stack, or variation algorithm could change. When a Daily Om is finalized, preserve the exact rendered SVG bytes the user encountered in a content-addressed local artifact store.
+The visual card face is part of the encounter boundary. Reproduction parameters alone are insufficient because a future SVG generator, theme renderer, font stack, or variation algorithm could change. When a Daily Om is finalized, preserve **two complementary artifacts** in the content-addressed local store:
+
+1. the exact generated SVG as the **structural master**, and
+2. a lossless PNG of the finalized rendered card as the **visual witness**.
+
+The SVG proves what Ominity generated. The PNG preserves what the finalized card looked like independent of future fonts, SVG engines, layout metrics, or renderer behavior.
 
 Suggested layout:
 
@@ -199,20 +213,30 @@ Suggested layout:
 └── artifacts/
     └── sha256/
         └── 9f/
-            └── 9f83...a21.svg
+            ├── 9f83...a21.svg
+            └── ab41...91c.png
 ```
 
-Compute SHA-256 over the final SVG bytes and write the asset atomically with mode 0600. The Daily Om stores the digest, media type, renderer/experience version, and relative artifact path. Historical rendering loads the archived asset, verifies its digest, and displays those bytes rather than invoking the current renderer.
+Compute SHA-256 independently over the final SVG bytes and lossless PNG bytes and write both assets atomically with mode 0600. The Daily Om stores both digests, media types, the witness dimensions, renderer/experience version, and relative artifact paths.
+
+Historical display defaults to the verified PNG visual witness when exact visual reproduction matters. The SVG remains available as the inspectable/vector structural master. This distinction prevents an unchanged SVG from rendering differently decades later because an external font, SVG engine, or glyph-layout implementation changed.
 
 Content addressing provides natural deduplication: identical rendered bytes need only be stored once. It also permits local provenance status without a network, blockchain, account, or external authority:
 
-- **Original artifact verified** — archived bytes match the stored digest.
-- **Artifact modified** — bytes exist but no longer match the digest.
-- **Artwork unavailable** — a legacy or damaged record lacks the archived asset; Ominity may offer a clearly labeled reconstruction but must not present it as the original.
+- **Structural master verified** — archived SVG bytes match their stored digest.
+- **Visual witness verified** — archived PNG bytes match their stored digest and can reproduce the finalized pixels without external fonts.
+- **Artifact modified** — one or more archived assets exist but no longer match their digest.
+- **Artwork unavailable** — a legacy or damaged record lacks its original assets; Ominity may offer a clearly labeled reconstruction but must not present it as the original.
 
 The user owns these files and may edit, copy, or delete them. Verification describes provenance; it does not enforce immutability.
 
-The archived SVG is the visual source of truth for a historical Daily Om. Renderer inputs (theme palette, machine buckets, art variant, symbol variant, renderer version) remain useful provenance metadata and may be stored as well, but must not replace the exact archived asset.
+The archived SVG is the structural source artifact; the lossless PNG is the visual source of truth for a historical Daily Om. Renderer inputs (theme palette, machine buckets, art variant, symbol variant, renderer version, display scale) remain useful provenance metadata and may be stored as well, but must not replace either archived artifact.
+
+### Storage budget
+
+Longevity matters more than minimizing a few megabytes. At one Daily Om per day, even a conservative 500 KiB average visual witness is about 178 MiB/year, 1.74 GiB/decade, and roughly 7 GiB over 40 years before filesystem compression or image optimization. The SVG and JSON metadata are comparatively small.
+
+Ominity should still record artifact byte sizes and expose archive storage usage in Constellation. Future optional lossless optimization may reduce storage, but it must preserve the verified bytes or create a new explicitly versioned artifact rather than silently rewriting historical witnesses.
 
 This gives a decades-old Daily Om archival integrity: opening a 2026 encounter in 2043 shows what Ominity presented in 2026, not a modern reinterpretation.
 
@@ -409,8 +433,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - make SVG generators expose safe variation hooks per scene
 - map machine weather to neutral visual parameters
 - include experience version + variant in themed cache keys
-- archive the finalized rendered SVG into a content-addressed SHA-256 artifact store
-- write archived artwork atomically and verify the digest before historical display
+- archive the finalized rendered SVG structural master and lossless PNG visual witness into a content-addressed SHA-256 artifact store
+- write both archived artifacts atomically and verify each digest before historical display
+- historical exact-view mode uses the PNG witness so external font/SVG changes cannot alter the recorded appearance
 - preserve renderer/theme/machine inputs as provenance metadata while treating archived SVG bytes as visual source of truth
 - support clearly labeled reconstruction only when a legacy/damaged artifact lacks original artwork
 - preserve the bundled static deck as fallback
@@ -452,8 +477,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - every selected prompt snapshots ID, text, and selected daypart
 - every selected art symbol snapshots ID, label, variant hook, and Notice observation
 - historical rendering never consults the current deck to complete missing user-facing fields
-- finalized Daily Oms preserve the exact rendered SVG or another exact immutable visual asset
-- historical artwork is SHA-256 verified before being labeled original
+- finalized Daily Oms preserve both the exact generated SVG structural master and a lossless PNG visual witness
+- structural master and visual witness are independently SHA-256 verified before being labeled original
+- verified visual reproduction does not depend on the current system font stack
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
