@@ -109,19 +109,14 @@ Extend each card with optional experience metadata:
 ```json
 {
   "experience": {
-    "facets": {
-      "attention": ["..."],
-      "creation": ["..."],
-      "connection": ["..."],
-      "inner_world": ["..."],
-      "work": ["..."],
-      "change": ["..."]
-    },
-    "prompts": {
-      "morning": ["..."],
-      "day": ["..."],
-      "evening": ["..."]
-    },
+    "facets": [
+      {"id":"star-renewal","lens":"renewal","text":"..."},
+      {"id":"star-attention","lens":"attention","text":"..."}
+    ],
+    "prompts": [
+      {"id":"star-small-renewal","text":"What small source of renewal is already near?","dayparts":["morning","day"]},
+      {"id":"star-evening-light","text":"What light remained visible today?","dayparts":["evening"]}
+    ],
     "art_symbols": [
       {"id":"lantern","label":"the lantern","variant":"glow"},
       {"id":"path","label":"the mountain path","variant":"trace"},
@@ -146,10 +141,10 @@ Extend the reading object without breaking existing consumers:
   "redraw":false,
   "experience":{
     "version":1,
-    "facet":"renewal",
-    "prompt":"star-small-renewal",
-    "promptPeriod":"morning",
-    "symbol":"water-jars",
+    "facet":{"id":"star-renewal","text":"..."},
+    "prompt":{"id":"star-small-renewal","text":"What small source of renewal is already near?","period":"morning"},
+    "symbol":{"id":"water-jars","label":"the water jars","text":"..."},
+    "deckContentVersion":"1.1.0",
     "artVariant":7,
     "machineWeather":{"cpu":2,"memory":1,"disk":3}
   }
@@ -157,6 +152,14 @@ Extend the reading object without breaking existing consumers:
 ```
 
 Do not store the derived HMAC or installation secret in reading history.
+
+### Immutable Daily Om artifacts
+
+A completed daily encounter is a historical artifact, not a view that should be reconstructed from the latest deck. Persist both stable authored IDs **and the exact user-visible authored content selected that day**. The snapshot includes facet text, prompt text/daypart, symbol label/observation, deck-content version, experience-engine version, art variant, machine-weather buckets, and the card/orientation.
+
+Future wording edits may change new Daily Oms but must never rewrite an old one. Historical rendering should prefer the snapshot. Versioned deck content may remain useful for migrations and provenance, but it is not a substitute for preserving the content the user actually encountered.
+
+This gives a decades-old Daily Om archival integrity: opening a 2026 encounter in 2043 shows what Ominity presented in 2026, not a modern reinterpretation.
 
 ## History and statistics
 
@@ -210,6 +213,30 @@ Suggested shape:
   "streak":{"current":8,"longest":17}
 }
 ```
+
+## Machine Eras
+
+Ominity should recognize long-lived relationships with hardware without storing identifying hardware data.
+
+Derive a coarse **Machine Era signature** from the same privacy-preserving capacity buckets used by Machine DNA. When that coarse signature materially changes and remains changed, begin a new local Machine Era with a random opaque ID such as `era-02`. Never store manufacturer/model, hostname, serials, MAC addresses, disk UUIDs, CPU model strings, or other fingerprint-grade identifiers.
+
+An era record may contain:
+
+```json
+{
+  "id":"era-02",
+  "started":"2031-08-15",
+  "ended":null,
+  "classes":{"cpu":"C4","memory":"M5","storage":"D5"},
+  "dailyOms":0
+}
+```
+
+Each Daily Om stores its Machine Era ID. Constellation can then show the user's history in chapters such as **Machine Era 01** without claiming to identify a physical device.
+
+To avoid creating a new era for transient configuration changes, require confirmation across multiple launches/days before closing the current era. Upgrades are part of the story: a RAM or storage upgrade may either remain within the era with a milestone event or begin a new era according to a documented material-change threshold.
+
+Machine Eras are **sentimental computing**, not device tracking: they let a user see how different periods of hardware participation shaped the visual language of their archive while the tarot meaning remained unchanged.
 
 ## The Thread
 
@@ -266,6 +293,8 @@ A new statistics surface should feel like part of Ominity rather than an analyti
 - streak
 - recent thread
 - tap a card to see dates it appeared
+- browse Daily Oms by Machine Era and see era boundaries/milestones
+- preserve the visual lineage of retired hardware without retaining identifying hardware data
 
 Call this surface **Constellation**: the user's history becomes a map of encounters with the deck.
 
@@ -294,6 +323,7 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 ### Phase 1 — state + deterministic engine
 
 - add installation identity helper
+- add Machine Era state and conservative material-change detection
 - add safe machine-capacity bucketing
 - add one-time machine-weather sampling
 - derive experience seed with HMAC-SHA256
@@ -330,6 +360,7 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 
 - add stats/history process boundary
 - build 78-card history matrix
+- add Machine Era timeline and era-scoped archive browsing
 - add 7/30/90-day views
 - add Thread and Return callouts
 - keep stats descriptive rather than predictive
@@ -343,7 +374,8 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 ## Tests / acceptance criteria
 
 - same installation + same daily reading + same persisted weather => identical experience
-- two installation seeds => different experience variants with overwhelming probability
+- experience derivation is deterministic for identical inputs
+- different installation seeds are tested for healthy distribution across many samples; finite visible variants may legitimately collide
 - machine data never changes card id, orientation, or canonical meaning
 - no raw machine metrics are written to disk
 - no hardware identifiers are collected
@@ -354,6 +386,10 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - lifetime totals remain derivable from canonical history
 - selected prompt ID + period survive reopening in a different daypart
 - reordering authored prompt arrays cannot change an existing daily artifact
+- authored schema gives every selectable facet, prompt, symbol, and relationship an explicit stable ID
+- historical Daily Oms preserve exact selected authored content, not only IDs
+- deck wording changes cannot silently reinterpret historical Daily Oms
+- Machine Era changes use only coarse non-identifying classes and resist transient configuration churn
 - corrupt identity/weather/history state recovers safely
 - all state files are mode 0600
 - theme rendering remains atomic
