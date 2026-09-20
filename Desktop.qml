@@ -369,6 +369,7 @@ Item {
         function redraw(): void { root.redraw() }
         function flip(): void { readingWindow.turn() }
         function guide(): void { root.openReading(); readingWindow.page = "guide"; readingWindow.flipProgress = 1 }
+        function journal(): void { root.openReading(); readingWindow.page = "journal"; readingWindow.flipProgress = 1; root.loadJournal() }
         function widget(): void { root.toggleWidget() }
         function constellation(): void { root.openConstellation() }
         function status(): string { return JSON.stringify({open: root.overlayOpen, widget: root.widgetEnabled, day: root.day, card: root.card.id || "", face: readingWindow.flipProgress > 0.5 ? "details" : "art", themeReady: root.themedDirectory !== ""}) }
@@ -450,6 +451,7 @@ Item {
         archiveDefaultPath: root.home + "/Documents/Ominity-" + (root.day || Qt.formatDate(new Date(), "yyyy-MM-dd")) + ".zip"
         archiveMessage: root.archiveMessage
         archiveBusy: archiveProc.running
+        fallbackDirectory: root.themedDirectory || root.pluginDir
         historyReading: root.historicalReading
         historyJournal: root.historicalJournal
         historyBusy: dayProc.running

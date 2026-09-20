@@ -10,8 +10,10 @@ Item {
     property var reading: null
     property var journal: ({})
     property string errorText: ""
+    property string fallbackDirectory: ""
     readonly property var card: reading && reading.card ? reading.card : ({})
     readonly property var experience: reading && reading.experience ? reading.experience : ({})
+    readonly property string imagePath: reading && reading.artworkPath ? reading.artworkPath : (card.art && fallbackDirectory ? fallbackDirectory + "/" + card.art : "")
     signal closeRequested()
 
     visible: opened
@@ -63,7 +65,7 @@ Item {
                     height: parent.height
                     Image {
                         anchors.fill: parent
-                        source: root.reading && root.reading.artworkPath ? Util.fileUrl(root.reading.artworkPath) : ""
+                        source: root.imagePath ? Util.fileUrl(root.imagePath) : ""
                         fillMode: Image.PreserveAspectFit
                         rotation: root.reading && root.reading.reversed ? 180 : 0
                         asynchronous: true
@@ -72,8 +74,8 @@ Item {
                     Text {
                         anchors.centerIn: parent
                         width: parent.width - 24
-                        visible: !root.reading || !root.reading.artworkPath
-                        text: "Original artwork was not witnessed for this reading. Its saved words remain."
+                        visible: !root.imagePath
+                        text: "Artwork is unavailable for this reading. Its saved words remain."
                         color: Color.muted
                         font.family: "Noto Serif"
                         font.pixelSize: 18
@@ -96,7 +98,7 @@ Item {
                         width: scroll.width
                         spacing: 13
                         Text { text: root.card.title || "The reading"; width: parent.width; color: Color.foreground; font.family: "Noto Serif"; font.pixelSize: 30; wrapMode: Text.Wrap }
-                        Text { text: root.reading ? (root.reading.archiveStatus === "verified-original" ? "ORIGINAL ARTWORK VERIFIED" : "LEGACY OR MODIFIED ARTWORK") : ""; width: parent.width; color: Color.accent; font.family: "Noto Sans"; font.pixelSize: 11; font.letterSpacing: 1; wrapMode: Text.Wrap }
+                        Text { text: root.reading ? (root.reading.archiveStatus === "verified-original" ? "ORIGINAL ARTWORK VERIFIED" : "CURRENT DECK RECONSTRUCTION  /  ORIGINAL NOT WITNESSED") : ""; width: parent.width; color: Color.accent; font.family: "Noto Sans"; font.pixelSize: 11; font.letterSpacing: 1; wrapMode: Text.Wrap }
                         Text { text: root.reading ? (root.reading.reversed ? root.card.reversed : root.card.upright) : ""; width: parent.width; color: Color.foreground; font.family: "Noto Serif"; font.pixelSize: 21; wrapMode: Text.Wrap }
                         Text { text: root.card.interpretation || ""; width: parent.width; color: Color.foreground; font.family: "Noto Sans"; font.pixelSize: 14; wrapMode: Text.Wrap; lineHeight: 1.2 }
                         Text { visible: !!(root.experience.facet || {}).text; text: "LENS  /  " + ((root.experience.facet || {}).text || ""); width: parent.width; color: Color.foreground; font.family: "Noto Sans"; font.pixelSize: 14; wrapMode: Text.Wrap }

@@ -23,6 +23,7 @@ PanelWindow {
     property string archiveMode: "export"
     property string archivePath: ""
     property string archiveDefaultPath: ""
+    property string fallbackDirectory: ""
     property string archiveMessage: ""
     property bool archiveBusy: false
     readonly property var cards: stats && stats.perCard ? stats.perCard : []
@@ -326,6 +327,7 @@ PanelWindow {
                 journal: root.historyJournal
                 busy: root.historyBusy
                 errorText: root.historyError
+                fallbackDirectory: root.fallbackDirectory
                 onCloseRequested: root.historyOpen = false
             }
         }
