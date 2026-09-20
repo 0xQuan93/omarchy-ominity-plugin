@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from deck.build_deck import CARD_DIR, DECK_DIR, RANKS, ROOT, card_back_svg, card_svg, make_deck
+from deck.experience_content import DAYPARTS, select_experience, validate_deck_content, validate_experience
 
 
 MAJOR_TITLES = [
@@ -67,6 +68,44 @@ class DeckContractTests(unittest.TestCase):
         back = ROOT / "assets" / "card-back.svg"
         self.assertEqual(back.read_text().strip(), card_back_svg())
         self.assertEqual(ET.parse(back).getroot().attrib["viewBox"], "0 0 280 480")
+
+    def test_every_card_has_authored_stable_experience(self):
+        validate_deck_content(self.cards)
+        ids = set()
+        for card in self.cards:
+            with self.subTest(card=card["id"]):
+                experience = card["experience"]
+                self.assertEqual(len(experience["facets"]), 2)
+                self.assertEqual(len(experience["prompts"]), 2)
+                self.assertEqual(len(experience["art_symbols"]), 3)
+                self.assertEqual([symbol["label"] for symbol in experience["art_symbols"]], card["symbols"])
+                for item in (*experience["facets"], *experience["prompts"], *experience["art_symbols"]):
+                    self.assertNotIn(item["id"], ids)
+                    ids.add(item["id"])
+                for period in DAYPARTS:
+                    selected = select_experience(card, bytes.fromhex("ab" * 32), period)
+                    self.assertEqual(selected["prompt"]["period"], period)
+                    self.assertIn(selected["facet"], experience["facets"])
+                    self.assertIn(selected["symbol"], experience["art_symbols"])
+                    self.assertIn(selected["prompt"]["id"], {p["id"] for p in experience["prompts"]})
+
+    def test_selection_uses_stable_ids_and_rejects_invalid_metadata(self):
+        import copy
+
+        card = copy.deepcopy(self.cards[17])
+        seed = bytes(range(32))
+        first = select_experience(card, seed, "morning")
+        self.assertEqual(first, select_experience(card, seed, "morning"))
+        for collection in card["experience"].values():
+            collection.reverse()
+        self.assertEqual(first, select_experience(card, seed, "morning"))
+        with self.assertRaises(ValueError):
+            select_experience(card, b"short", "morning")
+        with self.assertRaises(ValueError):
+            select_experience(card, seed, "night")
+        card["experience"]["prompts"][0]["dayparts"].append("evening")
+        with self.assertRaises(ValueError):
+            validate_experience(card)
 
     def test_original_illustrations_stay_vector_and_each_scene_is_distinct(self):
         namespace = "{http://www.w3.org/2000/svg}"

@@ -23,7 +23,58 @@
       "possibility"
     ],
     "art_note": "A traveler pauses at a cut in the stone while the little dog faces the open sky.",
-    "art": "assets/cards/major-00-the-fool.svg"
+    "art": "assets/cards/major-00-the-fool.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-00-the-fool-lens-beginnings",
+          "lens": "beginnings",
+          "text": "A beginning can be small enough to take with an honest look at the ground."
+        },
+        {
+          "id": "major-00-the-fool-lens-trust",
+          "lens": "trust",
+          "text": "Trust grows when you notice both the opening and your footing."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-00-the-fool-prompt-daylight",
+          "text": "What could you begin before you feel entirely ready?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-00-the-fool-prompt-evening",
+          "text": "What first step did you actually take today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-00-the-fool-symbol-cliff",
+          "label": "cliff",
+          "variant": "trace",
+          "observation": "The cliff marks an edge, not an instruction to jump."
+        },
+        {
+          "id": "major-00-the-fool-symbol-white-flower",
+          "label": "white flower",
+          "variant": "grain",
+          "observation": "The flower brings a fragile living detail to the threshold."
+        },
+        {
+          "id": "major-00-the-fool-symbol-open-sky",
+          "label": "open sky",
+          "variant": "glimmer",
+          "observation": "The open sky gives the traveler room beyond the stone."
+        }
+      ]
+    }
   },
   {
     "id": "major-01-the-magician",
@@ -49,7 +100,58 @@
       "focus"
     ],
     "art_note": "One hand reaches into the halo; the other points to four tools on the worktable.",
-    "art": "assets/cards/major-01-the-magician.svg"
+    "art": "assets/cards/major-01-the-magician.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-01-the-magician-lens-agency",
+          "lens": "agency",
+          "text": "Intention becomes visible through the tools already at hand."
+        },
+        {
+          "id": "major-01-the-magician-lens-craft",
+          "lens": "craft",
+          "text": "Skill asks for a clear purpose before a flourish."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-01-the-magician-prompt-daylight",
+          "text": "Which tool in your reach have you overlooked?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-01-the-magician-prompt-evening",
+          "text": "Where did your attention become action today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-01-the-magician-symbol-table",
+          "label": "table",
+          "variant": "trace",
+          "observation": "The table gathers usable things into one place."
+        },
+        {
+          "id": "major-01-the-magician-symbol-raised-hand",
+          "label": "raised hand",
+          "variant": "trace",
+          "observation": "The raised hand draws attention upward while another points to the tools."
+        },
+        {
+          "id": "major-01-the-magician-symbol-infinity-loop",
+          "label": "infinity loop",
+          "variant": "halo",
+          "observation": "The loop suggests a continuous exchange between vision and practice."
+        }
+      ]
+    }
   },
   {
     "id": "major-02-the-high-priestess",
@@ -75,7 +177,58 @@
       "inner knowing"
     ],
     "art_note": "The moon hangs in the narrow space between two pillars, with water visible beyond the veil.",
-    "art": "assets/cards/major-02-the-high-priestess.svg"
+    "art": "assets/cards/major-02-the-high-priestess.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-02-the-high-priestess-lens-intuition",
+          "lens": "intuition",
+          "text": "Quiet can hold information that a quick answer would miss."
+        },
+        {
+          "id": "major-02-the-high-priestess-lens-stillness",
+          "lens": "stillness",
+          "text": "The unseen deserves attention without demanding certainty."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-02-the-high-priestess-prompt-daylight",
+          "text": "What do you know when you stop arguing with yourself?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-02-the-high-priestess-prompt-evening",
+          "text": "What did you hear after the day's noise settled?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-02-the-high-priestess-symbol-veil",
+          "label": "veil",
+          "variant": "trace",
+          "observation": "The veil makes the space beyond partly visible."
+        },
+        {
+          "id": "major-02-the-high-priestess-symbol-moon",
+          "label": "moon",
+          "variant": "glimmer",
+          "observation": "The moon hangs between the pillars rather than filling the sky."
+        },
+        {
+          "id": "major-02-the-high-priestess-symbol-still-water",
+          "label": "still water",
+          "variant": "ripple",
+          "observation": "Still water offers a surface for patient looking."
+        }
+      ]
+    }
   },
   {
     "id": "major-03-the-empress",
@@ -101,7 +254,58 @@
       "creation"
     ],
     "art_note": "Grain rises around the seated figure, while a river threads through the garden behind her.",
-    "art": "assets/cards/major-03-the-empress.svg"
+    "art": "assets/cards/major-03-the-empress.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-03-the-empress-lens-abundance",
+          "lens": "abundance",
+          "text": "Care becomes creative when it has rhythm and room."
+        },
+        {
+          "id": "major-03-the-empress-lens-care",
+          "lens": "care",
+          "text": "Growth asks for nourishment, not constant control."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-03-the-empress-prompt-daylight",
+          "text": "What would flourish with steadier care?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-03-the-empress-prompt-evening",
+          "text": "What did you tend that may keep growing?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-03-the-empress-symbol-garden",
+          "label": "garden",
+          "variant": "grain",
+          "observation": "The garden surrounds the seated figure with living work."
+        },
+        {
+          "id": "major-03-the-empress-symbol-grain",
+          "label": "grain",
+          "variant": "grain",
+          "observation": "Grain rises where patient tending has taken root."
+        },
+        {
+          "id": "major-03-the-empress-symbol-river",
+          "label": "river",
+          "variant": "ripple",
+          "observation": "The river moves through the garden without staying still."
+        }
+      ]
+    }
   },
   {
     "id": "major-04-the-emperor",
@@ -127,7 +331,58 @@
       "boundary"
     ],
     "art_note": "The mountain and the throne echo each other's hard geometry, but a small flame remains free.",
-    "art": "assets/cards/major-04-the-emperor.svg"
+    "art": "assets/cards/major-04-the-emperor.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-04-the-emperor-lens-structure",
+          "lens": "structure",
+          "text": "A boundary can hold a vision without hardening it."
+        },
+        {
+          "id": "major-04-the-emperor-lens-stewardship",
+          "lens": "stewardship",
+          "text": "Authority is most useful when its structure can be revised."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-04-the-emperor-prompt-daylight",
+          "text": "What rule supports your freedom, and what rule limits it?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-04-the-emperor-prompt-evening",
+          "text": "Which structure helped you, and which needs adjustment?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-04-the-emperor-symbol-stone-throne",
+          "label": "stone throne",
+          "variant": "trace",
+          "observation": "The throne gives the seated figure a deliberate frame."
+        },
+        {
+          "id": "major-04-the-emperor-symbol-mountain",
+          "label": "mountain",
+          "variant": "trace",
+          "observation": "The mountain repeats the seat's hard shape at a larger scale."
+        },
+        {
+          "id": "major-04-the-emperor-symbol-grid",
+          "label": "grid",
+          "variant": "trace",
+          "observation": "The grid makes order visible beside the small free flame."
+        }
+      ]
+    }
   },
   {
     "id": "major-05-the-hierophant",
@@ -153,7 +408,58 @@
       "ritual"
     ],
     "art_note": "Two small listeners stand beneath an arch as the teacher opens a book above crossed keys.",
-    "art": "assets/cards/major-05-the-hierophant.svg"
+    "art": "assets/cards/major-05-the-hierophant.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-05-the-hierophant-lens-tradition",
+          "lens": "tradition",
+          "text": "A tradition can become a question you choose to keep asking."
+        },
+        {
+          "id": "major-05-the-hierophant-lens-learning",
+          "lens": "learning",
+          "text": "Learning deepens when inherited forms meet lived experience."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-05-the-hierophant-prompt-daylight",
+          "text": "Which inherited practice deserves a fresh question?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-05-the-hierophant-prompt-evening",
+          "text": "Which teaching proved useful in practice today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-05-the-hierophant-symbol-keys",
+          "label": "keys",
+          "variant": "trace",
+          "observation": "The keys sit beneath the teacher and listeners."
+        },
+        {
+          "id": "major-05-the-hierophant-symbol-arch",
+          "label": "arch",
+          "variant": "halo",
+          "observation": "The arch creates a shared space for the lesson."
+        },
+        {
+          "id": "major-05-the-hierophant-symbol-open-book",
+          "label": "open book",
+          "variant": "trace",
+          "observation": "The open book gives the gathered figures something to examine."
+        }
+      ]
+    }
   },
   {
     "id": "major-06-the-lovers",
@@ -179,7 +485,58 @@
       "integrity"
     ],
     "art_note": "Two figures face one another across a narrow path, with trees framing the same sun.",
-    "art": "assets/cards/major-06-the-lovers.svg"
+    "art": "assets/cards/major-06-the-lovers.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-06-the-lovers-lens-choice",
+          "lens": "choice",
+          "text": "A choice becomes clearer when feeling and action can meet."
+        },
+        {
+          "id": "major-06-the-lovers-lens-union",
+          "lens": "union",
+          "text": "Connection asks each person to remain visible and truthful."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-06-the-lovers-prompt-daylight",
+          "text": "What choice lets your heart and actions agree?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-06-the-lovers-prompt-evening",
+          "text": "Where did your choices align with what you value?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-06-the-lovers-symbol-two-figures",
+          "label": "two figures",
+          "variant": "trace",
+          "observation": "The two figures face each other across a narrow path."
+        },
+        {
+          "id": "major-06-the-lovers-symbol-tree",
+          "label": "tree",
+          "variant": "grain",
+          "observation": "The trees frame the meeting without closing it in."
+        },
+        {
+          "id": "major-06-the-lovers-symbol-sun",
+          "label": "sun",
+          "variant": "glimmer",
+          "observation": "The sun is shared by both sides of the scene."
+        }
+      ]
+    }
   },
   {
     "id": "major-07-the-chariot",
@@ -205,7 +562,58 @@
       "self command"
     ],
     "art_note": "A still driver holds a line between a pale horse and a dark horse beneath a canopy of stars.",
-    "art": "assets/cards/major-07-the-chariot.svg"
+    "art": "assets/cards/major-07-the-chariot.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-07-the-chariot-lens-resolve",
+          "lens": "resolve",
+          "text": "Direction can coexist with feelings that pull in different ways."
+        },
+        {
+          "id": "major-07-the-chariot-lens-movement",
+          "lens": "movement",
+          "text": "Movement becomes purposeful when the reins stay in your hands."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-07-the-chariot-prompt-daylight",
+          "text": "What deserves your full direction now?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-07-the-chariot-prompt-evening",
+          "text": "What did you guide with intention today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-07-the-chariot-symbol-wheels",
+          "label": "wheels",
+          "variant": "halo",
+          "observation": "The wheels promise movement beneath the still driver."
+        },
+        {
+          "id": "major-07-the-chariot-symbol-two-steeds",
+          "label": "two steeds",
+          "variant": "trace",
+          "observation": "The two steeds differ, yet share one road."
+        },
+        {
+          "id": "major-07-the-chariot-symbol-star-canopy",
+          "label": "star canopy",
+          "variant": "glimmer",
+          "observation": "The star canopy holds a wide sky over a focused journey."
+        }
+      ]
+    }
   },
   {
     "id": "major-08-strength",
@@ -231,7 +639,58 @@
       "compassion"
     ],
     "art_note": "A human hand rests on the lion's mane; the infinity loop floats above their shared calm.",
-    "art": "assets/cards/major-08-strength.svg"
+    "art": "assets/cards/major-08-strength.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-08-strength-lens-courage",
+          "lens": "courage",
+          "text": "Gentleness can stay present with a powerful feeling."
+        },
+        {
+          "id": "major-08-strength-lens-patience",
+          "lens": "patience",
+          "text": "Patience gives courage a longer reach than force alone."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-08-strength-prompt-daylight",
+          "text": "Where would a softer grip make you stronger?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-08-strength-prompt-evening",
+          "text": "Where did a softer grip serve you today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-08-strength-symbol-lion",
+          "label": "lion",
+          "variant": "trace",
+          "observation": "The lion remains powerful beneath the resting hand."
+        },
+        {
+          "id": "major-08-strength-symbol-open-hand",
+          "label": "open hand",
+          "variant": "trace",
+          "observation": "The open hand meets the mane without a weapon."
+        },
+        {
+          "id": "major-08-strength-symbol-lemniscate",
+          "label": "lemniscate",
+          "variant": "trace",
+          "observation": "The loop floats over the shared calm rather than binding it."
+        }
+      ]
+    }
   },
   {
     "id": "major-09-the-hermit",
@@ -257,7 +716,58 @@
       "discernment"
     ],
     "art_note": "The lantern lights only the next turn of a steep path, leaving the farther mountain unresolved.",
-    "art": "assets/cards/major-09-the-hermit.svg"
+    "art": "assets/cards/major-09-the-hermit.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-09-the-hermit-lens-solitude",
+          "lens": "solitude",
+          "text": "Solitude can clarify what noise has covered."
+        },
+        {
+          "id": "major-09-the-hermit-lens-insight",
+          "lens": "insight",
+          "text": "A small light is enough for the next bend, even when the route is long."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-09-the-hermit-prompt-daylight",
+          "text": "What becomes clear when the noise recedes?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-09-the-hermit-prompt-evening",
+          "text": "What became clearer in a quiet moment?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-09-the-hermit-symbol-lantern",
+          "label": "lantern",
+          "variant": "glimmer",
+          "observation": "The lantern lights a short stretch instead of the whole mountain."
+        },
+        {
+          "id": "major-09-the-hermit-symbol-mountain-path",
+          "label": "mountain path",
+          "variant": "trace",
+          "observation": "The path turns beyond the visible pool of light."
+        },
+        {
+          "id": "major-09-the-hermit-symbol-staff",
+          "label": "staff",
+          "variant": "ember",
+          "observation": "The staff gives the traveler something steady to hold."
+        }
+      ]
+    }
   },
   {
     "id": "major-10-wheel-of-fortune",
@@ -283,7 +793,58 @@
       "adaptation"
     ],
     "art_note": "Four tiny stars keep their corners while the eight-spoked wheel turns in the center.",
-    "art": "assets/cards/major-10-wheel-of-fortune.svg"
+    "art": "assets/cards/major-10-wheel-of-fortune.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-10-wheel-of-fortune-lens-cycles",
+          "lens": "cycles",
+          "text": "Change has a center even when its edges keep moving."
+        },
+        {
+          "id": "major-10-wheel-of-fortune-lens-timing",
+          "lens": "timing",
+          "text": "Timing matters, yet a response remains yours to choose."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-10-wheel-of-fortune-prompt-daylight",
+          "text": "What can you influence inside a changing season?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-10-wheel-of-fortune-prompt-evening",
+          "text": "What changed today, and how did you respond?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-10-wheel-of-fortune-symbol-wheel",
+          "label": "wheel",
+          "variant": "halo",
+          "observation": "The wheel turns at the center of the scene."
+        },
+        {
+          "id": "major-10-wheel-of-fortune-symbol-four-corners",
+          "label": "four corners",
+          "variant": "trace",
+          "observation": "Four corner lights keep their positions around the motion."
+        },
+        {
+          "id": "major-10-wheel-of-fortune-symbol-orbit",
+          "label": "orbit",
+          "variant": "trace",
+          "observation": "The orbit makes repetition and movement visible together."
+        }
+      ]
+    }
   },
   {
     "id": "major-11-justice",
@@ -309,7 +870,58 @@
       "clarity"
     ],
     "art_note": "A sword divides the space vertically; the two pans hang level in front of a seated witness.",
-    "art": "assets/cards/major-11-justice.svg"
+    "art": "assets/cards/major-11-justice.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-11-justice-lens-fairness",
+          "lens": "fairness",
+          "text": "Clarity improves when action and effect are weighed together."
+        },
+        {
+          "id": "major-11-justice-lens-accountability",
+          "lens": "accountability",
+          "text": "A fair repair begins with what can actually be seen."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-11-justice-prompt-daylight",
+          "text": "What truth would improve this decision?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-11-justice-prompt-evening",
+          "text": "What evidence changed your judgment today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-11-justice-symbol-scales",
+          "label": "scales",
+          "variant": "trace",
+          "observation": "The scales hang level before the seated witness."
+        },
+        {
+          "id": "major-11-justice-symbol-sword",
+          "label": "sword",
+          "variant": "trace",
+          "observation": "The sword draws a firm vertical through the space."
+        },
+        {
+          "id": "major-11-justice-symbol-straight-line",
+          "label": "straight line",
+          "variant": "trace",
+          "observation": "The straight line asks the eye to measure both sides."
+        }
+      ]
+    }
   },
   {
     "id": "major-12-the-hanged-man",
@@ -335,7 +947,58 @@
       "release"
     ],
     "art_note": "The suspended figure's face sits inside a bright halo as the entire landscape turns around them.",
-    "art": "assets/cards/major-12-the-hanged-man.svg"
+    "art": "assets/cards/major-12-the-hanged-man.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-12-the-hanged-man-lens-pause",
+          "lens": "pause",
+          "text": "A pause can loosen a question without solving it at once."
+        },
+        {
+          "id": "major-12-the-hanged-man-lens-perspective",
+          "lens": "perspective",
+          "text": "The view changes when you let the scene turn around you."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-12-the-hanged-man-prompt-daylight",
+          "text": "What can you see from the position you resisted?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-12-the-hanged-man-prompt-evening",
+          "text": "What looked different after you paused?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-12-the-hanged-man-symbol-suspended-figure",
+          "label": "suspended figure",
+          "variant": "trace",
+          "observation": "The suspended figure rests within a reversed view."
+        },
+        {
+          "id": "major-12-the-hanged-man-symbol-halo",
+          "label": "halo",
+          "variant": "halo",
+          "observation": "The halo keeps the face bright amid the inversion."
+        },
+        {
+          "id": "major-12-the-hanged-man-symbol-inverted-triangle",
+          "label": "inverted triangle",
+          "variant": "trace",
+          "observation": "The triangle points toward a changed orientation."
+        }
+      ]
+    }
   },
   {
     "id": "major-13-death",
@@ -361,7 +1024,58 @@
       "transition"
     ],
     "art_note": "A dark gate frames a setting sun, and one new shoot crosses the threshold.",
-    "art": "assets/cards/major-13-death.svg"
+    "art": "assets/cards/major-13-death.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-13-death-lens-ending",
+          "lens": "ending",
+          "text": "An ending can be honored without being made permanent."
+        },
+        {
+          "id": "major-13-death-lens-renewal",
+          "lens": "renewal",
+          "text": "Clearing a threshold is part of making room for life."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-13-death-prompt-daylight",
+          "text": "What is ready to be honored and released?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-13-death-prompt-evening",
+          "text": "What did you release or finish today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-13-death-symbol-gate",
+          "label": "gate",
+          "variant": "trace",
+          "observation": "The gate frames passage rather than a sealed wall."
+        },
+        {
+          "id": "major-13-death-symbol-setting-sun",
+          "label": "setting sun",
+          "variant": "glimmer",
+          "observation": "The setting sun marks a cycle that has reached its close."
+        },
+        {
+          "id": "major-13-death-symbol-new-shoot",
+          "label": "new shoot",
+          "variant": "grain",
+          "observation": "The shoot crosses the threshold with new growth."
+        }
+      ]
+    }
   },
   {
     "id": "major-14-temperance",
@@ -387,7 +1101,58 @@
       "patience"
     ],
     "art_note": "A stream travels between two vessels in the hands of a figure standing in two waters.",
-    "art": "assets/cards/major-14-temperance.svg"
+    "art": "assets/cards/major-14-temperance.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-14-temperance-lens-balance",
+          "lens": "balance",
+          "text": "A workable rhythm is made through repeated adjustment."
+        },
+        {
+          "id": "major-14-temperance-lens-integration",
+          "lens": "integration",
+          "text": "Different needs can meet without losing their shape."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-14-temperance-prompt-daylight",
+          "text": "Which extremes could become a useful rhythm?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-14-temperance-prompt-evening",
+          "text": "Where did you find a steadier measure today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-14-temperance-symbol-two-vessels",
+          "label": "two vessels",
+          "variant": "trace",
+          "observation": "The two vessels keep their forms during the exchange."
+        },
+        {
+          "id": "major-14-temperance-symbol-stream",
+          "label": "stream",
+          "variant": "ripple",
+          "observation": "The stream gives the transfer a visible path."
+        },
+        {
+          "id": "major-14-temperance-symbol-horizon",
+          "label": "horizon",
+          "variant": "trace",
+          "observation": "The horizon stretches beyond this one act of balance."
+        }
+      ]
+    }
   },
   {
     "id": "major-15-the-devil",
@@ -413,7 +1178,58 @@
       "agency"
     ],
     "art_note": "The chains look heavy, yet each can be opened by a figure beneath the shadow.",
-    "art": "assets/cards/major-15-the-devil.svg"
+    "art": "assets/cards/major-15-the-devil.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-15-the-devil-lens-attachment",
+          "lens": "attachment",
+          "text": "A pattern is easier to change once its clasp is visible."
+        },
+        {
+          "id": "major-15-the-devil-lens-temptation",
+          "lens": "temptation",
+          "text": "Agency begins with naming both the comfort and cost of attachment."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-15-the-devil-prompt-daylight",
+          "text": "What attachment asks to be seen clearly?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-15-the-devil-prompt-evening",
+          "text": "What grip became easier to name today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-15-the-devil-symbol-loose-chain",
+          "label": "loose chain",
+          "variant": "trace",
+          "observation": "The chain looks heavy but has an opening."
+        },
+        {
+          "id": "major-15-the-devil-symbol-shadow",
+          "label": "shadow",
+          "variant": "trace",
+          "observation": "The shadow enlarges the scene without hiding the figures."
+        },
+        {
+          "id": "major-15-the-devil-symbol-flame",
+          "label": "flame",
+          "variant": "glimmer",
+          "observation": "The flame gives the dark space a point of light."
+        }
+      ]
+    }
   },
   {
     "id": "major-16-the-tower",
@@ -439,7 +1255,58 @@
       "rebuilding"
     ],
     "art_note": "The lightning strikes the crown of the tower; falling stones expose a clear patch of ground.",
-    "art": "assets/cards/major-16-the-tower.svg"
+    "art": "assets/cards/major-16-the-tower.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-16-the-tower-lens-rupture",
+          "lens": "rupture",
+          "text": "A hard truth can reveal the ground beneath an old structure."
+        },
+        {
+          "id": "major-16-the-tower-lens-truth",
+          "lens": "truth",
+          "text": "Tend what is living before deciding how to rebuild."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-16-the-tower-prompt-daylight",
+          "text": "What truth is asking for a safer foundation?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-16-the-tower-prompt-evening",
+          "text": "What remained sound after a disruption?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-16-the-tower-symbol-lightning",
+          "label": "lightning",
+          "variant": "trace",
+          "observation": "The lightning reaches the crown of the tower."
+        },
+        {
+          "id": "major-16-the-tower-symbol-broken-tower",
+          "label": "broken tower",
+          "variant": "trace",
+          "observation": "The broken tower shows the limits of its old form."
+        },
+        {
+          "id": "major-16-the-tower-symbol-open-ground",
+          "label": "open ground",
+          "variant": "trace",
+          "observation": "The open ground appears where the stones have fallen."
+        }
+      ]
+    }
   },
   {
     "id": "major-17-the-star",
@@ -465,7 +1332,58 @@
       "trust"
     ],
     "art_note": "The largest star shines over a figure who pours water both into the pool and onto the earth.",
-    "art": "assets/cards/major-17-the-star.svg"
+    "art": "assets/cards/major-17-the-star.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-17-the-star-lens-hope",
+          "lens": "hope",
+          "text": "Renewal can arrive in a quiet, repeatable act."
+        },
+        {
+          "id": "major-17-the-star-lens-renewal",
+          "lens": "renewal",
+          "text": "Hope is a resource you may refill slowly."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-17-the-star-prompt-daylight",
+          "text": "What small source of renewal is already near?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-17-the-star-prompt-evening",
+          "text": "What small light remained visible today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-17-the-star-symbol-eight-stars",
+          "label": "eight stars",
+          "variant": "glimmer",
+          "observation": "The eight stars gather around one larger light."
+        },
+        {
+          "id": "major-17-the-star-symbol-water-jars",
+          "label": "water jars",
+          "variant": "ripple",
+          "observation": "The jars direct water toward two different places."
+        },
+        {
+          "id": "major-17-the-star-symbol-pool",
+          "label": "pool",
+          "variant": "ripple",
+          "observation": "The pool receives one stream and holds it."
+        }
+      ]
+    }
   },
   {
     "id": "major-18-the-moon",
@@ -491,7 +1409,58 @@
       "uncertainty"
     ],
     "art_note": "Two watchful animals flank a wavering path that disappears between distant towers.",
-    "art": "assets/cards/major-18-the-moon.svg"
+    "art": "assets/cards/major-18-the-moon.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-18-the-moon-lens-mystery",
+          "lens": "mystery",
+          "text": "Uncertainty can be observed without being forced into a verdict."
+        },
+        {
+          "id": "major-18-the-moon-lens-dream",
+          "lens": "dream",
+          "text": "A winding route may still be worth following carefully."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-18-the-moon-prompt-daylight",
+          "text": "What uncertainty can you hold without inventing certainty?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-18-the-moon-prompt-evening",
+          "text": "What remained unclear, and what can wait?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-18-the-moon-symbol-moon",
+          "label": "moon",
+          "variant": "glimmer",
+          "observation": "The moon lights a path that is not fully explained."
+        },
+        {
+          "id": "major-18-the-moon-symbol-two-towers",
+          "label": "two towers",
+          "variant": "trace",
+          "observation": "The towers stand far apart along the wavering route."
+        },
+        {
+          "id": "major-18-the-moon-symbol-winding-path",
+          "label": "winding path",
+          "variant": "trace",
+          "observation": "The path passes the watchful animals into distance."
+        }
+      ]
+    }
   },
   {
     "id": "major-19-the-sun",
@@ -517,7 +1486,58 @@
       "openness"
     ],
     "art_note": "A rider and horse move through sunflowers beneath a sun that takes up nearly the whole sky.",
-    "art": "assets/cards/major-19-the-sun.svg"
+    "art": "assets/cards/major-19-the-sun.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-19-the-sun-lens-joy",
+          "lens": "joy",
+          "text": "Joy becomes more real when you let it be noticed."
+        },
+        {
+          "id": "major-19-the-sun-lens-vitality",
+          "lens": "vitality",
+          "text": "Vitality can be shared without demanding a perfect day."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-19-the-sun-prompt-daylight",
+          "text": "What can you celebrate without explaining it away?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-19-the-sun-prompt-evening",
+          "text": "What felt warm or alive today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-19-the-sun-symbol-sun",
+          "label": "sun",
+          "variant": "glimmer",
+          "observation": "The sun takes up nearly the whole sky."
+        },
+        {
+          "id": "major-19-the-sun-symbol-horse",
+          "label": "horse",
+          "variant": "trace",
+          "observation": "The horse carries the rider through the bright field."
+        },
+        {
+          "id": "major-19-the-sun-symbol-sunflowers",
+          "label": "sunflowers",
+          "variant": "grain",
+          "observation": "The sunflowers repeat small discs of light below."
+        }
+      ]
+    }
   },
   {
     "id": "major-20-judgement",
@@ -543,7 +1563,58 @@
       "renewal"
     ],
     "art_note": "A call passes across the horizon as three figures rise from separate stone frames.",
-    "art": "assets/cards/major-20-judgement.svg"
+    "art": "assets/cards/major-20-judgement.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-20-judgement-lens-awakening",
+          "lens": "awakening",
+          "text": "A review can become a call to act differently."
+        },
+        {
+          "id": "major-20-judgement-lens-review",
+          "lens": "review",
+          "text": "Awakening asks for an honest response to what you now know."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-20-judgement-prompt-daylight",
+          "text": "What part of your life is asking for a clear answer?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-20-judgement-prompt-evening",
+          "text": "What did you answer more honestly today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-20-judgement-symbol-trumpet",
+          "label": "trumpet",
+          "variant": "trace",
+          "observation": "The trumpet sends one call across the scene."
+        },
+        {
+          "id": "major-20-judgement-symbol-open-graves",
+          "label": "open graves",
+          "variant": "trace",
+          "observation": "The open graves hold separate starting points for the figures."
+        },
+        {
+          "id": "major-20-judgement-symbol-horizon",
+          "label": "horizon",
+          "variant": "trace",
+          "observation": "The horizon gives the rising figures a common direction."
+        }
+      ]
+    }
   },
   {
     "id": "major-21-the-world",
@@ -569,7 +1640,58 @@
       "integration"
     ],
     "art_note": "A dancer steps inside an unclosed wreath, with four witnesses at the edges of the world.",
-    "art": "assets/cards/major-21-the-world.svg"
+    "art": "assets/cards/major-21-the-world.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "major-21-the-world-lens-completion",
+          "lens": "completion",
+          "text": "Completion can be celebrated without closing every opening."
+        },
+        {
+          "id": "major-21-the-world-lens-belonging",
+          "lens": "belonging",
+          "text": "Belonging has room for movement, witness, and change."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "major-21-the-world-prompt-daylight",
+          "text": "What completion are you ready to acknowledge?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "major-21-the-world-prompt-evening",
+          "text": "What could you mark as complete today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "major-21-the-world-symbol-wreath",
+          "label": "wreath",
+          "variant": "halo",
+          "observation": "The wreath is open where a next step may pass."
+        },
+        {
+          "id": "major-21-the-world-symbol-four-corners",
+          "label": "four corners",
+          "variant": "trace",
+          "observation": "Four witnesses hold the edges of the scene."
+        },
+        {
+          "id": "major-21-the-world-symbol-dancing-figure",
+          "label": "dancing figure",
+          "variant": "trace",
+          "observation": "The dancer moves inside the circle rather than standing fixed."
+        }
+      ]
+    }
   },
   {
     "id": "wands-01-ace",
@@ -595,7 +1717,58 @@
       "energy"
     ],
     "art_note": "A single sprouting staff catches fire while an open hand offers it to the world.",
-    "art": "assets/cards/wands-01-ace.svg"
+    "art": "assets/cards/wands-01-ace.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-01-ace-lens-inspiration",
+          "lens": "inspiration",
+          "text": "An idea becomes a beginning when it finds a hand willing to act."
+        },
+        {
+          "id": "wands-01-ace-lens-initiative",
+          "lens": "initiative",
+          "text": "A spark needs a little room before it needs a plan."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-01-ace-prompt-daylight",
+          "text": "What could you try today at a small scale?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-01-ace-prompt-evening",
+          "text": "What spark did you give attention to today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-01-ace-symbol-sprouting-staff",
+          "label": "sprouting staff",
+          "variant": "ember",
+          "observation": "The staff sprouts while being offered outward."
+        },
+        {
+          "id": "wands-01-ace-symbol-ember",
+          "label": "ember",
+          "variant": "glimmer",
+          "observation": "The ember gives the new growth a point of heat."
+        },
+        {
+          "id": "wands-01-ace-symbol-open-hand",
+          "label": "open hand",
+          "variant": "trace",
+          "observation": "The open hand releases an invitation into the scene."
+        }
+      ]
+    }
   },
   {
     "id": "wands-02-two",
@@ -621,7 +1794,58 @@
       "choice"
     ],
     "art_note": "Two staffs frame a traveler above the parapet, with an entire horizon still to choose.",
-    "art": "assets/cards/wands-02-two.svg"
+    "art": "assets/cards/wands-02-two.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-02-two-lens-planning",
+          "lens": "planning",
+          "text": "Planning can widen the horizon without postponing the first move."
+        },
+        {
+          "id": "wands-02-two-lens-vision",
+          "lens": "vision",
+          "text": "A vision gains shape through one chosen direction."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-02-two-prompt-daylight",
+          "text": "Which option grows when you actually test it?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-02-two-prompt-evening",
+          "text": "What option became clearer today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-02-two-symbol-globe",
+          "label": "globe",
+          "variant": "trace",
+          "observation": "The globe suggests a world larger than the parapet."
+        },
+        {
+          "id": "wands-02-two-symbol-parapet",
+          "label": "parapet",
+          "variant": "trace",
+          "observation": "The parapet gives the traveler a place to survey from."
+        },
+        {
+          "id": "wands-02-two-symbol-two-staffs",
+          "label": "two staffs",
+          "variant": "ember",
+          "observation": "Two staffs frame an opening rather than a closed gate."
+        }
+      ]
+    }
   },
   {
     "id": "wands-03-three",
@@ -647,7 +1871,58 @@
       "patience"
     ],
     "art_note": "Ships have already left the shore; the three staffs keep watch for what returns.",
-    "art": "assets/cards/wands-03-three.svg"
+    "art": "assets/cards/wands-03-three.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-03-three-lens-expansion",
+          "lens": "expansion",
+          "text": "Work sent outward needs patience for its answer."
+        },
+        {
+          "id": "wands-03-three-lens-feedback",
+          "lens": "feedback",
+          "text": "Expansion includes listening to what comes back."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-03-three-prompt-daylight",
+          "text": "What response are you waiting for, and how can you prepare?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-03-three-prompt-evening",
+          "text": "What response did you notice from something begun earlier?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-03-three-symbol-three-staffs",
+          "label": "three staffs",
+          "variant": "ember",
+          "observation": "The three staffs stand watch after the departure."
+        },
+        {
+          "id": "wands-03-three-symbol-ships",
+          "label": "ships",
+          "variant": "trace",
+          "observation": "The ships have already moved beyond the shore."
+        },
+        {
+          "id": "wands-03-three-symbol-horizon",
+          "label": "horizon",
+          "variant": "trace",
+          "observation": "The horizon holds what has not returned yet."
+        }
+      ]
+    }
   },
   {
     "id": "wands-04-four",
@@ -673,7 +1948,58 @@
       "community"
     ],
     "art_note": "Four living posts hold a garland over the small figures gathered below it.",
-    "art": "assets/cards/wands-04-four.svg"
+    "art": "assets/cards/wands-04-four.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-04-four-lens-welcome",
+          "lens": "welcome",
+          "text": "A milestone deserves a place where people can gather."
+        },
+        {
+          "id": "wands-04-four-lens-milestone",
+          "lens": "milestone",
+          "text": "Welcome is a structure made by many hands."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-04-four-prompt-daylight",
+          "text": "Who belongs at the table for this moment?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-04-four-prompt-evening",
+          "text": "What could you celebrate with someone else?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-04-four-symbol-four-posts",
+          "label": "four posts",
+          "variant": "trace",
+          "observation": "Four living posts hold the scene upright."
+        },
+        {
+          "id": "wands-04-four-symbol-garland",
+          "label": "garland",
+          "variant": "trace",
+          "observation": "The garland joins the posts overhead."
+        },
+        {
+          "id": "wands-04-four-symbol-doorway",
+          "label": "doorway",
+          "variant": "trace",
+          "observation": "The doorway opens toward the little gathering beneath it."
+        }
+      ]
+    }
   },
   {
     "id": "wands-05-five",
@@ -699,7 +2025,58 @@
       "negotiation"
     ],
     "art_note": "Five staffs cross at different angles, turning shared fire into useful friction.",
-    "art": "assets/cards/wands-05-five.svg"
+    "art": "assets/cards/wands-05-five.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-05-five-lens-friction",
+          "lens": "friction",
+          "text": "Friction may reveal different strengths in the same room."
+        },
+        {
+          "id": "wands-05-five-lens-practice",
+          "lens": "practice",
+          "text": "The work is to give shared energy a useful direction."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-05-five-prompt-daylight",
+          "text": "What would make this disagreement constructive?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-05-five-prompt-evening",
+          "text": "Which disagreement taught you something today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-05-five-symbol-crossed-staffs",
+          "label": "crossed staffs",
+          "variant": "ember",
+          "observation": "The crossed staffs meet at varied angles."
+        },
+        {
+          "id": "wands-05-five-symbol-five-sparks",
+          "label": "five sparks",
+          "variant": "glimmer",
+          "observation": "Five sparks show the heat made by contact."
+        },
+        {
+          "id": "wands-05-five-symbol-uneven-ground",
+          "label": "uneven ground",
+          "variant": "trace",
+          "observation": "The uneven ground keeps every stance in motion."
+        }
+      ]
+    }
   },
   {
     "id": "wands-06-six",
@@ -725,7 +2102,58 @@
       "gratitude"
     ],
     "art_note": "A rider carries the laurel through a street full of little answering lights.",
-    "art": "assets/cards/wands-06-six.svg"
+    "art": "assets/cards/wands-06-six.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-06-six-lens-recognition",
+          "lens": "recognition",
+          "text": "Recognition can be received without pretending the work is finished."
+        },
+        {
+          "id": "wands-06-six-lens-confidence",
+          "lens": "confidence",
+          "text": "A visible success may invite a wider circle into the effort."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-06-six-prompt-daylight",
+          "text": "How can you accept praise without depending on it?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-06-six-prompt-evening",
+          "text": "What contribution did you acknowledge today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-06-six-symbol-laurel",
+          "label": "laurel",
+          "variant": "trace",
+          "observation": "The laurel marks a moment of public recognition."
+        },
+        {
+          "id": "wands-06-six-symbol-raised-staff",
+          "label": "raised staff",
+          "variant": "ember",
+          "observation": "The raised staff stays visible above the street."
+        },
+        {
+          "id": "wands-06-six-symbol-crowd",
+          "label": "crowd",
+          "variant": "trace",
+          "observation": "The crowd answers with small lights of its own."
+        }
+      ]
+    }
   },
   {
     "id": "wands-07-seven",
@@ -751,7 +2179,58 @@
       "resolve"
     ],
     "art_note": "One figure stands on the dark ridge while six staffs rise from below.",
-    "art": "assets/cards/wands-07-seven.svg"
+    "art": "assets/cards/wands-07-seven.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-07-seven-lens-conviction",
+          "lens": "conviction",
+          "text": "A boundary can protect a purpose without closing the heart."
+        },
+        {
+          "id": "wands-07-seven-lens-boundary",
+          "lens": "boundary",
+          "text": "Conviction asks for a stance you can explain."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-07-seven-prompt-daylight",
+          "text": "Which principle is worth defending now?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-07-seven-prompt-evening",
+          "text": "Where did you stand for something today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-07-seven-symbol-high-ridge",
+          "label": "high ridge",
+          "variant": "trace",
+          "observation": "The ridge puts one figure in a high, exposed place."
+        },
+        {
+          "id": "wands-07-seven-symbol-seven-staffs",
+          "label": "seven staffs",
+          "variant": "ember",
+          "observation": "The staffs rise from below toward that position."
+        },
+        {
+          "id": "wands-07-seven-symbol-stance",
+          "label": "stance",
+          "variant": "trace",
+          "observation": "The stance is active, with room to adjust."
+        }
+      ]
+    }
   },
   {
     "id": "wands-08-eight",
@@ -777,7 +2256,58 @@
       "momentum"
     ],
     "art_note": "Eight staffs streak across open air toward a landing place still out of view.",
-    "art": "assets/cards/wands-08-eight.svg"
+    "art": "assets/cards/wands-08-eight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-08-eight-lens-speed",
+          "lens": "speed",
+          "text": "Speed is useful when you can still name the destination."
+        },
+        {
+          "id": "wands-08-eight-lens-message",
+          "lens": "message",
+          "text": "A message in motion deserves a landing place."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-08-eight-prompt-daylight",
+          "text": "What can move quickly once you remove one delay?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-08-eight-prompt-evening",
+          "text": "What moved quickly, and where did it land?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-08-eight-symbol-flying-staffs",
+          "label": "flying staffs",
+          "variant": "ember",
+          "observation": "The staffs move together through open air."
+        },
+        {
+          "id": "wands-08-eight-symbol-diagonal-lines",
+          "label": "diagonal lines",
+          "variant": "trace",
+          "observation": "Diagonal lines make their direction visible."
+        },
+        {
+          "id": "wands-08-eight-symbol-distant-field",
+          "label": "distant field",
+          "variant": "grain",
+          "observation": "The distant field leaves the landing unresolved."
+        }
+      ]
+    }
   },
   {
     "id": "wands-09-nine",
@@ -803,7 +2333,58 @@
       "rest"
     ],
     "art_note": "The watchful figure stands before a fence of eight staffs, one more at hand.",
-    "art": "assets/cards/wands-09-nine.svg"
+    "art": "assets/cards/wands-09-nine.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-09-nine-lens-resilience",
+          "lens": "resilience",
+          "text": "Experience can guide a boundary without becoming permanent alarm."
+        },
+        {
+          "id": "wands-09-nine-lens-wariness",
+          "lens": "wariness",
+          "text": "Rest and readiness can share the same ground."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-09-nine-prompt-daylight",
+          "text": "Where do you need rest before another push?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-09-nine-prompt-evening",
+          "text": "What helped you feel steadier after strain?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-09-nine-symbol-bandage",
+          "label": "bandage",
+          "variant": "trace",
+          "observation": "The bandage records effort already spent."
+        },
+        {
+          "id": "wands-09-nine-symbol-fence-of-staffs",
+          "label": "fence of staffs",
+          "variant": "ember",
+          "observation": "The fence of staffs forms a visible perimeter."
+        },
+        {
+          "id": "wands-09-nine-symbol-watchful-eye",
+          "label": "watchful eye",
+          "variant": "trace",
+          "observation": "The watchful eye faces outward from a guarded position."
+        }
+      ]
+    }
   },
   {
     "id": "wands-10-ten",
@@ -829,7 +2410,58 @@
       "completion"
     ],
     "art_note": "A heavy bundle leans over a kneeling traveler while the town is already near.",
-    "art": "assets/cards/wands-10-ten.svg"
+    "art": "assets/cards/wands-10-ten.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-10-ten-lens-burden",
+          "lens": "burden",
+          "text": "A load can be real without becoming yours alone forever."
+        },
+        {
+          "id": "wands-10-ten-lens-limits",
+          "lens": "limits",
+          "text": "Nearness to a goal does not erase the need for limits."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-10-ten-prompt-daylight",
+          "text": "What responsibility can be shared or released?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-10-ten-prompt-evening",
+          "text": "What burden could be shared or set down?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-10-ten-symbol-bundle-of-staffs",
+          "label": "bundle of staffs",
+          "variant": "ember",
+          "observation": "The bundle bends over the traveler."
+        },
+        {
+          "id": "wands-10-ten-symbol-road",
+          "label": "road",
+          "variant": "trace",
+          "observation": "The road still leads onward beneath the weight."
+        },
+        {
+          "id": "wands-10-ten-symbol-near-town",
+          "label": "near town",
+          "variant": "trace",
+          "observation": "The town is close enough to be seen."
+        }
+      ]
+    }
   },
   {
     "id": "wands-11-page",
@@ -855,7 +2487,58 @@
       "play"
     ],
     "art_note": "The Page studies a living flame at the tip of a staff rather than a finished map.",
-    "art": "assets/cards/wands-11-page.svg"
+    "art": "assets/cards/wands-11-page.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-11-page-lens-curiosity",
+          "lens": "curiosity",
+          "text": "Curiosity keeps a new flame alive long enough to learn from it."
+        },
+        {
+          "id": "wands-11-page-lens-discovery",
+          "lens": "discovery",
+          "text": "The first lesson may matter more than a finished map."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-11-page-prompt-daylight",
+          "text": "What are you excited to learn firsthand?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-11-page-prompt-evening",
+          "text": "What did you learn by looking closely today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-11-page-symbol-young-traveler",
+          "label": "young traveler",
+          "variant": "trace",
+          "observation": "The young traveler studies rather than charges ahead."
+        },
+        {
+          "id": "wands-11-page-symbol-staff",
+          "label": "staff",
+          "variant": "ember",
+          "observation": "The staff carries a small living flame."
+        },
+        {
+          "id": "wands-11-page-symbol-small-flame",
+          "label": "small flame",
+          "variant": "glimmer",
+          "observation": "The flame is held near enough to examine."
+        }
+      ]
+    }
   },
   {
     "id": "wands-12-knight",
@@ -881,7 +2564,58 @@
       "direction"
     ],
     "art_note": "Horse and rider cut through the hot landscape with the wand held forward.",
-    "art": "assets/cards/wands-12-knight.svg"
+    "art": "assets/cards/wands-12-knight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-12-knight-lens-adventure",
+          "lens": "adventure",
+          "text": "Momentum can carry a bold idea into the world."
+        },
+        {
+          "id": "wands-12-knight-lens-drive",
+          "lens": "drive",
+          "text": "Drive works best when it can still hear the terrain."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-12-knight-prompt-daylight",
+          "text": "Where can boldness become useful action?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-12-knight-prompt-evening",
+          "text": "What did you pursue with energy today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-12-knight-symbol-rider",
+          "label": "rider",
+          "variant": "trace",
+          "observation": "The rider leans into the journey."
+        },
+        {
+          "id": "wands-12-knight-symbol-plume",
+          "label": "plume",
+          "variant": "ember",
+          "observation": "The plume repeats the forward motion above."
+        },
+        {
+          "id": "wands-12-knight-symbol-desert-wind",
+          "label": "desert wind",
+          "variant": "trace",
+          "observation": "The desert wind gives the landscape its own force."
+        }
+      ]
+    }
   },
   {
     "id": "wands-13-queen",
@@ -907,7 +2641,58 @@
       "warmth"
     ],
     "art_note": "The Queen keeps a sunflower-like light above her garden and its watchful cat.",
-    "art": "assets/cards/wands-13-queen.svg"
+    "art": "assets/cards/wands-13-queen.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-13-queen-lens-radiance",
+          "lens": "radiance",
+          "text": "Warmth can lead by making others more able to grow."
+        },
+        {
+          "id": "wands-13-queen-lens-leadership",
+          "lens": "leadership",
+          "text": "Confidence need not crowd out watchfulness."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-13-queen-prompt-daylight",
+          "text": "How can you make confidence contagious today?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-13-queen-prompt-evening",
+          "text": "Who felt more able to shine around you today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-13-queen-symbol-sunflower",
+          "label": "sunflower",
+          "variant": "trace",
+          "observation": "The sunflower holds a bright center above the garden."
+        },
+        {
+          "id": "wands-13-queen-symbol-black-cat",
+          "label": "black cat",
+          "variant": "trace",
+          "observation": "The cat keeps watch close to the Queen."
+        },
+        {
+          "id": "wands-13-queen-symbol-staff",
+          "label": "staff",
+          "variant": "ember",
+          "observation": "The staff turns the light into something held and tended."
+        }
+      ]
+    }
   },
   {
     "id": "wands-14-king",
@@ -933,7 +2718,58 @@
       "enterprise"
     ],
     "art_note": "The King's angular seat and lit staff turn raw fire into a place to build.",
-    "art": "assets/cards/wands-14-king.svg"
+    "art": "assets/cards/wands-14-king.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "wands-14-king-lens-vision",
+          "lens": "vision",
+          "text": "Vision becomes stewardship when it leaves a place to build."
+        },
+        {
+          "id": "wands-14-king-lens-stewardship",
+          "lens": "stewardship",
+          "text": "A steady seat can direct fire without putting it out."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "wands-14-king-prompt-daylight",
+          "text": "What vision needs steady leadership rather than force?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "wands-14-king-prompt-evening",
+          "text": "What did you help take shape today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "wands-14-king-symbol-throne",
+          "label": "throne",
+          "variant": "trace",
+          "observation": "The throne gives the figure a place of responsibility."
+        },
+        {
+          "id": "wands-14-king-symbol-lion",
+          "label": "lion",
+          "variant": "trace",
+          "observation": "The lion recalls courage beside authority."
+        },
+        {
+          "id": "wands-14-king-symbol-flame",
+          "label": "flame",
+          "variant": "glimmer",
+          "observation": "The flame remains alive at the end of the staff."
+        }
+      ]
+    }
   },
   {
     "id": "cups-01-ace",
@@ -959,7 +2795,58 @@
       "care"
     ],
     "art_note": "Water pours from the great chalice on both sides, making room beyond its rim.",
-    "art": "assets/cards/cups-01-ace.svg"
+    "art": "assets/cards/cups-01-ace.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-01-ace-lens-feeling",
+          "lens": "feeling",
+          "text": "Openness can make more room than you expected."
+        },
+        {
+          "id": "cups-01-ace-lens-openness",
+          "lens": "openness",
+          "text": "A feeling may flow outward without being exhausted."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-01-ace-prompt-daylight",
+          "text": "What feeling deserves a safe place to land?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-01-ace-prompt-evening",
+          "text": "What feeling found a useful place today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-01-ace-symbol-brimming-cup",
+          "label": "brimming cup",
+          "variant": "ripple",
+          "observation": "The cup is full enough to spill over."
+        },
+        {
+          "id": "cups-01-ace-symbol-waterfall",
+          "label": "waterfall",
+          "variant": "ripple",
+          "observation": "The waterfall travels beyond the vessel on both sides."
+        },
+        {
+          "id": "cups-01-ace-symbol-dove",
+          "label": "dove",
+          "variant": "trace",
+          "observation": "The dove brings a light presence to the offering."
+        }
+      ]
+    }
   },
   {
     "id": "cups-02-two",
@@ -985,7 +2872,58 @@
       "trust"
     ],
     "art_note": "Two figures meet across the bridge and raise their cups into the same space.",
-    "art": "assets/cards/cups-02-two.svg"
+    "art": "assets/cards/cups-02-two.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-02-two-lens-partnership",
+          "lens": "partnership",
+          "text": "Mutuality begins when both sides can bring a full self."
+        },
+        {
+          "id": "cups-02-two-lens-mutuality",
+          "lens": "mutuality",
+          "text": "An agreement is stronger when it crosses a real distance."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-02-two-prompt-daylight",
+          "text": "Where could reciprocity become clearer?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-02-two-prompt-evening",
+          "text": "Where did you meet someone halfway today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-02-two-symbol-two-cups",
+          "label": "two cups",
+          "variant": "ripple",
+          "observation": "The cups rise into the same shared space."
+        },
+        {
+          "id": "cups-02-two-symbol-joined-hands",
+          "label": "joined hands",
+          "variant": "trace",
+          "observation": "Joined hands mark the moment of connection."
+        },
+        {
+          "id": "cups-02-two-symbol-bridge",
+          "label": "bridge",
+          "variant": "trace",
+          "observation": "The bridge lets two figures approach from different sides."
+        }
+      ]
+    }
   },
   {
     "id": "cups-03-three",
@@ -1011,7 +2949,58 @@
       "support"
     ],
     "art_note": "Three friends and three cups complete a circle that leaves room to enter.",
-    "art": "assets/cards/cups-03-three.svg"
+    "art": "assets/cards/cups-03-three.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-03-three-lens-friendship",
+          "lens": "friendship",
+          "text": "Celebration can make room for one more person."
+        },
+        {
+          "id": "cups-03-three-lens-celebration",
+          "lens": "celebration",
+          "text": "Friendship is kept alive by showing up together."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-03-three-prompt-daylight",
+          "text": "Who would enjoy this moment with you?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-03-three-prompt-evening",
+          "text": "What joy did you share today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-03-three-symbol-three-cups",
+          "label": "three cups",
+          "variant": "ripple",
+          "observation": "Three cups lift at equal height."
+        },
+        {
+          "id": "cups-03-three-symbol-fruit",
+          "label": "fruit",
+          "variant": "grain",
+          "observation": "The fruit grounds the gathering in plenty."
+        },
+        {
+          "id": "cups-03-three-symbol-circle",
+          "label": "circle",
+          "variant": "halo",
+          "observation": "The circle stays open at its edge."
+        }
+      ]
+    }
   },
   {
     "id": "cups-04-four",
@@ -1037,7 +3026,58 @@
       "awareness"
     ],
     "art_note": "The offered cup floats beside the tree while the seated figure looks inward.",
-    "art": "assets/cards/cups-04-four.svg"
+    "art": "assets/cards/cups-04-four.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-04-four-lens-reconsideration",
+          "lens": "reconsideration",
+          "text": "A pause may reveal what an offer really means to you."
+        },
+        {
+          "id": "cups-04-four-lens-pause",
+          "lens": "pause",
+          "text": "Reconsideration is different from refusing everything."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-04-four-prompt-daylight",
+          "text": "What have you stopped noticing nearby?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-04-four-prompt-evening",
+          "text": "What offer looked different after you rested?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-04-four-symbol-seated-figure",
+          "label": "seated figure",
+          "variant": "trace",
+          "observation": "The seated figure looks inward beneath the tree."
+        },
+        {
+          "id": "cups-04-four-symbol-offered-cup",
+          "label": "offered cup",
+          "variant": "ripple",
+          "observation": "The offered cup waits beside rather than in the figure's hand."
+        },
+        {
+          "id": "cups-04-four-symbol-tree",
+          "label": "tree",
+          "variant": "grain",
+          "observation": "The tree offers shade for a longer look."
+        }
+      ]
+    }
   },
   {
     "id": "cups-05-five",
@@ -1063,7 +3103,58 @@
       "remaining gifts"
     ],
     "art_note": "Spilled vessels lie near the grieving figure; two full cups remain beyond.",
-    "art": "assets/cards/cups-05-five.svg"
+    "art": "assets/cards/cups-05-five.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-05-five-lens-loss",
+          "lens": "loss",
+          "text": "Loss deserves space, and remaining support deserves a glance."
+        },
+        {
+          "id": "cups-05-five-lens-grief",
+          "lens": "grief",
+          "text": "Grief and possibility can occupy the same scene."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-05-five-prompt-daylight",
+          "text": "What support remains within reach as you grieve?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-05-five-prompt-evening",
+          "text": "What support was still present today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-05-five-symbol-spilled-cups",
+          "label": "spilled cups",
+          "variant": "ripple",
+          "observation": "The spilled cups remain visible near the grieving figure."
+        },
+        {
+          "id": "cups-05-five-symbol-two-standing-cups",
+          "label": "two standing cups",
+          "variant": "ripple",
+          "observation": "Two standing cups hold what has not been lost."
+        },
+        {
+          "id": "cups-05-five-symbol-river",
+          "label": "river",
+          "variant": "ripple",
+          "observation": "The river marks movement beyond this still moment."
+        }
+      ]
+    }
   },
   {
     "id": "cups-06-six",
@@ -1089,7 +3180,58 @@
       "innocence"
     ],
     "art_note": "Two small figures share a flower cup in an old courtyard under a round window.",
-    "art": "assets/cards/cups-06-six.svg"
+    "art": "assets/cards/cups-06-six.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-06-six-lens-memory",
+          "lens": "memory",
+          "text": "A memory can be a gift when it meets the present gently."
+        },
+        {
+          "id": "cups-06-six-lens-kindness",
+          "lens": "kindness",
+          "text": "Kindness travels through small, ordinary gestures."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-06-six-prompt-daylight",
+          "text": "Which memory can guide you without trapping you?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-06-six-prompt-evening",
+          "text": "What memory felt kind to revisit today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-06-six-symbol-flower-cups",
+          "label": "flower cups",
+          "variant": "ripple",
+          "observation": "The flower cups turn a familiar vessel into an offering."
+        },
+        {
+          "id": "cups-06-six-symbol-old-courtyard",
+          "label": "old courtyard",
+          "variant": "trace",
+          "observation": "The courtyard holds the meeting in an older place."
+        },
+        {
+          "id": "cups-06-six-symbol-two-children",
+          "label": "two children",
+          "variant": "trace",
+          "observation": "Two children share a small moment beneath the window."
+        }
+      ]
+    }
   },
   {
     "id": "cups-07-seven",
@@ -1115,7 +3257,58 @@
       "discernment"
     ],
     "art_note": "Seven translucent vessels present dreams, but only one path begins at the bottom.",
-    "art": "assets/cards/cups-07-seven.svg"
+    "art": "assets/cards/cups-07-seven.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-07-seven-lens-imagination",
+          "lens": "imagination",
+          "text": "Imagination widens choice when you also find the ground."
+        },
+        {
+          "id": "cups-07-seven-lens-options",
+          "lens": "options",
+          "text": "Many possibilities deserve a patient, practical look."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-07-seven-prompt-daylight",
+          "text": "Which dream can survive a practical question?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-07-seven-prompt-evening",
+          "text": "Which possibility became more real today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-07-seven-symbol-seven-visions",
+          "label": "seven visions",
+          "variant": "trace",
+          "observation": "Seven visions offer more than one story."
+        },
+        {
+          "id": "cups-07-seven-symbol-cloud",
+          "label": "cloud",
+          "variant": "trace",
+          "observation": "The cloud holds the vessels above ordinary ground."
+        },
+        {
+          "id": "cups-07-seven-symbol-veils",
+          "label": "veils",
+          "variant": "trace",
+          "observation": "The veils keep some forms uncertain."
+        }
+      ]
+    }
   },
   {
     "id": "cups-08-eight",
@@ -1141,7 +3334,58 @@
       "release"
     ],
     "art_note": "Eight cups remain at the shore as the traveler walks toward the moonlit rise.",
-    "art": "assets/cards/cups-08-eight.svg"
+    "art": "assets/cards/cups-08-eight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-08-eight-lens-departure",
+          "lens": "departure",
+          "text": "Leaving can be an act of care for what comes next."
+        },
+        {
+          "id": "cups-08-eight-lens-search",
+          "lens": "search",
+          "text": "A search begins when an old vessel no longer answers."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-08-eight-prompt-daylight",
+          "text": "What would you gain by leaving with clarity?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-08-eight-prompt-evening",
+          "text": "What did you walk away from or toward today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-08-eight-symbol-stacked-cups",
+          "label": "stacked cups",
+          "variant": "ripple",
+          "observation": "The stacked cups stay at the shore."
+        },
+        {
+          "id": "cups-08-eight-symbol-night-road",
+          "label": "night road",
+          "variant": "trace",
+          "observation": "The night road carries the figure beyond them."
+        },
+        {
+          "id": "cups-08-eight-symbol-mountain",
+          "label": "mountain",
+          "variant": "trace",
+          "observation": "The mountain gives the search a rising shape."
+        }
+      ]
+    }
   },
   {
     "id": "cups-09-nine",
@@ -1167,7 +3411,58 @@
       "pleasure"
     ],
     "art_note": "The seated figure rests before a shelf of cups, allowing enoughness to be seen.",
-    "art": "assets/cards/cups-09-nine.svg"
+    "art": "assets/cards/cups-09-nine.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-09-nine-lens-contentment",
+          "lens": "contentment",
+          "text": "Enoughness can be noticed before everything is perfect."
+        },
+        {
+          "id": "cups-09-nine-lens-gratitude",
+          "lens": "gratitude",
+          "text": "Contentment deserves a moment without apology."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-09-nine-prompt-daylight",
+          "text": "What is already enough for one moment?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-09-nine-prompt-evening",
+          "text": "What was enough for you today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-09-nine-symbol-nine-cups",
+          "label": "nine cups",
+          "variant": "ripple",
+          "observation": "Nine cups line the shelf behind the figure."
+        },
+        {
+          "id": "cups-09-nine-symbol-arched-shelf",
+          "label": "arched shelf",
+          "variant": "trace",
+          "observation": "The arch makes a shelter of the display."
+        },
+        {
+          "id": "cups-09-nine-symbol-smile",
+          "label": "smile",
+          "variant": "trace",
+          "observation": "The smile is quiet, with room for rest."
+        }
+      ]
+    }
   },
   {
     "id": "cups-10-ten",
@@ -1193,7 +3488,58 @@
       "shared joy"
     ],
     "art_note": "A bright arch of cups rises over a home and the people who tend it.",
-    "art": "assets/cards/cups-10-ten.svg"
+    "art": "assets/cards/cups-10-ten.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-10-ten-lens-belonging",
+          "lens": "belonging",
+          "text": "Belonging is made through people who tend a place together."
+        },
+        {
+          "id": "cups-10-ten-lens-harmony",
+          "lens": "harmony",
+          "text": "Harmony can be ordinary work as well as a bright moment."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-10-ten-prompt-daylight",
+          "text": "What small act would strengthen belonging?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-10-ten-prompt-evening",
+          "text": "What made a place feel more like home today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-10-ten-symbol-rainbow-of-cups",
+          "label": "rainbow of cups",
+          "variant": "ripple",
+          "observation": "The cups arc above the scene like a shared shelter."
+        },
+        {
+          "id": "cups-10-ten-symbol-home",
+          "label": "home",
+          "variant": "trace",
+          "observation": "The home stands below the bright curve."
+        },
+        {
+          "id": "cups-10-ten-symbol-family",
+          "label": "family",
+          "variant": "trace",
+          "observation": "The family gathers where the arch meets daily life."
+        }
+      ]
+    }
   },
   {
     "id": "cups-11-page",
@@ -1219,7 +3565,58 @@
       "sensitivity"
     ],
     "art_note": "A small fish surfaces from the Page's cup like a message from another world.",
-    "art": "assets/cards/cups-11-page.svg"
+    "art": "assets/cards/cups-11-page.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-11-page-lens-wonder",
+          "lens": "wonder",
+          "text": "Wonder can arrive inside an ordinary container."
+        },
+        {
+          "id": "cups-11-page-lens-message",
+          "lens": "message",
+          "text": "A strange message may deserve curiosity before explanation."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-11-page-prompt-daylight",
+          "text": "What emotion is trying to speak creatively?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-11-page-prompt-evening",
+          "text": "What surprised you in a gentle way today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-11-page-symbol-fish-in-cup",
+          "label": "fish in cup",
+          "variant": "ripple",
+          "observation": "The fish surfaces from an unexpected place."
+        },
+        {
+          "id": "cups-11-page-symbol-young-dreamer",
+          "label": "young dreamer",
+          "variant": "trace",
+          "observation": "The young dreamer gives the small visitor attention."
+        },
+        {
+          "id": "cups-11-page-symbol-shore",
+          "label": "shore",
+          "variant": "ripple",
+          "observation": "The shore keeps another world close by."
+        }
+      ]
+    }
   },
   {
     "id": "cups-12-knight",
@@ -1245,7 +3642,58 @@
       "integrity"
     ],
     "art_note": "The Knight offers a cup while the horse pauses before the crossing.",
-    "art": "assets/cards/cups-12-knight.svg"
+    "art": "assets/cards/cups-12-knight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-12-knight-lens-romance",
+          "lens": "romance",
+          "text": "An offering becomes meaningful when it respects the crossing."
+        },
+        {
+          "id": "cups-12-knight-lens-offering",
+          "lens": "offering",
+          "text": "Feeling can move forward at a considerate pace."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-12-knight-prompt-daylight",
+          "text": "How can you make a sincere gesture concrete?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-12-knight-prompt-evening",
+          "text": "What did you offer with care today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-12-knight-symbol-rider",
+          "label": "rider",
+          "variant": "trace",
+          "observation": "The rider carries a cup rather than a weapon."
+        },
+        {
+          "id": "cups-12-knight-symbol-cup",
+          "label": "cup",
+          "variant": "ripple",
+          "observation": "The cup stays upright in the offered hand."
+        },
+        {
+          "id": "cups-12-knight-symbol-river-crossing",
+          "label": "river crossing",
+          "variant": "ripple",
+          "observation": "The river crossing invites a pause before arrival."
+        }
+      ]
+    }
   },
   {
     "id": "cups-13-queen",
@@ -1271,7 +3719,58 @@
       "containment"
     ],
     "art_note": "The Queen sits by moving water with an ornate vessel held within reach.",
-    "art": "assets/cards/cups-13-queen.svg"
+    "art": "assets/cards/cups-13-queen.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-13-queen-lens-empathy",
+          "lens": "empathy",
+          "text": "Empathy can be deep without losing your own shore."
+        },
+        {
+          "id": "cups-13-queen-lens-intuition",
+          "lens": "intuition",
+          "text": "Care listens closely and keeps its vessel within reach."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-13-queen-prompt-daylight",
+          "text": "Where does care need a boundary?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-13-queen-prompt-evening",
+          "text": "Where did you listen with steadiness today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-13-queen-symbol-ornate-cup",
+          "label": "ornate cup",
+          "variant": "ripple",
+          "observation": "The ornate cup rewards close attention."
+        },
+        {
+          "id": "cups-13-queen-symbol-shore",
+          "label": "shore",
+          "variant": "ripple",
+          "observation": "The shore holds the Queen beside moving water."
+        },
+        {
+          "id": "cups-13-queen-symbol-quiet-throne",
+          "label": "quiet throne",
+          "variant": "trace",
+          "observation": "The throne offers a still seat near the current."
+        }
+      ]
+    }
   },
   {
     "id": "cups-14-king",
@@ -1297,7 +3796,58 @@
       "maturity"
     ],
     "art_note": "The King's throne stays centered while water moves on either side.",
-    "art": "assets/cards/cups-14-king.svg"
+    "art": "assets/cards/cups-14-king.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "cups-14-king-lens-composure",
+          "lens": "composure",
+          "text": "Composure lets feeling move without denying it."
+        },
+        {
+          "id": "cups-14-king-lens-care",
+          "lens": "care",
+          "text": "Care can remain centered in changing conditions."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "cups-14-king-prompt-daylight",
+          "text": "What feeling can you acknowledge before deciding?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "cups-14-king-prompt-evening",
+          "text": "What helped you stay present today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "cups-14-king-symbol-stone-throne",
+          "label": "stone throne",
+          "variant": "trace",
+          "observation": "The throne stays fixed amid moving water."
+        },
+        {
+          "id": "cups-14-king-symbol-open-sea",
+          "label": "open sea",
+          "variant": "ripple",
+          "observation": "The open sea stretches beyond either side."
+        },
+        {
+          "id": "cups-14-king-symbol-cup",
+          "label": "cup",
+          "variant": "ripple",
+          "observation": "The cup remains held within the wider scene."
+        }
+      ]
+    }
   },
   {
     "id": "swords-01-ace",
@@ -1323,7 +3873,58 @@
       "insight"
     ],
     "art_note": "A single blade passes through a crown and opens a field of clear light.",
-    "art": "assets/cards/swords-01-ace.svg"
+    "art": "assets/cards/swords-01-ace.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-01-ace-lens-clarity",
+          "lens": "clarity",
+          "text": "A clear thought can open room for an honest next step."
+        },
+        {
+          "id": "swords-01-ace-lens-truth",
+          "lens": "truth",
+          "text": "Truth is useful when it can be carried responsibly."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-01-ace-prompt-daylight",
+          "text": "What truth needs a precise, kind sentence?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-01-ace-prompt-evening",
+          "text": "What became clearer today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-01-ace-symbol-upright-blade",
+          "label": "upright blade",
+          "variant": "trace",
+          "observation": "The upright blade opens the center of the image."
+        },
+        {
+          "id": "swords-01-ace-symbol-crown",
+          "label": "crown",
+          "variant": "halo",
+          "observation": "The crown meets the blade at its highest point."
+        },
+        {
+          "id": "swords-01-ace-symbol-clear-sky",
+          "label": "clear sky",
+          "variant": "glimmer",
+          "observation": "The clear sky gives the thought breathing room."
+        }
+      ]
+    }
   },
   {
     "id": "swords-02-two",
@@ -1349,7 +3950,58 @@
       "information"
     ],
     "art_note": "Crossed swords guard a seated figure whose covered eyes face the sea.",
-    "art": "assets/cards/swords-02-two.svg"
+    "art": "assets/cards/swords-02-two.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-02-two-lens-decision",
+          "lens": "decision",
+          "text": "A difficult decision may need more than a guarded position."
+        },
+        {
+          "id": "swords-02-two-lens-stalemate",
+          "lens": "stalemate",
+          "text": "Stillness can be a pause for evidence, not a permanent wall."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-02-two-prompt-daylight",
+          "text": "What fact would help you choose?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-02-two-prompt-evening",
+          "text": "What information would help you choose?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-02-two-symbol-crossed-blades",
+          "label": "crossed blades",
+          "variant": "trace",
+          "observation": "The crossed blades protect and obstruct at once."
+        },
+        {
+          "id": "swords-02-two-symbol-blindfold",
+          "label": "blindfold",
+          "variant": "trace",
+          "observation": "The blindfold limits what the seated figure can see."
+        },
+        {
+          "id": "swords-02-two-symbol-sea",
+          "label": "sea",
+          "variant": "ripple",
+          "observation": "The sea remains open beyond the defended posture."
+        }
+      ]
+    }
   },
   {
     "id": "swords-03-three",
@@ -1375,7 +4027,58 @@
       "care"
     ],
     "art_note": "Three blades pierce one heart while rain marks the space around it.",
-    "art": "assets/cards/swords-03-three.svg"
+    "art": "assets/cards/swords-03-three.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-03-three-lens-heartbreak",
+          "lens": "heartbreak",
+          "text": "Pain deserves plain language and a place to be felt."
+        },
+        {
+          "id": "swords-03-three-lens-truth",
+          "lens": "truth",
+          "text": "An honest wound can begin to heal when it is witnessed."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-03-three-prompt-daylight",
+          "text": "What would kind attention to this hurt look like?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-03-three-prompt-evening",
+          "text": "What hurt needed gentleness today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-03-three-symbol-heart",
+          "label": "heart",
+          "variant": "trace",
+          "observation": "The heart is the clear center of the image."
+        },
+        {
+          "id": "swords-03-three-symbol-three-blades",
+          "label": "three blades",
+          "variant": "trace",
+          "observation": "Three blades mark the injury without hiding it."
+        },
+        {
+          "id": "swords-03-three-symbol-rain",
+          "label": "rain",
+          "variant": "ripple",
+          "observation": "The rain gives the surrounding space a grief of its own."
+        }
+      ]
+    }
   },
   {
     "id": "swords-04-four",
@@ -1401,7 +4104,58 @@
       "quiet"
     ],
     "art_note": "A resting figure lies below the bright window with three blades laid aside.",
-    "art": "assets/cards/swords-04-four.svg"
+    "art": "assets/cards/swords-04-four.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-04-four-lens-rest",
+          "lens": "rest",
+          "text": "Rest can be an intentional part of recovery."
+        },
+        {
+          "id": "swords-04-four-lens-recovery",
+          "lens": "recovery",
+          "text": "A quieter room may give thought a place to settle."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-04-four-prompt-daylight",
+          "text": "What kind of rest would restore clarity?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-04-four-prompt-evening",
+          "text": "What rest made space for you today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-04-four-symbol-resting-figure",
+          "label": "resting figure",
+          "variant": "trace",
+          "observation": "The figure has laid the active stance aside."
+        },
+        {
+          "id": "swords-04-four-symbol-window",
+          "label": "window",
+          "variant": "trace",
+          "observation": "The window lets light into the still room."
+        },
+        {
+          "id": "swords-04-four-symbol-four-blades",
+          "label": "four blades",
+          "variant": "trace",
+          "observation": "Four blades keep their place while the figure pauses."
+        }
+      ]
+    }
   },
   {
     "id": "swords-05-five",
@@ -1427,7 +4181,58 @@
       "repair"
     ],
     "art_note": "Scattered swords surround the central figure as others leave the field.",
-    "art": "assets/cards/swords-05-five.svg"
+    "art": "assets/cards/swords-05-five.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-05-five-lens-conflict",
+          "lens": "conflict",
+          "text": "Winning a point may still cost a relationship."
+        },
+        {
+          "id": "swords-05-five-lens-cost",
+          "lens": "cost",
+          "text": "Conflict asks what remains after the sharp words."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-05-five-prompt-daylight",
+          "text": "Which argument could end without another blow?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-05-five-prompt-evening",
+          "text": "What cost did you notice in a disagreement?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-05-five-symbol-scattered-blades",
+          "label": "scattered blades",
+          "variant": "trace",
+          "observation": "Scattered blades show the aftermath rather than the contest."
+        },
+        {
+          "id": "swords-05-five-symbol-departing-figures",
+          "label": "departing figures",
+          "variant": "trace",
+          "observation": "Departing figures make the distance between people visible."
+        },
+        {
+          "id": "swords-05-five-symbol-wind",
+          "label": "wind",
+          "variant": "trace",
+          "observation": "The wind moves through a field emptied by conflict."
+        }
+      ]
+    }
   },
   {
     "id": "swords-06-six",
@@ -1453,7 +4258,58 @@
       "relief"
     ],
     "art_note": "Six swords travel upright in the boat, carried rather than denied.",
-    "art": "assets/cards/swords-06-six.svg"
+    "art": "assets/cards/swords-06-six.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-06-six-lens-transition",
+          "lens": "transition",
+          "text": "A passage can carry difficult things without being defined by them."
+        },
+        {
+          "id": "swords-06-six-lens-passage",
+          "lens": "passage",
+          "text": "Movement toward a new bank may be gradual."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-06-six-prompt-daylight",
+          "text": "What are you ready to carry across, and what can stay?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-06-six-prompt-evening",
+          "text": "What did you carry through a transition today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-06-six-symbol-boat",
+          "label": "boat",
+          "variant": "trace",
+          "observation": "The boat holds people and their cargo together."
+        },
+        {
+          "id": "swords-06-six-symbol-six-blades",
+          "label": "six blades",
+          "variant": "trace",
+          "observation": "Six blades travel upright rather than disappearing."
+        },
+        {
+          "id": "swords-06-six-symbol-far-bank",
+          "label": "far bank",
+          "variant": "trace",
+          "observation": "The far bank gives the crossing a direction."
+        }
+      ]
+    }
   },
   {
     "id": "swords-07-seven",
@@ -1479,7 +4335,58 @@
       "ethics"
     ],
     "art_note": "Five blades travel with a quiet figure while two remain by the tents.",
-    "art": "assets/cards/swords-07-seven.svg"
+    "art": "assets/cards/swords-07-seven.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-07-seven-lens-strategy",
+          "lens": "strategy",
+          "text": "Strategy works best when it can face its own motives."
+        },
+        {
+          "id": "swords-07-seven-lens-secrecy",
+          "lens": "secrecy",
+          "text": "A clever move deserves an honest look at what it leaves behind."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-07-seven-prompt-daylight",
+          "text": "Where would directness simplify the plan?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-07-seven-prompt-evening",
+          "text": "What choice needs a more open explanation?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-07-seven-symbol-stepping-figure",
+          "label": "stepping figure",
+          "variant": "trace",
+          "observation": "The stepping figure moves quietly away."
+        },
+        {
+          "id": "swords-07-seven-symbol-carried-blades",
+          "label": "carried blades",
+          "variant": "trace",
+          "observation": "Carried blades make the weight of the choice visible."
+        },
+        {
+          "id": "swords-07-seven-symbol-tents",
+          "label": "tents",
+          "variant": "trace",
+          "observation": "The tents remain beside two blades left behind."
+        }
+      ]
+    }
   },
   {
     "id": "swords-08-eight",
@@ -1505,7 +4412,58 @@
       "agency"
     ],
     "art_note": "The sword ring has a visible opening even as the figure stands inside it.",
-    "art": "assets/cards/swords-08-eight.svg"
+    "art": "assets/cards/swords-08-eight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-08-eight-lens-constraint",
+          "lens": "constraint",
+          "text": "A visible opening can be hard to trust from inside fear."
+        },
+        {
+          "id": "swords-08-eight-lens-fear",
+          "lens": "fear",
+          "text": "Small movements may show where a boundary is looser than it seems."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-08-eight-prompt-daylight",
+          "text": "Which restriction could you verify today?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-08-eight-prompt-evening",
+          "text": "Where did you find a little room today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-08-eight-symbol-loose-blindfold",
+          "label": "loose blindfold",
+          "variant": "trace",
+          "observation": "The blindfold has room to loosen."
+        },
+        {
+          "id": "swords-08-eight-symbol-blade-ring",
+          "label": "blade ring",
+          "variant": "trace",
+          "observation": "The blade ring has a gap rather than a sealed edge."
+        },
+        {
+          "id": "swords-08-eight-symbol-path",
+          "label": "path",
+          "variant": "trace",
+          "observation": "The path continues beyond the enclosing swords."
+        }
+      ]
+    }
   },
   {
     "id": "swords-09-nine",
@@ -1531,7 +4489,58 @@
       "support"
     ],
     "art_note": "Nine cuts of light hover above the bed in the room of sleepless thought.",
-    "art": "assets/cards/swords-09-nine.svg"
+    "art": "assets/cards/swords-09-nine.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-09-nine-lens-anxiety",
+          "lens": "anxiety",
+          "text": "A night thought may feel larger than the day that follows."
+        },
+        {
+          "id": "swords-09-nine-lens-night",
+          "lens": "night",
+          "text": "Care for the mind can start with naming one real need."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-09-nine-prompt-daylight",
+          "text": "Who or what could help you carry this worry?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-09-nine-prompt-evening",
+          "text": "What helped quiet a repeating thought?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-09-nine-symbol-night-bed",
+          "label": "night bed",
+          "variant": "trace",
+          "observation": "The bed locates worry in a sleepless room."
+        },
+        {
+          "id": "swords-09-nine-symbol-nine-marks",
+          "label": "nine marks",
+          "variant": "trace",
+          "observation": "Nine marks hover above the resting place."
+        },
+        {
+          "id": "swords-09-nine-symbol-hands",
+          "label": "hands",
+          "variant": "trace",
+          "observation": "The hands bring the figure's feeling into view."
+        }
+      ]
+    }
   },
   {
     "id": "swords-10-ten",
@@ -1557,7 +4566,58 @@
       "dawn"
     ],
     "art_note": "Ten blades stand at a hard horizon while dawn begins behind them.",
-    "art": "assets/cards/swords-10-ten.svg"
+    "art": "assets/cards/swords-10-ten.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-10-ten-lens-ending",
+          "lens": "ending",
+          "text": "An exhausted ending can still contain a dawn."
+        },
+        {
+          "id": "swords-10-ten-lens-exhaustion",
+          "lens": "exhaustion",
+          "text": "The next step begins after you acknowledge what has ended."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-10-ten-prompt-daylight",
+          "text": "What support helps you close this chapter?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-10-ten-prompt-evening",
+          "text": "What is finished enough to let rest?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-10-ten-symbol-fallen-figure",
+          "label": "fallen figure",
+          "variant": "trace",
+          "observation": "The fallen figure marks a hard stop."
+        },
+        {
+          "id": "swords-10-ten-symbol-ten-blades",
+          "label": "ten blades",
+          "variant": "trace",
+          "observation": "Ten blades stand against the horizon."
+        },
+        {
+          "id": "swords-10-ten-symbol-dawn",
+          "label": "dawn",
+          "variant": "glimmer",
+          "observation": "Dawn appears behind the darkest edge."
+        }
+      ]
+    }
   },
   {
     "id": "swords-11-page",
@@ -1583,7 +4643,58 @@
       "learning"
     ],
     "art_note": "The Page lifts one precise blade into wind that has no fixed direction.",
-    "art": "assets/cards/swords-11-page.svg"
+    "art": "assets/cards/swords-11-page.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-11-page-lens-curiosity",
+          "lens": "curiosity",
+          "text": "Curiosity can keep a sharp mind open."
+        },
+        {
+          "id": "swords-11-page-lens-vigilance",
+          "lens": "vigilance",
+          "text": "Vigilance serves best when it listens before striking."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-11-page-prompt-daylight",
+          "text": "What question would help more than an assumption?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-11-page-prompt-evening",
+          "text": "What question sharpened your view today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-11-page-symbol-young-scout",
+          "label": "young scout",
+          "variant": "trace",
+          "observation": "The young scout lifts the blade with care."
+        },
+        {
+          "id": "swords-11-page-symbol-raised-sword",
+          "label": "raised sword",
+          "variant": "trace",
+          "observation": "The sword gives attention a precise line."
+        },
+        {
+          "id": "swords-11-page-symbol-wind",
+          "label": "wind",
+          "variant": "trace",
+          "observation": "The wind makes the scene less settled than the stance."
+        }
+      ]
+    }
   },
   {
     "id": "swords-12-knight",
@@ -1609,7 +4720,58 @@
       "focus"
     ],
     "art_note": "The Knight's horse breaks forward under a blade angled into the storm.",
-    "art": "assets/cards/swords-12-knight.svg"
+    "art": "assets/cards/swords-12-knight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-12-knight-lens-urgency",
+          "lens": "urgency",
+          "text": "Urgency is useful when it leaves room for a check."
+        },
+        {
+          "id": "swords-12-knight-lens-argument",
+          "lens": "argument",
+          "text": "Strong words need a direction as well as force."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-12-knight-prompt-daylight",
+          "text": "Where does speed need one deliberate check?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-12-knight-prompt-evening",
+          "text": "Where did you slow a rush just enough?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-12-knight-symbol-rider",
+          "label": "rider",
+          "variant": "trace",
+          "observation": "The rider moves into a demanding sky."
+        },
+        {
+          "id": "swords-12-knight-symbol-storm",
+          "label": "storm",
+          "variant": "trace",
+          "observation": "The storm pushes against the forward drive."
+        },
+        {
+          "id": "swords-12-knight-symbol-forward-blade",
+          "label": "forward blade",
+          "variant": "trace",
+          "observation": "The blade points ahead of the horse."
+        }
+      ]
+    }
   },
   {
     "id": "swords-13-queen",
@@ -1635,7 +4797,58 @@
       "honesty"
     ],
     "art_note": "The Queen's upright sword rises beside an open seat and a clearing sky.",
-    "art": "assets/cards/swords-13-queen.svg"
+    "art": "assets/cards/swords-13-queen.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-13-queen-lens-discernment",
+          "lens": "discernment",
+          "text": "Discernment can speak plainly and remain humane."
+        },
+        {
+          "id": "swords-13-queen-lens-independence",
+          "lens": "independence",
+          "text": "A firm boundary may leave the air clearer."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-13-queen-prompt-daylight",
+          "text": "What boundary can you state without cruelty?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-13-queen-prompt-evening",
+          "text": "What did you say honestly today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-13-queen-symbol-upright-sword",
+          "label": "upright sword",
+          "variant": "trace",
+          "observation": "The upright sword keeps a clear line."
+        },
+        {
+          "id": "swords-13-queen-symbol-open-hand",
+          "label": "open hand",
+          "variant": "trace",
+          "observation": "The open hand balances firmness with invitation."
+        },
+        {
+          "id": "swords-13-queen-symbol-cloud-break",
+          "label": "cloud break",
+          "variant": "trace",
+          "observation": "The cloud break lets light reach the seat."
+        }
+      ]
+    }
   },
   {
     "id": "swords-14-king",
@@ -1661,7 +4874,58 @@
       "judgment"
     ],
     "art_note": "The King's blade and paired wing marks place judgment inside a wider view.",
-    "art": "assets/cards/swords-14-king.svg"
+    "art": "assets/cards/swords-14-king.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "swords-14-king-lens-reason",
+          "lens": "reason",
+          "text": "Reason earns trust when it names its evidence and effects."
+        },
+        {
+          "id": "swords-14-king-lens-authority",
+          "lens": "authority",
+          "text": "Authority should make thought accountable to people."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "swords-14-king-prompt-daylight",
+          "text": "Who bears the outcome of this decision?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "swords-14-king-prompt-evening",
+          "text": "Whose perspective changed your decision today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "swords-14-king-symbol-throne",
+          "label": "throne",
+          "variant": "trace",
+          "observation": "The throne gives the figure a position of judgment."
+        },
+        {
+          "id": "swords-14-king-symbol-butterflies",
+          "label": "butterflies",
+          "variant": "trace",
+          "observation": "The butterflies offer small signs of change around the seat."
+        },
+        {
+          "id": "swords-14-king-symbol-sword",
+          "label": "sword",
+          "variant": "trace",
+          "observation": "The sword holds a visible standard beside the ruler."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-01-ace",
@@ -1687,7 +4951,58 @@
       "seed"
     ],
     "art_note": "A hand brings a marked coin through the garden gate toward workable ground.",
-    "art": "assets/cards/pentacles-01-ace.svg"
+    "art": "assets/cards/pentacles-01-ace.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-01-ace-lens-opportunity",
+          "lens": "opportunity",
+          "text": "A practical opening grows through modest, repeated care."
+        },
+        {
+          "id": "pentacles-01-ace-lens-resources",
+          "lens": "resources",
+          "text": "A resource becomes useful when it reaches workable ground."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-01-ace-prompt-daylight",
+          "text": "What small investment can you make today?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-01-ace-prompt-evening",
+          "text": "What small investment did you make today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-01-ace-symbol-coin",
+          "label": "coin",
+          "variant": "halo",
+          "observation": "The coin is held as something to plant or use."
+        },
+        {
+          "id": "pentacles-01-ace-symbol-garden-gate",
+          "label": "garden gate",
+          "variant": "grain",
+          "observation": "The garden gate opens onto a prepared place."
+        },
+        {
+          "id": "pentacles-01-ace-symbol-hand",
+          "label": "hand",
+          "variant": "trace",
+          "observation": "The hand brings opportunity into reach."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-02-two",
@@ -1713,7 +5028,58 @@
       "rhythm"
     ],
     "art_note": "Two coins move inside a looping ribbon while a small ship rides the waves.",
-    "art": "assets/cards/pentacles-02-two.svg"
+    "art": "assets/cards/pentacles-02-two.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-02-two-lens-adaptation",
+          "lens": "adaptation",
+          "text": "Balance is a rhythm you revise while life moves."
+        },
+        {
+          "id": "pentacles-02-two-lens-priorities",
+          "lens": "priorities",
+          "text": "Priorities become clearer when their currents are visible."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-02-two-prompt-daylight",
+          "text": "What can be simplified to make balance real?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-02-two-prompt-evening",
+          "text": "What did you simplify to make room today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-02-two-symbol-two-coins",
+          "label": "two coins",
+          "variant": "halo",
+          "observation": "Two coins move in relation rather than standing alone."
+        },
+        {
+          "id": "pentacles-02-two-symbol-infinity-ribbon",
+          "label": "infinity ribbon",
+          "variant": "trace",
+          "observation": "The ribbon loops through both demands."
+        },
+        {
+          "id": "pentacles-02-two-symbol-waves",
+          "label": "waves",
+          "variant": "ripple",
+          "observation": "The waves remind the eye that conditions move."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-03-three",
@@ -1739,7 +5105,58 @@
       "recognition"
     ],
     "art_note": "Three makers meet beneath the workshop's three round emblems.",
-    "art": "assets/cards/pentacles-03-three.svg"
+    "art": "assets/cards/pentacles-03-three.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-03-three-lens-craft",
+          "lens": "craft",
+          "text": "Good work becomes stronger when skills meet."
+        },
+        {
+          "id": "pentacles-03-three-lens-teamwork",
+          "lens": "teamwork",
+          "text": "Making a plan visible invites useful correction."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-03-three-prompt-daylight",
+          "text": "Whose skill would improve this effort?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-03-three-prompt-evening",
+          "text": "Whose contribution improved your work today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-03-three-symbol-workshop",
+          "label": "workshop",
+          "variant": "trace",
+          "observation": "The workshop gives different makers a shared place."
+        },
+        {
+          "id": "pentacles-03-three-symbol-three-coins",
+          "label": "three coins",
+          "variant": "halo",
+          "observation": "Three coins mark the joined craft above them."
+        },
+        {
+          "id": "pentacles-03-three-symbol-blueprint",
+          "label": "blueprint",
+          "variant": "trace",
+          "observation": "The blueprint makes the idea available for discussion."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-04-four",
@@ -1765,7 +5182,58 @@
       "release"
     ],
     "art_note": "One coin is held, one crowns the figure, and two pin the feet to the city.",
-    "art": "assets/cards/pentacles-04-four.svg"
+    "art": "assets/cards/pentacles-04-four.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-04-four-lens-security",
+          "lens": "security",
+          "text": "A reserve can protect freedom when the grip stays flexible."
+        },
+        {
+          "id": "pentacles-04-four-lens-stewardship",
+          "lens": "stewardship",
+          "text": "Security needs a purpose beyond simply holding still."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-04-four-prompt-daylight",
+          "text": "Where has caution become a grip?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-04-four-prompt-evening",
+          "text": "What resource could circulate more freely?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-04-four-symbol-four-coins",
+          "label": "four coins",
+          "variant": "halo",
+          "observation": "Four coins occupy different places around the figure."
+        },
+        {
+          "id": "pentacles-04-four-symbol-closed-gate",
+          "label": "closed gate",
+          "variant": "trace",
+          "observation": "The gate is closed while the city remains outside."
+        },
+        {
+          "id": "pentacles-04-four-symbol-city",
+          "label": "city",
+          "variant": "trace",
+          "observation": "The city suggests life beyond a guarded position."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-05-five",
@@ -1791,7 +5259,58 @@
       "resilience"
     ],
     "art_note": "Two travelers pass a lit five-part window on a road of snow.",
-    "art": "assets/cards/pentacles-05-five.svg"
+    "art": "assets/cards/pentacles-05-five.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-05-five-lens-hardship",
+          "lens": "hardship",
+          "text": "A hard season need not be carried unseen."
+        },
+        {
+          "id": "pentacles-05-five-lens-support",
+          "lens": "support",
+          "text": "Practical help can begin with one named need."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-05-five-prompt-daylight",
+          "text": "What help could you ask for plainly?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-05-five-prompt-evening",
+          "text": "What warmth or help did you accept today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-05-five-symbol-snow",
+          "label": "snow",
+          "variant": "trace",
+          "observation": "Snow makes the road visibly difficult."
+        },
+        {
+          "id": "pentacles-05-five-symbol-stained-window",
+          "label": "stained window",
+          "variant": "trace",
+          "observation": "The stained window gives the dark walk a lit point."
+        },
+        {
+          "id": "pentacles-05-five-symbol-door",
+          "label": "door",
+          "variant": "trace",
+          "observation": "The door suggests a place to ask for shelter."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-06-six",
@@ -1817,7 +5336,58 @@
       "equity"
     ],
     "art_note": "Balanced scales hover above small coins and the hands reaching toward them.",
-    "art": "assets/cards/pentacles-06-six.svg"
+    "art": "assets/cards/pentacles-06-six.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-06-six-lens-generosity",
+          "lens": "generosity",
+          "text": "A kind exchange keeps dignity on both sides."
+        },
+        {
+          "id": "pentacles-06-six-lens-exchange",
+          "lens": "exchange",
+          "text": "Generosity works best when its terms can be seen."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-06-six-prompt-daylight",
+          "text": "How can this exchange respect everyone involved?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-06-six-prompt-evening",
+          "text": "Where did giving and receiving feel balanced?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-06-six-symbol-scales",
+          "label": "scales",
+          "variant": "trace",
+          "observation": "The scales hover over the exchange."
+        },
+        {
+          "id": "pentacles-06-six-symbol-open-palms",
+          "label": "open palms",
+          "variant": "trace",
+          "observation": "Open palms show both need and willingness."
+        },
+        {
+          "id": "pentacles-06-six-symbol-six-coins",
+          "label": "six coins",
+          "variant": "halo",
+          "observation": "Six coins mark the material stakes of the gesture."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-07-seven",
@@ -1843,7 +5413,58 @@
       "growth"
     ],
     "art_note": "Seven coins grow in the tree while the cultivator pauses to look closely.",
-    "art": "assets/cards/pentacles-07-seven.svg"
+    "art": "assets/cards/pentacles-07-seven.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-07-seven-lens-patience",
+          "lens": "patience",
+          "text": "Growth deserves observation before another change of course."
+        },
+        {
+          "id": "pentacles-07-seven-lens-assessment",
+          "lens": "assessment",
+          "text": "Patience can include measurement and adjustment."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-07-seven-prompt-daylight",
+          "text": "What evidence would tell you to persist or pivot?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-07-seven-prompt-evening",
+          "text": "What evidence of growth did you notice?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-07-seven-symbol-garden",
+          "label": "garden",
+          "variant": "grain",
+          "observation": "The garden holds work already planted."
+        },
+        {
+          "id": "pentacles-07-seven-symbol-seven-coins",
+          "label": "seven coins",
+          "variant": "halo",
+          "observation": "Seven coins appear among the growing forms."
+        },
+        {
+          "id": "pentacles-07-seven-symbol-leaning-staff",
+          "label": "leaning staff",
+          "variant": "ember",
+          "observation": "The leaning staff gives the watcher a place to pause."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-08-eight",
@@ -1869,7 +5490,58 @@
       "attention"
     ],
     "art_note": "A maker studies the workbench while eight finished pieces line the wall.",
-    "art": "assets/cards/pentacles-08-eight.svg"
+    "art": "assets/cards/pentacles-08-eight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-08-eight-lens-practice",
+          "lens": "practice",
+          "text": "Skill gathers through attentive repetition."
+        },
+        {
+          "id": "pentacles-08-eight-lens-skill",
+          "lens": "skill",
+          "text": "One inspected piece can teach more than a perfect intention."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-08-eight-prompt-daylight",
+          "text": "Which repetition would teach you the most?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-08-eight-prompt-evening",
+          "text": "What did practice teach you today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-08-eight-symbol-workbench",
+          "label": "workbench",
+          "variant": "trace",
+          "observation": "The workbench holds the current task close."
+        },
+        {
+          "id": "pentacles-08-eight-symbol-row-of-coins",
+          "label": "row of coins",
+          "variant": "halo",
+          "observation": "The row of coins shows earlier pieces side by side."
+        },
+        {
+          "id": "pentacles-08-eight-symbol-tool",
+          "label": "tool",
+          "variant": "trace",
+          "observation": "The tool stays in reach for another attempt."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-09-nine",
@@ -1895,7 +5567,58 @@
       "pleasure"
     ],
     "art_note": "The vineyard's ordered growth surrounds a solitary figure with a bright coin.",
-    "art": "assets/cards/pentacles-09-nine.svg"
+    "art": "assets/cards/pentacles-09-nine.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-09-nine-lens-independence",
+          "lens": "independence",
+          "text": "Earned ease can be enjoyed without losing independence."
+        },
+        {
+          "id": "pentacles-09-nine-lens-reward",
+          "lens": "reward",
+          "text": "A tended place can support both solitude and sharing."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-09-nine-prompt-daylight",
+          "text": "What earned ease can you allow yourself?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-09-nine-prompt-evening",
+          "text": "What pleasure did you let yourself receive?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-09-nine-symbol-vineyard",
+          "label": "vineyard",
+          "variant": "grain",
+          "observation": "The vineyard records long care in ordered rows."
+        },
+        {
+          "id": "pentacles-09-nine-symbol-falcon",
+          "label": "falcon",
+          "variant": "trace",
+          "observation": "The falcon offers a companion to the solitary figure."
+        },
+        {
+          "id": "pentacles-09-nine-symbol-nine-coins",
+          "label": "nine coins",
+          "variant": "halo",
+          "observation": "Nine coins make accumulated work visible."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-10-ten",
@@ -1921,7 +5644,58 @@
       "continuity"
     ],
     "art_note": "Ten emblems make an arch wide enough to shelter more than one life.",
-    "art": "assets/cards/pentacles-10-ten.svg"
+    "art": "assets/cards/pentacles-10-ten.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-10-ten-lens-legacy",
+          "lens": "legacy",
+          "text": "Legacy is a shelter made useful by the people beneath it."
+        },
+        {
+          "id": "pentacles-10-ten-lens-home",
+          "lens": "home",
+          "text": "What lasts should leave room for those who come next."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-10-ten-prompt-daylight",
+          "text": "What do you hope your work makes possible for others?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-10-ten-prompt-evening",
+          "text": "What might your work make possible for others?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-10-ten-symbol-archway",
+          "label": "archway",
+          "variant": "halo",
+          "observation": "The archway spans more than one person."
+        },
+        {
+          "id": "pentacles-10-ten-symbol-ten-coins",
+          "label": "ten coins",
+          "variant": "halo",
+          "observation": "Ten coins form a visible pattern overhead."
+        },
+        {
+          "id": "pentacles-10-ten-symbol-family",
+          "label": "family",
+          "variant": "trace",
+          "observation": "The family gives the structure its human purpose."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-11-page",
@@ -1947,7 +5721,58 @@
       "practice"
     ],
     "art_note": "The Page holds a material possibility beside a field ready to be worked.",
-    "art": "assets/cards/pentacles-11-page.svg"
+    "art": "assets/cards/pentacles-11-page.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-11-page-lens-study",
+          "lens": "study",
+          "text": "A material possibility becomes a lesson through use."
+        },
+        {
+          "id": "pentacles-11-page-lens-potential",
+          "lens": "potential",
+          "text": "The learner's first project can reveal the next question."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-11-page-prompt-daylight",
+          "text": "What could you learn by making one prototype?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-11-page-prompt-evening",
+          "text": "What did you learn by making today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-11-page-symbol-young-student",
+          "label": "young student",
+          "variant": "trace",
+          "observation": "The young student studies what is held."
+        },
+        {
+          "id": "pentacles-11-page-symbol-coin",
+          "label": "coin",
+          "variant": "halo",
+          "observation": "The coin makes the possibility concrete."
+        },
+        {
+          "id": "pentacles-11-page-symbol-field",
+          "label": "field",
+          "variant": "grain",
+          "observation": "The field waits for work beyond the first idea."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-12-knight",
@@ -1973,7 +5798,58 @@
       "duty"
     ],
     "art_note": "The Knight carries one coin at a deliberate pace across plowed ground.",
-    "art": "assets/cards/pentacles-12-knight.svg"
+    "art": "assets/cards/pentacles-12-knight.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-12-knight-lens-reliability",
+          "lens": "reliability",
+          "text": "A deliberate pace can make progress dependable."
+        },
+        {
+          "id": "pentacles-12-knight-lens-patience",
+          "lens": "patience",
+          "text": "Reliability includes checking that the destination still matters."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-12-knight-prompt-daylight",
+          "text": "What dependable action would help most today?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-12-knight-prompt-evening",
+          "text": "What steady action moved something forward?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-12-knight-symbol-steady-horse",
+          "label": "steady horse",
+          "variant": "trace",
+          "observation": "The horse carries the figure without a rush."
+        },
+        {
+          "id": "pentacles-12-knight-symbol-plowed-field",
+          "label": "plowed field",
+          "variant": "grain",
+          "observation": "The plowed field shows work already done."
+        },
+        {
+          "id": "pentacles-12-knight-symbol-coin",
+          "label": "coin",
+          "variant": "halo",
+          "observation": "The coin stays in hand through the journey."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-13-queen",
@@ -1999,7 +5875,58 @@
       "resourcefulness"
     ],
     "art_note": "The Queen's garden seat includes the coin, flowering tree, and small animal.",
-    "art": "assets/cards/pentacles-13-queen.svg"
+    "art": "assets/cards/pentacles-13-queen.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-13-queen-lens-nurture",
+          "lens": "nurture",
+          "text": "Care for a place should include the person who tends it."
+        },
+        {
+          "id": "pentacles-13-queen-lens-home",
+          "lens": "home",
+          "text": "Comfort is built through practical attention to living needs."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-13-queen-prompt-daylight",
+          "text": "What practical care do you need yourself?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-13-queen-prompt-evening",
+          "text": "What care did you make room for yourself?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-13-queen-symbol-garden-throne",
+          "label": "garden throne",
+          "variant": "grain",
+          "observation": "The garden throne is surrounded by living growth."
+        },
+        {
+          "id": "pentacles-13-queen-symbol-rabbit",
+          "label": "rabbit",
+          "variant": "trace",
+          "observation": "The rabbit brings a small animal presence near the seat."
+        },
+        {
+          "id": "pentacles-13-queen-symbol-coin",
+          "label": "coin",
+          "variant": "halo",
+          "observation": "The coin rests among the other things being tended."
+        }
+      ]
+    }
   },
   {
     "id": "pentacles-14-king",
@@ -2025,6 +5952,57 @@
       "prosperity"
     ],
     "art_note": "Vines climb the King's stone seat while the coin rests at hand.",
-    "art": "assets/cards/pentacles-14-king.svg"
+    "art": "assets/cards/pentacles-14-king.svg",
+    "experience": {
+      "facets": [
+        {
+          "id": "pentacles-14-king-lens-stewardship",
+          "lens": "stewardship",
+          "text": "Prosperity means more when it supports a life beyond possession."
+        },
+        {
+          "id": "pentacles-14-king-lens-stability",
+          "lens": "stability",
+          "text": "Stewardship asks how resources continue to serve others."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "pentacles-14-king-prompt-daylight",
+          "text": "What would responsible prosperity look like here?",
+          "dayparts": [
+            "morning",
+            "day"
+          ]
+        },
+        {
+          "id": "pentacles-14-king-prompt-evening",
+          "text": "What did you manage with perspective today?",
+          "dayparts": [
+            "evening"
+          ]
+        }
+      ],
+      "art_symbols": [
+        {
+          "id": "pentacles-14-king-symbol-stone-throne",
+          "label": "stone throne",
+          "variant": "trace",
+          "observation": "The stone throne gives resources a durable setting."
+        },
+        {
+          "id": "pentacles-14-king-symbol-vines",
+          "label": "vines",
+          "variant": "grain",
+          "observation": "Vines climb the seat rather than remaining contained by it."
+        },
+        {
+          "id": "pentacles-14-king-symbol-coin",
+          "label": "coin",
+          "variant": "halo",
+          "observation": "The coin remains close to the figure's hand."
+        }
+      ]
+    }
   }
 ]

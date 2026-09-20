@@ -18,9 +18,11 @@ from typing import Mapping
 if __package__:
     from .major_art import ART_NOTES as MAJOR_ART_NOTES, render_major
     from .minor_art import ART_NOTES as MINOR_ART_NOTES, render_minor
+    from .experience_content import authored_experience, validate_deck_content
 else:
     from major_art import ART_NOTES as MAJOR_ART_NOTES, render_major
     from minor_art import ART_NOTES as MINOR_ART_NOTES, render_minor
+    from experience_content import authored_experience, validate_deck_content
 
 ROOT = Path(__file__).resolve().parents[1]
 DECK_DIR = ROOT / "deck"
@@ -172,6 +174,9 @@ def make_deck() -> list[dict]:
             })
     if len(cards) != 78 or len({c["id"] for c in cards}) != 78:
         raise ValueError("Deck must contain exactly 78 unique cards")
+    for card in cards:
+        card["experience"] = authored_experience(card)
+    validate_deck_content(cards)
     return cards
 
 
