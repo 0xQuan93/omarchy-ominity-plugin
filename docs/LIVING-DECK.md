@@ -118,9 +118,9 @@ Extend each card with optional experience metadata:
       {"id":"star-evening-light","text":"What light remained visible today?","dayparts":["evening"]}
     ],
     "art_symbols": [
-      {"id":"lantern","label":"the lantern","variant":"glow"},
-      {"id":"path","label":"the mountain path","variant":"trace"},
-      {"id":"stars","label":"the distant stars","variant":"constellation"}
+      {"id":"water-jars","label":"the water jars","variant":"shimmer","observation":"Water is offered both to the pool and to the earth."},
+      {"id":"eight-stars","label":"the eight stars","variant":"constellation","observation":"One great light is surrounded by seven smaller lights."},
+      {"id":"pool","label":"the pool","variant":"ripple","observation":"The poured water returns to a larger body."}
     ]
   }
 }
@@ -139,14 +139,23 @@ Extend the reading object without breaking existing consumers:
   "reversed":false,
   "drawnAt":"...",
   "redraw":false,
+  "deckContentVersion":"1.1.0",
+  "canonicalSnapshot":{
+    "title":"The Star",
+    "upright":"Restore hope through small, steady acts.",
+    "reversed":"Exhaustion; losing sight of available support.",
+    "interpretation":"After upheaval, the future may arrive as a trickle rather than a trumpet. Refill what is depleted and let simplicity count.",
+    "symbols":["eight stars","water jars","pool"],
+    "reflection":"What small source of renewal is already near?",
+    "artNote":"The largest star shines over a figure who pours water both into the pool and onto the earth."
+  },
+  "machine":{"eraId":"era-01","weather":{"cpu":2,"memory":1,"disk":3}},
   "experience":{
     "version":1,
     "facet":{"id":"star-renewal","text":"..."},
     "prompt":{"id":"star-small-renewal","text":"What small source of renewal is already near?","period":"morning"},
-    "symbol":{"id":"water-jars","label":"the water jars","text":"..."},
-    "deckContentVersion":"1.1.0",
-    "artVariant":7,
-    "machineWeather":{"cpu":2,"memory":1,"disk":3}
+    "symbol":{"id":"water-jars","label":"the water jars","observation":"Water is offered both to the pool and to the earth."},
+    "artVariant":7
   }
 }
 ```
@@ -155,7 +164,7 @@ Do not store the derived HMAC or installation secret in reading history.
 
 ### Immutable Daily Om artifacts
 
-A completed daily encounter is a historical artifact, not a view that should be reconstructed from the latest deck. Persist both stable authored IDs **and the exact user-visible authored content selected that day**. The snapshot includes facet text, prompt text/daypart, symbol label/observation, deck-content version, experience-engine version, art variant, machine-weather buckets, and the card/orientation.
+A completed daily encounter is a historical artifact, not a view that should be reconstructed from the latest deck. Persist both stable authored IDs **and the exact user-visible authored content selected that day**. The snapshot includes the displayed canonical card prose (`title`, `upright`, `reversed`, `interpretation`, `symbols`, `reflection`, and `art_note`), facet text, prompt text/daypart, symbol label/observation, deck-content version, experience-engine version, art variant, Machine Era ID, machine-weather buckets, and the card/orientation.
 
 Future wording edits may change new Daily Oms but must never rewrite an old one. Historical rendering should prefer the snapshot. Versioned deck content may remain useful for migrations and provenance, but it is not a substitute for preserving the content the user actually encountered.
 
@@ -388,6 +397,9 @@ Do not send machine telemetry to Zephyr. It has no interpretive role.
 - reordering authored prompt arrays cannot change an existing daily artifact
 - authored schema gives every selectable facet, prompt, symbol, and relationship an explicit stable ID
 - historical Daily Oms preserve exact selected authored content, not only IDs
+- canonical card prose shown on the reading side is snapshotted with every Daily Om
+- every selected art symbol resolves to an authored label, variant hook, and Notice observation
+- every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
 - Machine Era changes use only coarse non-identifying classes and resist transient configuration churn
 - corrupt identity/weather/history state recovers safely
