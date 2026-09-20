@@ -12,7 +12,6 @@ import json
 import os
 import re
 import shutil
-import struct
 import tempfile
 from datetime import date, timedelta
 from pathlib import Path
@@ -20,11 +19,11 @@ from typing import Callable
 
 from experience import (canonical_json, commit_machine_era, envelope,
                         load_era_state, verify_envelope, _unique_pairs)
+from png_witness import png_dimensions as _png_dimensions
 
 
 DAY = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")
 SHA = re.compile(r"[0-9a-f]{64}\Z")
-PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
 
 def _day(day: str) -> None:
@@ -94,15 +93,6 @@ def _reference(root: Path, contents: bytes, extension: str) -> dict:
         "relativePath": path.relative_to(root).as_posix(),
         "bytes": len(contents),
     }
-
-
-def _png_dimensions(contents: bytes) -> tuple[int, int]:
-    if len(contents) < 24 or contents[:8] != PNG_SIGNATURE or contents[12:16] != b"IHDR":
-        raise ValueError("Ominity visual witness is not a PNG")
-    width, height = struct.unpack(">II", contents[16:24])
-    if width < 1 or height < 1 or width * 12 != height * 7:
-        raise ValueError("Ominity visual witness must retain 7:12 geometry")
-    return width, height
 
 
 def _verify_artifact(root: Path, item: dict, extension: str) -> str:

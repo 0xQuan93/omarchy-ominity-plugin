@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "oxquan.ominity",
   "name": "Ominity · Daily Tarot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "0xQuan93",
   "description": "A living 78-card daily tarot ritual for Omarchy with archived artwork, reflection, and Constellation history.",
   "kinds": ["service", "bar-widget"],

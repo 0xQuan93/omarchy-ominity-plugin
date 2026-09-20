@@ -18,11 +18,13 @@ import uuid
 import zipfile
 from contextlib import contextmanager
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 
 from experience import (_unique_pairs, _valid_date, _valid_era_id,
                         canonical_json, envelope, valid_signature, verify_envelope)
 from journal import _journal_lock, _validate_payload as validate_journal_payload
+from png_witness import png_dimensions
 
 MAX_MEMBERS = 100_000
 MAX_TOTAL_BYTES = 64 * 1024**3
@@ -80,6 +82,16 @@ def _read_json(data: bytes) -> dict:
     return json.loads(data.decode("utf-8"), object_pairs_hook=_unique_pairs)
 
 
+@lru_cache(maxsize=1)
+def _card_ids() -> frozenset[str]:
+    raw = _read_json((Path(__file__).resolve().parent / "deck/deck.json").read_bytes())
+    cards = raw["cards"] if isinstance(raw, dict) else raw
+    ids = frozenset(card["id"] for card in cards)
+    if len(cards) != 78 or len(ids) != 78:
+        raise ValueError("Ominity deck must contain 78 unique cards")
+    return ids
+
+
 def _validate_record(path: str, data: bytes) -> dict | None:
     kind, key = _kind(path)
     if len(data) > _limit(path):
@@ -87,15 +99,16 @@ def _validate_record(path: str, data: bytes) -> dict | None:
     if kind.startswith("artifact-"):
         if hashlib.sha256(data).hexdigest() != key:
             raise ValueError(f"Artifact path digest mismatch: {path}")
-        if kind == "artifact-png" and not data.startswith(b"\x89PNG\r\n\x1a\n"):
-            raise ValueError(f"Invalid PNG witness: {path}")
+        if kind == "artifact-png":
+            png_dimensions(data)
         if kind == "artifact-svg" and b"<svg" not in data[:4096]:
             raise ValueError(f"Invalid SVG master: {path}")
         return None
     record_type = {"history": "daily-om", "journal": "journal", "machine-era": "machine-era"}[kind]
     payload = verify_envelope(_read_json(data), record_type)
     if kind == "history":
-        if payload.get("day") != key or not isinstance(payload.get("id"), str) or type(payload.get("reversed")) is not bool:
+        if (payload.get("day") != key or not isinstance(payload.get("id"), str)
+                or payload["id"] not in _card_ids() or type(payload.get("reversed")) is not bool):
             raise ValueError(f"Invalid Daily Om payload: {path}")
     elif kind == "journal":
         validate_journal_payload(payload, key)
@@ -107,7 +120,8 @@ def _validate_record(path: str, data: bytes) -> dict | None:
     return payload
 
 
-def _reference_map(records: dict[str, dict], members: dict[str, dict]) -> dict[str, int]:
+def _reference_map(records: dict[str, dict], members: dict[str, dict],
+                   png_sizes: dict[str, tuple[int, int]]) -> dict[str, int]:
     """Prove that every witnessed Daily Om resolves to two assets and an era."""
     counts = {"days": 0, "legacyDays": 0, "journals": 0, "eras": 0}
     for path, payload in records.items():
@@ -145,6 +159,11 @@ def _reference_map(records: dict[str, dict], members: dict[str, dict]) -> dict[s
                         or target not in members or members[target]["sha256"] != digest
                         or ref.get("bytes") != members[target]["bytes"]):
                     raise ValueError(f"Daily Om references unavailable artwork: {path}")
+                if field == "visualWitness" and (
+                        type(ref.get("width")) is not int or type(ref.get("height")) is not int
+                        or (ref["width"], ref["height"]) != png_sizes.get(target)
+                        or ref.get("aspectRatio") != "7:12"):
+                    raise ValueError(f"Daily Om references mismatched PNG witness: {path}")
     return counts
 
 
@@ -214,7 +233,7 @@ def _safe_source(root: Path, path: str) -> Path:
     return target
 
 
-def _source_metadata(root: Path, path: str) -> tuple[dict, dict | None]:
+def _source_metadata(root: Path, path: str) -> tuple[dict, dict | None, tuple[int, int] | None]:
     target = _safe_source(root, path)
     if not target.is_file():
         raise ValueError(f"Missing archive source: {path}")
@@ -235,21 +254,22 @@ def _source_metadata(root: Path, path: str) -> tuple[dict, dict | None]:
     if kind.startswith("artifact-"):
         if digest.hexdigest() != key:
             raise ValueError(f"Artifact path digest mismatch: {path}")
-        if kind == "artifact-png" and not header.startswith(b"\x89PNG\r\n\x1a\n"):
-            raise ValueError(f"Invalid PNG witness: {path}")
+        dimensions = png_dimensions(target.read_bytes()) if kind == "artifact-png" else None
         if kind == "artifact-svg" and b"<svg" not in header:
             raise ValueError(f"Invalid SVG master: {path}")
         payload = None
     else:
         payload = _validate_record(path, target.read_bytes())
+        dimensions = None
     return {"path": path, "mediaType": _media_type(path), "bytes": size,
-            "sha256": digest.hexdigest()}, payload
+            "sha256": digest.hexdigest()}, payload, dimensions
 
 
 def _collect_source(state_root: Path) -> tuple[dict[str, dict], dict[str, int]]:
     root = Path(state_root)
     members = {}
     records = {}
+    png_sizes = {}
     for subdir, pattern in (("history", "*/*.json"), ("journal", "*/*.json"),
                             ("machine-eras", "*.json")):
         folder = root / subdir
@@ -258,7 +278,7 @@ def _collect_source(state_root: Path) -> tuple[dict[str, dict], dict[str, int]]:
         if folder.exists():
             for target in folder.glob(pattern):
                 path = target.relative_to(root).as_posix()
-                members[path], records[path] = _source_metadata(root, path)
+                members[path], records[path], _ = _source_metadata(root, path)
     for path, payload in list(records.items()):
         if _kind(path)[0] != "history" or payload.get("archiveOrigin") == "legacy-reading":
             continue
@@ -268,10 +288,12 @@ def _collect_source(state_root: Path) -> tuple[dict[str, dict], dict[str, int]]:
                 raise ValueError(f"Incomplete artwork reference: {path}")
             target = ref["relativePath"]
             if target not in members:
-                members[target], _ = _source_metadata(root, target)
+                members[target], _, dimensions = _source_metadata(root, target)
+                if dimensions is not None:
+                    png_sizes[target] = dimensions
     if len(members) > MAX_MEMBERS or sum(member["bytes"] for member in members.values()) > MAX_TOTAL_BYTES:
         raise ValueError("Ominity archive exceeds resource limits")
-    counts = _reference_map(records, members)
+    counts = _reference_map(records, members, png_sizes)
     return members, counts
 
 
@@ -354,6 +376,7 @@ def _extract_verified(archive_path: Path, staged: Path) -> tuple[dict, dict[str,
     with zipfile.ZipFile(archive_path, "r") as archive:
         payload, members = _zip_members(archive)
         records = {}
+        png_sizes = {}
         for path, entry in members.items():
             target = staged / path
             target.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -372,10 +395,13 @@ def _extract_verified(archive_path: Path, staged: Path) -> tuple[dict, dict[str,
             if count != entry["bytes"] or digest.hexdigest() != entry["sha256"]:
                 raise ValueError(f"Archive member digest or size mismatch: {path}")
             if _kind(path)[0].startswith("artifact-"):
-                _validate_record(path, target.read_bytes())
+                contents = target.read_bytes()
+                _validate_record(path, contents)
+                if _kind(path)[0] == "artifact-png":
+                    png_sizes[path] = png_dimensions(contents)
             else:
                 records[path] = _validate_record(path, target.read_bytes())
-        counts = _reference_map(records, members)
+        counts = _reference_map(records, members, png_sizes)
         return payload, members, counts
 
 

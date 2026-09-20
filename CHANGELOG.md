@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1 — 2026-09-20
+
+- Reject archived Daily Oms with card IDs outside the bundled 78-card deck before import or export.
+- Validate PNG witness image data and stored dimensions consistently during drawing, export, verification, import, and historical viewing.
+
 ## 2.0.0 — 2026-09-20
 
 - Added a deterministic daily experience to all 78 cards: authored lenses, highlighted symbols, daytime and evening prompts, and a factual Return thread when a card reappears.
