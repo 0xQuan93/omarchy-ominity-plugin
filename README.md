@@ -33,6 +33,8 @@ omarchy plugin remove oxquan.ominity
 
 Removing the plugin leaves your private daily draw history in `~/.local/state/ominity/reading.json` until you choose to delete it. Theme variants live under `~/.cache/ominity/decks/` and can be deleted safely. The plugin uses Python’s standard library and Quickshell; no extra packages or external services are required on a current Omarchy installation.
 
+New draws also keep coarse local capacity and one-time activity buckets with the reading, so a later experience renderer can recreate the same treatment. Ominity creates a random installation seed in `~/.local/state/ominity/identity.json` with mode `0600`; the seed and raw machine measurements never enter reading history. Existing daily readings remain readable and are not rewritten. This groundwork does not yet change the visible card art or meaning.
+
 ## Optional local summary
 
 An optional executable at `~/.config/ominity/summary` can provide a companion reflection. **Ask Zephyr** appears only when the adapter exists and runs only when clicked. The adapter reads the current card and returns one JSON object with `ok`, the same `drawnAt` stamp, and a `summary` string. Ominity ignores summaries for an older draw. The published plugin does not include a model, account integration, or private companion state.
