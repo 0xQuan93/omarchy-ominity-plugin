@@ -21,8 +21,10 @@ from experience import (canonical_json, capacity_signature, commit_machine_era,
                         valid_signature, valid_weather, verify_envelope,
                         weather_buckets, _unique_pairs)
 from living_store import (artwork_status, commit_daily, commit_legacy,
-                          commit_redraw_art, history_path, list_daily,
-                          load_daily, recover, statistics, sync_era_records)
+                          commit_redraw_art, finalize_era_update, history_path,
+                          list_daily, list_era_records, load_daily, recover,
+                          recover_era_updates, stage_era_update, statistics,
+                          sync_era_records)
 
 ROOT = Path(__file__).resolve().parent
 STATE_ROOT = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local/state") / "ominity"
@@ -284,6 +286,7 @@ def run(action: str, colors: dict[str, str] | None = None) -> dict:
         # Lock order remains day -> state. Losers reload the committed day.
         with state_lock(day + ".lock"), state_lock("state.lock"):
             recover(STATE_ROOT)
+            recover_era_updates(STATE_ROOT)
             data = load_state()
             migrate_legacy(data, cards)
             records = list_daily(STATE_ROOT)
@@ -303,10 +306,12 @@ def run(action: str, colors: dict[str, str] | None = None) -> dict:
                 def prepare_reference() -> None:
                     current_era = era_update or load_era_state(STATE_ROOT)
                     sync_era_records(STATE_ROOT, current_era["eras"])
-                    commit_machine_era(STATE_ROOT, era_update)
+                    if era_update is not None:
+                        stage_era_update(STATE_ROOT, day, era_update)
 
                 canonical = commit_daily(STATE_ROOT, reading, svg, png,
                                          before_commit=prepare_reference)
+                finalize_era_update(STATE_ROOT, day)
                 records.append(canonical)
             if action == "redraw":
                 displayed = _latest_reading(day, records, redraws) or canonical
@@ -345,6 +350,7 @@ def run(action: str, colors: dict[str, str] | None = None) -> dict:
     if action in ("state", "widget-toggle", "widget-show", "widget-hide", "stats", "history"):
         with state_lock("state.lock"):
             recover(STATE_ROOT)
+            recover_era_updates(STATE_ROOT)
             data = load_state()
             migrate_legacy(data, cards)
             if action.startswith("widget-"):
@@ -355,8 +361,12 @@ def run(action: str, colors: dict[str, str] | None = None) -> dict:
             redraws = load_redraws()
             if action == "stats":
                 era_state = load_era_state(STATE_ROOT)
+                era_map = {era["id"]: era for era in list_era_records(STATE_ROOT)}
+                if era_state:
+                    era_map.update({era["id"]: era for era in era_state["eras"]})
+                eras = sorted(era_map.values(), key=lambda era: (era["started"], era["id"]))
                 return statistics(records, redraws["totalCount"], day, _storage_bytes(), cards,
-                                  era_state["eras"] if era_state else [])
+                                  eras)
             if action == "history":
                 days = []
                 for item in reversed(records):

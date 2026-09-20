@@ -10,6 +10,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import living_store
+import experience
 
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "ominity.py"
@@ -142,6 +143,34 @@ class DrawTest(unittest.TestCase):
         self.assertEqual(list((ominity.STATE_ROOT / "staging").iterdir()), [])
         self.assertEqual(ominity.run("today")["historyCount"], 1)
 
+    def test_failed_daily_json_commit_discards_pending_era(self):
+        real_link = living_store.os.link
+
+        def fail_history(source, target, *args, **kwargs):
+            if "/history/" in str(target) and str(target).endswith(".json"):
+                raise OSError("history unavailable")
+            return real_link(source, target, *args, **kwargs)
+
+        with patch.object(living_store.os, "link", side_effect=fail_history):
+            with self.assertRaisesRegex(OSError, "history unavailable"):
+                ominity.run("today")
+        self.assertIsNone(ominity.load_era_state(ominity.STATE_ROOT))
+        self.assertEqual(ominity.run("state")["historyCount"], 0)
+        self.assertEqual(list((ominity.STATE_ROOT / "pending-eras").iterdir()), [])
+        self.assertEqual(ominity.list_era_records(ominity.STATE_ROOT), [])
+
+    def test_recovery_finishes_era_after_daily_json_commit(self):
+        with patch.object(living_store, "commit_machine_era", side_effect=OSError("interrupted")):
+            with self.assertRaisesRegex(OSError, "interrupted"):
+                ominity.run("today")
+        self.assertIsNone(ominity.load_era_state(ominity.STATE_ROOT))
+        self.assertEqual(len(ominity.list_daily(ominity.STATE_ROOT)), 1)
+        day = ominity.run("state")["day"]
+        self.assertIsNotNone(ominity.load_daily(ominity.STATE_ROOT, day))
+        self.assertEqual(ominity.run("stats")["eras"][0]["days"], 1)
+        self.assertEqual(list((ominity.STATE_ROOT / "pending-eras").iterdir()), [])
+        self.assertIsNotNone(ominity.load_era_state(ominity.STATE_ROOT))
+
     def test_stats_count_canonical_days_separately_from_redraws(self):
         first = ominity.run("today")
         ominity.run("redraw")
@@ -156,6 +185,19 @@ class DrawTest(unittest.TestCase):
         self.assertEqual(len(history["days"]), 1)
         self.assertEqual(history["days"][0]["id"], first["reading"]["id"])
         self.assertTrue(history["days"][0]["artworkPath"])
+
+    def test_stats_include_imported_eras_without_reassigning_local_history(self):
+        ominity.run("today")
+        imported = {"id": experience._era_id(), "ordinal": 1,
+                    "displayLabel": "Machine Era 01", "started": "2020-01-01",
+                    "ended": "2021-01-01",
+                    "classes": {"cpu": "C2", "memory": "M2", "storage": "D2"}}
+        living_store.sync_era_records(ominity.STATE_ROOT, [imported])
+        eras = ominity.run("stats")["eras"]
+        self.assertEqual(len(eras), 2)
+        self.assertEqual(eras[0]["id"], imported["id"])
+        self.assertEqual(eras[0]["days"], 0)
+        self.assertEqual(eras[1]["days"], 1)
 
     def test_legacy_history_migrates_without_a_ninety_day_cap(self):
         start = date(2025, 1, 1)

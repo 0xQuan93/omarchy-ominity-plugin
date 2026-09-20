@@ -18,7 +18,8 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Callable
 
-from experience import canonical_json, envelope, verify_envelope, _unique_pairs
+from experience import (canonical_json, commit_machine_era, envelope,
+                        load_era_state, verify_envelope, _unique_pairs)
 
 
 DAY = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")
@@ -329,6 +330,87 @@ def sync_era_records(root: Path, eras: list[dict]) -> None:
         finally:
             if os.path.exists(name):
                 os.unlink(name)
+
+
+def list_era_records(root: Path) -> list[dict]:
+    directory = root / "machine-eras"
+    if not directory.exists():
+        return []
+    eras = []
+    for path in sorted(directory.glob("*.json")):
+        era = _parse(path, "machine-era")
+        if era.get("id") != path.stem:
+            raise ValueError("Ominity Machine Era filename and ID disagree")
+        eras.append(era)
+    return eras
+
+
+def stage_era_update(root: Path, day: str, state: dict) -> None:
+    """Durably record an era change that is conditional on a Daily Om commit."""
+    _day(day)
+    pending = root / "pending-eras"
+    _private_directory(pending)
+    path = pending / f"{day}.json"
+    if path.exists():
+        raise ValueError("Ominity era update is already pending")
+    document = envelope("pending-era", {"day": day, "state": state})
+    _write_fsynced(path, canonical_json(document) + b"\n")
+    _fsync_dir(pending)
+
+
+def _remove_pending(path: Path) -> None:
+    path.unlink()
+    _fsync_dir(path.parent)
+
+
+def finalize_era_update(root: Path, day: str) -> None:
+    """Apply an era change only after its Daily Om commit marker exists."""
+    path = root / "pending-eras" / f"{day}.json"
+    if not path.exists():
+        return
+    update = _parse(path, "pending-era")
+    if update.get("day") != day or not isinstance(update.get("state"), dict):
+        raise ValueError("Invalid Ominity pending era update")
+    daily = load_daily(root, day)
+    if daily is None:
+        raise ValueError("Ominity Daily Om is not committed")
+    if daily.get("machine", {}).get("eraId") != update["state"].get("activeId"):
+        raise ValueError("Ominity Daily Om and pending era disagree")
+    commit_machine_era(root, update["state"])
+    _remove_pending(path)
+
+
+def recover_era_updates(root: Path) -> int:
+    """Idempotently finish committed changes and discard uncommitted ones."""
+    pending = root / "pending-eras"
+    if not pending.exists():
+        return 0
+    count = 0
+    for path in sorted(pending.glob("*.json")):
+        _day(path.stem)
+        update = _parse(path, "pending-era")
+        if update.get("day") != path.stem or not isinstance(update.get("state"), dict):
+            raise ValueError("Invalid Ominity pending era update")
+        if load_daily(root, path.stem) is not None:
+            finalize_era_update(root, path.stem)
+        else:
+            # The JSON marker never landed. Local active state is unchanged;
+            # restore any old era's end date and remove a newly staged era.
+            current = load_era_state(root)
+            live = {era["id"] for era in current["eras"]} if current else set()
+            referenced = {item.get("machine", {}).get("eraId") for item in list_daily(root)}
+            for era in update["state"].get("eras", []):
+                identifier = era.get("id")
+                if identifier not in live and identifier not in referenced:
+                    orphan = root / "machine-eras" / f"{identifier}.json"
+                    if orphan.exists():
+                        orphan.unlink()
+                        _fsync_dir(orphan.parent)
+            if current:
+                sync_era_records(root, current["eras"])
+            _remove_pending(path)
+        count += 1
+    return count
 
 
 def recover(root: Path) -> int:
