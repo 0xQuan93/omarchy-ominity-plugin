@@ -26,7 +26,7 @@ Create a private random installation secret on first run:
 Mode 0600:
 
 ```json
-{"schemaVersion":1,"payloadSha256":"<sha256 of canonical payload>","payload":{"seed":"<256-bit random value>"}}
+{"integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},"record":{"schemaVersion":1,"type":"identity","payload":{"seed":"<256-bit random value>"}}
 ```
 
 For a daily reading derive a deterministic seed with HMAC-SHA256:
@@ -134,8 +134,10 @@ Extend the reading object without breaking existing consumers:
 
 ```json
 {
+  "integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},
+  "record":{
   "schemaVersion":1,
-  "payloadSha256":"<sha256 of canonical payload>",
+  "type":"daily-om",
   "payload":{
   "day":"2026-09-20",
   "id":"major-17-the-star",
@@ -167,7 +169,7 @@ Extend the reading object without breaking existing consumers:
     "reflection":"What small source of renewal is already near?",
     "artNote":"The largest star shines over a figure who pours water both into the pool and onto the earth."
   },
-  "machine":{"eraId":"era-01","weather":{"cpu":2,"memory":1,"disk":3}},
+  "machine":{"eraId":"019a4d3e-7c91-7b2a-a901-2b61c67f1102","weather":{"cpu":2,"memory":1,"disk":3}},
   "artwork":{
     "rendererVersion":1,
     "master":{
@@ -292,11 +294,13 @@ The archived SVG is the structural source artifact; the lossless PNG is the visu
 
 ### Record integrity and schema evolution
 
-Artwork hashes are not enough: the historical record itself needs provenance. Every persistent structure carries an explicit `schemaVersion` (Daily Om, identity, Machine Era state, journal, archive manifest). A Daily Om is represented as a canonical payload plus an integrity envelope so the record hash does not recursively include itself.
+Artwork hashes are not enough: the historical record itself needs provenance. Every persistent structure carries an explicit `schemaVersion` and `type` inside a **hashed record object** (Daily Om, identity, Machine Era state, journal, archive manifest). Integrity metadata lives outside that record so the digest does not recursively include itself.
 
-Canonicalize the payload with a documented deterministic JSON encoding (UTF-8, sorted object keys, stable separators, no NaN/Infinity), then compute SHA-256 over those exact bytes. The envelope stores `payloadSha256` and the payload. Verification therefore covers the artifact digests, canonical prose, experience snapshot, machine-era association, timestamps, and all other historical fields.
+Use **RFC 8785 JSON Canonicalization Scheme (JCS)** as the byte-exact canonicalization contract. Compute SHA-256 over the UTF-8 RFC 8785 canonical representation of the entire `record` object, including `schemaVersion`, `type`, and `payload`. The outer `integrity` object stores `algorithm: "sha256"`, `canonicalization: "RFC8785"`, and the digest. Verification therefore binds interpretation/version metadata as well as artifact digests, canonical prose, experience snapshot, machine-era association, timestamps, and all other historical fields.
 
-The identity, Daily Om, Machine Era, and journal examples in this RFC are normative persisted shapes and use this envelope. Archive manifests are separately versioned and hash every member they enumerate.
+Do not substitute an ad-hoc “sorted JSON” serializer. Implementations/importers must either support the named canonicalization algorithm exactly or report the record as unsupported rather than corrupt. Non-finite JSON numbers are forbidden; persistent numeric values must be representable under RFC 8785 semantics.
+
+The identity, Daily Om, Machine Era, journal, and archive-manifest examples in this RFC are normative persisted shapes and use the same envelope. Archive manifests additionally hash every member they enumerate.
 
 Migrations must be additive/non-destructive. Never silently rewrite a verified historical payload in place. If a future schema needs a transformed representation, preserve the original payload and create a versioned derived/migrated view with provenance linking it to the source.
 
@@ -396,7 +400,7 @@ Suggested shape:
 
 Ominity should recognize long-lived relationships with hardware without storing identifying hardware data.
 
-Derive a coarse **Machine Era signature** from the same privacy-preserving capacity buckets used by Machine DNA. When that coarse signature materially changes and remains changed, begin a new local Machine Era with a random opaque ID such as `era-02`. Never store manufacturer/model, hostname, serials, MAC addresses, disk UUIDs, CPU model strings, or other fingerprint-grade identifiers.
+Derive a coarse **Machine Era signature** from the same privacy-preserving capacity buckets used by Machine DNA. When that coarse signature materially changes and remains changed, begin a new local Machine Era with a random opaque ID such as `019a4d3e-7c91-7b2a-a901-2b61c67f1102`. Never store manufacturer/model, hostname, serials, MAC addresses, disk UUIDs, CPU model strings, or other fingerprint-grade identifiers.
 
 An era record uses the same integrity envelope:
 
@@ -414,7 +418,7 @@ An era record uses the same integrity envelope:
 }
 ```
 
-Each Daily Om stores its Machine Era ID. Constellation can then show the user's history in chapters such as **Machine Era 01** without claiming to identify a physical device.
+Machine Era durable IDs must be collision-resistant across independent installations/imports (UUIDv7 is the reference format). Sequential ordinals such as “01” and “02” are presentation metadata only and must never be used as references or uniqueness keys. Each Daily Om stores the collision-resistant Machine Era ID. Constellation can then show the user's history in chapters such as **Machine Era 01** without claiming to identify a physical device.
 
 To avoid creating a new era for transient configuration changes, require confirmation across multiple launches/days before closing the current era. Upgrades are part of the story: a RAM or storage upgrade may either remain within the era with a milestone event or begin a new era according to a documented material-change threshold.
 
@@ -442,9 +446,11 @@ Recommended persisted shape:
 
 ```json
 {
-  "schemaVersion":1,
-  "payloadSha256":"<sha256 of canonical payload>",
-  "payload":{
+  "integrity":{"algorithm":"sha256","canonicalization":"RFC8785","digest":"<sha256 of canonical record>"},
+  "record":{
+    "schemaVersion":1,
+    "type":"journal",
+    "payload":{
     "day":"2026-09-20",
     "firstImpression":"...",
     "eveningReflection":"..."
@@ -611,7 +617,11 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - staged Daily Om JSON is flushed and fsynced before its atomic commit rename
 - concurrent `today` calls serialize per local day; losers reload the committed artifact rather than generating a second canonical encounter
 - redraw cannot race canonical creation
-- every persistent record has an explicit schema version and normative examples show the integrity envelope
+- every persistent record hashes its complete RFC 8785-canonicalized `record` object, including schemaVersion and type, under an explicit integrity envelope
+- changing schemaVersion/type invalidates the stored digest
+- implementations use byte-exact RFC 8785 JCS rather than implementation-specific JSON serialization
+- unsupported canonicalization/integrity algorithms are reported as unsupported, not corrupt
+- Machine Era durable IDs are collision-resistant across independent archives; ordinals are display-only
 - normative examples remain consistent with all RFC invariants
 - Daily Om payloads have deterministic canonical serialization and an independently stored SHA-256 integrity envelope
 - verified historical payloads are never silently rewritten by schema migrations
@@ -622,6 +632,7 @@ Every normative persisted-schema example in this RFC must satisfy every invarian
 - portable archive export enumerates files with hashes/sizes and import verifies before transactional commit
 - archive import prevents path traversal, enforces resource limits, and never overwrites conflicting canonical history
 - imported Machine Eras remain historical and are not reassigned to the receiving machine
+- importing independent archives with identical era ordinals cannot collide because references use durable collision-resistant IDs
 - missing/modified artwork is surfaced honestly and never silently replaced with a modern render
 - every Daily Om persists its Machine Era ID directly
 - deck wording changes cannot silently reinterpret historical Daily Oms
