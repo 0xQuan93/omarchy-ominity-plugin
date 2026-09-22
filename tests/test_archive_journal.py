@@ -1,4 +1,5 @@
 import hashlib
+import io
 import json
 import os
 import struct
@@ -7,6 +8,7 @@ import unittest
 import zipfile
 import zlib
 from pathlib import Path
+from unittest import mock
 
 import archive
 import journal
@@ -154,6 +156,38 @@ class ArchiveTest(unittest.TestCase):
             archive.import_archive(self.zip, self.dest)
         self.assertFalse(self.dest.joinpath("history").exists())
 
+    def test_rejects_compressed_archive_bomb_before_extraction(self):
+        archive.export_archive(self.root, self.zip)
+        with zipfile.ZipFile(self.zip) as source:
+            original = {name: source.read(name) for name in source.namelist()}
+        svg_path = next(name for name in original if name.endswith(".svg"))
+        expanded = b"0" * (archive.MAX_ARTIFACT_BYTES + 1)
+        self._write_forged_archive(svg_path, expanded, original,
+                                   compression=zipfile.ZIP_DEFLATED)
+        self.assertLess(self.zip.stat().st_size, len(expanded) // 100)
+        staged = self.base / "staged"
+        staged.mkdir()
+        with self.assertRaisesRegex(ValueError, "member metadata"):
+            archive._extract_verified(self.zip, staged)
+        self.assertEqual(list(staged.rglob("*")), [])
+
+    def test_streaming_limits_are_checked_before_writing_a_chunk(self):
+        path = f"history/2026/{self.DAY}.json"
+        contents = b"x" * 12
+        entry = {"bytes": len(contents), "sha256": hashlib.sha256(contents).hexdigest()}
+
+        output = io.BytesIO()
+        with mock.patch.object(archive, "MAX_JSON_BYTES", 8):
+            with self.assertRaisesRegex(ValueError, "member exceeds limit"):
+                archive._copy_verified_member(io.BytesIO(contents), output, path, entry, 0)
+        self.assertEqual(output.getvalue(), b"")
+
+        output = io.BytesIO()
+        with mock.patch.object(archive, "MAX_TOTAL_BYTES", 10):
+            with self.assertRaisesRegex(ValueError, "total exceeds limit"):
+                archive._copy_verified_member(io.BytesIO(contents), output, path, entry, 6)
+        self.assertEqual(output.getvalue(), b"")
+
     def test_legacy_day_is_labeled_unwitnessed(self):
         legacy = {"day": "2026-09-19", "id": "major-18-the-moon", "reversed": True,
                   "archiveOrigin": "legacy-reading"}
@@ -221,7 +255,8 @@ class ArchiveTest(unittest.TestCase):
             archive.export_archive(self.root, self.zip)
         self.assertFalse(self.zip.exists())
 
-    def _write_forged_archive(self, path, contents, original=None):
+    def _write_forged_archive(self, path, contents, original=None,
+                              compression=zipfile.ZIP_STORED):
         if original is None:
             # Build a valid starting archive with the ordinary fixture.
             self._fixture()
@@ -251,7 +286,7 @@ class ArchiveTest(unittest.TestCase):
                 entry["sha256"] = hashlib.sha256(updated[entry["path"]]).hexdigest()
         manifest["record"]["payload"]["members"].sort(key=lambda entry: entry["path"])
         updated["manifest.json"] = canonical_json(envelope("archive-manifest", manifest["record"]["payload"]))
-        with zipfile.ZipFile(self.zip, "w") as destination:
+        with zipfile.ZipFile(self.zip, "w", compression=compression) as destination:
             for name, blob in updated.items():
                 destination.writestr(name, blob)
 

@@ -26,11 +26,14 @@ from experience import (_unique_pairs, _valid_date, _valid_era_id,
 from journal import _journal_lock, _validate_payload as validate_journal_payload
 from png_witness import png_dimensions
 
-MAX_MEMBERS = 100_000
-MAX_TOTAL_BYTES = 64 * 1024**3
-MAX_ARTIFACT_BYTES = 128 * 1024**2
-MAX_JSON_BYTES = 16 * 1024**2
-MAX_MANIFEST_BYTES = 32 * 1024**2
+# Ominity archives contain a few small records plus two artifacts per Daily Om.
+# Keep the restore envelope useful for years of history without accepting
+# generic ZIP64-scale workloads from an untrusted import.
+MAX_MEMBERS = 5_000
+MAX_TOTAL_BYTES = 512 * 1024**2
+MAX_ARTIFACT_BYTES = 16 * 1024**2
+MAX_JSON_BYTES = 1024**2
+MAX_MANIFEST_BYTES = 2 * 1024**2
 CHUNK = 1024**2
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 DAY_PATH = re.compile(r"(history|journal)/([0-9]{4})/([0-9]{4}-[0-9]{2}-[0-9]{2})\.json\Z")
@@ -377,22 +380,17 @@ def _extract_verified(archive_path: Path, staged: Path) -> tuple[dict, dict[str,
         payload, members = _zip_members(archive)
         records = {}
         png_sizes = {}
+        expanded_total = 0
         for path, entry in members.items():
             target = staged / path
             target.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
-            digest = hashlib.sha256()
-            count = 0
             with archive.open(path) as source, target.open("xb") as output:
                 os.chmod(target, 0o600)
-                while chunk := source.read(CHUNK):
-                    count += len(chunk)
-                    if count > entry["bytes"]:
-                        raise ValueError(f"Expanded archive member exceeds declared size: {path}")
-                    digest.update(chunk)
-                    output.write(chunk)
+                count, digest, expanded_total = _copy_verified_member(
+                    source, output, path, entry, expanded_total)
                 output.flush()
                 os.fsync(output.fileno())
-            if count != entry["bytes"] or digest.hexdigest() != entry["sha256"]:
+            if count != entry["bytes"] or digest != entry["sha256"]:
                 raise ValueError(f"Archive member digest or size mismatch: {path}")
             if _kind(path)[0].startswith("artifact-"):
                 contents = target.read_bytes()
@@ -403,6 +401,28 @@ def _extract_verified(archive_path: Path, staged: Path) -> tuple[dict, dict[str,
                 records[path] = _validate_record(path, target.read_bytes())
         counts = _reference_map(records, members, png_sizes)
         return payload, members, counts
+
+
+def _copy_verified_member(source, output, path: str, entry: dict,
+                          expanded_total: int) -> tuple[int, str, int]:
+    """Copy one ZIP member while independently enforcing expanded-byte limits."""
+    digest = hashlib.sha256()
+    count = 0
+    member_limit = _limit(path)
+    while chunk := source.read(CHUNK):
+        next_count = count + len(chunk)
+        next_total = expanded_total + len(chunk)
+        if next_count > member_limit:
+            raise ValueError(f"Expanded archive member exceeds limit: {path}")
+        if next_count > entry["bytes"]:
+            raise ValueError(f"Expanded archive member exceeds declared size: {path}")
+        if next_total > MAX_TOTAL_BYTES:
+            raise ValueError("Expanded archive total exceeds limit")
+        digest.update(chunk)
+        output.write(chunk)
+        count = next_count
+        expanded_total = next_total
+    return count, digest.hexdigest(), expanded_total
 
 
 def verify_archive(archive_path: Path) -> dict:

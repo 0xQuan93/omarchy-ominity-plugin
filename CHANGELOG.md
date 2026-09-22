@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2 — 2026-09-22
+
+- Bound portable archive imports to practical Ominity-sized member, manifest, per-file, and cumulative expanded-byte limits.
+- Enforce expanded-byte limits again while streaming into private staging and reject compressed archive bombs before publishing any data.
+
 ## 2.0.1 — 2026-09-20
 
 - Reject archived Daily Oms with card IDs outside the bundled 78-card deck before import or export.
